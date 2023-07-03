@@ -1,0 +1,52 @@
+Wymagania ogólne do GUI
+Wymiana danych pomiędzy apką a ROSEM (most ROS apka - manipulator)
+Sterowanie łazikiem (przód tył lewo prawo z joysticka)
+Sterowanie manipualatorem (przyciski z zapamiętaniem pozycji, sterowanie kinematyka)
+Uzbrojenie manipualtora
+Uzbrojenie łazika
+Laboratorium <- kamery cyfrowe?
+Komunikacja ethernet/bluetooth
+Autonomia sterowanie
+Koncepcja osobnych okienek
+Koncepcja zakładek
+Jeżdżenie + manipulator działa razem
+Terminal z danymi wysłanymi/odebranymi (loger)
+Wyświetlanie stanu łazika
+Przyciski stopu
+
+Wymagania do interfejsu GUI
+Połączenie (powinno być zawsze na widoku - przynajmniej sam status połączenia):
+wybór BT/SSH
+BT (wybór portu)
+przycisk połącz
+status połączenia (czerwona/zielona dioda)
+logger (wyświetlanie błędów i ostrzeżeń dot. działania GUI oraz łazika)
+
+Platforma:
+uzbrojenie/zatrzymanie manipulatora (START/STOP)
+stany sterowników ESC obok kół na schemacie łazika z góry (zielona/czerwona dioda - 6 szt.)
+przyciski do sterowania przód/tył/lewa/prawa
+slider do ustawiania prędkości maksymalnej
+
+Manipulator:
+uzbrojenie/zatrzymanie manipulatora (START/STOP)
+zapisywanie pozycji ramienia
+checkbox do aktywacji sterowania kartezjańskiego
+checkbox do aktywacji sterowania złączowego
+przyciski do sterowania ramieniem (6 przycisków - zależnie od trybu [x,y,z,obrót x,obrót y, obrót z] lub [dof1, dof2, dof3, dof4, dof5, dof6])
+wyświetlanie pozycji kątów (złącza) - 6 labeli
+wyświetlanie współrzędnych końcówki (xyz i orientacja w Eulerze) - 6 labeli
+
+Autonomia:
+mapka terenu z naniesioną siatką 0.5m x 0.5m - siatka będzie służyła do predefiniowania przeszkód terenowych)
+przycisk do przełączania trybów (autonomia/manual/stop(czekanie na punkcie))
+wyświetlanie współrzędnych GPS
+wyświetlanie pozycji łazika na mapie
+wyświetlanie orientacji łazika (kąty Eulera)
+wyświetlanie kierunku jazdy łazika względem północy
+przycisk do akceptowania zaliczenia punktu (po naciśnięciu następuje jazda do kolejnego zadanego punktu)
+
+Laboratorium:
+ ŁUKASZEK TUTAJ
+chcemy logi czasowe, kiedy co się działo z probówką, żeby z gopro można było porównać nagranie i działanie
+aby każda probówka miała swoją pamięć itp 
