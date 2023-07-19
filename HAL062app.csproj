@@ -49,19 +49,60 @@
     <Compile Include="CustomControls\CustomButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomControls\CustomProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomControls\CustomToggleButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="mainForm.Designer.cs">
+      <DependentUpon>mainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="moduly\IModelObserver.cs" />
+    <Compile Include="moduly\komunikacja\komunikacjaController.cs" />
+    <Compile Include="moduly\komunikacja\komunikacjaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="moduly\komunikacja\komunikacjaForm.Designer.cs">
+      <DependentUpon>komunikacjaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="moduly\komunikacja\komunikacjaModel.cs" />
+    <Compile Include="moduly\laboratorium\laboratoriumController.cs" />
+    <Compile Include="moduly\laboratorium\laboratoriumForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="moduly\laboratorium\laboratoriumForm.Designer.cs">
+      <DependentUpon>laboratoriumForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="moduly\laboratorium\laboratoriumModel.cs" />
+    <Compile Include="moduly\manipulator\manipulatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="moduly\manipulator\manipulatorForm.Designer.cs">
+      <DependentUpon>manipulatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="moduly\Message.cs" />
+    <Compile Include="moduly\podwozie\podwozieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="moduly\podwozie\podwozieForm.Designer.cs">
+      <DependentUpon>podwozieForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="moduly\TimeProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TimerManager.cs" />
+    <EmbeddedResource Include="mainForm.resx">
+      <DependentUpon>mainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="moduly\komunikacja\komunikacjaForm.resx">
+      <DependentUpon>komunikacjaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="moduly\laboratorium\laboratoriumForm.resx">
+      <DependentUpon>laboratoriumForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -85,5 +126,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

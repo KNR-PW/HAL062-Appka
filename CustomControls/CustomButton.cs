@@ -17,7 +17,7 @@ namespace HAL062app.CustomControls
     {
         private int borderSize = 0;
         private int borderRadius = 20;
-        private Color borderColor = Color.PaleVioletRed;
+        private Color borderColor = Color.FromArgb(0,155,154,159);
 
 
         public CustomButton()
@@ -25,7 +25,7 @@ namespace HAL062app.CustomControls
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 0;
             this.Size = new Size(150, 40);
-            this.BackColor = Color.MediumSlateBlue;
+            this.BackColor = Color.FromArgb(0, 155, 154, 159);
             this.ForeColor = Color.White;
             this.Resize += new EventHandler(Button_Resize);
         }
@@ -69,7 +69,7 @@ namespace HAL062app.CustomControls
             get { return this.BackColor; }
             set { this.BackColor = value; }
         }
-        [Category("RJ Code Advance")]
+        [Category("CustomControls")]
         public Color TextColor
         {
             get { return this.ForeColor; }
