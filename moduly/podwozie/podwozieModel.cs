@@ -21,7 +21,7 @@ namespace HAL062app.moduly.podwozie
         }
         public void MainChannel(Message message)
         {
-            receivedQueue.Enqueue(message);
+            receivedQueue.Enqueue(message); // to powoduje, ze wiadomosc z komunikacji trafia do tej queue
 
         }
 

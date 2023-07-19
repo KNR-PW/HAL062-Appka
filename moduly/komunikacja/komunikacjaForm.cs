@@ -17,6 +17,7 @@ namespace HAL062app.moduly.komunikacja
         public komunikacjaForm()
         {
             InitializeComponent();
+            
         }
 
         private void komunikacjaForm_Load(object sender, EventArgs e)

@@ -26,7 +26,7 @@ namespace HAL062app.moduly.manipulator
 
         public void SendMessageToKomunikacja(Message message)
         {
-            message.author = 3;
+            message.author = 4;
             komunikacjaModel.ReceivedMessageService(message);
 
         }

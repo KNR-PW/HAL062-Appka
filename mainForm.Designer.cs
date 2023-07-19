@@ -31,15 +31,15 @@
             this.SidePanel = new System.Windows.Forms.Panel();
             this.FastOptionPanel = new System.Windows.Forms.Panel();
             this.ButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.StatusPanel = new System.Windows.Forms.Panel();
-            this.ContextPanel = new System.Windows.Forms.Panel();
-            this.UpperPanel = new System.Windows.Forms.Panel();
             this.MainPageButton = new HAL062app.CustomControls.CustomButton();
             this.CommunicationButton = new HAL062app.CustomControls.CustomButton();
             this.ChassisButton = new HAL062app.CustomControls.CustomButton();
             this.ManipulatorButton = new HAL062app.CustomControls.CustomButton();
             this.LaboButton = new HAL062app.CustomControls.CustomButton();
             this.customButton6 = new HAL062app.CustomControls.CustomButton();
+            this.StatusPanel = new System.Windows.Forms.Panel();
+            this.ContextPanel = new System.Windows.Forms.Panel();
+            this.UpperPanel = new System.Windows.Forms.Panel();
             this.SidePanel.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
             this.SuspendLayout();
@@ -83,41 +83,6 @@
             this.ButtonPanel.Name = "ButtonPanel";
             this.ButtonPanel.Size = new System.Drawing.Size(256, 357);
             this.ButtonPanel.TabIndex = 1;
-            // 
-            // StatusPanel
-            // 
-            this.StatusPanel.AutoSize = true;
-            this.StatusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.StatusPanel.Location = new System.Drawing.Point(15, 15);
-            this.StatusPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.StatusPanel.Name = "StatusPanel";
-            this.StatusPanel.Size = new System.Drawing.Size(256, 70);
-            this.StatusPanel.TabIndex = 0;
-            // 
-            // ContextPanel
-            // 
-            this.ContextPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ContextPanel.AutoSize = true;
-            this.ContextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.ContextPanel.Location = new System.Drawing.Point(355, 132);
-            this.ContextPanel.Margin = new System.Windows.Forms.Padding(20);
-            this.ContextPanel.Name = "ContextPanel";
-            this.ContextPanel.Size = new System.Drawing.Size(1200, 700);
-            this.ContextPanel.TabIndex = 1;
-            // 
-            // UpperPanel
-            // 
-            this.UpperPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpperPanel.AutoSize = true;
-            this.UpperPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.UpperPanel.Location = new System.Drawing.Point(358, 29);
-            this.UpperPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.UpperPanel.Name = "UpperPanel";
-            this.UpperPanel.Size = new System.Drawing.Size(1197, 85);
-            this.UpperPanel.TabIndex = 2;
             // 
             // MainPageButton
             // 
@@ -239,6 +204,41 @@
             this.customButton6.UseVisualStyleBackColor = false;
             this.customButton6.Click += new System.EventHandler(this.customButton6_Click);
             // 
+            // StatusPanel
+            // 
+            this.StatusPanel.AutoSize = true;
+            this.StatusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.StatusPanel.Location = new System.Drawing.Point(15, 15);
+            this.StatusPanel.Margin = new System.Windows.Forms.Padding(15);
+            this.StatusPanel.Name = "StatusPanel";
+            this.StatusPanel.Size = new System.Drawing.Size(256, 70);
+            this.StatusPanel.TabIndex = 0;
+            // 
+            // ContextPanel
+            // 
+            this.ContextPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ContextPanel.AutoSize = true;
+            this.ContextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.ContextPanel.Location = new System.Drawing.Point(355, 132);
+            this.ContextPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.ContextPanel.Name = "ContextPanel";
+            this.ContextPanel.Size = new System.Drawing.Size(1200, 700);
+            this.ContextPanel.TabIndex = 1;
+            // 
+            // UpperPanel
+            // 
+            this.UpperPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpperPanel.AutoSize = true;
+            this.UpperPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.UpperPanel.Location = new System.Drawing.Point(358, 29);
+            this.UpperPanel.Margin = new System.Windows.Forms.Padding(15);
+            this.UpperPanel.Name = "UpperPanel";
+            this.UpperPanel.Size = new System.Drawing.Size(1197, 85);
+            this.UpperPanel.TabIndex = 2;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,7 +248,9 @@
             this.Controls.Add(this.UpperPanel);
             this.Controls.Add(this.ContextPanel);
             this.Controls.Add(this.SidePanel);
+            this.MinimumSize = new System.Drawing.Size(1600, 900);
             this.Name = "mainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KNR HAL-062";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.SidePanel.ResumeLayout(false);

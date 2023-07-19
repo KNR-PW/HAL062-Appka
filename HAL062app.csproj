@@ -49,6 +49,9 @@
     <Compile Include="CustomControls\CustomButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomControls\CustomComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="CustomControls\CustomProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
