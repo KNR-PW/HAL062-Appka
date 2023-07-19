@@ -24,13 +24,13 @@ namespace HAL062app.moduly.komunikacja
                 if (display != null)
                 {
 
-                    display.SendTerminalMsg += SendPrivateMessage;
+                    display.SendTerminalMsg += ReceiveTerminalMsg;
                     model.UpdateLogTerminal += UpdateTerminal;
                 }
             }
         }
 
-        private void SendPrivateMessage(Message msg)
+        private void ReceiveTerminalMsg(Message msg)
         {
             
            

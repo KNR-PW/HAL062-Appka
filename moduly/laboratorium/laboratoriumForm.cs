@@ -12,8 +12,8 @@ namespace HAL062app.moduly.laboratorium
 {
     public partial class laboratoriumForm : Form
     {
-        public event Action Dequeue;
-
+        public event Action DequeueAction;
+        public event Action<Message> MessageAction;
 
         public laboratoriumForm()
         {
@@ -22,7 +22,7 @@ namespace HAL062app.moduly.laboratorium
 
         private void customButton1_Click(object sender, EventArgs e)
         {
-            Dequeue?.Invoke();
+            DequeueAction?.Invoke();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -32,6 +32,13 @@ namespace HAL062app.moduly.laboratorium
         public void Updateee(string  text)
         {
             textBox1.Text = text;
+        }
+
+        private void customButton2_Click(object sender, EventArgs e)
+        {
+            Message msg = new Message();
+            msg.text = textBox2.Text;
+            MessageAction?.Invoke(msg);
         }
     }
 }

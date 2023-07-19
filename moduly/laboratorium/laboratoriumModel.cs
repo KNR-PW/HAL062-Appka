@@ -18,17 +18,13 @@ namespace HAL062app.moduly.laboratorium
         public event Action<string> wywolaj;
 
 
-
+        komunikacja.komunikacjaModel komunikacjaModel;
         private ConcurrentQueue<Message> receivedQueue;
-        private CancellationTokenSource tokenSource;
-        private laboratoriumForm display;
-        private Dictionary<string, Form> modules;
 
         public laboratoriumModel(komunikacjaModel komunikacja)
         {
-
             receivedQueue = new ConcurrentQueue<Message>();
-            
+            this.komunikacjaModel = komunikacja;
         }
 
         public void MainChannel(Message message)
@@ -45,9 +41,10 @@ namespace HAL062app.moduly.laboratorium
             else
                 wywolaj?.Invoke("Brak wiadomosci w kolejce");
         }
-        public void SendPrivateMessage(Message message)
+        public void SendMessageToKomunikacja(Message message)
         {
-            
+            message.author = 2;
+            komunikacjaModel.ReceivedMessageService(message);
 
         }
      

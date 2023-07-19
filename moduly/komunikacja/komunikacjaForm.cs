@@ -24,14 +24,9 @@ namespace HAL062app.moduly.komunikacja
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         public void UpdateTerminal(List<Message> logs)
         {
-            TerminalBox.Items.Clear(); // przy wiekszej ilosci wiadomosci bedzie sie zawieszac, trzeba dodac koniecznie opcje filtrowania i wtedy clear uzywac
+            TerminalBox.Items.Clear(); // przy wiekszej ilosci wiadomosci bedzie sie zawieszac, trzeba dodac opcje filtrowania po adresie i wtedy clear uzywac
             foreach(var message in logs)
             {
                 

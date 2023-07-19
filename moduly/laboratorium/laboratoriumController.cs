@@ -26,16 +26,18 @@ namespace HAL062app.moduly.laboratorium
                 if (display != null)
                 {
 
-                    //    LaboratoriumF.Button1Click += SendMessageHandler;
+                  
                     model.wywolaj += UpdateTextBox1;
-                    display.Dequeue += dequeue;
+                    display.DequeueAction += dequeue;
+                    display.MessageAction += sendMessageToKomunikacja;
+                    
                 }
             }
         }
 
-        private void SendMessageHandler(String text)
+        private void sendMessageToKomunikacja(Message msg)
         {
-            
+            model.SendMessageToKomunikacja(msg);
 
         }
         private void dequeue()

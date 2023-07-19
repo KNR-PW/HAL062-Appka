@@ -32,20 +32,20 @@ namespace HAL062app.moduly.komunikacja
     {
         private List<MainChannelObserver> observers = new List<MainChannelObserver>();    //lista obserwujących modułów
         private List<Message> logMessages = new List<Message>();
-        private TimerManager timerManager;
+   
 
         private ConcurrentQueue<Message> messageQueue;
         private CancellationTokenSource tokenSource;
         private Task receivedTask;
-        public event Action<Message> privateMessageReceived; 
+        public event Action<Message> privateMessageReceivedAction; 
         public event Action<List<Message>> UpdateLogTerminal;
 
-        public komunikacjaModel(TimerManager timerManager)
+        public komunikacjaModel( )
         {
             messageQueue = new ConcurrentQueue<Message>();
             tokenSource = new CancellationTokenSource();
             receivedTask = Task.Run(() => ReceiveMessages(tokenSource.Token));
-            this.timerManager = timerManager;
+          
         }
 
         public void Subscribe(MainChannelObserver observer)
@@ -53,11 +53,7 @@ namespace HAL062app.moduly.komunikacja
             observers.Add(observer);
         }
 
-         public void AddPrivateMessage(Message message) // Dodajemy wiadomosc do kolejki kanalu glownego,
-         {
-           
-            messageQueue.Enqueue(message);
-         }
+        
         public void SendPrivateMessage(Message message) //Funkcja odpowiedzialna za wyslanie pierwszej wiadomosci w kolejce na kanal glowny
         {
           
@@ -65,7 +61,13 @@ namespace HAL062app.moduly.komunikacja
             ReceivedMessageService(message);
             //dorobic zwracanie informacji, jesli kolejka pusta
         }
+        public void ReceivedMessageService(Message message)
+        {
+            messageQueue.Enqueue(message);
+            logMessages.Add(message);
+            UpdateLogTerminal(logMessages);
 
+        }
         private void PushMessageMainChannel(Message message) //Ta funkcja powiadamia wszystkie moduly i wysyla wiadomosc
         {
             foreach(var observer in observers)
@@ -74,7 +76,7 @@ namespace HAL062app.moduly.komunikacja
             }
         }
         
-
+        
         public async Task<Message> ReceiveMessage()
         {
             while(true)
@@ -88,12 +90,7 @@ namespace HAL062app.moduly.komunikacja
             }
 
         }
-        private void ReceivedMessageService(Message message)
-        {
-            logMessages.Add(message);
-            UpdateLogTerminal(logMessages);
-
-        }
+       
         private void ReceiveMessages(CancellationToken cancellationToken)
         {
             Task.Run(async () => { while (!cancellationToken.IsCancellationRequested)

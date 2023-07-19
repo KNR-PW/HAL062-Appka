@@ -78,19 +78,23 @@
       <DependentUpon>laboratoriumForm.cs</DependentUpon>
     </Compile>
     <Compile Include="moduly\laboratorium\laboratoriumModel.cs" />
+    <Compile Include="moduly\manipulator\manipulatorController.cs" />
     <Compile Include="moduly\manipulator\manipulatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="moduly\manipulator\manipulatorForm.Designer.cs">
       <DependentUpon>manipulatorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="moduly\manipulator\manipulatorModel.cs" />
     <Compile Include="moduly\Message.cs" />
+    <Compile Include="moduly\podwozie\podwozieController.cs" />
     <Compile Include="moduly\podwozie\podwozieForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="moduly\podwozie\podwozieForm.Designer.cs">
       <DependentUpon>podwozieForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="moduly\podwozie\podwozieModel.cs" />
     <Compile Include="moduly\TimeProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

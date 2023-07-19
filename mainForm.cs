@@ -36,18 +36,21 @@ namespace HAL062app
             modules.Add("Podwozie", new moduly.podwozie.podwozieForm());
             modules.Add("Manipulator", new moduly.manipulator.manipulatorForm());
 
-            moduly.komunikacja.komunikacjaModel komunikacjaM = new moduly.komunikacja.komunikacjaModel(timerManager);
+            moduly.komunikacja.komunikacjaModel komunikacjaM = new moduly.komunikacja.komunikacjaModel();
             moduly.laboratorium.laboratoriumModel laboratoriumM = new moduly.laboratorium.laboratoriumModel(komunikacjaM);
-
+            moduly.podwozie.podwozieModel podwozieM = new moduly.podwozie.podwozieModel(komunikacjaM);
+            moduly.manipulator.manipulatorModel manipulatorM = new moduly.manipulator.manipulatorModel(komunikacjaM);
 
 
 
             moduly.komunikacja.komunikacjaController komunikacjaC = new moduly.komunikacja.komunikacjaController(modules, komunikacjaM);
             moduly.laboratorium.laboratoriumController laboratoriumC = new moduly.laboratorium.laboratoriumController(modules, laboratoriumM);
-            
+            moduly.podwozie.podwozieController podwozieC = new moduly.podwozie.podwozieController(modules, podwozieM);
+            moduly.manipulator.manipulatorController manipulatorC = new moduly.manipulator.manipulatorController(modules, manipulatorM);
             
             komunikacjaM.Subscribe(laboratoriumM);
-
+            komunikacjaM.Subscribe(podwozieM);
+            komunikacjaM.Subscribe(manipulatorM);
 
 
         }
