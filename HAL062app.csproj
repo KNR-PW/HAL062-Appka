@@ -111,6 +111,9 @@
     <EmbeddedResource Include="moduly\laboratorium\laboratoriumForm.resx">
       <DependentUpon>laboratoriumForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="moduly\podwozie\podwozieForm.resx">
+      <DependentUpon>podwozieForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -7,6 +7,7 @@ using System.Threading;
 using System.Collections.Concurrent;
 using System.Net.Sockets;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 /*  Tutaj znajdziemy cały model komunikacji pomiędzy modułami laboratorium, manipulator itp. a łazikiem. 
  *  Każdy moduł posiadać będzie umiejętność wysyłania i odbierania wiadomości tylko do/z modułu komunikacji.
@@ -21,6 +22,14 @@ using System.Windows.Forms;
  *  Druga, to ta odbierająca info od łazika. 
  
  * Większość kodu została napisana przez błogosławione narzędzie programistyczne - ChatGPT
+ * 
+ * 
+ * Na początku mamy całe zarządzanie wiadomościami, mainChannel itd
+ * 
+ * Potem 
+ * uart
+ * bluetooth
+ * ethernet
  */
 namespace HAL062app.moduly.komunikacja
 {
@@ -39,13 +48,20 @@ namespace HAL062app.moduly.komunikacja
         private Task receivedTask;
         public event Action<Message> privateMessageReceivedAction; 
         public event Action<List<Message>> UpdateLogTerminal;
+        //UART
+        public event Action<string[]> SendUARTdetectedPorts_action;
+      
+
+
+        //uart
+        private SerialPort UART;
 
         public komunikacjaModel( )
         {
             messageQueue = new ConcurrentQueue<Message>();
             tokenSource = new CancellationTokenSource();
             receivedTask = Task.Run(() => ReceiveMessages(tokenSource.Token));
-          
+            
         }
 
         public void Subscribe(MainChannelObserver observer)
@@ -113,7 +129,49 @@ namespace HAL062app.moduly.komunikacja
             tokenSource.Cancel();
         }
 
-     
+
+
+        //////////////////////////////////////////////////
+        ///
+        ///                 UART
+        ///
+        //////////////////////////////////////////////////
+        private string[] UartPorts = SerialPort.GetPortNames();
+
+
+        public void ConnectUART (string portName, int baudRate)
+        {
+            try
+            {
+                UART = new SerialPort(portName, baudRate);
+                UART.Open();
+                Message msg = new Message();
+                msg.author = 69;
+
+                msg.text = "UART - Połączono z portem " + portName.ToString();
+
+            }
+            catch (Exception ex)
+            {
+
+                Message error = new Message();
+                error.text = "UART - Błąd połączenia: "+ ex.Message;
+                error.author = 420;
+                error.receiver = 69;
+                logMessages.Add(error);
+                UpdateLogTerminal(logMessages);
+
+            }
+        }
+
+        public void RefreshPortsUART()
+        {
+            UartPorts = SerialPort.GetPortNames();
+            SendUARTdetectedPorts_action(UartPorts);
+        }
         
+
+
+
     }
 }

@@ -16,5 +16,11 @@ namespace HAL062app.moduly.podwozie
         {
             InitializeComponent();
         }
+
+        private void customToggleButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
