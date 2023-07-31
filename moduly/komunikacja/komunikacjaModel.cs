@@ -57,8 +57,8 @@ namespace HAL062app.moduly.komunikacja
         //UART
         public event Action<string[]> SendUARTdetectedPorts_action;
         //Bluetooth
-        public event Action<BluetoothDeviceInfo[]> SendBluetoothdetectedDevices_action;
-
+        public event Action<List<string>> SendBluetoothdetectedDevices_action;
+        public event Action<bool> IsBluetoothConnected_action;
 
         //uart
         private SerialPort UART;
@@ -74,7 +74,7 @@ namespace HAL062app.moduly.komunikacja
         private BluetoothClient bluetoothClient;
         private string[] BluetoothDevicesName;
         private BluetoothDeviceInfo[] bluetoothDeviceInfos = new BluetoothDeviceInfo[0];
-
+      
 
 
 
@@ -282,13 +282,23 @@ namespace HAL062app.moduly.komunikacja
         ///
         //////////////////////////////////////////////////
         
+        private bool isBluetoothOn()
+        {
+            return BluetoothRadio.IsSupported;
+        }
+
         public void RefreshBluetoothDevices()
         {
+            if (isBluetoothOn()) { 
+            List<string> bluetoothDeviceNames = new List<string>();
             using (var bluetoothClient = new BluetoothClient())
             {
                 
                 bluetoothDeviceInfos = bluetoothClient.DiscoverDevices();
             }
+            foreach (var deviceInfo in bluetoothDeviceInfos)
+                bluetoothDeviceNames.Add(deviceInfo.DeviceName);
+
            if(bluetoothDeviceInfos == null ||bluetoothDeviceInfos.Length ==0) {
                 Message msg = new Message();
                 msg.author = 420;
@@ -297,10 +307,75 @@ namespace HAL062app.moduly.komunikacja
                 logMessages.Add(msg);
                 UpdateLogTerminal(logMessages);
             }
-           SendBluetoothdetectedDevices_action(bluetoothDeviceInfos);
-            
+           SendBluetoothdetectedDevices_action(bluetoothDeviceNames);
+
+            }
+            else
+            {
+                Message msg = new Message();
+                msg.terminalMessage(420, 69, "Urządzenie nie posiada włączonego Bluetooth");
+                logMessages.Add(msg);
+                UpdateLogTerminal(logMessages);
+            }
+
+        }
+        public void ConnectBluetooth(string deviceName)
+        {
+            if (isBluetoothOn()) {
+                BluetoothDeviceInfo selectedDevice = bluetoothDeviceInfos.FirstOrDefault(b => b.DeviceName == deviceName);
+                if(deviceName == "-1_err")
+                {
+                    Message msg = new Message();
+                    msg.terminalMessage(420, 69, "Brak wybranego urządzenia");
+                    logMessages.Add(msg);
+                    UpdateLogTerminal(logMessages);
+
+                } else if (selectedDevice != null)
+                {
+                    try
+                    {
+                        var bluetoothEndPoint = new BluetoothEndPoint(selectedDevice.DeviceAddress, BluetoothService.SerialPort);
+                        bluetoothClient = new BluetoothClient();
+                        bluetoothClient.Connect(bluetoothEndPoint);
+                        Message msg = new Message();
+                        msg.terminalMessage(420, 69, "Połączono z " + selectedDevice.DeviceName);
+                        logMessages.Add(msg);
+                        UpdateLogTerminal(logMessages);
+                        IsBluetoothConnected_action(true);
+
+                    } catch (Exception ex)
+                    {
+                        Message msg = new Message();
+                        msg.terminalMessage(420, 69, "Błąd podczas próby połączenia: " + ex.Message);
+                        logMessages.Add(msg);
+                        UpdateLogTerminal(logMessages);
+                        IsBluetoothConnected_action(false);
+                    }
+
+                }
+            } else
+            {
+                Message msg = new Message();
+                msg.terminalMessage(420, 69, "Urządzenie nie posiada włączonego Bluetooth");
+                logMessages.Add(msg);
+                UpdateLogTerminal(logMessages);
+            }
 
 
+        }
+
+        public void DisconnectBluetooth()
+        {
+            if(bluetoothClient.Connected)
+            {
+                bluetoothClient.Close();
+                IsBluetoothConnected_action(false);
+                Message msg = new Message();
+                msg.terminalMessage(420, 69, "Rozłączono");
+                logMessages.Add(msg);
+                UpdateLogTerminal(logMessages);
+
+            }
         }
 
     }

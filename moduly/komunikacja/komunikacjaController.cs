@@ -37,6 +37,9 @@ namespace HAL062app.moduly.komunikacja
                     //Bluetooth
                     model.SendBluetoothdetectedDevices_action += UpdateBluetoothDevicesComboBox;
                     display.RefreshBluetoothDevices_action += RequestBluetoothDevices;
+                    display.ConnectBluetooth_action += ConnectBluetooth;
+                    model.IsBluetoothConnected_action += BluetoothConnected;
+                    display.DisconnectBluetooth_action += DisconnectBluetooth;
                 }
             }
         }
@@ -72,7 +75,7 @@ namespace HAL062app.moduly.komunikacja
 
 
         //Bluetooth
-        private void UpdateBluetoothDevicesComboBox(BluetoothDeviceInfo[] devices)
+        private void UpdateBluetoothDevicesComboBox(List<string> devices)
         {
             display.RefreshBluetoothDevices(devices);
         }
@@ -80,8 +83,19 @@ namespace HAL062app.moduly.komunikacja
         {
             model.RefreshBluetoothDevices();
         }
+        private void ConnectBluetooth(string deviceName)
+        {
+            model.ConnectBluetooth(deviceName);
 
-
+        }
+        private void BluetoothConnected(bool connected)
+        {
+            display.BluetoothConnected(connected);
+        }
+        private void DisconnectBluetooth()
+        {
+            model.DisconnectBluetooth();
+        }
     }
 
 

@@ -27,7 +27,8 @@ namespace HAL062app.moduly.komunikacja
 
         //Bluetooth
         public event Action RefreshBluetoothDevices_action;
-
+        public event Action<string> ConnectBluetooth_action;
+        public event Action DisconnectBluetooth_action;
         public komunikacjaForm()
         {
             InitializeComponent();
@@ -145,17 +146,55 @@ namespace HAL062app.moduly.komunikacja
         {
             RefreshBluetoothDevices_action();
         }
-        public void RefreshBluetoothDevices(BluetoothDeviceInfo[] devices)
+        public void RefreshBluetoothDevices(List<string> devices)
         {
 
             BluetoothDevicesComboBox.Items.Clear();
-            foreach(BluetoothDeviceInfo device in devices)
+
+          
+            foreach(string device in devices)
             {
-                UartBaudRateCombo.Items.Add(device.DeviceName.ToString());
+
+                BluetoothDevicesComboBox.Items.Add(device);
             }
       
 
         }
 
+        private void ConnectBluetoothBtn_Click(object sender, EventArgs e)
+        {
+            if (ConnectBluetoothBtn.Text == "Połącz")
+            {
+                if (BluetoothDevicesComboBox.SelectedItem != null)
+                {
+                    
+                    ConnectBluetooth_action(BluetoothDevicesComboBox.SelectedItem.ToString());
+                    
+                }
+                else
+                    ConnectBluetooth_action ("-1_err");
+            }
+            else
+            {
+                ConnectBluetoothBtn.BackColor = Color.FromArgb(0, 192, 0);
+                ConnectBluetoothBtn.Text = "Połącz";
+                DisconnectBluetooth_action();
+
+            }
+        }
+        public void BluetoothConnected(bool connected)
+        {
+            if (connected)
+            {
+                ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 0, 0);
+                ConnectBluetoothBtn.Text = "Rozłącz";
+            } else
+            {
+                ConnectBluetoothBtn.BackColor = Color.FromArgb(0, 192, 0);
+                ConnectBluetoothBtn.Text = "Połącz";
+            }
+
+        }
     }
+    
 }

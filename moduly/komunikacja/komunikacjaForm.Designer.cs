@@ -31,6 +31,9 @@
             this.sendTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ClearFilterBtn = new HAL062app.CustomControls.CustomButton();
+            this.SendBtn = new HAL062app.CustomControls.CustomButton();
+            this.FilterBtn = new HAL062app.CustomControls.CustomButton();
             this.TerminalBox = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -38,45 +41,42 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.UartPortCombo = new HAL062app.CustomControls.CustomComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.UartBaudRateCombo = new HAL062app.CustomControls.CustomComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.ConnectUartBtn = new HAL062app.CustomControls.CustomButton();
+            this.UartRefreshBtn = new HAL062app.CustomControls.CustomButton();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.EthernetPortTextbox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.EthernetConnectBtn = new HAL062app.CustomControls.CustomButton();
             this.label3 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.ReceivingToggleBtnEthernet = new HAL062app.CustomControls.CustomToggleButton();
             this.panel9 = new System.Windows.Forms.Panel();
             this.IPtextbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
-            this.ClearFilterBtn = new HAL062app.CustomControls.CustomButton();
-            this.SendBtn = new HAL062app.CustomControls.CustomButton();
-            this.FilterBtn = new HAL062app.CustomControls.CustomButton();
-            this.UartPortCombo = new HAL062app.CustomControls.CustomComboBox();
-            this.UartBaudRateCombo = new HAL062app.CustomControls.CustomComboBox();
-            this.ConnectUartBtn = new HAL062app.CustomControls.CustomButton();
-            this.UartRefreshBtn = new HAL062app.CustomControls.CustomButton();
-            this.EthernetConnectBtn = new HAL062app.CustomControls.CustomButton();
-            this.ReceivingToggleBtnEthernet = new HAL062app.CustomControls.CustomToggleButton();
             this.BluetoothDevicesComboBox = new HAL062app.CustomControls.CustomComboBox();
-            this.customButton1 = new HAL062app.CustomControls.CustomButton();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ConnectBluetoothBtn = new HAL062app.CustomControls.CustomButton();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.BluetoothRefreshBtn = new HAL062app.CustomControls.CustomButton();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.customToggleButton1 = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -96,10 +96,10 @@
             this.panel9.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // sendTextBox
@@ -156,6 +156,67 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(561, 124);
             this.panel1.TabIndex = 3;
+            // 
+            // ClearFilterBtn
+            // 
+            this.ClearFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClearFilterBtn.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.ClearFilterBtn.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
+            this.ClearFilterBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.ClearFilterBtn.BorderRadius = 10;
+            this.ClearFilterBtn.BorderSize = 0;
+            this.ClearFilterBtn.FlatAppearance.BorderSize = 0;
+            this.ClearFilterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClearFilterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ClearFilterBtn.ForeColor = System.Drawing.Color.Black;
+            this.ClearFilterBtn.Location = new System.Drawing.Point(385, 73);
+            this.ClearFilterBtn.Name = "ClearFilterBtn";
+            this.ClearFilterBtn.Size = new System.Drawing.Size(97, 30);
+            this.ClearFilterBtn.TabIndex = 4;
+            this.ClearFilterBtn.Text = "Wyczyść filtr";
+            this.ClearFilterBtn.TextColor = System.Drawing.Color.Black;
+            this.ClearFilterBtn.UseVisualStyleBackColor = false;
+            // 
+            // SendBtn
+            // 
+            this.SendBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SendBtn.BackColor = System.Drawing.Color.Purple;
+            this.SendBtn.BackgroundColor = System.Drawing.Color.Purple;
+            this.SendBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.SendBtn.BorderRadius = 20;
+            this.SendBtn.BorderSize = 0;
+            this.SendBtn.FlatAppearance.BorderSize = 0;
+            this.SendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SendBtn.ForeColor = System.Drawing.Color.White;
+            this.SendBtn.Location = new System.Drawing.Point(488, 10);
+            this.SendBtn.Name = "SendBtn";
+            this.SendBtn.Size = new System.Drawing.Size(68, 93);
+            this.SendBtn.TabIndex = 3;
+            this.SendBtn.Text = "Wyślij";
+            this.SendBtn.TextColor = System.Drawing.Color.White;
+            this.SendBtn.UseVisualStyleBackColor = false;
+            this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
+            // 
+            // FilterBtn
+            // 
+            this.FilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.FilterBtn.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.FilterBtn.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
+            this.FilterBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.FilterBtn.BorderRadius = 10;
+            this.FilterBtn.BorderSize = 0;
+            this.FilterBtn.FlatAppearance.BorderSize = 0;
+            this.FilterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.FilterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.FilterBtn.ForeColor = System.Drawing.Color.Black;
+            this.FilterBtn.Location = new System.Drawing.Point(385, 42);
+            this.FilterBtn.Name = "FilterBtn";
+            this.FilterBtn.Size = new System.Drawing.Size(97, 30);
+            this.FilterBtn.TabIndex = 2;
+            this.FilterBtn.Text = "Filtruj";
+            this.FilterBtn.TextColor = System.Drawing.Color.Black;
+            this.FilterBtn.UseVisualStyleBackColor = false;
             // 
             // TerminalBox
             // 
@@ -267,6 +328,28 @@
             this.panel6.Size = new System.Drawing.Size(241, 45);
             this.panel6.TabIndex = 4;
             // 
+            // UartPortCombo
+            // 
+            this.UartPortCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UartPortCombo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.UartPortCombo.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.UartPortCombo.BorderSize = 1;
+            this.UartPortCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.UartPortCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.UartPortCombo.ForeColor = System.Drawing.Color.DimGray;
+            this.UartPortCombo.IconColor = System.Drawing.Color.MediumSlateBlue;
+            this.UartPortCombo.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.UartPortCombo.ListTextColor = System.Drawing.Color.DimGray;
+            this.UartPortCombo.Location = new System.Drawing.Point(64, 8);
+            this.UartPortCombo.Margin = new System.Windows.Forms.Padding(10);
+            this.UartPortCombo.MinimumSize = new System.Drawing.Size(150, 25);
+            this.UartPortCombo.Name = "UartPortCombo";
+            this.UartPortCombo.Padding = new System.Windows.Forms.Padding(1);
+            this.UartPortCombo.Size = new System.Drawing.Size(157, 30);
+            this.UartPortCombo.TabIndex = 1;
+            this.UartPortCombo.Texts = "Port";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -291,6 +374,29 @@
             this.panel7.Padding = new System.Windows.Forms.Padding(10);
             this.panel7.Size = new System.Drawing.Size(241, 46);
             this.panel7.TabIndex = 5;
+            // 
+            // UartBaudRateCombo
+            // 
+            this.UartBaudRateCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UartBaudRateCombo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.UartBaudRateCombo.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.UartBaudRateCombo.BorderSize = 1;
+            this.UartBaudRateCombo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.UartBaudRateCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.UartBaudRateCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.UartBaudRateCombo.ForeColor = System.Drawing.Color.DimGray;
+            this.UartBaudRateCombo.IconColor = System.Drawing.Color.MediumSlateBlue;
+            this.UartBaudRateCombo.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.UartBaudRateCombo.ListTextColor = System.Drawing.Color.DimGray;
+            this.UartBaudRateCombo.Location = new System.Drawing.Point(64, 8);
+            this.UartBaudRateCombo.Margin = new System.Windows.Forms.Padding(10);
+            this.UartBaudRateCombo.MinimumSize = new System.Drawing.Size(150, 25);
+            this.UartBaudRateCombo.Name = "UartBaudRateCombo";
+            this.UartBaudRateCombo.Padding = new System.Windows.Forms.Padding(1);
+            this.UartBaudRateCombo.Size = new System.Drawing.Size(157, 30);
+            this.UartBaudRateCombo.TabIndex = 1;
+            this.UartBaudRateCombo.Texts = "BaudRate";
             // 
             // label6
             // 
@@ -346,6 +452,50 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "UART";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ConnectUartBtn
+            // 
+            this.ConnectUartBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.ConnectUartBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.ConnectUartBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.ConnectUartBtn.BorderRadius = 15;
+            this.ConnectUartBtn.BorderSize = 0;
+            this.ConnectUartBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConnectUartBtn.FlatAppearance.BorderSize = 0;
+            this.ConnectUartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ConnectUartBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
+            this.ConnectUartBtn.ForeColor = System.Drawing.Color.AliceBlue;
+            this.ConnectUartBtn.Location = new System.Drawing.Point(179, 10);
+            this.ConnectUartBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.ConnectUartBtn.Name = "ConnectUartBtn";
+            this.ConnectUartBtn.Size = new System.Drawing.Size(72, 36);
+            this.ConnectUartBtn.TabIndex = 3;
+            this.ConnectUartBtn.Text = "Połącz";
+            this.ConnectUartBtn.TextColor = System.Drawing.Color.AliceBlue;
+            this.ConnectUartBtn.UseVisualStyleBackColor = false;
+            this.ConnectUartBtn.Click += new System.EventHandler(this.ConnectUartBtn_Click);
+            // 
+            // UartRefreshBtn
+            // 
+            this.UartRefreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.UartRefreshBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.UartRefreshBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.UartRefreshBtn.BorderRadius = 15;
+            this.UartRefreshBtn.BorderSize = 0;
+            this.UartRefreshBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UartRefreshBtn.FlatAppearance.BorderSize = 0;
+            this.UartRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UartRefreshBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
+            this.UartRefreshBtn.ForeColor = System.Drawing.Color.AliceBlue;
+            this.UartRefreshBtn.Location = new System.Drawing.Point(86, 10);
+            this.UartRefreshBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.UartRefreshBtn.Name = "UartRefreshBtn";
+            this.UartRefreshBtn.Size = new System.Drawing.Size(73, 36);
+            this.UartRefreshBtn.TabIndex = 4;
+            this.UartRefreshBtn.Text = "Odśwież";
+            this.UartRefreshBtn.TextColor = System.Drawing.Color.AliceBlue;
+            this.UartRefreshBtn.UseVisualStyleBackColor = false;
+            this.UartRefreshBtn.Click += new System.EventHandler(this.UartRefreshBtn_click);
             // 
             // panel5
             // 
@@ -430,6 +580,28 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(261, 52);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
+            // EthernetConnectBtn
+            // 
+            this.EthernetConnectBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.EthernetConnectBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.EthernetConnectBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.EthernetConnectBtn.BorderRadius = 10;
+            this.EthernetConnectBtn.BorderSize = 0;
+            this.EthernetConnectBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EthernetConnectBtn.FlatAppearance.BorderSize = 0;
+            this.EthernetConnectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EthernetConnectBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
+            this.EthernetConnectBtn.ForeColor = System.Drawing.Color.AliceBlue;
+            this.EthernetConnectBtn.Location = new System.Drawing.Point(179, 10);
+            this.EthernetConnectBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
+            this.EthernetConnectBtn.Name = "EthernetConnectBtn";
+            this.EthernetConnectBtn.Size = new System.Drawing.Size(81, 32);
+            this.EthernetConnectBtn.TabIndex = 4;
+            this.EthernetConnectBtn.Text = "Połącz";
+            this.EthernetConnectBtn.TextColor = System.Drawing.Color.AliceBlue;
+            this.EthernetConnectBtn.UseVisualStyleBackColor = false;
+            this.EthernetConnectBtn.Click += new System.EventHandler(this.EthernetConnectBtn_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -464,6 +636,19 @@
             this.label7.Size = new System.Drawing.Size(72, 15);
             this.label7.TabIndex = 2;
             this.label7.Text = "Telnet  SSH";
+            // 
+            // ReceivingToggleBtnEthernet
+            // 
+            this.ReceivingToggleBtnEthernet.Location = new System.Drawing.Point(6, 19);
+            this.ReceivingToggleBtnEthernet.Margin = new System.Windows.Forms.Padding(10, 22, 10, 10);
+            this.ReceivingToggleBtnEthernet.MinimumSize = new System.Drawing.Size(45, 22);
+            this.ReceivingToggleBtnEthernet.Name = "ReceivingToggleBtnEthernet";
+            this.ReceivingToggleBtnEthernet.Size = new System.Drawing.Size(64, 22);
+            this.ReceivingToggleBtnEthernet.TabIndex = 1;
+            this.ReceivingToggleBtnEthernet.Text = "Nasłuchiwanie";
+            this.ReceivingToggleBtnEthernet.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.ReceivingToggleBtnEthernet.UseVisualStyleBackColor = true;
+            this.ReceivingToggleBtnEthernet.CheckedChanged += new System.EventHandler(this.ReceivingToggleBtnEthernet_CheckedChanged);
             // 
             // panel9
             // 
@@ -511,29 +696,6 @@
             this.panel4.Size = new System.Drawing.Size(263, 167);
             this.panel4.TabIndex = 1;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Radikal WUT", 15F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(10, 10);
-            this.label2.Margin = new System.Windows.Forms.Padding(10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Bluetooth";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label10.Location = new System.Drawing.Point(86, 15);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(30, 20);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "On";
-            // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 1;
@@ -552,19 +714,6 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(261, 165);
             this.tableLayoutPanel8.TabIndex = 7;
             // 
-            // panel11
-            // 
-            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel11.Controls.Add(this.label10);
-            this.panel11.Controls.Add(this.customToggleButton1);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(10, 0);
-            this.panel11.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Padding = new System.Windows.Forms.Padding(5);
-            this.panel11.Size = new System.Drawing.Size(130, 46);
-            this.panel11.TabIndex = 0;
-            // 
             // panel12
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -578,37 +727,6 @@
             this.panel12.Size = new System.Drawing.Size(241, 53);
             this.panel12.TabIndex = 8;
             // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.customButton1, 1, 0);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(255, 40);
-            this.tableLayoutPanel10.TabIndex = 9;
-            // 
-            // tableLayoutPanel11
-            // 
-            this.tableLayoutPanel11.ColumnCount = 2;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.64706F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.35294F));
-            this.tableLayoutPanel11.Controls.Add(this.BluetoothRefreshBtn, 1, 0);
-            this.tableLayoutPanel11.Controls.Add(this.panel11, 0, 0);
-            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 46);
-            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 1;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(261, 46);
-            this.tableLayoutPanel11.TabIndex = 10;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -620,191 +738,6 @@
             this.label11.Size = new System.Drawing.Size(48, 22);
             this.label11.TabIndex = 7;
             this.label11.Text = "Port:";
-            // 
-            // ClearFilterBtn
-            // 
-            this.ClearFilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearFilterBtn.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.ClearFilterBtn.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
-            this.ClearFilterBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ClearFilterBtn.BorderRadius = 10;
-            this.ClearFilterBtn.BorderSize = 0;
-            this.ClearFilterBtn.FlatAppearance.BorderSize = 0;
-            this.ClearFilterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClearFilterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ClearFilterBtn.ForeColor = System.Drawing.Color.Black;
-            this.ClearFilterBtn.Location = new System.Drawing.Point(385, 73);
-            this.ClearFilterBtn.Name = "ClearFilterBtn";
-            this.ClearFilterBtn.Size = new System.Drawing.Size(97, 30);
-            this.ClearFilterBtn.TabIndex = 4;
-            this.ClearFilterBtn.Text = "Wyczyść filtr";
-            this.ClearFilterBtn.TextColor = System.Drawing.Color.Black;
-            this.ClearFilterBtn.UseVisualStyleBackColor = false;
-            // 
-            // SendBtn
-            // 
-            this.SendBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SendBtn.BackColor = System.Drawing.Color.Purple;
-            this.SendBtn.BackgroundColor = System.Drawing.Color.Purple;
-            this.SendBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.SendBtn.BorderRadius = 20;
-            this.SendBtn.BorderSize = 0;
-            this.SendBtn.FlatAppearance.BorderSize = 0;
-            this.SendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SendBtn.ForeColor = System.Drawing.Color.White;
-            this.SendBtn.Location = new System.Drawing.Point(488, 10);
-            this.SendBtn.Name = "SendBtn";
-            this.SendBtn.Size = new System.Drawing.Size(68, 93);
-            this.SendBtn.TabIndex = 3;
-            this.SendBtn.Text = "Wyślij";
-            this.SendBtn.TextColor = System.Drawing.Color.White;
-            this.SendBtn.UseVisualStyleBackColor = false;
-            this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
-            // 
-            // FilterBtn
-            // 
-            this.FilterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.FilterBtn.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.FilterBtn.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
-            this.FilterBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.FilterBtn.BorderRadius = 10;
-            this.FilterBtn.BorderSize = 0;
-            this.FilterBtn.FlatAppearance.BorderSize = 0;
-            this.FilterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FilterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.FilterBtn.ForeColor = System.Drawing.Color.Black;
-            this.FilterBtn.Location = new System.Drawing.Point(385, 42);
-            this.FilterBtn.Name = "FilterBtn";
-            this.FilterBtn.Size = new System.Drawing.Size(97, 30);
-            this.FilterBtn.TabIndex = 2;
-            this.FilterBtn.Text = "Filtruj";
-            this.FilterBtn.TextColor = System.Drawing.Color.Black;
-            this.FilterBtn.UseVisualStyleBackColor = false;
-            // 
-            // UartPortCombo
-            // 
-            this.UartPortCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UartPortCombo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.UartPortCombo.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.UartPortCombo.BorderSize = 1;
-            this.UartPortCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.UartPortCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.UartPortCombo.ForeColor = System.Drawing.Color.DimGray;
-            this.UartPortCombo.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.UartPortCombo.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.UartPortCombo.ListTextColor = System.Drawing.Color.DimGray;
-            this.UartPortCombo.Location = new System.Drawing.Point(64, 8);
-            this.UartPortCombo.Margin = new System.Windows.Forms.Padding(10);
-            this.UartPortCombo.MinimumSize = new System.Drawing.Size(150, 25);
-            this.UartPortCombo.Name = "UartPortCombo";
-            this.UartPortCombo.Padding = new System.Windows.Forms.Padding(1);
-            this.UartPortCombo.Size = new System.Drawing.Size(157, 30);
-            this.UartPortCombo.TabIndex = 1;
-            this.UartPortCombo.Texts = "Port";
-            // 
-            // UartBaudRateCombo
-            // 
-            this.UartBaudRateCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UartBaudRateCombo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.UartBaudRateCombo.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.UartBaudRateCombo.BorderSize = 1;
-            this.UartBaudRateCombo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.UartBaudRateCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.UartBaudRateCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.UartBaudRateCombo.ForeColor = System.Drawing.Color.DimGray;
-            this.UartBaudRateCombo.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.UartBaudRateCombo.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.UartBaudRateCombo.ListTextColor = System.Drawing.Color.DimGray;
-            this.UartBaudRateCombo.Location = new System.Drawing.Point(64, 8);
-            this.UartBaudRateCombo.Margin = new System.Windows.Forms.Padding(10);
-            this.UartBaudRateCombo.MinimumSize = new System.Drawing.Size(150, 25);
-            this.UartBaudRateCombo.Name = "UartBaudRateCombo";
-            this.UartBaudRateCombo.Padding = new System.Windows.Forms.Padding(1);
-            this.UartBaudRateCombo.Size = new System.Drawing.Size(157, 30);
-            this.UartBaudRateCombo.TabIndex = 1;
-            this.UartBaudRateCombo.Texts = "BaudRate";
-            // 
-            // ConnectUartBtn
-            // 
-            this.ConnectUartBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ConnectUartBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ConnectUartBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.ConnectUartBtn.BorderRadius = 15;
-            this.ConnectUartBtn.BorderSize = 0;
-            this.ConnectUartBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConnectUartBtn.FlatAppearance.BorderSize = 0;
-            this.ConnectUartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ConnectUartBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
-            this.ConnectUartBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.ConnectUartBtn.Location = new System.Drawing.Point(179, 10);
-            this.ConnectUartBtn.Margin = new System.Windows.Forms.Padding(10);
-            this.ConnectUartBtn.Name = "ConnectUartBtn";
-            this.ConnectUartBtn.Size = new System.Drawing.Size(72, 36);
-            this.ConnectUartBtn.TabIndex = 3;
-            this.ConnectUartBtn.Text = "Połącz";
-            this.ConnectUartBtn.TextColor = System.Drawing.Color.AliceBlue;
-            this.ConnectUartBtn.UseVisualStyleBackColor = false;
-            this.ConnectUartBtn.Click += new System.EventHandler(this.ConnectUartBtn_Click);
-            // 
-            // UartRefreshBtn
-            // 
-            this.UartRefreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.UartRefreshBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.UartRefreshBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.UartRefreshBtn.BorderRadius = 15;
-            this.UartRefreshBtn.BorderSize = 0;
-            this.UartRefreshBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UartRefreshBtn.FlatAppearance.BorderSize = 0;
-            this.UartRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UartRefreshBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
-            this.UartRefreshBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.UartRefreshBtn.Location = new System.Drawing.Point(86, 10);
-            this.UartRefreshBtn.Margin = new System.Windows.Forms.Padding(10);
-            this.UartRefreshBtn.Name = "UartRefreshBtn";
-            this.UartRefreshBtn.Size = new System.Drawing.Size(73, 36);
-            this.UartRefreshBtn.TabIndex = 4;
-            this.UartRefreshBtn.Text = "Odśwież";
-            this.UartRefreshBtn.TextColor = System.Drawing.Color.AliceBlue;
-            this.UartRefreshBtn.UseVisualStyleBackColor = false;
-            this.UartRefreshBtn.Click += new System.EventHandler(this.UartRefreshBtn_click);
-            // 
-            // EthernetConnectBtn
-            // 
-            this.EthernetConnectBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.EthernetConnectBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.EthernetConnectBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.EthernetConnectBtn.BorderRadius = 10;
-            this.EthernetConnectBtn.BorderSize = 0;
-            this.EthernetConnectBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EthernetConnectBtn.FlatAppearance.BorderSize = 0;
-            this.EthernetConnectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EthernetConnectBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
-            this.EthernetConnectBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.EthernetConnectBtn.Location = new System.Drawing.Point(179, 10);
-            this.EthernetConnectBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
-            this.EthernetConnectBtn.Name = "EthernetConnectBtn";
-            this.EthernetConnectBtn.Size = new System.Drawing.Size(81, 32);
-            this.EthernetConnectBtn.TabIndex = 4;
-            this.EthernetConnectBtn.Text = "Połącz";
-            this.EthernetConnectBtn.TextColor = System.Drawing.Color.AliceBlue;
-            this.EthernetConnectBtn.UseVisualStyleBackColor = false;
-            this.EthernetConnectBtn.Click += new System.EventHandler(this.EthernetConnectBtn_Click);
-            // 
-            // ReceivingToggleBtnEthernet
-            // 
-            this.ReceivingToggleBtnEthernet.Location = new System.Drawing.Point(6, 19);
-            this.ReceivingToggleBtnEthernet.Margin = new System.Windows.Forms.Padding(10, 22, 10, 10);
-            this.ReceivingToggleBtnEthernet.MinimumSize = new System.Drawing.Size(45, 22);
-            this.ReceivingToggleBtnEthernet.Name = "ReceivingToggleBtnEthernet";
-            this.ReceivingToggleBtnEthernet.Size = new System.Drawing.Size(64, 22);
-            this.ReceivingToggleBtnEthernet.TabIndex = 1;
-            this.ReceivingToggleBtnEthernet.Text = "Nasłuchiwanie";
-            this.ReceivingToggleBtnEthernet.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.ReceivingToggleBtnEthernet.UseVisualStyleBackColor = true;
-            this.ReceivingToggleBtnEthernet.CheckedChanged += new System.EventHandler(this.ReceivingToggleBtnEthernet_CheckedChanged);
             // 
             // BluetoothDevicesComboBox
             // 
@@ -827,26 +760,70 @@
             this.BluetoothDevicesComboBox.TabIndex = 6;
             this.BluetoothDevicesComboBox.Texts = "";
             // 
-            // customButton1
+            // tableLayoutPanel10
             // 
-            this.customButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.customButton1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.customButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.customButton1.BorderRadius = 15;
-            this.customButton1.BorderSize = 0;
-            this.customButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customButton1.FlatAppearance.BorderSize = 0;
-            this.customButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.customButton1.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
-            this.customButton1.ForeColor = System.Drawing.Color.AliceBlue;
-            this.customButton1.Location = new System.Drawing.Point(140, 10);
-            this.customButton1.Margin = new System.Windows.Forms.Padding(10);
-            this.customButton1.Name = "customButton1";
-            this.customButton1.Size = new System.Drawing.Size(105, 20);
-            this.customButton1.TabIndex = 4;
-            this.customButton1.Text = "Połącz";
-            this.customButton1.TextColor = System.Drawing.Color.AliceBlue;
-            this.customButton1.UseVisualStyleBackColor = false;
+            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.ConnectBluetoothBtn, 1, 0);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(255, 40);
+            this.tableLayoutPanel10.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Radikal WUT", 15F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(10, 10);
+            this.label2.Margin = new System.Windows.Forms.Padding(10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Bluetooth";
+            // 
+            // ConnectBluetoothBtn
+            // 
+            this.ConnectBluetoothBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.ConnectBluetoothBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.ConnectBluetoothBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.ConnectBluetoothBtn.BorderRadius = 15;
+            this.ConnectBluetoothBtn.BorderSize = 0;
+            this.ConnectBluetoothBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConnectBluetoothBtn.FlatAppearance.BorderSize = 0;
+            this.ConnectBluetoothBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ConnectBluetoothBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
+            this.ConnectBluetoothBtn.ForeColor = System.Drawing.Color.AliceBlue;
+            this.ConnectBluetoothBtn.Location = new System.Drawing.Point(140, 10);
+            this.ConnectBluetoothBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.ConnectBluetoothBtn.Name = "ConnectBluetoothBtn";
+            this.ConnectBluetoothBtn.Size = new System.Drawing.Size(105, 20);
+            this.ConnectBluetoothBtn.TabIndex = 4;
+            this.ConnectBluetoothBtn.Text = "Połącz";
+            this.ConnectBluetoothBtn.TextColor = System.Drawing.Color.AliceBlue;
+            this.ConnectBluetoothBtn.UseVisualStyleBackColor = false;
+            this.ConnectBluetoothBtn.Click += new System.EventHandler(this.ConnectBluetoothBtn_Click);
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 2;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.64706F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.35294F));
+            this.tableLayoutPanel11.Controls.Add(this.BluetoothRefreshBtn, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.panel11, 0, 0);
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 46);
+            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 1;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(261, 46);
+            this.tableLayoutPanel11.TabIndex = 10;
             // 
             // BluetoothRefreshBtn
             // 
@@ -869,6 +846,30 @@
             this.BluetoothRefreshBtn.TextColor = System.Drawing.Color.AliceBlue;
             this.BluetoothRefreshBtn.UseVisualStyleBackColor = false;
             this.BluetoothRefreshBtn.Click += new System.EventHandler(this.BluetoothRefreshBtn_Click);
+            // 
+            // panel11
+            // 
+            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel11.Controls.Add(this.label10);
+            this.panel11.Controls.Add(this.customToggleButton1);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(10, 0);
+            this.panel11.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Padding = new System.Windows.Forms.Padding(5);
+            this.panel11.Size = new System.Drawing.Size(130, 46);
+            this.panel11.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label10.Location = new System.Drawing.Point(86, 15);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(30, 20);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "On";
             // 
             // customToggleButton1
             // 
@@ -922,13 +923,13 @@
             this.panel9.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -979,7 +980,7 @@
         private CustomControls.CustomComboBox BluetoothDevicesComboBox;
         private System.Windows.Forms.Panel panel11;
         private CustomControls.CustomButton BluetoothRefreshBtn;
-        private CustomControls.CustomButton customButton1;
+        private CustomControls.CustomButton ConnectBluetoothBtn;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
