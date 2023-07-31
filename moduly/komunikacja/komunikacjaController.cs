@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InTheHand.Net.Sockets;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,11 @@ namespace HAL062app.moduly.komunikacja
                     model.SendUARTdetectedPorts_action += UpdateUARTComboBox;
                     display.RefreshUartPorts_action += RequestUARTports;
                     display.ConnectUart_action += ConnectUart;
-                    display.DisconnectUart_action += DisconnectUart; 
+                    display.DisconnectUart_action += DisconnectUart;
+
+                    //Bluetooth
+                    model.SendBluetoothdetectedDevices_action += UpdateBluetoothDevicesComboBox;
+                    display.RefreshBluetoothDevices_action += RequestBluetoothDevices;
                 }
             }
         }
@@ -64,6 +69,19 @@ namespace HAL062app.moduly.komunikacja
         private void DisconnectUart() {
             model.DisconnectUART();
         }
+
+
+        //Bluetooth
+        private void UpdateBluetoothDevicesComboBox(BluetoothDeviceInfo[] devices)
+        {
+            display.RefreshBluetoothDevices(devices);
+        }
+        private void RequestBluetoothDevices()
+        {
+            model.RefreshBluetoothDevices();
+        }
+
+
     }
 
 

@@ -46,18 +46,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.IPtextbox = new System.Windows.Forms.TextBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.EthernetPortTextbox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.IPtextbox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.label11 = new System.Windows.Forms.Label();
             this.ClearFilterBtn = new HAL062app.CustomControls.CustomButton();
             this.SendBtn = new HAL062app.CustomControls.CustomButton();
             this.FilterBtn = new HAL062app.CustomControls.CustomButton();
@@ -67,6 +74,10 @@
             this.UartRefreshBtn = new HAL062app.CustomControls.CustomButton();
             this.EthernetConnectBtn = new HAL062app.CustomControls.CustomButton();
             this.ReceivingToggleBtnEthernet = new HAL062app.CustomControls.CustomToggleButton();
+            this.BluetoothDevicesComboBox = new HAL062app.CustomControls.CustomComboBox();
+            this.customButton1 = new HAL062app.CustomControls.CustomButton();
+            this.BluetoothRefreshBtn = new HAL062app.CustomControls.CustomButton();
+            this.customToggleButton1 = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -79,11 +90,16 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.panel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // sendTextBox
@@ -204,7 +220,7 @@
             // 
             this.tableLayoutPanel3.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.panel5, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.panel4, 0, 1);
@@ -213,28 +229,29 @@
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(10);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.14136F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.85864F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 259F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 218F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(285, 621);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // tableLayoutPanel4
             // 
+            this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.panel6, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.panel7, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.panel3, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(1, 1);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(11, 11);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(10);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(283, 190);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(263, 191);
             this.tableLayoutPanel4.TabIndex = 6;
             // 
             // panel6
@@ -243,11 +260,11 @@
             this.panel6.Controls.Add(this.UartPortCombo);
             this.panel6.Controls.Add(this.label5);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(10, 66);
+            this.panel6.Location = new System.Drawing.Point(11, 68);
             this.panel6.Margin = new System.Windows.Forms.Padding(10);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(10);
-            this.panel6.Size = new System.Drawing.Size(263, 47);
+            this.panel6.Size = new System.Drawing.Size(241, 45);
             this.panel6.TabIndex = 4;
             // 
             // label5
@@ -268,11 +285,11 @@
             this.panel7.Controls.Add(this.UartBaudRateCombo);
             this.panel7.Controls.Add(this.label6);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(10, 133);
+            this.panel7.Location = new System.Drawing.Point(11, 134);
             this.panel7.Margin = new System.Windows.Forms.Padding(10);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(10);
-            this.panel7.Size = new System.Drawing.Size(263, 47);
+            this.panel7.Size = new System.Drawing.Size(241, 46);
             this.panel7.TabIndex = 5;
             // 
             // label6
@@ -291,17 +308,17 @@
             // 
             this.panel3.Controls.Add(this.tableLayoutPanel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Location = new System.Drawing.Point(1, 1);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(283, 56);
+            this.panel3.Size = new System.Drawing.Size(261, 56);
             this.panel3.TabIndex = 6;
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.11877F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.63218F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tableLayoutPanel5.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.ConnectUartBtn, 2, 0);
@@ -312,7 +329,8 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(283, 56);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(261, 56);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // label1
@@ -321,10 +339,10 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Radikal WUT", 15F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(10, 10);
-            this.label1.Margin = new System.Windows.Forms.Padding(10);
+            this.label1.Location = new System.Drawing.Point(5, 5);
+            this.label1.Margin = new System.Windows.Forms.Padding(5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 36);
+            this.label1.Size = new System.Drawing.Size(66, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "UART";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -334,10 +352,10 @@
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.tableLayoutPanel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(11, 370);
+            this.panel5.Location = new System.Drawing.Point(11, 411);
             this.panel5.Margin = new System.Windows.Forms.Padding(10);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(263, 240);
+            this.panel5.Size = new System.Drawing.Size(263, 199);
             this.panel5.TabIndex = 2;
             // 
             // tableLayoutPanel6
@@ -356,8 +374,43 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(261, 238);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(261, 197);
             this.tableLayoutPanel6.TabIndex = 2;
+            // 
+            // panel10
+            // 
+            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel10.Controls.Add(this.EthernetPortTextbox);
+            this.panel10.Controls.Add(this.label9);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(10, 134);
+            this.panel10.Margin = new System.Windows.Forms.Padding(10);
+            this.panel10.Name = "panel10";
+            this.panel10.Padding = new System.Windows.Forms.Padding(10);
+            this.panel10.Size = new System.Drawing.Size(241, 52);
+            this.panel10.TabIndex = 2;
+            // 
+            // EthernetPortTextbox
+            // 
+            this.EthernetPortTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EthernetPortTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.EthernetPortTextbox.Location = new System.Drawing.Point(72, 10);
+            this.EthernetPortTextbox.Margin = new System.Windows.Forms.Padding(0);
+            this.EthernetPortTextbox.Name = "EthernetPortTextbox";
+            this.EthernetPortTextbox.Size = new System.Drawing.Size(160, 29);
+            this.EthernetPortTextbox.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label9.Location = new System.Drawing.Point(17, 14);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 22);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Port:";
             // 
             // tableLayoutPanel7
             // 
@@ -389,28 +442,6 @@
             this.label3.Size = new System.Drawing.Size(91, 32);
             this.label3.TabIndex = 0;
             this.label3.Text = "Ethernet";
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(11, 202);
-            this.panel4.Margin = new System.Windows.Forms.Padding(10);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(263, 147);
-            this.panel4.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Radikal WUT", 15F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(3, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 24);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Bluetooth";
             // 
             // panel8
             // 
@@ -447,17 +478,6 @@
             this.panel9.Size = new System.Drawing.Size(241, 52);
             this.panel9.TabIndex = 1;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label8.Location = new System.Drawing.Point(17, 14);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(31, 22);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "IP:";
-            // 
             // IPtextbox
             // 
             this.IPtextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -469,40 +489,137 @@
             this.IPtextbox.Size = new System.Drawing.Size(160, 29);
             this.IPtextbox.TabIndex = 1;
             // 
-            // panel10
+            // label8
             // 
-            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel10.Controls.Add(this.EthernetPortTextbox);
-            this.panel10.Controls.Add(this.label9);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(10, 134);
-            this.panel10.Margin = new System.Windows.Forms.Padding(10);
-            this.panel10.Name = "panel10";
-            this.panel10.Padding = new System.Windows.Forms.Padding(10);
-            this.panel10.Size = new System.Drawing.Size(241, 52);
-            this.panel10.TabIndex = 2;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label8.Location = new System.Drawing.Point(17, 14);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(31, 22);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "IP:";
             // 
-            // EthernetPortTextbox
+            // panel4
             // 
-            this.EthernetPortTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.EthernetPortTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.EthernetPortTextbox.Location = new System.Drawing.Point(72, 10);
-            this.EthernetPortTextbox.Margin = new System.Windows.Forms.Padding(0);
-            this.EthernetPortTextbox.Name = "EthernetPortTextbox";
-            this.EthernetPortTextbox.Size = new System.Drawing.Size(160, 29);
-            this.EthernetPortTextbox.TabIndex = 1;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.tableLayoutPanel8);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(11, 223);
+            this.panel4.Margin = new System.Windows.Forms.Padding(10);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(263, 167);
+            this.panel4.TabIndex = 1;
             // 
-            // label9
+            // label2
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label9.Location = new System.Drawing.Point(17, 14);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 22);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Port:";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Radikal WUT", 15F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(10, 10);
+            this.label2.Margin = new System.Windows.Forms.Padding(10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Bluetooth";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label10.Location = new System.Drawing.Point(86, 15);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(30, 20);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "On";
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 1;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.Controls.Add(this.panel12, 0, 2);
+            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel10, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel11, 0, 1);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 3;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(261, 165);
+            this.tableLayoutPanel8.TabIndex = 7;
+            // 
+            // panel11
+            // 
+            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel11.Controls.Add(this.label10);
+            this.panel11.Controls.Add(this.customToggleButton1);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(10, 0);
+            this.panel11.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Padding = new System.Windows.Forms.Padding(5);
+            this.panel11.Size = new System.Drawing.Size(130, 46);
+            this.panel11.TabIndex = 0;
+            // 
+            // panel12
+            // 
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Controls.Add(this.label11);
+            this.panel12.Controls.Add(this.BluetoothDevicesComboBox);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel12.Location = new System.Drawing.Point(10, 102);
+            this.panel12.Margin = new System.Windows.Forms.Padding(10);
+            this.panel12.Name = "panel12";
+            this.panel12.Padding = new System.Windows.Forms.Padding(10);
+            this.panel12.Size = new System.Drawing.Size(241, 53);
+            this.panel12.TabIndex = 8;
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.customButton1, 1, 0);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(255, 40);
+            this.tableLayoutPanel10.TabIndex = 9;
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 2;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.64706F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.35294F));
+            this.tableLayoutPanel11.Controls.Add(this.BluetoothRefreshBtn, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.panel11, 0, 0);
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 46);
+            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 1;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(261, 46);
+            this.tableLayoutPanel11.TabIndex = 10;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label11.Location = new System.Drawing.Point(12, 16);
+            this.label11.Margin = new System.Windows.Forms.Padding(10);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 22);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Port:";
             // 
             // ClearFilterBtn
             // 
@@ -583,7 +700,7 @@
             this.UartPortCombo.MinimumSize = new System.Drawing.Size(150, 25);
             this.UartPortCombo.Name = "UartPortCombo";
             this.UartPortCombo.Padding = new System.Windows.Forms.Padding(1);
-            this.UartPortCombo.Size = new System.Drawing.Size(179, 30);
+            this.UartPortCombo.Size = new System.Drawing.Size(157, 30);
             this.UartPortCombo.TabIndex = 1;
             this.UartPortCombo.Texts = "Port";
             // 
@@ -606,7 +723,7 @@
             this.UartBaudRateCombo.MinimumSize = new System.Drawing.Size(150, 25);
             this.UartBaudRateCombo.Name = "UartBaudRateCombo";
             this.UartBaudRateCombo.Padding = new System.Windows.Forms.Padding(1);
-            this.UartBaudRateCombo.Size = new System.Drawing.Size(179, 30);
+            this.UartBaudRateCombo.Size = new System.Drawing.Size(157, 30);
             this.UartBaudRateCombo.TabIndex = 1;
             this.UartBaudRateCombo.Texts = "BaudRate";
             // 
@@ -622,10 +739,10 @@
             this.ConnectUartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ConnectUartBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
             this.ConnectUartBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.ConnectUartBtn.Location = new System.Drawing.Point(193, 10);
+            this.ConnectUartBtn.Location = new System.Drawing.Point(179, 10);
             this.ConnectUartBtn.Margin = new System.Windows.Forms.Padding(10);
             this.ConnectUartBtn.Name = "ConnectUartBtn";
-            this.ConnectUartBtn.Size = new System.Drawing.Size(80, 36);
+            this.ConnectUartBtn.Size = new System.Drawing.Size(72, 36);
             this.ConnectUartBtn.TabIndex = 3;
             this.ConnectUartBtn.Text = "Połącz";
             this.ConnectUartBtn.TextColor = System.Drawing.Color.AliceBlue;
@@ -644,10 +761,10 @@
             this.UartRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UartRefreshBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
             this.UartRefreshBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.UartRefreshBtn.Location = new System.Drawing.Point(94, 10);
+            this.UartRefreshBtn.Location = new System.Drawing.Point(86, 10);
             this.UartRefreshBtn.Margin = new System.Windows.Forms.Padding(10);
             this.UartRefreshBtn.Name = "UartRefreshBtn";
-            this.UartRefreshBtn.Size = new System.Drawing.Size(79, 36);
+            this.UartRefreshBtn.Size = new System.Drawing.Size(73, 36);
             this.UartRefreshBtn.TabIndex = 4;
             this.UartRefreshBtn.Text = "Odśwież";
             this.UartRefreshBtn.TextColor = System.Drawing.Color.AliceBlue;
@@ -689,6 +806,81 @@
             this.ReceivingToggleBtnEthernet.UseVisualStyleBackColor = true;
             this.ReceivingToggleBtnEthernet.CheckedChanged += new System.EventHandler(this.ReceivingToggleBtnEthernet_CheckedChanged);
             // 
+            // BluetoothDevicesComboBox
+            // 
+            this.BluetoothDevicesComboBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BluetoothDevicesComboBox.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.BluetoothDevicesComboBox.BorderSize = 1;
+            this.BluetoothDevicesComboBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BluetoothDevicesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.BluetoothDevicesComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.BluetoothDevicesComboBox.ForeColor = System.Drawing.Color.DimGray;
+            this.BluetoothDevicesComboBox.IconColor = System.Drawing.Color.MediumSlateBlue;
+            this.BluetoothDevicesComboBox.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.BluetoothDevicesComboBox.ListTextColor = System.Drawing.Color.DimGray;
+            this.BluetoothDevicesComboBox.Location = new System.Drawing.Point(79, 10);
+            this.BluetoothDevicesComboBox.Margin = new System.Windows.Forms.Padding(0);
+            this.BluetoothDevicesComboBox.MinimumSize = new System.Drawing.Size(150, 30);
+            this.BluetoothDevicesComboBox.Name = "BluetoothDevicesComboBox";
+            this.BluetoothDevicesComboBox.Padding = new System.Windows.Forms.Padding(1);
+            this.BluetoothDevicesComboBox.Size = new System.Drawing.Size(150, 31);
+            this.BluetoothDevicesComboBox.TabIndex = 6;
+            this.BluetoothDevicesComboBox.Texts = "";
+            // 
+            // customButton1
+            // 
+            this.customButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.customButton1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.customButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.customButton1.BorderRadius = 15;
+            this.customButton1.BorderSize = 0;
+            this.customButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customButton1.FlatAppearance.BorderSize = 0;
+            this.customButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.customButton1.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
+            this.customButton1.ForeColor = System.Drawing.Color.AliceBlue;
+            this.customButton1.Location = new System.Drawing.Point(140, 10);
+            this.customButton1.Margin = new System.Windows.Forms.Padding(10);
+            this.customButton1.Name = "customButton1";
+            this.customButton1.Size = new System.Drawing.Size(105, 20);
+            this.customButton1.TabIndex = 4;
+            this.customButton1.Text = "Połącz";
+            this.customButton1.TextColor = System.Drawing.Color.AliceBlue;
+            this.customButton1.UseVisualStyleBackColor = false;
+            // 
+            // BluetoothRefreshBtn
+            // 
+            this.BluetoothRefreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BluetoothRefreshBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BluetoothRefreshBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.BluetoothRefreshBtn.BorderRadius = 15;
+            this.BluetoothRefreshBtn.BorderSize = 0;
+            this.BluetoothRefreshBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BluetoothRefreshBtn.FlatAppearance.BorderSize = 0;
+            this.BluetoothRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BluetoothRefreshBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
+            this.BluetoothRefreshBtn.ForeColor = System.Drawing.Color.AliceBlue;
+            this.BluetoothRefreshBtn.Location = new System.Drawing.Point(160, 10);
+            this.BluetoothRefreshBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.BluetoothRefreshBtn.Name = "BluetoothRefreshBtn";
+            this.BluetoothRefreshBtn.Size = new System.Drawing.Size(91, 26);
+            this.BluetoothRefreshBtn.TabIndex = 5;
+            this.BluetoothRefreshBtn.Text = "Odśwież";
+            this.BluetoothRefreshBtn.TextColor = System.Drawing.Color.AliceBlue;
+            this.BluetoothRefreshBtn.UseVisualStyleBackColor = false;
+            this.BluetoothRefreshBtn.Click += new System.EventHandler(this.BluetoothRefreshBtn_Click);
+            // 
+            // customToggleButton1
+            // 
+            this.customToggleButton1.Location = new System.Drawing.Point(15, 13);
+            this.customToggleButton1.Margin = new System.Windows.Forms.Padding(10);
+            this.customToggleButton1.MinimumSize = new System.Drawing.Size(45, 22);
+            this.customToggleButton1.Name = "customToggleButton1";
+            this.customToggleButton1.Size = new System.Drawing.Size(63, 22);
+            this.customToggleButton1.TabIndex = 1;
+            this.customToggleButton1.Text = "customToggleButton1";
+            this.customToggleButton1.UseVisualStyleBackColor = true;
+            // 
             // komunikacjaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -720,16 +912,23 @@
             this.tableLayoutPanel5.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel10.PerformLayout();
+            this.tableLayoutPanel11.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -774,5 +973,16 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.TextBox IPtextbox;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private CustomControls.CustomToggleButton customToggleButton1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private CustomControls.CustomComboBox BluetoothDevicesComboBox;
+        private System.Windows.Forms.Panel panel11;
+        private CustomControls.CustomButton BluetoothRefreshBtn;
+        private CustomControls.CustomButton customButton1;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
+        private System.Windows.Forms.Label label11;
     }
 }

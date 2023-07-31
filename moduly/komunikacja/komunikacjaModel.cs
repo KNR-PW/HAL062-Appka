@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using System.IO;
 using System.Net;
+using InTheHand.Net;
+using InTheHand.Net.Bluetooth;
+using InTheHand.Net.Sockets;
 
 
 /*  Tutaj znajdziemy cały model komunikacji pomiędzy modułami laboratorium, manipulator itp. a łazikiem. 
@@ -31,8 +34,8 @@ using System.Net;
  * 
  * Potem 
  * uart
- * bluetooth
  * ethernet - protokół telnet
+ * bluetooth - korzystamy z biblioteki nuget 32feet
  */
 namespace HAL062app.moduly.komunikacja
 {
@@ -53,7 +56,8 @@ namespace HAL062app.moduly.komunikacja
         public event Action<List<Message>> UpdateLogTerminal;
         //UART
         public event Action<string[]> SendUARTdetectedPorts_action;
-        
+        //Bluetooth
+        public event Action<BluetoothDeviceInfo[]> SendBluetoothdetectedDevices_action;
 
 
         //uart
@@ -64,6 +68,16 @@ namespace HAL062app.moduly.komunikacja
         private TcpClient tcpClient = new TcpClient();
         private NetworkStream stream;
         private byte[] buffer = new byte[2048];
+
+
+        //bluetooth
+        private BluetoothClient bluetoothClient;
+        private string[] BluetoothDevicesName;
+        private BluetoothDeviceInfo[] bluetoothDeviceInfos = new BluetoothDeviceInfo[0];
+
+
+
+
         public komunikacjaModel( )
         {
          
@@ -261,5 +275,33 @@ namespace HAL062app.moduly.komunikacja
             string message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
             return message;
         }
+
+        //////////////////////////////////////////////////
+        ///
+        ///                 Bluetooth
+        ///
+        //////////////////////////////////////////////////
+        
+        public void RefreshBluetoothDevices()
+        {
+            using (var bluetoothClient = new BluetoothClient())
+            {
+                
+                bluetoothDeviceInfos = bluetoothClient.DiscoverDevices();
+            }
+           if(bluetoothDeviceInfos == null ||bluetoothDeviceInfos.Length ==0) {
+                Message msg = new Message();
+                msg.author = 420;
+                msg.receiver = 69;
+                msg.text = "Brak dostępnych urządzeń Bluetooth";
+                logMessages.Add(msg);
+                UpdateLogTerminal(logMessages);
+            }
+           SendBluetoothdetectedDevices_action(bluetoothDeviceInfos);
+            
+
+
+        }
+
     }
 }

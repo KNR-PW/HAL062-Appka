@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InTheHand.Net.Sockets;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +23,10 @@ namespace HAL062app.moduly.komunikacja
         public event Action RefreshUartPorts_action;
         public event Action<string,int> ConnectUart_action;
         public event Action DisconnectUart_action;
+
+
+        //Bluetooth
+        public event Action RefreshBluetoothDevices_action;
 
         public komunikacjaForm()
         {
@@ -80,6 +85,7 @@ namespace HAL062app.moduly.komunikacja
         private int[] baudRates = { 110, 300, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200 };
         public void UpdatePorts(string[] ports)
         {
+            UartPortCombo.Items.Clear();
             UartPortCombo.Items.AddRange(ports.Select(x => x.ToString()).ToArray());
 
         }
@@ -131,5 +137,25 @@ namespace HAL062app.moduly.komunikacja
 
             }
         }
+
+
+        //Bluetooth
+
+        private void BluetoothRefreshBtn_Click(object sender, EventArgs e)
+        {
+            RefreshBluetoothDevices_action();
+        }
+        public void RefreshBluetoothDevices(BluetoothDeviceInfo[] devices)
+        {
+
+            BluetoothDevicesComboBox.Items.Clear();
+            foreach(BluetoothDeviceInfo device in devices)
+            {
+                UartBaudRateCombo.Items.Add(device.DeviceName.ToString());
+            }
+      
+
+        }
+
     }
 }
