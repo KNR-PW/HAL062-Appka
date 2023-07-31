@@ -45,9 +45,19 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.IPtextbox = new System.Windows.Forms.TextBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.EthernetPortTextbox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.ClearFilterBtn = new HAL062app.CustomControls.CustomButton();
             this.SendBtn = new HAL062app.CustomControls.CustomButton();
             this.FilterBtn = new HAL062app.CustomControls.CustomButton();
@@ -55,6 +65,8 @@
             this.UartBaudRateCombo = new HAL062app.CustomControls.CustomComboBox();
             this.ConnectUartBtn = new HAL062app.CustomControls.CustomButton();
             this.UartRefreshBtn = new HAL062app.CustomControls.CustomButton();
+            this.EthernetConnectBtn = new HAL062app.CustomControls.CustomButton();
+            this.ReceivingToggleBtnEthernet = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -66,7 +78,12 @@
             this.panel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // sendTextBox
@@ -315,7 +332,7 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.label3);
+            this.panel5.Controls.Add(this.tableLayoutPanel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(11, 370);
             this.panel5.Margin = new System.Windows.Forms.Padding(10);
@@ -323,14 +340,53 @@
             this.panel5.Size = new System.Drawing.Size(263, 240);
             this.panel5.TabIndex = 2;
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.panel10, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel7, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel9, 0, 1);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 4;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(261, 238);
+            this.tableLayoutPanel6.TabIndex = 2;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 3;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
+            this.tableLayoutPanel7.Controls.Add(this.EthernetConnectBtn, 2, 0);
+            this.tableLayoutPanel7.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.panel8, 1, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(261, 52);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Radikal WUT", 15F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(3, 5);
+            this.label3.Location = new System.Drawing.Point(2, 10);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 10, 2, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 24);
+            this.label3.Size = new System.Drawing.Size(91, 32);
             this.label3.TabIndex = 0;
             this.label3.Text = "Ethernet";
             // 
@@ -355,6 +411,98 @@
             this.label2.Size = new System.Drawing.Size(104, 24);
             this.label2.TabIndex = 0;
             this.label2.Text = "Bluetooth";
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label7);
+            this.panel8.Controls.Add(this.ReceivingToggleBtnEthernet);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(95, 0);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(80, 52);
+            this.panel8.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 15);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Telnet  SSH";
+            // 
+            // panel9
+            // 
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel9.Controls.Add(this.IPtextbox);
+            this.panel9.Controls.Add(this.label8);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(10, 62);
+            this.panel9.Margin = new System.Windows.Forms.Padding(10);
+            this.panel9.Name = "panel9";
+            this.panel9.Padding = new System.Windows.Forms.Padding(10);
+            this.panel9.Size = new System.Drawing.Size(241, 52);
+            this.panel9.TabIndex = 1;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label8.Location = new System.Drawing.Point(17, 14);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(31, 22);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "IP:";
+            // 
+            // IPtextbox
+            // 
+            this.IPtextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IPtextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.IPtextbox.Location = new System.Drawing.Point(72, 10);
+            this.IPtextbox.Margin = new System.Windows.Forms.Padding(0);
+            this.IPtextbox.Name = "IPtextbox";
+            this.IPtextbox.Size = new System.Drawing.Size(160, 29);
+            this.IPtextbox.TabIndex = 1;
+            // 
+            // panel10
+            // 
+            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel10.Controls.Add(this.EthernetPortTextbox);
+            this.panel10.Controls.Add(this.label9);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(10, 134);
+            this.panel10.Margin = new System.Windows.Forms.Padding(10);
+            this.panel10.Name = "panel10";
+            this.panel10.Padding = new System.Windows.Forms.Padding(10);
+            this.panel10.Size = new System.Drawing.Size(241, 52);
+            this.panel10.TabIndex = 2;
+            // 
+            // EthernetPortTextbox
+            // 
+            this.EthernetPortTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EthernetPortTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.EthernetPortTextbox.Location = new System.Drawing.Point(72, 10);
+            this.EthernetPortTextbox.Margin = new System.Windows.Forms.Padding(0);
+            this.EthernetPortTextbox.Name = "EthernetPortTextbox";
+            this.EthernetPortTextbox.Size = new System.Drawing.Size(160, 29);
+            this.EthernetPortTextbox.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label9.Location = new System.Drawing.Point(17, 14);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 22);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Port:";
             // 
             // ClearFilterBtn
             // 
@@ -506,6 +654,41 @@
             this.UartRefreshBtn.UseVisualStyleBackColor = false;
             this.UartRefreshBtn.Click += new System.EventHandler(this.UartRefreshBtn_click);
             // 
+            // EthernetConnectBtn
+            // 
+            this.EthernetConnectBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.EthernetConnectBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.EthernetConnectBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.EthernetConnectBtn.BorderRadius = 10;
+            this.EthernetConnectBtn.BorderSize = 0;
+            this.EthernetConnectBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EthernetConnectBtn.FlatAppearance.BorderSize = 0;
+            this.EthernetConnectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EthernetConnectBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
+            this.EthernetConnectBtn.ForeColor = System.Drawing.Color.AliceBlue;
+            this.EthernetConnectBtn.Location = new System.Drawing.Point(179, 10);
+            this.EthernetConnectBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
+            this.EthernetConnectBtn.Name = "EthernetConnectBtn";
+            this.EthernetConnectBtn.Size = new System.Drawing.Size(81, 32);
+            this.EthernetConnectBtn.TabIndex = 4;
+            this.EthernetConnectBtn.Text = "Połącz";
+            this.EthernetConnectBtn.TextColor = System.Drawing.Color.AliceBlue;
+            this.EthernetConnectBtn.UseVisualStyleBackColor = false;
+            this.EthernetConnectBtn.Click += new System.EventHandler(this.EthernetConnectBtn_Click);
+            // 
+            // ReceivingToggleBtnEthernet
+            // 
+            this.ReceivingToggleBtnEthernet.Location = new System.Drawing.Point(6, 19);
+            this.ReceivingToggleBtnEthernet.Margin = new System.Windows.Forms.Padding(10, 22, 10, 10);
+            this.ReceivingToggleBtnEthernet.MinimumSize = new System.Drawing.Size(45, 22);
+            this.ReceivingToggleBtnEthernet.Name = "ReceivingToggleBtnEthernet";
+            this.ReceivingToggleBtnEthernet.Size = new System.Drawing.Size(64, 22);
+            this.ReceivingToggleBtnEthernet.TabIndex = 1;
+            this.ReceivingToggleBtnEthernet.Text = "Nasłuchiwanie";
+            this.ReceivingToggleBtnEthernet.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.ReceivingToggleBtnEthernet.UseVisualStyleBackColor = true;
+            this.ReceivingToggleBtnEthernet.CheckedChanged += new System.EventHandler(this.ReceivingToggleBtnEthernet_CheckedChanged);
+            // 
             // komunikacjaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -536,9 +719,17 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -571,5 +762,17 @@
         private System.Windows.Forms.Panel panel3;
         private CustomControls.CustomButton UartRefreshBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private CustomControls.CustomToggleButton ReceivingToggleBtnEthernet;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private CustomControls.CustomButton EthernetConnectBtn;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.TextBox EthernetPortTextbox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.TextBox IPtextbox;
+        private System.Windows.Forms.Label label8;
     }
 }

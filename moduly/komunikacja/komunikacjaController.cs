@@ -31,6 +31,7 @@ namespace HAL062app.moduly.komunikacja
                     model.SendUARTdetectedPorts_action += UpdateUARTComboBox;
                     display.RefreshUartPorts_action += RequestUARTports;
                     display.ConnectUart_action += ConnectUart;
+                    display.DisconnectUart_action += DisconnectUart; 
                 }
             }
         }
@@ -59,6 +60,9 @@ namespace HAL062app.moduly.komunikacja
         private void ConnectUart(string portName, int baudRate)
         {
             model.ConnectUART(portName, baudRate);
+        }
+        private void DisconnectUart() {
+            model.DisconnectUART();
         }
     }
 

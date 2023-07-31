@@ -21,6 +21,7 @@ namespace HAL062app.moduly.komunikacja
         // Uart
         public event Action RefreshUartPorts_action;
         public event Action<string,int> ConnectUart_action;
+        public event Action DisconnectUart_action;
 
         public komunikacjaForm()
         {
@@ -31,7 +32,7 @@ namespace HAL062app.moduly.komunikacja
 
         private void komunikacjaForm_Load(object sender, EventArgs e)
         {
-
+            RefreshUartPorts_action();
         }
 
         public void UpdateTerminal(List<Message> logs)
@@ -90,7 +91,45 @@ namespace HAL062app.moduly.komunikacja
 
         private void ConnectUartBtn_Click(object sender, EventArgs e)
         {
-            ConnectUart_action(UartPortCombo.SelectedItem.ToString(), baudRates[UartBaudRateCombo.SelectedIndex]);
+            if (ConnectUartBtn.Text == "Połącz")
+            {
+                if (UartPortCombo.SelectedItem != null)
+                {
+                    ConnectUartBtn.BackColor = Color.FromArgb(192,0, 0);
+                    ConnectUart_action(UartPortCombo.SelectedItem.ToString(), baudRates[UartBaudRateCombo.SelectedIndex]);
+                    ConnectUartBtn.Text = "Rozłącz";
+                }
+                else
+                    ConnectUart_action("-1", baudRates[UartBaudRateCombo.SelectedIndex]);
+            } else
+            {
+                ConnectUartBtn.BackColor = Color.FromArgb(0, 192, 0);
+                ConnectUartBtn.Text = "Połącz";
+                DisconnectUart_action();
+
+            }
+        }
+
+        private void ReceivingToggleBtnEthernet_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EthernetConnectBtn_Click(object sender, EventArgs e)
+        {
+            if(EthernetConnectBtn.Text == "Połącz")
+            {
+                EthernetConnectBtn.BackColor = Color.FromArgb(192, 0, 0);
+                EthernetConnectBtn.Text = "Rozłącz";
+
+            }
+            else
+            {
+                EthernetConnectBtn.BackColor = Color.FromArgb(0, 192, 0);
+                EthernetConnectBtn.Text = "Połącz";
+
+
+            }
         }
     }
 }
