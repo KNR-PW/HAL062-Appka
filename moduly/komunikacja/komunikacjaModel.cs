@@ -39,26 +39,30 @@ using InTheHand.Net.Sockets;
  */
 namespace HAL062app.moduly.komunikacja
 {
-  
 
-    
-    
+
+
+
     public class komunikacjaModel
     {
         private List<MainChannelObserver> observers = new List<MainChannelObserver>();    //lista obserwujących modułów
         private List<Message> logMessages = new List<Message>();
-   
+
 
         private ConcurrentQueue<Message> messageQueue;
         private CancellationTokenSource tokenSource;
         private Task receivedTask;
-        public event Action<Message> privateMessageReceivedAction; 
+       
         public event Action<List<Message>> UpdateLogTerminal;
         //UART
         public event Action<string[]> SendUARTdetectedPorts_action;
         //Bluetooth
         public event Action<List<string>> SendBluetoothdetectedDevices_action;
         public event Action<bool> IsBluetoothConnected_action;
+        public delegate void MessageReceivedEventHandler(string message);
+        public event MessageReceivedEventHandler BluetoothMessageReceived_event;
+        private Thread listeningBluetoothThread;
+
 
         //uart
         private SerialPort UART;
@@ -72,20 +76,19 @@ namespace HAL062app.moduly.komunikacja
 
         //bluetooth
         private BluetoothClient bluetoothClient;
-        private string[] BluetoothDevicesName;
         private BluetoothDeviceInfo[] bluetoothDeviceInfos = new BluetoothDeviceInfo[0];
-      
 
 
 
-        public komunikacjaModel( )
+
+        public komunikacjaModel()
         {
-         
+
             messageQueue = new ConcurrentQueue<Message>();
             tokenSource = new CancellationTokenSource();
             receivedTask = Task.Run(() => ReceiveMessages(tokenSource.Token));
-            
-           
+
+
         }
 
         public void Subscribe(MainChannelObserver observer)
@@ -93,10 +96,18 @@ namespace HAL062app.moduly.komunikacja
             observers.Add(observer);
         }
 
-        
+        private void SendTerminalMessage(string text)
+        {
+            Message msg = new Message();
+            msg.text = text;
+            msg.author = 420;
+            msg.receiver = 69;
+            logMessages.Add(msg);
+            UpdateLogTerminal(logMessages);
+        }
         public void SendPrivateMessage(Message message) //Funkcja odpowiedzialna za wyslanie pierwszej wiadomosci w kolejce na kanal glowny
         {
-          
+            Task.Run(async () => await SendBluetoothMessage(message));
             PushMessageMainChannel(message);
             ReceivedMessageService(message);
             //dorobic zwracanie informacji, jesli kolejka pusta
@@ -110,19 +121,19 @@ namespace HAL062app.moduly.komunikacja
         }
         private void PushMessageMainChannel(Message message) //Ta funkcja powiadamia wszystkie moduly i wysyla wiadomosc
         {
-            foreach(var observer in observers)
+            foreach (var observer in observers)
             {
                 observer.MainChannel(message);
             }
         }
-        
-        
+
+
         public async Task<Message> ReceiveMessage()
         {
-            while(true)
+            while (true)
             {
                 tokenSource.Token.ThrowIfCancellationRequested();
-                if(messageQueue.TryDequeue(out Message message))
+                if (messageQueue.TryDequeue(out Message message))
                 {
                     return message;
                 }
@@ -130,10 +141,12 @@ namespace HAL062app.moduly.komunikacja
             }
 
         }
-       
+
         private void ReceiveMessages(CancellationToken cancellationToken)
         {
-            Task.Run(async () => { while (!cancellationToken.IsCancellationRequested)
+            Task.Run(async () =>
+            {
+                while (!cancellationToken.IsCancellationRequested)
                 {
 
 
@@ -145,7 +158,7 @@ namespace HAL062app.moduly.komunikacja
                     messageQueue.Enqueue(message);
                 }
             }, cancellationToken);
-        
+
 
         }
         public void StopReceiving()
@@ -160,15 +173,15 @@ namespace HAL062app.moduly.komunikacja
         ///                 UART
         ///
         //////////////////////////////////////////////////
-       
 
 
-        public void ConnectUART (string portName, int baudRate)
+
+        public void ConnectUART(string portName, int baudRate)
         {
             Message msg = new Message();
             msg.author = 420;
             msg.receiver = 69;
-            
+
             if (portName != "-1")
             {
                 try
@@ -185,19 +198,20 @@ namespace HAL062app.moduly.komunikacja
 
                     Message error = new Message();
                     msg.text = "UART - Błąd połączenia: " + ex.Message;
-                    
+
                     logMessages.Add(msg);
                     UpdateLogTerminal(logMessages);
 
                 }
-            }else
+            }
+            else
             {
                 msg.text = "Brak wybranego portu";
                 logMessages.Add(msg);
                 UpdateLogTerminal(logMessages);
             }
         }
-        public void DisconnectUART ()
+        public void DisconnectUART()
         {
             Message msg = new Message();
             msg.author = 420;
@@ -205,7 +219,7 @@ namespace HAL062app.moduly.komunikacja
 
             try
             {
-                
+
                 UART.Close();
                 msg.text = "UART - Rozłączono z portem";
                 logMessages.Add(msg);
@@ -247,7 +261,7 @@ namespace HAL062app.moduly.komunikacja
         ///
         //////////////////////////////////////////////////
 
-        
+
         public async Task ConnectTelnet(string ipAddress, int port)
         {
             Message msg = new Message();
@@ -281,84 +295,88 @@ namespace HAL062app.moduly.komunikacja
         ///                 Bluetooth
         ///
         //////////////////////////////////////////////////
-        
+
+
+
         private bool isBluetoothOn()
         {
             return BluetoothRadio.IsSupported;
         }
 
-        public void RefreshBluetoothDevices()
+        public async Task RefreshBluetoothDevices()
         {
-            if (isBluetoothOn()) { 
-            List<string> bluetoothDeviceNames = new List<string>();
-            using (var bluetoothClient = new BluetoothClient())
+            if (BluetoothRadio.IsSupported)
             {
-                
-                bluetoothDeviceInfos = bluetoothClient.DiscoverDevices();
-            }
-            foreach (var deviceInfo in bluetoothDeviceInfos)
-                bluetoothDeviceNames.Add(deviceInfo.DeviceName);
+                List<string> bluetoothDeviceNames = new List<string>();
+                await Task.Run(() =>
+                {
+                    
+                    using (var bluetoothClient = new BluetoothClient())
+                    {
 
-           if(bluetoothDeviceInfos == null ||bluetoothDeviceInfos.Length ==0) {
-                Message msg = new Message();
-                msg.author = 420;
-                msg.receiver = 69;
-                msg.text = "Brak dostępnych urządzeń Bluetooth";
-                logMessages.Add(msg);
-                UpdateLogTerminal(logMessages);
-            }
-           SendBluetoothdetectedDevices_action(bluetoothDeviceNames);
+                        bluetoothDeviceInfos = bluetoothClient.DiscoverDevices();
+                    }
+                    foreach (var deviceInfo in bluetoothDeviceInfos)
+                        bluetoothDeviceNames.Add(deviceInfo.DeviceName);
 
+                    if (bluetoothDeviceInfos == null || bluetoothDeviceInfos.Length == 0)
+                    {
+                        SendTerminalMessage("Brak dostępnych urządzeń Bluetooth");
+                    }
+                    
+                });
+                SendBluetoothdetectedDevices_action(bluetoothDeviceNames);
+                SendTerminalMessage("Wykryto nowe urządzenia Bluetooth");
             }
             else
-            {
-                Message msg = new Message();
-                msg.terminalMessage(420, 69, "Urządzenie nie posiada włączonego Bluetooth");
-                logMessages.Add(msg);
-                UpdateLogTerminal(logMessages);
+            { 
+                SendTerminalMessage("Urządzenie nie posiada włączonego Bluetooth");
             }
 
         }
-        public void ConnectBluetooth(string deviceName)
+        public async Task ConnectBluetooth(string deviceName)
         {
-            if (isBluetoothOn()) {
+            if (isBluetoothOn())
+            {
                 BluetoothDeviceInfo selectedDevice = bluetoothDeviceInfos.FirstOrDefault(b => b.DeviceName == deviceName);
-                if(deviceName == "-1_err")
+                if (deviceName == "-1_err")
                 {
-                    Message msg = new Message();
-                    msg.terminalMessage(420, 69, "Brak wybranego urządzenia");
-                    logMessages.Add(msg);
-                    UpdateLogTerminal(logMessages);
-
-                } else if (selectedDevice != null)
-                {
-                    try
-                    {
-                        var bluetoothEndPoint = new BluetoothEndPoint(selectedDevice.DeviceAddress, BluetoothService.SerialPort);
-                        bluetoothClient = new BluetoothClient();
-                        bluetoothClient.Connect(bluetoothEndPoint);
-                        Message msg = new Message();
-                        msg.terminalMessage(420, 69, "Połączono z " + selectedDevice.DeviceName);
-                        logMessages.Add(msg);
-                        UpdateLogTerminal(logMessages);
-                        IsBluetoothConnected_action(true);
-
-                    } catch (Exception ex)
-                    {
-                        Message msg = new Message();
-                        msg.terminalMessage(420, 69, "Błąd podczas próby połączenia: " + ex.Message);
-                        logMessages.Add(msg);
-                        UpdateLogTerminal(logMessages);
-                        IsBluetoothConnected_action(false);
-                    }
+                    SendTerminalMessage("Brak wybranego urządzenia");
 
                 }
-            } else
+                else if (selectedDevice != null)
+                {
+               
+                    await Task.Run(() =>
+                    {
+                        SendTerminalMessage("Łączenie...");
+                        if (bluetoothClient.Connected)
+                        {
+                            bluetoothClient.Close();
+                            IsBluetoothConnected_action(false);
+                        }
+                        try
+                        {
+                            
+                            var bluetoothEndPoint = new BluetoothEndPoint(selectedDevice.DeviceAddress, BluetoothService.SerialPort);
+                            bluetoothClient = new BluetoothClient();
+                            bluetoothClient.Connect(bluetoothEndPoint);
+                            SendTerminalMessage("Połączono z " + selectedDevice.DeviceName);
+                            //IsBluetoothConnected_action(true);
+                            startListeningBluetooth();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            SendTerminalMessage("Błąd podczas próby połączenia: " + ex.Message);
+                            IsBluetoothConnected_action(false);
+                        }
+                    });
+                }
+            }
+            else
             {
-                Message msg = new Message();
-                msg.terminalMessage(420, 69, "Urządzenie nie posiada włączonego Bluetooth");
-                logMessages.Add(msg);
-                UpdateLogTerminal(logMessages);
+                SendTerminalMessage("Urządzenie nie posiada włączonego Bluetooth");
             }
 
 
@@ -366,17 +384,74 @@ namespace HAL062app.moduly.komunikacja
 
         public void DisconnectBluetooth()
         {
-            if(bluetoothClient.Connected)
+            if (bluetoothClient.Connected)
             {
                 bluetoothClient.Close();
                 IsBluetoothConnected_action(false);
-                Message msg = new Message();
-                msg.terminalMessage(420, 69, "Rozłączono");
-                logMessages.Add(msg);
-                UpdateLogTerminal(logMessages);
-
+                SendTerminalMessage("Rozłączono");
             }
         }
+        private async Task ReceiveBluetoothMessage()
+        {
+            try
+            {
+                while (true)
+                {
+                    int bytesRead = await bluetoothClient.GetStream().ReadAsync(buffer, 0, buffer.Length);
+
+                    if (bytesRead > 0)
+                    {
+                        Message msg = new Message();
+                        msg.text = System.Text.Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                        msg.author = 0;
+                        messageQueue.Enqueue(msg);
+                        logMessages.Add(msg);
+                        UpdateLogTerminal(logMessages);
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                SendTerminalMessage("Błąd podczas odbierania wiadomości: " + ex.Message);
+            }
+
+        }
+        private async Task SendBluetoothMessage(Message msg)
+        {
+            try
+            {
+                buffer = System.Text.Encoding.ASCII.GetBytes(msg.text);
+                await bluetoothClient.GetStream().WriteAsync(buffer, 0, buffer.Length);
+                //Message m = new Message();
+                //  m.buffer[0] = 128;
+                // m.buffer[1] = 72;
+                // m.text = m.encodeMessage().ToString();
+                // logMessages.Add(m);
+                // UpdateLogTerminal(logMessages);
+                //await bluetoothClient.GetStream().WriteAsync(m.buffer, 0, m.buffer.Length);
+            }
+            catch (Exception ex)
+            {
+                SendTerminalMessage("Błąd podczas wysyłania wiadomości: " + ex.Message);
+            }
+        }
+
+        private void startListeningBluetooth()
+        {
+            listeningBluetoothThread = new Thread(() =>
+            {
+                Task.Run(async () => await ReceiveBluetoothMessage());
+            });
+            listeningBluetoothThread.Start();
+        }
+        protected virtual void OnBluetoothMessageReceived(string message)
+        {
+            BluetoothMessageReceived_event?.Invoke(message);
+        }
+
+
 
     }
 }

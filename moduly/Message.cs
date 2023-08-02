@@ -14,7 +14,8 @@ namespace HAL062app.moduly
         public string text { get; set; }
         public int receiver { get; set; }
         public int author { get; set; }
-
+        public int ID { get; set; }
+        public byte[] buffer { get; set; } = new byte[19];
         public DateTime time { get; set; }
 
         public Message() { 
@@ -33,6 +34,41 @@ namespace HAL062app.moduly
         {
             time = TimeProvider.GetCurrentTime();
             text = msg;
+        }
+
+        public char[] encodeMessage()
+        {
+            char[] data  = new char[19];
+            int k = 0;
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                if (buffer[i] == '#')
+                {
+                    data[k] = (char)buffer[i];
+                    k++;
+                }
+                else
+                {
+                    string hex = String.Format("{0:x2}", buffer[i]);
+                    byte[] bytes = Encoding.ASCII.GetBytes(hex);
+                    data[k] = (char)bytes[0];
+                    k++;
+                    data[k] = (char)bytes[1];
+                    k++;
+                }
+            }
+            int x = 9 - buffer.Length;
+            if (x > 0)
+                for (int j = x; j > -1; j--)
+                {
+                    data[k] = (char)'x';
+                    k++;
+                    data[k] = (char)'x';
+                    k++;
+                }
+            for (int i = 0; i < data.Length; i++)
+                data[i] = char.ToUpper(data[i]);
+            return data;
         }
     }
 }

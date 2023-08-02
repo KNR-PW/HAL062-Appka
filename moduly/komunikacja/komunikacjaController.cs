@@ -81,11 +81,11 @@ namespace HAL062app.moduly.komunikacja
         }
         private void RequestBluetoothDevices()
         {
-            model.RefreshBluetoothDevices();
+            Task task = model.RefreshBluetoothDevices();
         }
         private void ConnectBluetooth(string deviceName)
         {
-            model.ConnectBluetooth(deviceName);
+           Task task = model.ConnectBluetooth(deviceName);
 
         }
         private void BluetoothConnected(bool connected)
@@ -96,6 +96,8 @@ namespace HAL062app.moduly.komunikacja
         {
             model.DisconnectBluetooth();
         }
+
+       
     }
 
 

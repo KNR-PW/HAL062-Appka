@@ -43,18 +43,23 @@ namespace HAL062app.moduly.komunikacja
 
         public void UpdateTerminal(List<Message> logs)
         {
-            TerminalBox.Items.Clear(); // przy wiekszej ilosci wiadomosci bedzie sie zawieszac, trzeba dodac opcje filtrowania po adresie i wtedy clear uzywac
-            foreach (var message in logs)
-            {
+           // TerminalBox.Items.Clear(); // przy wiekszej ilosci wiadomosci bedzie sie zawieszac, trzeba dodac opcje filtrowania po adresie i wtedy clear uzywac
+          //  foreach (var message in logs)
+         //   {
 
-                TerminalBox.Invoke(new MethodInvoker(() => TerminalBox.Items.Add(message.time.ToString("HH:mm:ss") + ": " + message.author + "->" + message.receiver + ": " + message.text)));
-            }
-            TerminalBox.TopIndex = TerminalBox.Items.Count - 1;
+          //      TerminalBox.Invoke(new MethodInvoker(() => TerminalBox.Items.Add(message.time.ToString("HH:mm:ss") + ": " + message.author + "->" + message.receiver + ": " + message.text)));
+          //  }
+           
+            Message lastMsg = logs.Last();
+            TerminalBox.Invoke(new MethodInvoker(() => TerminalBox.Items.Add(lastMsg.time.ToString("HH:mm:ss") + ": " + lastMsg.author + "->" + lastMsg.receiver + ": " + lastMsg.text)));
+            TerminalBox.TopIndex = TerminalBox.Items.Count -1;
+        }
+        private void TerminalBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-
+            Clipboard.SetDataObject(this.TerminalBox.SelectedItem.ToString());
 
         }
-
         private void SendBtn_Click(object sender, EventArgs e)
         {
             Message msg = new Message();
@@ -140,15 +145,21 @@ namespace HAL062app.moduly.komunikacja
         }
 
 
-        //Bluetooth
+        //////////////////////////////////////////////////
+        ///
+        ///                 Bluetooth
+        ///
+        //////////////////////////////////////////////////
 
         private void BluetoothRefreshBtn_Click(object sender, EventArgs e)
         {
+            BluetoothRefreshBtn.Text = "Szukanie";
             RefreshBluetoothDevices_action();
         }
+
         public void RefreshBluetoothDevices(List<string> devices)
         {
-
+            BluetoothRefreshBtn.Text = "Odśwież";
             BluetoothDevicesComboBox.Items.Clear();
 
           
@@ -195,6 +206,8 @@ namespace HAL062app.moduly.komunikacja
             }
 
         }
+
+        
     }
     
 }

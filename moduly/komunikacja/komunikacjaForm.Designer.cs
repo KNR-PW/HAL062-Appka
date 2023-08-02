@@ -117,7 +117,7 @@
             this.sendTextBox.Margin = new System.Windows.Forms.Padding(10, 10, 10, 0);
             this.sendTextBox.MinimumSize = new System.Drawing.Size(200, 29);
             this.sendTextBox.Name = "sendTextBox";
-            this.sendTextBox.Size = new System.Drawing.Size(472, 29);
+            this.sendTextBox.Size = new System.Drawing.Size(467, 29);
             this.sendTextBox.TabIndex = 0;
             this.sendTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sendTextBox_KeyDown);
             // 
@@ -131,14 +131,14 @@
             this.tableLayoutPanel1.Controls.Add(this.TerminalBox, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(581, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(586, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(583, 641);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(578, 641);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // panel1
@@ -154,7 +154,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.MinimumSize = new System.Drawing.Size(200, 100);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(561, 124);
+            this.panel1.Size = new System.Drawing.Size(556, 124);
             this.panel1.TabIndex = 3;
             // 
             // ClearFilterBtn
@@ -169,7 +169,7 @@
             this.ClearFilterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClearFilterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ClearFilterBtn.ForeColor = System.Drawing.Color.Black;
-            this.ClearFilterBtn.Location = new System.Drawing.Point(385, 73);
+            this.ClearFilterBtn.Location = new System.Drawing.Point(380, 73);
             this.ClearFilterBtn.Name = "ClearFilterBtn";
             this.ClearFilterBtn.Size = new System.Drawing.Size(97, 30);
             this.ClearFilterBtn.TabIndex = 4;
@@ -189,7 +189,7 @@
             this.SendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SendBtn.ForeColor = System.Drawing.Color.White;
-            this.SendBtn.Location = new System.Drawing.Point(488, 10);
+            this.SendBtn.Location = new System.Drawing.Point(483, 10);
             this.SendBtn.Name = "SendBtn";
             this.SendBtn.Size = new System.Drawing.Size(68, 93);
             this.SendBtn.TabIndex = 3;
@@ -210,7 +210,7 @@
             this.FilterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FilterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.FilterBtn.ForeColor = System.Drawing.Color.Black;
-            this.FilterBtn.Location = new System.Drawing.Point(385, 42);
+            this.FilterBtn.Location = new System.Drawing.Point(380, 42);
             this.FilterBtn.Name = "FilterBtn";
             this.FilterBtn.Size = new System.Drawing.Size(97, 30);
             this.FilterBtn.TabIndex = 2;
@@ -232,15 +232,16 @@
             this.TerminalBox.Margin = new System.Windows.Forms.Padding(0);
             this.TerminalBox.MinimumSize = new System.Drawing.Size(200, 200);
             this.TerminalBox.Name = "TerminalBox";
-            this.TerminalBox.Size = new System.Drawing.Size(561, 494);
+            this.TerminalBox.Size = new System.Drawing.Size(556, 494);
             this.TerminalBox.TabIndex = 5;
+            this.TerminalBox.SelectedIndexChanged += new System.EventHandler(this.TerminalBox_SelectedIndexChanged);
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(315, 10);
+            this.panel2.Location = new System.Drawing.Point(320, 10);
             this.panel2.Margin = new System.Windows.Forms.Padding(10);
             this.panel2.MinimumSize = new System.Drawing.Size(200, 100);
             this.panel2.Name = "panel2";
@@ -262,9 +263,9 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.20275F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.71134F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 310F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
@@ -293,7 +294,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 218F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(285, 621);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(290, 621);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // tableLayoutPanel4
@@ -312,7 +313,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(263, 191);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(268, 191);
             this.tableLayoutPanel4.TabIndex = 6;
             // 
             // panel6
@@ -325,7 +326,7 @@
             this.panel6.Margin = new System.Windows.Forms.Padding(10);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(10);
-            this.panel6.Size = new System.Drawing.Size(241, 45);
+            this.panel6.Size = new System.Drawing.Size(246, 45);
             this.panel6.TabIndex = 4;
             // 
             // UartPortCombo
@@ -346,7 +347,7 @@
             this.UartPortCombo.MinimumSize = new System.Drawing.Size(150, 25);
             this.UartPortCombo.Name = "UartPortCombo";
             this.UartPortCombo.Padding = new System.Windows.Forms.Padding(1);
-            this.UartPortCombo.Size = new System.Drawing.Size(157, 30);
+            this.UartPortCombo.Size = new System.Drawing.Size(162, 30);
             this.UartPortCombo.TabIndex = 1;
             this.UartPortCombo.Texts = "Port";
             // 
@@ -372,7 +373,7 @@
             this.panel7.Margin = new System.Windows.Forms.Padding(10);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(10);
-            this.panel7.Size = new System.Drawing.Size(241, 46);
+            this.panel7.Size = new System.Drawing.Size(246, 46);
             this.panel7.TabIndex = 5;
             // 
             // UartBaudRateCombo
@@ -394,7 +395,7 @@
             this.UartBaudRateCombo.MinimumSize = new System.Drawing.Size(150, 25);
             this.UartBaudRateCombo.Name = "UartBaudRateCombo";
             this.UartBaudRateCombo.Padding = new System.Windows.Forms.Padding(1);
-            this.UartBaudRateCombo.Size = new System.Drawing.Size(157, 30);
+            this.UartBaudRateCombo.Size = new System.Drawing.Size(162, 30);
             this.UartBaudRateCombo.TabIndex = 1;
             this.UartBaudRateCombo.Texts = "BaudRate";
             // 
@@ -417,7 +418,7 @@
             this.panel3.Location = new System.Drawing.Point(1, 1);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(261, 56);
+            this.panel3.Size = new System.Drawing.Size(266, 56);
             this.panel3.TabIndex = 6;
             // 
             // tableLayoutPanel5
@@ -436,7 +437,7 @@
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(261, 56);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(266, 56);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // label1
@@ -448,7 +449,7 @@
             this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 46);
+            this.label1.Size = new System.Drawing.Size(67, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "UART";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -465,10 +466,10 @@
             this.ConnectUartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ConnectUartBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
             this.ConnectUartBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.ConnectUartBtn.Location = new System.Drawing.Point(179, 10);
+            this.ConnectUartBtn.Location = new System.Drawing.Point(182, 10);
             this.ConnectUartBtn.Margin = new System.Windows.Forms.Padding(10);
             this.ConnectUartBtn.Name = "ConnectUartBtn";
-            this.ConnectUartBtn.Size = new System.Drawing.Size(72, 36);
+            this.ConnectUartBtn.Size = new System.Drawing.Size(74, 36);
             this.ConnectUartBtn.TabIndex = 3;
             this.ConnectUartBtn.Text = "Połącz";
             this.ConnectUartBtn.TextColor = System.Drawing.Color.AliceBlue;
@@ -487,10 +488,10 @@
             this.UartRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UartRefreshBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
             this.UartRefreshBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.UartRefreshBtn.Location = new System.Drawing.Point(86, 10);
+            this.UartRefreshBtn.Location = new System.Drawing.Point(87, 10);
             this.UartRefreshBtn.Margin = new System.Windows.Forms.Padding(10);
             this.UartRefreshBtn.Name = "UartRefreshBtn";
-            this.UartRefreshBtn.Size = new System.Drawing.Size(73, 36);
+            this.UartRefreshBtn.Size = new System.Drawing.Size(75, 36);
             this.UartRefreshBtn.TabIndex = 4;
             this.UartRefreshBtn.Text = "Odśwież";
             this.UartRefreshBtn.TextColor = System.Drawing.Color.AliceBlue;
@@ -505,7 +506,7 @@
             this.panel5.Location = new System.Drawing.Point(11, 411);
             this.panel5.Margin = new System.Windows.Forms.Padding(10);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(263, 199);
+            this.panel5.Size = new System.Drawing.Size(268, 199);
             this.panel5.TabIndex = 2;
             // 
             // tableLayoutPanel6
@@ -524,7 +525,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(261, 197);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(266, 197);
             this.tableLayoutPanel6.TabIndex = 2;
             // 
             // panel10
@@ -537,7 +538,7 @@
             this.panel10.Margin = new System.Windows.Forms.Padding(10);
             this.panel10.Name = "panel10";
             this.panel10.Padding = new System.Windows.Forms.Padding(10);
-            this.panel10.Size = new System.Drawing.Size(241, 52);
+            this.panel10.Size = new System.Drawing.Size(246, 52);
             this.panel10.TabIndex = 2;
             // 
             // EthernetPortTextbox
@@ -548,7 +549,7 @@
             this.EthernetPortTextbox.Location = new System.Drawing.Point(72, 10);
             this.EthernetPortTextbox.Margin = new System.Windows.Forms.Padding(0);
             this.EthernetPortTextbox.Name = "EthernetPortTextbox";
-            this.EthernetPortTextbox.Size = new System.Drawing.Size(160, 29);
+            this.EthernetPortTextbox.Size = new System.Drawing.Size(165, 29);
             this.EthernetPortTextbox.TabIndex = 1;
             // 
             // label9
@@ -567,7 +568,7 @@
             this.tableLayoutPanel7.ColumnCount = 3;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel7.Controls.Add(this.EthernetConnectBtn, 2, 0);
             this.tableLayoutPanel7.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.panel8, 1, 0);
@@ -577,7 +578,7 @@
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(261, 52);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(266, 52);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // EthernetConnectBtn
@@ -595,7 +596,7 @@
             this.EthernetConnectBtn.Location = new System.Drawing.Point(179, 10);
             this.EthernetConnectBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.EthernetConnectBtn.Name = "EthernetConnectBtn";
-            this.EthernetConnectBtn.Size = new System.Drawing.Size(81, 32);
+            this.EthernetConnectBtn.Size = new System.Drawing.Size(83, 32);
             this.EthernetConnectBtn.TabIndex = 4;
             this.EthernetConnectBtn.Text = "Połącz";
             this.EthernetConnectBtn.TextColor = System.Drawing.Color.AliceBlue;
@@ -660,7 +661,7 @@
             this.panel9.Margin = new System.Windows.Forms.Padding(10);
             this.panel9.Name = "panel9";
             this.panel9.Padding = new System.Windows.Forms.Padding(10);
-            this.panel9.Size = new System.Drawing.Size(241, 52);
+            this.panel9.Size = new System.Drawing.Size(246, 52);
             this.panel9.TabIndex = 1;
             // 
             // IPtextbox
@@ -671,7 +672,7 @@
             this.IPtextbox.Location = new System.Drawing.Point(72, 10);
             this.IPtextbox.Margin = new System.Windows.Forms.Padding(0);
             this.IPtextbox.Name = "IPtextbox";
-            this.IPtextbox.Size = new System.Drawing.Size(160, 29);
+            this.IPtextbox.Size = new System.Drawing.Size(165, 29);
             this.IPtextbox.TabIndex = 1;
             // 
             // label8
@@ -693,7 +694,7 @@
             this.panel4.Location = new System.Drawing.Point(11, 223);
             this.panel4.Margin = new System.Windows.Forms.Padding(10);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(263, 167);
+            this.panel4.Size = new System.Drawing.Size(268, 167);
             this.panel4.TabIndex = 1;
             // 
             // tableLayoutPanel8
@@ -711,7 +712,7 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(261, 165);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(266, 165);
             this.tableLayoutPanel8.TabIndex = 7;
             // 
             // panel12
@@ -724,7 +725,7 @@
             this.panel12.Margin = new System.Windows.Forms.Padding(10);
             this.panel12.Name = "panel12";
             this.panel12.Padding = new System.Windows.Forms.Padding(10);
-            this.panel12.Size = new System.Drawing.Size(241, 53);
+            this.panel12.Size = new System.Drawing.Size(246, 53);
             this.panel12.TabIndex = 8;
             // 
             // label11
@@ -751,7 +752,7 @@
             this.BluetoothDevicesComboBox.IconColor = System.Drawing.Color.MediumSlateBlue;
             this.BluetoothDevicesComboBox.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.BluetoothDevicesComboBox.ListTextColor = System.Drawing.Color.DimGray;
-            this.BluetoothDevicesComboBox.Location = new System.Drawing.Point(79, 10);
+            this.BluetoothDevicesComboBox.Location = new System.Drawing.Point(84, 10);
             this.BluetoothDevicesComboBox.Margin = new System.Windows.Forms.Padding(0);
             this.BluetoothDevicesComboBox.MinimumSize = new System.Drawing.Size(150, 30);
             this.BluetoothDevicesComboBox.Name = "BluetoothDevicesComboBox";
@@ -772,7 +773,7 @@
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(255, 40);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(260, 40);
             this.tableLayoutPanel10.TabIndex = 9;
             // 
             // label2
@@ -802,7 +803,7 @@
             this.ConnectBluetoothBtn.Location = new System.Drawing.Point(140, 10);
             this.ConnectBluetoothBtn.Margin = new System.Windows.Forms.Padding(10);
             this.ConnectBluetoothBtn.Name = "ConnectBluetoothBtn";
-            this.ConnectBluetoothBtn.Size = new System.Drawing.Size(105, 20);
+            this.ConnectBluetoothBtn.Size = new System.Drawing.Size(110, 20);
             this.ConnectBluetoothBtn.TabIndex = 4;
             this.ConnectBluetoothBtn.Text = "Połącz";
             this.ConnectBluetoothBtn.TextColor = System.Drawing.Color.AliceBlue;
@@ -822,7 +823,7 @@
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(261, 46);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(266, 46);
             this.tableLayoutPanel11.TabIndex = 10;
             // 
             // BluetoothRefreshBtn
@@ -837,10 +838,10 @@
             this.BluetoothRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BluetoothRefreshBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
             this.BluetoothRefreshBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.BluetoothRefreshBtn.Location = new System.Drawing.Point(160, 10);
+            this.BluetoothRefreshBtn.Location = new System.Drawing.Point(163, 10);
             this.BluetoothRefreshBtn.Margin = new System.Windows.Forms.Padding(10);
             this.BluetoothRefreshBtn.Name = "BluetoothRefreshBtn";
-            this.BluetoothRefreshBtn.Size = new System.Drawing.Size(91, 26);
+            this.BluetoothRefreshBtn.Size = new System.Drawing.Size(93, 26);
             this.BluetoothRefreshBtn.TabIndex = 5;
             this.BluetoothRefreshBtn.Text = "Odśwież";
             this.BluetoothRefreshBtn.TextColor = System.Drawing.Color.AliceBlue;
@@ -857,7 +858,7 @@
             this.panel11.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.panel11.Name = "panel11";
             this.panel11.Padding = new System.Windows.Forms.Padding(5);
-            this.panel11.Size = new System.Drawing.Size(130, 46);
+            this.panel11.Size = new System.Drawing.Size(133, 46);
             this.panel11.TabIndex = 0;
             // 
             // label10
