@@ -13,6 +13,7 @@ using System.Net;
 using InTheHand.Net;
 using InTheHand.Net.Bluetooth;
 using InTheHand.Net.Sockets;
+using System.Reflection;
 
 
 /*  Tutaj znajdziemy cały model komunikacji pomiędzy modułami laboratorium, manipulator itp. a łazikiem. 
@@ -60,8 +61,8 @@ namespace HAL062app.moduly.komunikacja
         public event Action<List<string>> SendBluetoothdetectedDevices_action;
         public event Action<bool> IsBluetoothConnected_action;
         public delegate void MessageReceivedEventHandler(string message);
-        public event MessageReceivedEventHandler BluetoothMessageReceived_event;
-        private Thread listeningBluetoothThread;
+      
+        private Task listeningBluetoothTask;
 
 
         //uart
@@ -87,7 +88,8 @@ namespace HAL062app.moduly.komunikacja
             messageQueue = new ConcurrentQueue<Message>();
             tokenSource = new CancellationTokenSource();
             receivedTask = Task.Run(() => ReceiveMessages(tokenSource.Token));
-
+            if (isBluetoothOn())
+            { bluetoothClient = new BluetoothClient(); }
 
         }
 
@@ -96,7 +98,7 @@ namespace HAL062app.moduly.komunikacja
             observers.Add(observer);
         }
 
-        private void SendTerminalMessage(string text)
+        public void SendTerminalMessage(string text)
         {
             Message msg = new Message();
             msg.text = text;
@@ -298,9 +300,11 @@ namespace HAL062app.moduly.komunikacja
 
 
 
-        private bool isBluetoothOn()
+        public bool isBluetoothOn()
         {
+            
             return BluetoothRadio.IsSupported;
+
         }
 
         public async Task RefreshBluetoothDevices()
@@ -323,10 +327,14 @@ namespace HAL062app.moduly.komunikacja
                     {
                         SendTerminalMessage("Brak dostępnych urządzeń Bluetooth");
                     }
-                    
+                    else
+                    {
+                        SendTerminalMessage("Wykryto nowe urządzenia Bluetooth");
+                        SendBluetoothdetectedDevices_action(bluetoothDeviceNames);
+                    }
                 });
-                SendBluetoothdetectedDevices_action(bluetoothDeviceNames);
-                SendTerminalMessage("Wykryto nowe urządzenia Bluetooth");
+                
+                
             }
             else
             { 
@@ -334,7 +342,7 @@ namespace HAL062app.moduly.komunikacja
             }
 
         }
-        public async Task ConnectBluetooth(string deviceName)
+        public  void ConnectBluetooth(string deviceName)
         {
             if (isBluetoothOn())
             {
@@ -347,14 +355,9 @@ namespace HAL062app.moduly.komunikacja
                 else if (selectedDevice != null)
                 {
                
-                    await Task.Run(() =>
-                    {
-                        SendTerminalMessage("Łączenie...");
-                        if (bluetoothClient.Connected)
-                        {
-                            bluetoothClient.Close();
-                            IsBluetoothConnected_action(false);
-                        }
+                  
+                       SendTerminalMessage("Łączenie...");
+                        
                         try
                         {
                             
@@ -362,16 +365,17 @@ namespace HAL062app.moduly.komunikacja
                             bluetoothClient = new BluetoothClient();
                             bluetoothClient.Connect(bluetoothEndPoint);
                             SendTerminalMessage("Połączono z " + selectedDevice.DeviceName);
-                            //IsBluetoothConnected_action(true);
+                            IsBluetoothConnected_action(true);
                             startListeningBluetooth();
 
                         }
                         catch (Exception ex)
                         {
-                            SendTerminalMessage("Błąd podczas próby połączenia: " + ex.Message);
+                            SendTerminalMessage("Błąd podczas próby połączenia: " + ex.ToString());
                             IsBluetoothConnected_action(false);
                         }
-                    });
+                       
+                    
                 }
             }
             else
@@ -384,18 +388,18 @@ namespace HAL062app.moduly.komunikacja
 
         public void DisconnectBluetooth()
         {
-            if (bluetoothClient.Connected)
+            if (bluetoothClient!=null)
             {
                 bluetoothClient.Close();
                 IsBluetoothConnected_action(false);
                 SendTerminalMessage("Rozłączono");
             }
         }
-        private async Task ReceiveBluetoothMessage()
+        private async Task ReceiveBluetoothMessage(CancellationToken cancellationToken)
         {
             try
             {
-                while (true)
+                while (!cancellationToken.IsCancellationRequested)
                 {
                     int bytesRead = await bluetoothClient.GetStream().ReadAsync(buffer, 0, buffer.Length);
 
@@ -438,18 +442,29 @@ namespace HAL062app.moduly.komunikacja
             }
         }
 
-        private void startListeningBluetooth()
+        private async void startListeningBluetooth()
         {
+          CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            try
+            {
+                listeningBluetoothTask = ReceiveBluetoothMessage(cancellationTokenSource.Token);
+                await listeningBluetoothTask;
+            }
+            catch (TaskCanceledException)
+            {
+                SendTerminalMessage("Błąd podczas uruchamiania zadania 'ReceiveBluetoothMessage'");
+            }
+            
+            
+            
+            /*
             listeningBluetoothThread = new Thread(() =>
             {
                 Task.Run(async () => await ReceiveBluetoothMessage());
             });
             listeningBluetoothThread.Start();
-        }
-        protected virtual void OnBluetoothMessageReceived(string message)
-        {
-            BluetoothMessageReceived_event?.Invoke(message);
-        }
+        */}
+       
 
 
 

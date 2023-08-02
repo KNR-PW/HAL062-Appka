@@ -40,6 +40,7 @@ namespace HAL062app.moduly.komunikacja
                     display.ConnectBluetooth_action += ConnectBluetooth;
                     model.IsBluetoothConnected_action += BluetoothConnected;
                     display.DisconnectBluetooth_action += DisconnectBluetooth;
+                    display.BluetoothStatusRequest += BluetoothStatus;
                 }
             }
         }
@@ -85,7 +86,7 @@ namespace HAL062app.moduly.komunikacja
         }
         private void ConnectBluetooth(string deviceName)
         {
-           Task task = model.ConnectBluetooth(deviceName);
+           model.ConnectBluetooth(deviceName);
 
         }
         private void BluetoothConnected(bool connected)
@@ -95,6 +96,28 @@ namespace HAL062app.moduly.komunikacja
         private void DisconnectBluetooth()
         {
             model.DisconnectBluetooth();
+        }
+        private void BluetoothStatus(bool bluetoothSwitch)
+        {
+            if (bluetoothSwitch && model.isBluetoothOn())
+            {
+                display.BluetoothStatus(model.isBluetoothOn());
+
+            }
+            else
+            {
+                if (model.isBluetoothOn())
+                {
+
+                    model.DisconnectBluetooth();
+                }
+                else
+                    model.SendTerminalMessage("Bluetooth nie został włączony");
+                display.BluetoothStatus(false);
+               
+            }
+            
+           
         }
 
        

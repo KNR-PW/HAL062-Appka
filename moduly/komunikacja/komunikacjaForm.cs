@@ -29,6 +29,9 @@ namespace HAL062app.moduly.komunikacja
         public event Action RefreshBluetoothDevices_action;
         public event Action<string> ConnectBluetooth_action;
         public event Action DisconnectBluetooth_action;
+        public event Action<bool> BluetoothStatusRequest;
+        private bool BluetoothStatusBoolean = false;
+
         public komunikacjaForm()
         {
             InitializeComponent();
@@ -39,6 +42,8 @@ namespace HAL062app.moduly.komunikacja
         private void komunikacjaForm_Load(object sender, EventArgs e)
         {
             RefreshUartPorts_action();
+            ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 192, 192);
+            BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 192, 192);
         }
 
         public void UpdateTerminal(List<Message> logs)
@@ -56,7 +61,7 @@ namespace HAL062app.moduly.komunikacja
         }
         private void TerminalBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (this.TerminalBox.SelectedItem != null) 
             Clipboard.SetDataObject(this.TerminalBox.SelectedItem.ToString());
 
         }
@@ -153,44 +158,52 @@ namespace HAL062app.moduly.komunikacja
 
         private void BluetoothRefreshBtn_Click(object sender, EventArgs e)
         {
-            BluetoothRefreshBtn.Text = "Szukanie";
-            RefreshBluetoothDevices_action();
+            if (BluetoothStatusBoolean)
+            {
+                BluetoothRefreshBtn.Text = "Szukanie";
+                RefreshBluetoothDevices_action();
+            }
         }
 
         public void RefreshBluetoothDevices(List<string> devices)
         {
-            BluetoothRefreshBtn.Text = "Odśwież";
-            BluetoothDevicesComboBox.Items.Clear();
-
-          
-            foreach(string device in devices)
+            if (BluetoothStatusBoolean)
             {
+                BluetoothRefreshBtn.Text = "Odśwież";
+                BluetoothDevicesComboBox.Items.Clear();
 
-                BluetoothDevicesComboBox.Items.Add(device);
+
+                foreach (string device in devices)
+                {
+
+                    BluetoothDevicesComboBox.Items.Add(device);
+                }
             }
-      
 
         }
 
         private void ConnectBluetoothBtn_Click(object sender, EventArgs e)
         {
-            if (ConnectBluetoothBtn.Text == "Połącz")
+            if (BluetoothStatusBoolean)
             {
-                if (BluetoothDevicesComboBox.SelectedItem != null)
+                if (ConnectBluetoothBtn.Text == "Połącz")
                 {
-                    
-                    ConnectBluetooth_action(BluetoothDevicesComboBox.SelectedItem.ToString());
-                    
+                    if (BluetoothDevicesComboBox.SelectedItem != null)
+                    {
+
+                        ConnectBluetooth_action(BluetoothDevicesComboBox.SelectedItem.ToString());
+
+                    }
+                    else
+                        ConnectBluetooth_action("-1_err");
                 }
                 else
-                    ConnectBluetooth_action ("-1_err");
-            }
-            else
-            {
-                ConnectBluetoothBtn.BackColor = Color.FromArgb(0, 192, 0);
-                ConnectBluetoothBtn.Text = "Połącz";
-                DisconnectBluetooth_action();
+                {
+                    ConnectBluetoothBtn.BackColor = Color.FromArgb(0, 192, 0);
+                    ConnectBluetoothBtn.Text = "Połącz";
+                    DisconnectBluetooth_action();
 
+                }
             }
         }
         public void BluetoothConnected(bool connected)
@@ -207,7 +220,32 @@ namespace HAL062app.moduly.komunikacja
 
         }
 
-        
+        private void BluetoothSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            BluetoothStatusRequest(!BluetoothStatusBoolean);
+        }
+        public void BluetoothStatus(bool status)
+        {
+            BluetoothStatusBoolean = status;
+            BluetoothSwitch.Checked = status;
+            if(!status)
+            {
+                ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 192, 192);
+                BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 192, 192);
+                BluetoothRefreshBtn.Text = "Odśwież";
+                BluetoothDevicesComboBox.Items.Clear();
+                BluetoothDevicesComboBox.SelectedIndex = -1;
+                BluetoothDevicesComboBox.Texts = "";
+
+            }else
+            {
+                ConnectBluetoothBtn.BackColor = Color.FromArgb(0, 192, 0);
+                BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 0, 0);
+            }
+
+        }
+
+       
     }
     
 }
