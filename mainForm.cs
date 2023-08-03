@@ -2,6 +2,7 @@
 using HAL062app.moduly.laboratorium;
 using HAL062app.moduly.manipulator;
 using HAL062app.moduly.podwozie;
+using HAL062app.moduly.sandbox;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,28 +36,32 @@ namespace HAL062app
             modules.Add("Laboratorium", new moduly.laboratorium.laboratoriumForm());
             modules.Add("Podwozie", new moduly.podwozie.podwozieForm());
             modules.Add("Manipulator", new moduly.manipulator.manipulatorForm());
+            modules.Add("Sandbox", new moduly.sandbox.sandboxForm());
+
 
             moduly.komunikacja.komunikacjaModel komunikacjaM = new moduly.komunikacja.komunikacjaModel();
             moduly.laboratorium.laboratoriumModel laboratoriumM = new moduly.laboratorium.laboratoriumModel(komunikacjaM);
             moduly.podwozie.podwozieModel podwozieM = new moduly.podwozie.podwozieModel(komunikacjaM);
             moduly.manipulator.manipulatorModel manipulatorM = new moduly.manipulator.manipulatorModel(komunikacjaM);
-
+            moduly.sandbox.sandboxModel sandboxM = new moduly.sandbox.sandboxModel(komunikacjaM);
 
 
             moduly.komunikacja.komunikacjaController komunikacjaC = new moduly.komunikacja.komunikacjaController(modules, komunikacjaM);
             moduly.laboratorium.laboratoriumController laboratoriumC = new moduly.laboratorium.laboratoriumController(modules, laboratoriumM);
             moduly.podwozie.podwozieController podwozieC = new moduly.podwozie.podwozieController(modules, podwozieM);
             moduly.manipulator.manipulatorController manipulatorC = new moduly.manipulator.manipulatorController(modules, manipulatorM);
+            moduly.sandbox.sandboxController sandboxC = new moduly.sandbox.sandboxController(modules, sandboxM);
             
             komunikacjaM.Subscribe(laboratoriumM);
             komunikacjaM.Subscribe(podwozieM);
             komunikacjaM.Subscribe(manipulatorM);
-
+            komunikacjaM.Subscribe(sandboxM);
 
         }
         private void mainForm_Load(object sender, EventArgs e)
         {
-          
+            ShowModule("Komunikacja");
+
         }
 
         /// <Sterowanie wyswietlaniem stron>
@@ -107,7 +112,7 @@ namespace HAL062app
 
         private void customButton6_Click(object sender, EventArgs e)
         {
-
+            ShowModule("Sandbox");
         }
 
         

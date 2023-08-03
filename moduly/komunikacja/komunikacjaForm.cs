@@ -220,7 +220,7 @@ namespace HAL062app.moduly.komunikacja
 
         }
 
-        private void BluetoothSwitch_CheckedChanged(object sender, EventArgs e)
+        private void BluetoothSwitch_CheckedChanged(object sender, EventArgs e) // Tutaj zajmujemy się tym, żeby przełączenie włącznika bluetooth działało 
         {
             BluetoothStatusRequest(!BluetoothStatusBoolean);
         }

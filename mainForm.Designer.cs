@@ -36,7 +36,7 @@
             this.ChassisButton = new HAL062app.CustomControls.CustomButton();
             this.ManipulatorButton = new HAL062app.CustomControls.CustomButton();
             this.LaboButton = new HAL062app.CustomControls.CustomButton();
-            this.customButton6 = new HAL062app.CustomControls.CustomButton();
+            this.sandboxBtn = new HAL062app.CustomControls.CustomButton();
             this.StatusPanel = new System.Windows.Forms.Panel();
             this.ContextPanel = new System.Windows.Forms.Panel();
             this.UpperPanel = new System.Windows.Forms.Panel();
@@ -77,7 +77,7 @@
             this.ButtonPanel.Controls.Add(this.ChassisButton);
             this.ButtonPanel.Controls.Add(this.ManipulatorButton);
             this.ButtonPanel.Controls.Add(this.LaboButton);
-            this.ButtonPanel.Controls.Add(this.customButton6);
+            this.ButtonPanel.Controls.Add(this.sandboxBtn);
             this.ButtonPanel.Location = new System.Drawing.Point(15, 115);
             this.ButtonPanel.Margin = new System.Windows.Forms.Padding(15);
             this.ButtonPanel.Name = "ButtonPanel";
@@ -184,25 +184,25 @@
             this.LaboButton.UseVisualStyleBackColor = false;
             this.LaboButton.Click += new System.EventHandler(this.LaboButton_Click);
             // 
-            // customButton6
+            // sandboxBtn
             // 
-            this.customButton6.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.customButton6.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.customButton6.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.customButton6.BorderRadius = 10;
-            this.customButton6.BorderSize = 0;
-            this.customButton6.FlatAppearance.BorderSize = 0;
-            this.customButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.customButton6.ForeColor = System.Drawing.Color.White;
-            this.customButton6.Location = new System.Drawing.Point(10, 310);
-            this.customButton6.Margin = new System.Windows.Forms.Padding(10);
-            this.customButton6.Name = "customButton6";
-            this.customButton6.Size = new System.Drawing.Size(236, 40);
-            this.customButton6.TabIndex = 5;
-            this.customButton6.Text = "customButton6";
-            this.customButton6.TextColor = System.Drawing.Color.White;
-            this.customButton6.UseVisualStyleBackColor = false;
-            this.customButton6.Click += new System.EventHandler(this.customButton6_Click);
+            this.sandboxBtn.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.sandboxBtn.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.sandboxBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.sandboxBtn.BorderRadius = 10;
+            this.sandboxBtn.BorderSize = 0;
+            this.sandboxBtn.FlatAppearance.BorderSize = 0;
+            this.sandboxBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sandboxBtn.ForeColor = System.Drawing.Color.White;
+            this.sandboxBtn.Location = new System.Drawing.Point(10, 310);
+            this.sandboxBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.sandboxBtn.Name = "sandboxBtn";
+            this.sandboxBtn.Size = new System.Drawing.Size(236, 40);
+            this.sandboxBtn.TabIndex = 5;
+            this.sandboxBtn.Text = "Sandbox";
+            this.sandboxBtn.TextColor = System.Drawing.Color.White;
+            this.sandboxBtn.UseVisualStyleBackColor = false;
+            this.sandboxBtn.Click += new System.EventHandler(this.customButton6_Click);
             // 
             // StatusPanel
             // 
@@ -274,7 +274,7 @@
         private CustomControls.CustomButton ChassisButton;
         private CustomControls.CustomButton ManipulatorButton;
         private CustomControls.CustomButton LaboButton;
-        private CustomControls.CustomButton customButton6;
+        private CustomControls.CustomButton sandboxBtn;
     }
 }
 

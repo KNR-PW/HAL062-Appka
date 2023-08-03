@@ -101,6 +101,14 @@
       <DependentUpon>podwozieForm.cs</DependentUpon>
     </Compile>
     <Compile Include="moduly\podwozie\podwozieModel.cs" />
+    <Compile Include="moduly\sandbox\sandboxController.cs" />
+    <Compile Include="moduly\sandbox\sandboxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="moduly\sandbox\sandboxForm.Designer.cs">
+      <DependentUpon>sandboxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="moduly\sandbox\sandboxModel.cs" />
     <Compile Include="moduly\TimeProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="moduly\podwozie\podwozieForm.resx">
       <DependentUpon>podwozieForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="moduly\sandbox\sandboxForm.resx">
+      <DependentUpon>sandboxForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

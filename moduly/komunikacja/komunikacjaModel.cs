@@ -116,10 +116,14 @@ namespace HAL062app.moduly.komunikacja
         }
         public void ReceivedMessageService(Message message)
         {
+
             messageQueue.Enqueue(message);
             logMessages.Add(message);
             UpdateLogTerminal(logMessages);
-
+            if(isBluetoothOn())
+            {
+                Task.Run(async () => await SendBluetoothMessage(message));
+            }
         }
         private void PushMessageMainChannel(Message message) //Ta funkcja powiadamia wszystkie moduly i wysyla wiadomosc
         {
@@ -428,13 +432,6 @@ namespace HAL062app.moduly.komunikacja
             {
                 buffer = System.Text.Encoding.ASCII.GetBytes(msg.text);
                 await bluetoothClient.GetStream().WriteAsync(buffer, 0, buffer.Length);
-                //Message m = new Message();
-                //  m.buffer[0] = 128;
-                // m.buffer[1] = 72;
-                // m.text = m.encodeMessage().ToString();
-                // logMessages.Add(m);
-                // UpdateLogTerminal(logMessages);
-                //await bluetoothClient.GetStream().WriteAsync(m.buffer, 0, m.buffer.Length);
             }
             catch (Exception ex)
             {
