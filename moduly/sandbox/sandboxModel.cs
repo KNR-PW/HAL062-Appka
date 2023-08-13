@@ -27,7 +27,7 @@ namespace HAL062app.moduly.sandbox
         public void SendMessageToKomunikacja(Message message)
         {
             message.author = 400;
-            komunikacjaModel.ReceivedMessageService(message);
+            komunikacjaModel.SendMMessageToHALService(message);
 
         }
 

@@ -28,7 +28,7 @@ namespace HAL062app.moduly.podwozie
         public void SendMessageToKomunikacja(Message message)
         {
             message.author = 3;
-            komunikacjaModel.ReceivedMessageService(message);
+            komunikacjaModel.SendMMessageToHALService(message);
 
         }
 

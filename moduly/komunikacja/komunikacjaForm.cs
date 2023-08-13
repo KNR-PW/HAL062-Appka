@@ -23,7 +23,11 @@ namespace HAL062app.moduly.komunikacja
         public event Action RefreshUartPorts_action;
         public event Action<string,int> ConnectUart_action;
         public event Action DisconnectUart_action;
-
+        //telnet
+        public event Action<string, int> ConnectTelnet_action;
+        public event Action disconnectTelnet_action;
+        public event Action<bool> EthernetStatus_action;
+        private bool EthernetStatusBoolean = false;
 
         //Bluetooth
         public event Action RefreshBluetoothDevices_action;
@@ -44,6 +48,7 @@ namespace HAL062app.moduly.komunikacja
             RefreshUartPorts_action();
             ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 192, 192);
             BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 192, 192);
+            EthernetStatus(false);
         }
 
         public void UpdateTerminal(List<Message> logs)
@@ -126,7 +131,11 @@ namespace HAL062app.moduly.komunikacja
 
             }
         }
-
+        //////////////////////////////////////////////////
+        ///
+        ///                 Telnet/SSH 
+        ///
+        //////////////////////////////////////////////////
         private void ReceivingToggleBtnEthernet_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -134,7 +143,49 @@ namespace HAL062app.moduly.komunikacja
 
         private void EthernetConnectBtn_Click(object sender, EventArgs e)
         {
-            if(EthernetConnectBtn.Text == "Połącz")
+            if (EthernetStatusBoolean)
+            {
+                if (EthernetConnectBtn.Text == "Połącz")
+                {
+                    if (IPtextbox.TextLength > 0)
+                    {
+
+                        EthernetConnectBtn.BackColor = Color.FromArgb(192, 0, 0);
+                        EthernetConnectBtn.Text = "Rozłącz";
+                        ConnectTelnet_action(IPtextbox.Text, (int)EthernetPort.Value);
+
+                    }
+                    else
+                        ConnectTelnet_action("", 0);
+
+                }
+                else
+                {
+                    EthernetConnectBtn.BackColor = Color.FromArgb(0, 192, 0);
+                    EthernetConnectBtn.Text = "Połącz";
+                    disconnectTelnet_action();
+
+                }
+            }
+        }
+        private void EthernetSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            EthernetStatus_action(!EthernetStatusBoolean);
+        }
+
+        public void EthernetStatus(bool status)
+        {
+            EthernetStatusBoolean = status;
+            EthernetSwitch.Checked = status;
+            if(!status) 
+                EthernetConnectBtn.BackColor = Color.FromArgb(192, 192, 192);
+            else
+                EthernetConnectBtn.BackColor = Color.FromArgb(0, 192, 0);
+        }
+
+        public void EthernetConnected(bool status)
+        {
+            if(status)
             {
                 EthernetConnectBtn.BackColor = Color.FromArgb(192, 0, 0);
                 EthernetConnectBtn.Text = "Rozłącz";
@@ -144,12 +195,10 @@ namespace HAL062app.moduly.komunikacja
             {
                 EthernetConnectBtn.BackColor = Color.FromArgb(0, 192, 0);
                 EthernetConnectBtn.Text = "Połącz";
-
-
             }
+
+
         }
-
-
         //////////////////////////////////////////////////
         ///
         ///                 Bluetooth
@@ -245,7 +294,7 @@ namespace HAL062app.moduly.komunikacja
 
         }
 
-       
+        
     }
     
 }

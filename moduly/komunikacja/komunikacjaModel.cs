@@ -57,6 +57,9 @@ namespace HAL062app.moduly.komunikacja
         public event Action<List<Message>> UpdateLogTerminal;
         //UART
         public event Action<string[]> SendUARTdetectedPorts_action;
+        //Telnet
+        public event Action<bool> isEthernetConnected_action;
+
         //Bluetooth
         public event Action<List<string>> SendBluetoothdetectedDevices_action;
         public event Action<bool> IsBluetoothConnected_action;
@@ -68,17 +71,21 @@ namespace HAL062app.moduly.komunikacja
         //uart
         private SerialPort UART;
         private string[] UartPorts = SerialPort.GetPortNames();
+        private bool UartOn = false;
 
         //telnet
         private TcpClient tcpClient = new TcpClient();
-        private NetworkStream stream;
         private byte[] buffer = new byte[2048];
-
+        private bool ethernetOn = false;
+        private StreamReader tcpReader;
+        private StreamWriter tcpWriter;
+        private NetworkStream telnetStream;
+        private CancellationTokenSource TelnetCancellationTokenSource;
 
         //bluetooth
         private BluetoothClient bluetoothClient;
         private BluetoothDeviceInfo[] bluetoothDeviceInfos = new BluetoothDeviceInfo[0];
-
+        private bool BluetoothOn = false;
 
 
 
@@ -86,8 +93,7 @@ namespace HAL062app.moduly.komunikacja
         {
 
             messageQueue = new ConcurrentQueue<Message>();
-            tokenSource = new CancellationTokenSource();
-            receivedTask = Task.Run(() => ReceiveMessages(tokenSource.Token));
+          
             if (isBluetoothOn())
             { bluetoothClient = new BluetoothClient(); }
 
@@ -109,21 +115,22 @@ namespace HAL062app.moduly.komunikacja
         }
         public void SendPrivateMessage(Message message) //Funkcja odpowiedzialna za wyslanie pierwszej wiadomosci w kolejce na kanal glowny
         {
-            Task.Run(async () => await SendBluetoothMessage(message));
+            
             PushMessageMainChannel(message);
-            ReceivedMessageService(message);
+            SendMMessageToHALService(message);
             //dorobic zwracanie informacji, jesli kolejka pusta
         }
-        public void ReceivedMessageService(Message message)
+        public void SendMMessageToHALService(Message message)
         {
 
             messageQueue.Enqueue(message);
             logMessages.Add(message);
             UpdateLogTerminal(logMessages);
-            if(isBluetoothOn())
-            {
+           
+            if (BluetoothOn)
                 Task.Run(async () => await SendBluetoothMessage(message));
-            }
+            if (isTelnetConnected())
+                Task.Run(async () => await SendTelnetMessage(message));
         }
         private void PushMessageMainChannel(Message message) //Ta funkcja powiadamia wszystkie moduly i wysyla wiadomosc
         {
@@ -134,43 +141,10 @@ namespace HAL062app.moduly.komunikacja
         }
 
 
-        public async Task<Message> ReceiveMessage()
-        {
-            while (true)
-            {
-                tokenSource.Token.ThrowIfCancellationRequested();
-                if (messageQueue.TryDequeue(out Message message))
-                {
-                    return message;
-                }
-                await Task.Delay(100);
-            }
+        
 
-        }
-
-        private void ReceiveMessages(CancellationToken cancellationToken)
-        {
-            Task.Run(async () =>
-            {
-                while (!cancellationToken.IsCancellationRequested)
-                {
-
-
-                    await Task.Delay(100);
-                    Message message = new Message()
-                    {
-                        text = "tutaj odbieranie po necie"
-                    };
-                    messageQueue.Enqueue(message);
-                }
-            }, cancellationToken);
-
-
-        }
-        public void StopReceiving()
-        {
-            tokenSource.Cancel();
-        }
+     
+       
 
 
 
@@ -270,32 +244,103 @@ namespace HAL062app.moduly.komunikacja
 
         public async Task ConnectTelnet(string ipAddress, int port)
         {
-            Message msg = new Message();
-            msg.author = 420;
-            msg.receiver = 69;
+            
             try
             {
                 tcpClient = new TcpClient();
                 await tcpClient.ConnectAsync(ipAddress, port);
-                stream = tcpClient.GetStream();
-                msg.text = "Połączono przez Telnet.";
+                telnetStream = tcpClient.GetStream();
+                tcpReader = new StreamReader(telnetStream, Encoding.ASCII);
+                tcpWriter = new StreamWriter(telnetStream, Encoding.ASCII);
+                ethernetOn = true;
+                SendTerminalMessage("Połączono przez Telnet.");
+                StartListeningTelnet();
+            
             }
             catch (Exception ex)
             {
-                msg.text = "Błąd połączenia: " + ex.Message;
+                isEthernetConnected_action(false);
+                SendTerminalMessage("Błąd połączenia: " + ex.Message);
                 // Dodaj obsługę błędów połączenia
             }
-            logMessages.Add(msg);
-            UpdateLogTerminal(logMessages);
+            
         }
 
-        public async Task<string> ReceiveMessageTelnet()
+        public async Task SendTelnetMessage(Message message)
         {
-            int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
-            string message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-            return message;
+            try
+            {
+                await tcpWriter.WriteAsync(message.text + "\r\n");
+                await tcpWriter.FlushAsync();
+            }
+            catch (Exception ex)
+            {
+                SendTerminalMessage("TCP: Błąd podczas wysyłania wiadomości: " + ex.Message);
+
+            }
+
+        }
+        private async Task ReceiveTelnetMessage(CancellationToken cancellationToken)
+        {
+            try
+            {
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    string receivedMessage = await tcpReader.ReadLineAsync();
+
+                    if (!string.IsNullOrEmpty(receivedMessage))
+                    {
+                        Message msg = new Message();
+                        msg.text = receivedMessage;
+                        msg.author = 0;
+                        messageQueue.Enqueue(msg);
+                        logMessages.Add(msg);
+                        UpdateLogTerminal(logMessages);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SendTerminalMessage("Błąd podczas odbierania wiadomości: " + ex.Message);
+            }
         }
 
+        private async void StartListeningTelnet()
+        {
+            TelnetCancellationTokenSource = new CancellationTokenSource();
+            try
+            {
+                await ReceiveTelnetMessage(TelnetCancellationTokenSource.Token);
+            }catch (TaskCanceledException)
+            {
+                SendTerminalMessage("Błąd podczas uruchamiania funkcji ReceiveTelnetMessage: ");
+            }
+
+        }
+
+        public void TelnetDisconnect()
+        {
+            try
+            {
+               // TelnetCancellationTokenSource?.Cancel();
+                tcpReader?.Dispose();
+                tcpWriter?.Dispose();
+                tcpClient?.Close();
+                telnetStream.Close();
+                isEthernetConnected_action(false);
+
+                SendTerminalMessage("Rozłączono");
+            } catch (Exception ex)
+            {
+                SendTerminalMessage("Błąd podczas rozłączania: "+ ex.Message);
+
+            }
+        }
+        public bool isTelnetConnected()
+        {
+            return tcpClient.Connected;
+
+        }
         //////////////////////////////////////////////////
         ///
         ///                 Bluetooth
@@ -435,7 +480,7 @@ namespace HAL062app.moduly.komunikacja
             }
             catch (Exception ex)
             {
-                SendTerminalMessage("Błąd podczas wysyłania wiadomości: " + ex.Message);
+                SendTerminalMessage("BT: Błąd podczas wysyłania wiadomości: " + ex.Message);
             }
         }
 

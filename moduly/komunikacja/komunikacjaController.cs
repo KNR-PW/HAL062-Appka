@@ -33,7 +33,11 @@ namespace HAL062app.moduly.komunikacja
                     display.RefreshUartPorts_action += RequestUARTports;
                     display.ConnectUart_action += ConnectUart;
                     display.DisconnectUart_action += DisconnectUart;
-
+                    //Telnet/SSH
+                    display.ConnectTelnet_action += ConnectTelnet;
+                    display.EthernetStatus_action += EthernetStatus;
+                    display.disconnectTelnet_action += DisconnectTelnet;
+                    model.isEthernetConnected_action += EthernetConnected;
                     //Bluetooth
                     model.SendBluetoothdetectedDevices_action += UpdateBluetoothDevicesComboBox;
                     display.RefreshBluetoothDevices_action += RequestBluetoothDevices;
@@ -73,7 +77,29 @@ namespace HAL062app.moduly.komunikacja
         private void DisconnectUart() {
             model.DisconnectUART();
         }
+        //Telnet/SSH
+        private void ConnectTelnet(string ip, int port)
+        {
+            Task task = model.ConnectTelnet(ip, port);
 
+        }
+        private void EthernetStatus(bool status)
+        {
+            display.EthernetStatus(status);
+            if (status == false&&model.isTelnetConnected())
+            {
+                model.TelnetDisconnect();
+            }
+        }
+        private void DisconnectTelnet()
+        {
+            model.TelnetDisconnect();
+
+        }
+        private void EthernetConnected(bool status)
+        {
+            display.EthernetConnected(status);
+        }
 
         //Bluetooth
         private void UpdateBluetoothDevicesComboBox(List<string> devices)

@@ -44,7 +44,7 @@ namespace HAL062app.moduly.laboratorium
         public void SendMessageToKomunikacja(Message message)
         {
             message.author = 2;
-            komunikacjaModel.ReceivedMessageService(message);
+            komunikacjaModel.SendMMessageToHALService(message);
 
         }
      
