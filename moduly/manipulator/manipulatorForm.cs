@@ -7,14 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Integration;
+using HelixToolkit.Wpf;
 
 namespace HAL062app.moduly.manipulator
 {
     public partial class manipulatorForm : Form
     {
+        
+        
+        
+        
         public manipulatorForm()
         {
             InitializeComponent();
+          
         }
+        
+
     }
 }
