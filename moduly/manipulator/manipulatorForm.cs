@@ -24,6 +24,6 @@ namespace HAL062app.moduly.manipulator
           
         }
         
-
+        
     }
 }
