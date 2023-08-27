@@ -44,6 +44,9 @@
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -111,6 +114,7 @@
       <DependentUpon>laboratoriumForm.cs</DependentUpon>
     </Compile>
     <Compile Include="moduly\laboratorium\laboratoriumModel.cs" />
+    <Compile Include="moduly\manipulator\InverseKinematics.cs" />
     <Compile Include="moduly\manipulator\manipulatorController.cs" />
     <Compile Include="moduly\manipulator\manipulatorForm.cs">
       <SubType>Form</SubType>
@@ -121,6 +125,11 @@
     <Compile Include="moduly\manipulator\manipulatorModel.cs" />
     <Compile Include="moduly\manipulator\manipulatorWPF.xaml.cs">
       <DependentUpon>manipulatorWPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="moduly\manipulator\position.cs" />
+    <Compile Include="moduly\manipulator\sequence.cs" />
+    <Compile Include="moduly\manipulator\SterowanieWPF.xaml.cs">
+      <DependentUpon>SterowanieWPF.xaml</DependentUpon>
     </Compile>
     <Compile Include="moduly\Message.cs" />
     <Compile Include="moduly\podwozie\podwozieController.cs" />
@@ -210,8 +219,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="moduly\manipulator\SterowanieWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Image1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

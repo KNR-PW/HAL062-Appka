@@ -270,7 +270,7 @@ namespace HAL062app.moduly.komunikacja
         {
             try
             {
-                await tcpWriter.WriteAsync(message.text + "\r\n");
+                await tcpWriter.WriteAsync(message.text);
                 await tcpWriter.FlushAsync();
             }
             catch (Exception ex)

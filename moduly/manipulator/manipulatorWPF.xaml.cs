@@ -83,8 +83,8 @@ namespace HAL062app.moduly.manipulator
         private const string MODEL_PATH5 = "dof5.STL";
         private const string MODEL_PATH6 = "gripper.STL";
         private const string MODEL_PATH7 = "base.STL";
-        
 
+        public event Action<int> test;
 
         public manipulatorWPF()
         {
@@ -124,8 +124,8 @@ namespace HAL062app.moduly.manipulator
             viewport.Children.Add(RoboticArm);
            
 
-            double[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle};
-            ForwardKinematics(angles);
+            //double[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle};
+            //ForwardKinematics(angles);
 
             changeSelectedJoint();
 
@@ -162,8 +162,8 @@ namespace HAL062app.moduly.manipulator
                 foreach (string modelName in modelsNames)
                 {
                     var materialGroup = new MaterialGroup();
-                    Color mainColor = Colors.LightCyan;
-                    EmissiveMaterial emissMat = new EmissiveMaterial(new SolidColorBrush(mainColor));
+                   Color mainColor = Colors.LightCyan;
+                   EmissiveMaterial emissMat = new EmissiveMaterial(new SolidColorBrush(mainColor));
                     DiffuseMaterial diffMat = new DiffuseMaterial(new SolidColorBrush(mainColor));
                     SpecularMaterial specMat = new SpecularMaterial(new SolidColorBrush(mainColor), 200);
                     materialGroup.Children.Add(emissMat);
@@ -177,11 +177,17 @@ namespace HAL062app.moduly.manipulator
                     
                     joints.Add(new Joint(link));
                 }
+                changeModelColor(joints[0], Colors.LightBlue);
                 RA.Children.Add(joints[0].model);
+                changeModelColor(joints[1], Colors.Red);
                 RA.Children.Add(joints[1].model);
+                changeModelColor(joints[2], Colors.LightGreen);
                 RA.Children.Add(joints[2].model);
+                changeModelColor(joints[3], Colors.LightPink);
                 RA.Children.Add(joints[3].model);
+                changeModelColor(joints[4], Colors.LightYellow);
                 RA.Children.Add(joints[4].model);
+                changeModelColor(joints[5], Colors.LightSlateGray);
                 RA.Children.Add(joints[5].model);
                 RA.Children.Add(joints[6].model);
 
@@ -353,8 +359,9 @@ namespace HAL062app.moduly.manipulator
             return result;
         }
 
-        public void StartInverseKinematics(object sender, RoutedEventArgs e)
+        public void StartInverseKinematics(object sender, EventArgs e)
         {
+            
             if (timer1.Enabled)
             {
                 KinematicPointBtn.Content = "Go to position";
@@ -382,7 +389,7 @@ namespace HAL062app.moduly.manipulator
 
             double[] oldAngles = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
             angles.CopyTo(oldAngles, 0);
-            for (int i = 5; i >= 0; i--)
+            for (int i = 0; i <= 5; i++)
             {
                 // Gradient descent
                 // Update : Solution -= LearningRate * Gradient
@@ -478,6 +485,7 @@ namespace HAL062app.moduly.manipulator
         
         private void joint_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            
             if (isAnimating)
                 return;
             if (!isInitialized)
@@ -501,8 +509,8 @@ namespace HAL062app.moduly.manipulator
         {
             try
             {
-                reachingPoint = new Vector3D(Double.Parse(TbX.Text), Double.Parse(TbY.Text), Double.Parse(TbZ.Text));
-                geometry.Transform = new TranslateTransform3D(reachingPoint);
+               // reachingPoint = new Vector3D(Double.Parse(TbX.Text), Double.Parse(TbY.Text), Double.Parse(TbZ.Text));
+               // geometry.Transform = new TranslateTransform3D(reachingPoint);
             }
             catch (Exception exc)
             {

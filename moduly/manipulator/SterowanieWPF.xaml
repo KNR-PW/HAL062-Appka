@@ -1,0 +1,207 @@
+﻿<UserControl x:Class="HAL062app.moduly.manipulator.SterowanieWPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HAL062app.moduly.manipulator"
+             mc:Ignorable="d" 
+             d:DesignHeight="661" d:DesignWidth="300" Margin="0">
+    <Grid Margin="0">
+        <TabControl Margin="0">
+            <TabControl.Resources>
+                <!-- Definicja stylu dla zakładek -->
+                <Style TargetType="TabControl">
+                    <Setter Property="Padding" Value="0"></Setter>
+
+                </Style>
+                <Style TargetType="TabItem" >
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <!-- Tworzenie dostosowanego wyglądu zakładek -->
+                                <StackPanel Width="148" Height="30" TextBlock.TextAlignment="Center" TextBlock.FontSize="20"   >
+                                    <!-- Dostosuj rozmiar ikony -->
+
+                                    <ContentPresenter Content="{TemplateBinding Content}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Sterowanie"  >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Automatycznie dopasuje wysokość do zawartości -->
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Automatycznie dopasuje wysokość do zawartości -->
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Wybór członu" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
+                    <UniformGrid Grid.Row="1" Rows="6" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="300">
+
+                        <Grid x:Name="Joint1Grid" Tag="1" HorizontalAlignment="Stretch" Height="40" MouseDown="JointGridClicked">
+                            <TextBlock Text="DOF 1" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                            <Slider x:Name="Joint1Slider" VerticalAlignment="Center" Maximum="180" Minimum="-180" Tag="{Binding ElementName=Joint1Grid}"  HorizontalAlignment="Left" Width="200" Margin="50,1,0,0" ValueChanged="JointSlider_ValueChanged"/>
+                            <Label x:Name="Joint1Label" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+
+                        </Grid>
+                        <Grid x:Name="Joint2Grid" Tag="2" MouseDown="JointGridClicked" HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="DOF 2" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                            <Slider x:Name="Joint2Slider" VerticalAlignment="Center" Value="10" Maximum="110" Minimum="10" Tag="{Binding ElementName=Joint2Grid}" ValueChanged="JointSlider_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
+                            <Label x:Name="Joint2Label" Content="10" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+                        </Grid>
+                        <Grid x:Name="Joint3Grid" Tag="3" MouseDown="JointGridClicked" HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="DOF 3" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                            <Slider x:Name="Joint3Slider" VerticalAlignment="Center" Maximum="11" Minimum="-163" Tag="{Binding ElementName=Joint3Grid}" ValueChanged="JointSlider_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
+                            <Label x:Name="Joint3Label" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+                        </Grid>
+                        <Grid x:Name="Joint4Grid" Tag="4" MouseDown="JointGridClicked" HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="DOF 4" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                            <Slider x:Name="Joint4Slider" VerticalAlignment="Center" Value="60" Maximum="240" Minimum="-240" Tag="{Binding ElementName=Joint4Grid}" ValueChanged="JointSlider_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
+                            <Label x:Name="Joint4Label" Content="60" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+                        </Grid>
+                        <Grid x:Name="Joint5Grid" Tag="5" MouseDown="JointGridClicked" HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="DOF 5" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                            <Slider x:Name="Joint5Slider" VerticalAlignment="Center" Maximum="110" Minimum="-13" Tag="{Binding ElementName=Joint5Grid}" ValueChanged="JointSlider_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
+                            <Label x:Name="Joint5Label" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+                        </Grid>
+                        <Grid x:Name="Joint6Grid" Tag="6" MouseDown="JointGridClicked" HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="Gripper" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontSize="11" FontWeight="Bold" Height="18"/>
+                            <Slider x:Name="Joint6Slider" VerticalAlignment="Center" Maximum="360" Minimum="-360" Tag="{Binding ElementName=Joint6Grid}" ValueChanged="JointSlider_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
+                            <Label x:Name="Joint6Label" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+                        </Grid>
+                    </UniformGrid>
+                    <TextBlock Grid.Row="3" x:Name="DOFcontrolText" Text="Sterowanie" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
+                    <UniformGrid Grid.Row="4" Columns="8" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="40" >
+                        <UniformGrid.Resources>
+                            <Style TargetType="Button" >
+                                <Setter  Property="Margin" Value="1,5,1,5"/>
+                                <Setter Property="Width" Value="35"/>
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+                            </Style>
+                        </UniformGrid.Resources>
+                        <Button Content="-5.0" Click="DOFvalueBtn_clicked" Tag="-5.0"/>
+                        <Button Content="-1.0" Click="DOFvalueBtn_clicked" Tag="-1.0"/>
+                        <Button Content="-0.5" Click="DOFvalueBtn_clicked" Tag="-0.5"/>
+                        <Button Content="-0.1" Click="DOFvalueBtn_clicked" Tag="-0.1"/>
+                        <Button Content="+0.1" Click="DOFvalueBtn_clicked" Tag="0.1"/>
+                        <Button Content="+0.5" Click="DOFvalueBtn_clicked" Tag="0.5"/>
+                        <Button Content="+1.0" Click="DOFvalueBtn_clicked" Tag="1.0"/>
+                        <Button Content="+5.0" Click="DOFvalueBtn_clicked" Tag="5.0"/>
+                    </UniformGrid>
+                    <TextBox x:Name="angleTextbox" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,43,0,0" Grid.Row="4" TextWrapping="Wrap" TextAlignment="Center" Text="-" VerticalAlignment="Top" Width="72" Height="19"/>
+                    <Button Content="Send" Click="SendButton_Click" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="98"/>
+                    <Button Content="Undo" Click="UndoButton_Click" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="98"/>
+                    <Button Content="Reset" Click="ResetButton_Click" HorizontalAlignment="Center" Margin="0,67,0,0" Grid.Row="4" VerticalAlignment="Top" Height="20" Width="72"/>
+                    <TextBlock Grid.Row="5" Text="Kinematyka" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0" Grid.RowSpan="3" />
+
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Historia" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Automatycznie dopasuje wysokość do zawartości -->
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+
+                        <!-- Automatycznie dopasuje wysokość do zawartości -->
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Ustawienia" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,0,0,0" />
+                    <Grid Grid.Row="1" Height="250">
+                        <Button Content="Zapisz sekwencję" HorizontalAlignment="Left" Margin="149,179,0,0" VerticalAlignment="Top" Height="65" Width="139" Click="SaveSequenceButton_Click"/>
+                        <ComboBox x:Name="sequenceCombobox" SelectionChanged="sequenceCombobox_SelectionChanged" HorizontalAlignment="Left" DropDownOpened="SequencesComboBox_DropDownOpened" Margin="10,179,0,0" VerticalAlignment="Top" Width="120" Height="28">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="20" Text="{Binding name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Content="Wczytaj sekwencję" HorizontalAlignment="Left" Margin="10,212,0,0" VerticalAlignment="Top" Height="32" Width="120"/>
+                        <Button  HorizontalAlignment="Left" Margin="223,108,0,0" VerticalAlignment="Top" Height="43" Width="65">
+                            <TextBlock Text="Następna pozycja" TextWrapping="Wrap"/>
+                        </Button>
+
+                        <Button  HorizontalAlignment="Left"  Margin="148,108,0,0" VerticalAlignment="Top" Height="43" Width="70">
+                            <TextBlock Text="Poprzednia pozycja" TextWrapping="Wrap"/>
+                        </Button>
+                        <TextBox HorizontalAlignment="Left" Margin="149,156,0,0" TextWrapping="Wrap" Text="Nowa nazwa sekwencji" VerticalAlignment="Top" Width="139" Height="18"/>
+                        <Button Content="Zapisz pozycję" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="35" Width="120"/>
+                        <Button Content="Usuń pozycję" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" Height="28" Width="120" />
+                        <Button Content="Wyślij&#xD;&#xA;sekwencję" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="35" Width="278" FontSize="11"/>
+                        <Button Content="Wyślij pozycję" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Height="51" Width="120"/>
+                        <Button Content="Symuluj&#xD;&#xA;sekwencję" HorizontalAlignment="Left" Margin="149,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.278,0.802" Height="53" Width="139"/>
+                    </Grid>
+                    <UniformGrid Grid.Row="2" Columns="3" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <TextBlock Background="LightGray" VerticalAlignment="Center" Grid.Column="0" FontSize="14" Text= "    ID:"/>
+                        <TextBlock Background="LightGray" VerticalAlignment="Center" FontSize="14" Text="Duration:" Grid.Column="1"/>
+                        <TextBlock Background="LightGray" VerticalAlignment="Center" FontSize="14" Text="Angles:" Grid.Column="2"/>
+
+                    </UniformGrid>
+                    <ListBox x:Name="SequenceListBox" SelectionChanged="SequenceListBox_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Height" Value="100"/>
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <UniformGrid Columns="3" HorizontalAlignment="Center" Background="DimGray" Width="265" Height="90">
+
+                                    <TextBlock Grid.Column="0" FontSize="40" Text="{Binding id}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                                    <TextBox x:Name="positionDuration" TextChanged="positionDuration_TextChanged" Text="{Binding Duration, Mode=TwoWay}" Width="60" FontSize="20" Margin="-25,0,0,0" VerticalAlignment="Center" Grid.Column="1"/>
+                                    <UniformGrid Rows="6" Columns="2" VerticalAlignment="Stretch" Grid.Column="2" Margin="0,3,0,3">
+                                        <UniformGrid.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="FontSize" Value="10"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                                <Setter Property="TextAlignment" Value="Center"/>
+                                            </Style>
+
+
+                                        </UniformGrid.Resources>
+                                        <TextBlock Text="DOF 1:"/>
+                                        <TextBlock Text="{Binding joints[0], StringFormat={}{0:F2}}"/>
+                                        <TextBlock Text="DOF 2:"/>
+                                        <TextBlock Text="{Binding joints[1], StringFormat={}{0:F2}}"/>
+                                        <TextBlock Text="DOF 3:"/>
+                                        <TextBlock Text="{Binding joints[2], StringFormat={}{0:F2}}"/>
+                                        <TextBlock Text="DOF 4:"/>
+                                        <TextBlock Text="{Binding joints[3], StringFormat={}{0:F2}}"/>
+                                        <TextBlock Text="DOF 5:"/>
+                                        <TextBlock Text="{Binding joints[4], StringFormat={}{0:F2}}"/>
+                                        <TextBlock Text="Gripper:"/>
+                                        <TextBlock Text="{Binding joints[5], StringFormat={}{0:F2}}"/>
+
+
+                                    </UniformGrid>
+                                </UniformGrid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+
+                    </ListBox>
+
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</UserControl>
