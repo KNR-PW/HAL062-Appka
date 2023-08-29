@@ -96,9 +96,15 @@ namespace HAL062app.moduly.komunikacja
           
             if (isBluetoothOn())
             { bluetoothClient = new BluetoothClient(); }
-
+            AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
         }
 
+        private void OnProcessExit(object sender, EventArgs e)
+        {
+            if (isTelnetConnected())
+                TelnetDisconnect();
+
+        }
         public void Subscribe(MainChannelObserver observer)
         {
             observers.Add(observer);
@@ -272,6 +278,7 @@ namespace HAL062app.moduly.komunikacja
             {
                 await tcpWriter.WriteAsync(message.text);
                 await tcpWriter.FlushAsync();
+                SendTerminalMessage("TCP: Wysłano");
             }
             catch (Exception ex)
             {

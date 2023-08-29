@@ -17,8 +17,8 @@ namespace HAL062app.moduly.manipulator
 
     public partial class manipulatorForm : Form
     {
-        
-        
+
+        public Action<Position> sendPositionToController_Action;
         
         public manipulatorForm()
         {
@@ -31,6 +31,7 @@ namespace HAL062app.moduly.manipulator
         private void button1_Click(object sender, EventArgs e)
         {
             manipulatorWPF1.StartInverseKinematics(sender, e);
+            
         }
        
         private void testa (int a)
@@ -43,6 +44,7 @@ namespace HAL062app.moduly.manipulator
         {
 
             manipulatorWPF1.ForwardKinematics(position.joints);
+            sendPositionToController_Action(position);
 
         }
         private void CreateVisualization(Position position)

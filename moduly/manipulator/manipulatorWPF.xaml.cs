@@ -127,7 +127,7 @@ namespace HAL062app.moduly.manipulator
             //double[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle};
             //ForwardKinematics(angles);
 
-            changeSelectedJoint();
+            //changeSelectedJoint();
 
             timer1 = new System.Windows.Forms.Timer();
             timer1.Interval = 5;
@@ -313,9 +313,7 @@ namespace HAL062app.moduly.manipulator
             joints[4].model.Transform = F5; //the tool plate
             joints[5].model.Transform = F6; //the tool
 
-            Tx.Content = joints[5].model.Bounds.Location.X;
-            Ty.Content = joints[5].model.Bounds.Location.Y;
-            Tz.Content = joints[5].model.Bounds.Location.Z;
+            
 
             return new Vector3D(joints[5].model.Bounds.Location.X, joints[5].model.Bounds.Location.Y, joints[5].model.Bounds.Location.Z);
         }
@@ -326,22 +324,17 @@ namespace HAL062app.moduly.manipulator
         {
             double[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle };
             angles = InverseKinematics(reachingPoint, angles);
-            joint1.Value = joints[0].angle = angles[0];
-            joint2.Value = joints[1].angle = angles[1];
-            joint3.Value = joints[2].angle = angles[2];
-            joint4.Value = joints[3].angle = angles[3];
-            joint5.Value = joints[4].angle = angles[4];
-            joint6.Value = joints[5].angle = angles[5];
-            joint1TextBox.Text = joint1.Value.ToString("0.00");
-            joint2TextBox.Text = joint2.Value.ToString("0.00");
-            joint3TextBox.Text = joint3.Value.ToString("0.00");
-            joint4TextBox.Text = joint4.Value.ToString("0.00");
-            joint5TextBox.Text = joint5.Value.ToString("0.00");
-            joint6TextBox.Text = joint6.Value.ToString("0.00");
+             joints[0].angle = angles[0];
+            joints[1].angle = angles[1];
+             joints[2].angle = angles[2];
+            joints[3].angle = angles[3];
+           joints[4].angle = angles[4];
+            joints[5].angle = angles[5];
+         
 
             if ((--movements) <= 0)
             {
-                KinematicPointBtn.Content = "Go to position";
+               // KinematicPointBtn.Content = "Go to position";
                 isAnimating = false;
                 timer1.Stop();
             }
@@ -364,7 +357,7 @@ namespace HAL062app.moduly.manipulator
             
             if (timer1.Enabled)
             {
-                KinematicPointBtn.Content = "Go to position";
+                //KinematicPointBtn.Content = "Go to position";
                 isAnimating = false;
                 timer1.Stop();
                 movements = 0;
@@ -373,7 +366,7 @@ namespace HAL062app.moduly.manipulator
             {
                 geometry.Transform = new TranslateTransform3D(reachingPoint);
                 movements = 5000;
-                KinematicPointBtn.Content = "STOP";
+              //  KinematicPointBtn.Content = "STOP";
                 isAnimating = true;
                 timer1.Start();
             }
@@ -460,7 +453,7 @@ namespace HAL062app.moduly.manipulator
              * This is useful when using x,y,z in the "new Point3D(x,y,z)* when defining a new RotateTransform3D() to check where the joints is actually  rotating */
             double[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle };
             ForwardKinematics(angles);
-            updateSpherePosition();
+           
         }
         public double PartialGradient(Vector3D target, double[] angles, int i)
         {
@@ -483,28 +476,7 @@ namespace HAL062app.moduly.manipulator
         }
 
         
-        private void joint_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            
-            if (isAnimating)
-                return;
-            if (!isInitialized)
-                return;
-            joints[0].angle = joint1.Value;
-            joints[1].angle = joint2.Value;
-            joints[2].angle = joint3.Value;
-            joints[3].angle = joint4.Value;
-            joints[4].angle = joint5.Value;
-            joints[5].angle = joint6.Value;
-            joint1TextBox.Text = joint1.Value.ToString("0.00");
-            joint2TextBox.Text = joint2.Value.ToString("0.00");
-            joint3TextBox.Text = joint3.Value.ToString("0.00");
-            joint4TextBox.Text = joint4.Value.ToString("0.00");
-            joint5TextBox.Text = joint5.Value.ToString("0.00");
-            joint6TextBox.Text = joint6.Value.ToString("0.00");
-            execute_fk();
-            
-        }
+        
         private void ReachingPoint_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -517,7 +489,7 @@ namespace HAL062app.moduly.manipulator
 
             }
         }
-
+/*
         private void changeSelectedJoint()
         {
             if (joints == null)
@@ -528,9 +500,7 @@ namespace HAL062app.moduly.manipulator
            // unselectModel();
             if (sel < 0)
             {
-                jointX.IsEnabled = false;
-                jointY.IsEnabled = false;
-                jointZ.IsEnabled = false;
+              
                 jointXAxis.IsEnabled = false;
                 jointYAxis.IsEnabled = false;
                 jointZAxis.IsEnabled = false;
@@ -557,44 +527,12 @@ namespace HAL062app.moduly.manipulator
             }
             switchingJoint = false;
         }
-        private void rotationPointChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            if (switchingJoint)
-                return;
+        */
+        
 
-            int sel = ((int)jointSelector.Value) - 1;
-            joints[sel].rotPointX = (int)jointX.Value;
-            joints[sel].rotPointY = (int)jointY.Value;
-            joints[sel].rotPointZ = (int)jointZ.Value;
-            updateSpherePosition();
-        }
-        private void updateSpherePosition()
-        {
-            int sel = ((int)jointSelector.Value) - 1;
-            if (sel < 0)
-                return;
+       
 
-            Transform3DGroup F = new Transform3DGroup();
-            F.Children.Add(new TranslateTransform3D(joints[sel].rotPointX, joints[sel].rotPointY, joints[sel].rotPointZ));
-            F.Children.Add(joints[sel].model.Transform);
-            geometry.Transform = F;
-        }
-
-        private void CheckBox_StateChanged(object sender, RoutedEventArgs e)
-        {
-            if (switchingJoint)
-                return;
-
-            int sel = ((int)jointSelector.Value) - 1;
-            joints[sel].rotAxisX = jointXAxis.IsChecked.Value ? 1 : 0;
-            joints[sel].rotAxisY = jointYAxis.IsChecked.Value ? 1 : 0;
-            joints[sel].rotAxisZ = jointZAxis.IsChecked.Value ? 1 : 0;
-        }
-
-        private void jointSelector_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            changeSelectedJoint();
-        }
+        
         public HitTestResultBehavior ResultCallback(HitTestResult result)
         {
             // Did we hit 3D?
@@ -624,19 +562,9 @@ namespace HAL062app.moduly.manipulator
                 return;
             try
             {
-                joints[0].angle = Double.Parse(joint1TextBox.Text);
-                joints[1].angle = Double.Parse(joint2TextBox.Text);
-                joints[3].angle = Double.Parse(joint3TextBox.Text);
-                joints[2].angle = Double.Parse(joint4TextBox.Text);
-                joints[4].angle = Double.Parse(joint5TextBox.Text);
-                joints[5].angle = Double.Parse(joint6TextBox.Text);
+                
                 isInitialized = false;
-                joint1.Value = joints[0].angle;
-                joint2.Value = joints[1].angle;
-                joint4.Value = joints[3].angle;
-                joint3.Value = joints[2].angle;
-                joint5.Value = joints[4].angle;
-                joint6.Value = joints[5].angle;
+               
                 isInitialized = true;
                 execute_fk();
             }
@@ -645,6 +573,8 @@ namespace HAL062app.moduly.manipulator
 
             }
         }
+
+       
 
        
     }

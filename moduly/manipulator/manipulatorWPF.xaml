@@ -9,11 +9,12 @@
              d:DesignHeight="741.258" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0*"/>
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions >
 
-        <helix:HelixViewport3D x:Name="viewport" CoordinateSystemLabelForeground="White" Grid.Column="1"  ShowFrameRate="True"  ShowCoordinateSystem="True">
+        <helix:HelixViewport3D x:Name="viewport" CoordinateSystemLabelForeground="White"  ShowFrameRate="True"  ShowCoordinateSystem="True" Grid.RowSpan="2">
             <!-- Tu dodawaj swoje elementy 3D -->
             <helix:HelixViewport3D.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -24,64 +25,6 @@
             <helix:GridLinesVisual3D Width="10000" Length="10000" Thickness="10" MinorDistance="100" MajorDistance="500" Fill="#E5CFCECE" />
             <helix:DefaultLights/>
         </helix:HelixViewport3D>
-        <Rectangle Fill="#FFFBFBFB" HorizontalAlignment="Left" Height="328" Stroke="Black" VerticalAlignment="Top" Width="310" StrokeThickness="0.5" Margin="4,4,0,0"/>
-        <Slider x:Name="joint1" HorizontalAlignment="Left" Margin="39,88,0,0" VerticalAlignment="Top" Width="174"  Maximum="180" Minimum="-180" ValueChanged="joint_ValueChanged" LargeChange="0.1" TickFrequency="0.1" Height="20" Panel.ZIndex="1"/>
-        <Slider x:Name="joint2" HorizontalAlignment="Left" Margin="39,124,0,0" VerticalAlignment="Top" Width="174" Maximum="110" Minimum="10" ValueChanged="joint_ValueChanged" LargeChange="0.1" TickFrequency="0.1" Height="20" Value="10"/>
-        <Slider x:Name="joint3" HorizontalAlignment="Left" Margin="38,160,0,0" VerticalAlignment="Top" Width="174" Maximum="11" Minimum="-163" ValueChanged="joint_ValueChanged" LargeChange="0.1" TickFrequency="0.1" Height="20"/>
-        <Slider x:Name="joint4" HorizontalAlignment="Left" Margin="38,197,0,0" VerticalAlignment="Top" Width="174" Maximum="240" Minimum="-240" ValueChanged="joint_ValueChanged" LargeChange="0.1" TickFrequency="0.1" Height="20" Value="60"/>
-        <Slider x:Name="joint5" HorizontalAlignment="Left" Margin="38,236,0,0" VerticalAlignment="Top" Width="174" Maximum="110" Minimum="-13" ValueChanged="joint_ValueChanged" LargeChange="0.1" TickFrequency="0.1" Height="20"/>
-        <Slider x:Name="joint6" HorizontalAlignment="Left" Margin="39,271,0,0" VerticalAlignment="Top" Width="174" Maximum="360" Minimum="-360" ValueChanged="joint_ValueChanged" Height="20" TickFrequency="0.1"/>
-        <TextBox x:Name="TbX" Text="800" HorizontalAlignment="Left" Height="23" Margin="30,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="ReachingPoint_TextChanged"/>
-        <TextBox x:Name="TbY" Text="0" HorizontalAlignment="Left" Height="24" Margin="100,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="ReachingPoint_TextChanged"/>
-        <TextBox x:Name="TbZ" Text="900" HorizontalAlignment="Left" Height="24" Margin="172,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="ReachingPoint_TextChanged"/>
-        <Label Content="X" HorizontalAlignment="Left" Margin="13,15,0,0" VerticalAlignment="Top" Foreground="Black" Height="23"/>
-        <Label Content="Y" HorizontalAlignment="Left" Margin="84,15,0,0" VerticalAlignment="Top" Foreground="Black" Height="24"/>
-        <Label Content="Z" HorizontalAlignment="Left" Margin="155,15,0,0" VerticalAlignment="Top" Foreground="Black" Height="23"/>
-        <Label Content="J1" HorizontalAlignment="Left" Margin="9,85,0,0" VerticalAlignment="Top" Width="25" Foreground="Black" FontSize="10" FontWeight="Bold" Height="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="J1Value" HorizontalAlignment="Left" Margin="212,88,0,0"  VerticalAlignment="Top" Width="42" Foreground="Black" FontSize="10" Content="{Binding Value, ElementName=joint1}" Height="22" ContentStringFormat="{}{0:0.##}" VerticalContentAlignment="Center"    />
-        <Label Content="J2" HorizontalAlignment="Left" Margin="9,119,0,0" VerticalAlignment="Top" Width="25" Foreground="Black" FontSize="10" FontWeight="Bold" Height="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="J2Value" HorizontalAlignment="Left" Margin="212,124,0,0"  VerticalAlignment="Top" Width="42" Foreground="Black" FontSize="10" Content="{Binding Value, ElementName=joint2}" Height="22" ContentStringFormat="{}{0:0.##}" VerticalContentAlignment="Center"    />
-        <Label Content="J3" HorizontalAlignment="Left" Margin="9,152,0,0" VerticalAlignment="Top" Width="25" Foreground="Black" FontSize="10" FontWeight="Bold" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="J3Value" HorizontalAlignment="Left" Margin="212,158,0,0"  VerticalAlignment="Top" Width="41" Foreground="Black" FontSize="10" Content="{Binding Value, ElementName=joint3}" Height="22" ContentStringFormat="{}{0:0.##}" VerticalContentAlignment="Center"    />
-        <Label Content="J4" HorizontalAlignment="Left" Margin="9,192,0,0" VerticalAlignment="Top" Width="25" Foreground="Black" FontSize="10" FontWeight="Bold" Height="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="J4Value" HorizontalAlignment="Left" Margin="212,195,0,0"  VerticalAlignment="Top" Width="41" Foreground="Black" FontSize="10" Content="{Binding Value, ElementName=joint4}" Height="22" ContentStringFormat="{}{0:0.##}" VerticalContentAlignment="Center"    />
-        <Label Content="J5" HorizontalAlignment="Left" Margin="9,231,0,0" VerticalAlignment="Top" Width="25" Foreground="Black" FontSize="10" FontWeight="Bold" Height="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="J5Value" HorizontalAlignment="Left" Margin="212,236,0,0"  VerticalAlignment="Top" Width="42" Foreground="Black" FontSize="10" Content="{Binding Value, ElementName=joint5}" Height="22" ContentStringFormat="{}{0:0.##}" VerticalContentAlignment="Center"    />
-        <Label Content="J6" HorizontalAlignment="Left" Margin="9,266,0,0" VerticalAlignment="Top" Width="25" Foreground="Black" FontSize="10" FontWeight="Bold" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="J6Value" HorizontalAlignment="Left" Margin="211,271,0,0"  VerticalAlignment="Top" Width="41" Foreground="Black" FontSize="10" Content="{Binding Value, ElementName=joint6}" Height="22" ContentStringFormat="{}{0:0.##}" VerticalContentAlignment="Center"    />
-        <Label Content="X" HorizontalAlignment="Left" Margin="12,51,0,0" VerticalAlignment="Top" Foreground="Black" Height="31" Width="23"/>
-        <Label x:Name="Tx" HorizontalAlignment="Left" Margin="27,51,0,0" VerticalAlignment="Top" Foreground="Black" Height="26" Width="56" ContentStringFormat="{}{0:0.##}"/>
-        <Label Content="Y:" HorizontalAlignment="Left" Margin="84,51,0,0" VerticalAlignment="Top" Foreground="Black" Height="31" Width="23"/>
-        <Label x:Name="Ty" HorizontalAlignment="Left" Margin="98,51,0,0" VerticalAlignment="Top" Foreground="Black" Height="26" Width="60" ContentStringFormat="{}{0:0.##}"/>
-        <Label Content="Z:" HorizontalAlignment="Left" Margin="155,51,0,0" VerticalAlignment="Top" Foreground="Black" Height="31" Width="24" />
-        <Label x:Name="Tz" HorizontalAlignment="Left" Margin="170,51,0,0" VerticalAlignment="Top" Foreground="Black" Height="26" Width="54" ContentStringFormat="{}{0:0.##}"/>
-        <Button x:Name="KinematicPointBtn" Content="Go to position" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top" Width="75" Height="28" FontSize="11" Click="StartInverseKinematics"/>
-        <Rectangle Fill="#FFFBFBFB" HorizontalAlignment="Left" Height="254" Stroke="Black" VerticalAlignment="Top" Width="306" StrokeThickness="0.5" Margin="8,414,0,0"/>
-        <Slider x:Name="jointX" HorizontalAlignment="Left" Margin="45,540,0,0" VerticalAlignment="Top" Width="210"  Maximum="3000" ValueChanged="rotationPointChanged" Height="22" SmallChange="1" IsSnapToTickEnabled="True" Minimum="-3000"/>
-        <Label Content="X" HorizontalAlignment="Left" Margin="9,536,0,0" VerticalAlignment="Top" Width="30" Foreground="Black" FontSize="14" FontWeight="Bold" Height="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="jointXValue" HorizontalAlignment="Left" Margin="254,540,0,0"  VerticalAlignment="Top" Width="50" Foreground="Black" FontSize="10" Content="{Binding Value, ElementName=jointX}" Height="22" VerticalContentAlignment="Center"    />
-        <Slider x:Name="jointY" HorizontalAlignment="Left" Margin="45,584,0,0" VerticalAlignment="Top" Width="210"  Maximum="3000" ValueChanged="rotationPointChanged" Height="22" SmallChange="1" IsSnapToTickEnabled="True" Minimum="-3000"/>
-        <Label Content="Y" HorizontalAlignment="Left" Margin="9,580,0,0" VerticalAlignment="Top" Width="30" Foreground="Black" FontSize="14" FontWeight="Bold" Height="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="jointYValue" HorizontalAlignment="Left" Margin="254,584,0,0"  VerticalAlignment="Top" Width="50" Foreground="Black" FontSize="10" Content="{Binding Value, ElementName=jointY}" Height="22" VerticalContentAlignment="Center"    />
-        <Slider x:Name="jointZ" HorizontalAlignment="Left" Margin="46,630,0,0" VerticalAlignment="Top" Width="210"  Maximum="3000" ValueChanged="rotationPointChanged" Height="22" SmallChange="1" IsSnapToTickEnabled="True" Minimum="-3000"/>
-        <Label Content="Z" HorizontalAlignment="Left" Margin="10,626,0,0" VerticalAlignment="Top" Width="30" Foreground="Black" FontSize="14" FontWeight="Bold" Height="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="jointZValue" HorizontalAlignment="Left" Margin="255,630,0,0"  VerticalAlignment="Top" Width="50" Foreground="Black" FontSize="10" Content="{Binding Value, ElementName=jointZ}" Height="22" VerticalContentAlignment="Center"    />
-        <Slider x:Name="jointSelector" HorizontalAlignment="Left" Margin="68,445,0,0" VerticalAlignment="Top" Width="210"  Maximum="6" ValueChanged="jointSelector_ValueChanged" Height="22" SmallChange="1" IsSnapToTickEnabled="True"/>
-        <Label Content="Joint" HorizontalAlignment="Left" Margin="10,437,0,0" VerticalAlignment="Top" Width="53" Foreground="Black" FontSize="14" FontWeight="Bold" Height="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="jointSelected" HorizontalAlignment="Left" Margin="277,445,0,0"  VerticalAlignment="Top" Width="24" Foreground="Black" FontSize="10" Content="{Binding Value, ElementName=jointSelector}" Height="22" VerticalContentAlignment="Center"    />
-        <Label Content="X" HorizontalAlignment="Left" Margin="14,488,0,0" VerticalAlignment="Top" Width="30" Foreground="Black" FontSize="14" FontWeight="Bold" Height="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <CheckBox x:Name="jointXAxis" Content="" HorizontalAlignment="Left" Margin="44,497,0,0" VerticalAlignment="Top" Checked="CheckBox_StateChanged" Unchecked="CheckBox_StateChanged"/>
-        <Label Content="Y" HorizontalAlignment="Left" Margin="90,488,0,0" VerticalAlignment="Top" Width="30" Foreground="Black" FontSize="14" FontWeight="Bold" Height="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <CheckBox x:Name="jointYAxis" Content="" HorizontalAlignment="Left" Margin="120,497,0,0" VerticalAlignment="Top" Checked="CheckBox_StateChanged" Unchecked="CheckBox_StateChanged"/>
-        <Label Content="Z" HorizontalAlignment="Left" Margin="168,488,0,0" VerticalAlignment="Top" Width="30" Foreground="Black" FontSize="14" FontWeight="Bold" Height="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <CheckBox x:Name="jointZAxis" Content="" HorizontalAlignment="Left" Margin="198,497,0,0" VerticalAlignment="Top" Checked="CheckBox_StateChanged" Unchecked="CheckBox_StateChanged"/>
-        <TextBox x:Name="joint1TextBox" Text="0" HorizontalAlignment="Left" Height="24" Margin="258,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  RenderTransformOrigin="0.513,0.361"/>
-        <TextBox x:Name="joint2TextBox" Text="10" HorizontalAlignment="Left" Height="24" Margin="258,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  RenderTransformOrigin="0.513,0.361"/>
-        <TextBox x:Name="joint3TextBox" Text="0" HorizontalAlignment="Left" Height="24" Margin="259,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  RenderTransformOrigin="0.513,0.361"/>
-        <TextBox x:Name="joint4TextBox" Text="60" HorizontalAlignment="Left" Height="24" Margin="259,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  RenderTransformOrigin="0.513,0.361"/>
-        <TextBox x:Name="joint5TextBox" Text="0" HorizontalAlignment="Left" Height="24" Margin="259,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  RenderTransformOrigin="0.513,0.361"/>
-        <TextBox x:Name="joint6TextBox" Text="0" HorizontalAlignment="Left" Height="24" Margin="259,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  RenderTransformOrigin="0.513,0.361"/>
-        <Button x:Name="SetJointTextboxAngle" Content="Set angle" HorizontalAlignment="Left" Margin="259,298,0,0" VerticalAlignment="Top" Width="50" Height="28" FontSize="11" Click="SetJointAngle"/>
 
     </Grid>
 </UserControl>

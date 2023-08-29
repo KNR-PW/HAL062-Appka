@@ -30,12 +30,18 @@ namespace HAL062app.moduly.manipulator
                     //  model.wywolaj += UpdateTextBox1;
                     //    display.DequeueAction += dequeue;
                     //   display.MessageAction += sendMessageToKomunikacja;
-
+                    display.sendPositionToController_Action += sendAnglesToManipulator;
                 }
             }
 
         }
 
+
+        private void sendAnglesToManipulator(Position position)
+        {
+            model.SendAnglesToManipulator(position);
+
+        }
         private void sendMessageToKomunikacja(Message msg)
         {
             model.SendMessageToKomunikacja(msg);

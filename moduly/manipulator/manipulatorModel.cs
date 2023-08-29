@@ -53,5 +53,61 @@ namespace HAL062app.moduly.manipulator
 
         }
 
+        public void SendAnglesToManipulator(Position position)
+        {
+            Message[] frames = new Message[3];
+            frames = angleFrames(position);
+
+            SendMessageToKomunikacja(frames[0]);
+            SendMessageToKomunikacja(frames[1]);
+            SendMessageToKomunikacja(frames[2]);
+        }
+
+        Message[] angleFrames(Position position)
+        {
+            Message[] frames = new Message[3];
+            for (int i = 0; i < 3; i++)
+            {
+                frames[i] = new Message();
+                frames[i].author = 4;
+                frames[i].ID = i+129;
+            }
+            byte[] x1 = BitConverter.GetBytes(0);
+            byte[] x2 = BitConverter.GetBytes(0);
+            byte[] x3 = BitConverter.GetBytes(0);
+            byte[] x4 = BitConverter.GetBytes(0);
+            byte[] x5 = BitConverter.GetBytes(0);
+            byte[] x6 = BitConverter.GetBytes(0);
+            frames[0].buffer[0] = (byte)('#');
+            frames[1].buffer[0] = (byte)('#');
+            frames[2].buffer[0] = (byte)('#');
+
+            frames[0].buffer[1] = (byte)(129);
+            frames[1].buffer[1] = (byte)(130);
+            frames[2].buffer[1] = (byte)(131);
+
+            x1 = BitConverter.GetBytes((float)(position.joints[0] * Math.PI / 180.0));
+            x2 = BitConverter.GetBytes((float)(position.joints[1] * Math.PI / 180.0));
+            x3 = BitConverter.GetBytes((float)(position.joints[2] * Math.PI / 180.0));
+            x4 = BitConverter.GetBytes((float)(position.joints[3] * Math.PI / 180.0));
+            x5 = BitConverter.GetBytes((float)(position.joints[4] * Math.PI / 180.0));
+            x6 = BitConverter.GetBytes((float)(position.joints[5] * Math.PI / 180.0));
+
+            for (int j = 0; j < 4; j++)
+            {
+                frames[0].buffer[2+j] = x1[3 - j];
+                frames[0].buffer[2 + 4 + j] = x2[3 - j];
+                frames[1].buffer[2 + j] = x3[3 - j];
+                frames[1].buffer[2 + 4 + j] = x4[3 - j];
+                frames[2].buffer[2 + j] = x5[3 - j];
+                frames[2].buffer[2 + 4 + j] = x6[3 - j];
+            }
+
+            frames[0].text = new string(frames[0].encodeMessage());
+            frames[1].text = new string(frames[1].encodeMessage());
+            frames[2].text = new string(frames[2].encodeMessage());
+            return frames;
+        }
+
     }
 }

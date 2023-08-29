@@ -16,7 +16,7 @@ namespace HAL062app.moduly
         public int receiver { get; set; }
         public int author { get; set; }
         public int ID { get; set; }
-        public byte[] buffer { get; set; } = new byte[19];
+        public byte[] buffer { get; set; } = new byte[10];
         
         public DateTime time { get; set; }
 
@@ -55,9 +55,9 @@ namespace HAL062app.moduly
                     byte[] bytes = Encoding.ASCII.GetBytes(hex);
                     if (hex == "78")
                     {
-                        data[k] = 'x';
+                        data[k] = 'X';
                         k++;
-                        data[k] = 'x';
+                        data[k] = 'X';
                         k++;
                     }
                     else
@@ -72,9 +72,9 @@ namespace HAL062app.moduly
             if (x > 0)
                 for (int j = x; j > -1; j--)
                 {
-                    data[k] = 'x';
+                    data[k] = 'X';
                     k++;
-                    data[k] = 'x';
+                    data[k] = 'X';
                     k++;
                 }
             for (int i = 0; i < data.Length; i++)
