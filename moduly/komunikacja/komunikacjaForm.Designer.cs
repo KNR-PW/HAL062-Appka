@@ -803,7 +803,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(264, 224);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "0 - HAL062\n1 - Terminal\n2 - Podwozie\n3 - Laboratorium\n4 - Manipulator\n400 - Sandb" +
-    "ox\n420->69 - ErrorLog\n";
+    "ox\n400->60 - ErrorLog\n";
             // 
             // tableLayoutPanel15
             // 

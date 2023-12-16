@@ -56,7 +56,7 @@
                         </Grid>
                         <Grid x:Name="Joint2Grid" Tag="2" MouseDown="JointGridClicked" HorizontalAlignment="Stretch" Height="40">
                             <TextBlock Text="DOF 2" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
-                            <Slider x:Name="Joint2Slider" VerticalAlignment="Center" Value="10" Maximum="110" Minimum="10" Tag="{Binding ElementName=Joint2Grid}" ValueChanged="JointSlider_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
+                            <Slider x:Name="Joint2Slider" VerticalAlignment="Center" Value="50" Maximum="110" Minimum="10" Tag="{Binding ElementName=Joint2Grid}" ValueChanged="JointSlider_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
                             <Label x:Name="Joint2Label" Content="10" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
                         </Grid>
                         <Grid x:Name="Joint3Grid" Tag="3" MouseDown="JointGridClicked" HorizontalAlignment="Stretch" Height="40">
@@ -105,11 +105,18 @@
                     <Button Content="Send" Click="SendButton_Click" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="98"/>
                     <Button Content="Undo" Click="UndoButton_Click" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="98"/>
                     <Button Content="Reset" Click="ResetButton_Click" HorizontalAlignment="Center" Margin="0,67,0,0" Grid.Row="4" VerticalAlignment="Top" Height="20" Width="72"/>
-                    <TextBlock Grid.Row="5" Text="Kinematyka" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0" Grid.RowSpan="3" />
+                    <TextBlock Grid.Row="5" Text="Opcje" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0" Grid.RowSpan="3" />
 
 
 
                 </Grid>
+            </TabItem>
+            <TabItem Header="Kinematyka">
+                <Grid>
+                    <Button Content="Włącz Manipulator" Click="TurnOnManipulator_Click" HorizontalAlignment="Left" Margin="10,10,0,10" Width="280" Grid.Row="4" VerticalAlignment="Top" Height="44" />
+
+                </Grid>
+                
             </TabItem>
             <TabItem Header="Historia" >
                 <Grid>

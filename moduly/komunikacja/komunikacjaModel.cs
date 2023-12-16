@@ -114,8 +114,8 @@ namespace HAL062app.moduly.komunikacja
         {
             Message msg = new Message();
             msg.text = text;
-            msg.author = 420;
-            msg.receiver = 69;
+            msg.author = 400;
+            msg.receiver = 60;
             logMessages.Add(msg);
             UpdateLogTerminal(logMessages);
         }
@@ -133,7 +133,7 @@ namespace HAL062app.moduly.komunikacja
             logMessages.Add(message);
             UpdateLogTerminal(logMessages);
            
-            if (BluetoothOn)
+            if(bluetoothClient.Connected)
                 Task.Run(async () => await SendBluetoothMessage(message));
             if (isTelnetConnected())
                 Task.Run(async () => await SendTelnetMessage(message));
@@ -165,8 +165,8 @@ namespace HAL062app.moduly.komunikacja
         public void ConnectUART(string portName, int baudRate)
         {
             Message msg = new Message();
-            msg.author = 420;
-            msg.receiver = 69;
+            msg.author = 400;
+            msg.receiver = 60;
 
             if (portName != "-1")
             {
@@ -200,8 +200,8 @@ namespace HAL062app.moduly.komunikacja
         public void DisconnectUART()
         {
             Message msg = new Message();
-            msg.author = 420;
-            msg.receiver = 69;
+            msg.author = 400;
+            msg.receiver = 60;
 
             try
             {
@@ -230,8 +230,8 @@ namespace HAL062app.moduly.komunikacja
             if (UartPorts == null || UartPorts.Length == 0)
             {
                 Message msg = new Message();
-                msg.author = 420;
-                msg.receiver = 69;
+                msg.author = 400;
+                msg.receiver = 60;
                 msg.text = "Brak dostępnych portów COM";
                 logMessages.Add(msg);
                 UpdateLogTerminal(logMessages);
@@ -420,7 +420,7 @@ namespace HAL062app.moduly.komunikacja
                             var bluetoothEndPoint = new BluetoothEndPoint(selectedDevice.DeviceAddress, BluetoothService.SerialPort);
                             bluetoothClient = new BluetoothClient();
                             bluetoothClient.Connect(bluetoothEndPoint);
-                            SendTerminalMessage("Połączono z " + selectedDevice.DeviceName);
+                            SendTerminalMessage("Połączono z " + selectedDevice.DeviceName + " " + selectedDevice.ClassOfDevice);
                             IsBluetoothConnected_action(true);
                             startListeningBluetooth();
 

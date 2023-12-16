@@ -53,14 +53,17 @@ namespace HAL062app.moduly.manipulator
 
         }
 
-        public void SendAnglesToManipulator(Position position)
+        async public void SendAnglesToManipulator(Position position)
         {
             Message[] frames = new Message[3];
             frames = angleFrames(position);
 
             SendMessageToKomunikacja(frames[0]);
+            await Task.Delay(200);
             SendMessageToKomunikacja(frames[1]);
+            await Task.Delay(200);
             SendMessageToKomunikacja(frames[2]);
+            await Task.Delay(200);
         }
 
         Message[] angleFrames(Position position)

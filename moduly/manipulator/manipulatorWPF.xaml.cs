@@ -210,7 +210,7 @@ namespace HAL062app.moduly.manipulator
                 joints[1].rotPointX = 0;
                 joints[1].rotPointY = 0;
                 joints[1].rotPointZ = 169.5;
-                joints[1].angle = 0;
+                joints[1].angle = 50;
                 //dof2-dof3
                 joints[2].angleMin = -163;
                 joints[2].angleMax = 11;

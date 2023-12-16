@@ -29,7 +29,7 @@ namespace HAL062app.moduly.manipulator
 
                     //  model.wywolaj += UpdateTextBox1;
                     //    display.DequeueAction += dequeue;
-                    //   display.MessageAction += sendMessageToKomunikacja;
+                    display.sendFrameToController_Action += sendMessageToKomunikacja;
                     display.sendPositionToController_Action += sendAnglesToManipulator;
                 }
             }

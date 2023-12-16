@@ -55,9 +55,9 @@ namespace HAL062app.moduly
                     byte[] bytes = Encoding.ASCII.GetBytes(hex);
                     if (hex == "78")
                     {
-                        data[k] = 'X';
+                        data[k] = 'x';
                         k++;
-                        data[k] = 'X';
+                        data[k] = 'x';
                         k++;
                     }
                     else
@@ -72,9 +72,9 @@ namespace HAL062app.moduly
             if (x > 0)
                 for (int j = x; j > -1; j--)
                 {
-                    data[k] = 'X';
+                    data[k] = 'x';
                     k++;
-                    data[k] = 'X';
+                    data[k] = 'x';
                     k++;
                 }
             for (int i = 0; i < data.Length; i++)

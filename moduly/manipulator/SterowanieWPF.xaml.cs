@@ -36,21 +36,25 @@ namespace HAL062app.moduly.manipulator
             public double rotAxisZ = 0;
             public double defaultAngle = 0;
             public double lastAngle = 0;
-            public Joint(double min, double max, double angle)
+            public double relative0 = 0; //to jest wartosc, ktora odpowiada za zmiane katow zerowych w modelu 3D na katy zerowe w mainboardzie manipulatora
+            public Joint(double min, double max, double angle, double relative0)
             {
                 this.angleMin = min;
                 this.angleMax = max;
                 this.angle = angle;
                 this.defaultAngle = angle;
                 this.lastAngle = 0;
+                this.relative0 = relative0;
             }
         }
 
 
         public Action<Position> SendPosition_action;
         public Action<Position> CreateVisualization_action;
+        public Action<Message> SendMessage_action;
 
-        
+
+
         Joint[] joints = new Joint[6];
         Position actualPositon = null; 
         double[] angles = new double[6];
@@ -70,12 +74,12 @@ namespace HAL062app.moduly.manipulator
         public SterowanieWPF()
         {
             InitializeComponent();
-            joints[0] = new Joint(-180,180,0);
-            joints[1] = new Joint(10,110,10);
-            joints[2] = new Joint(-163,11,0);
-            joints[3] = new Joint(-240,240,60);
-            joints[4] = new Joint(-13,110,0);
-            joints[5] = new Joint(-360,360,0);
+            joints[0] = new Joint(-90,90,0,0);
+            joints[1] = new Joint(-60,90,0,50);
+            joints[2] = new Joint(-60,-60,0,-60);
+            joints[3] = new Joint(-90,90,0,180);
+            joints[4] = new Joint(-90,60,0,10);
+            joints[5] = new Joint(-360,360,0,90);
             addValues.Add("-5.0", -5.0);
             addValues.Add("5.0", 5.0);
             addValues.Add("-1.0", -1.0);
@@ -89,6 +93,11 @@ namespace HAL062app.moduly.manipulator
                 sequenceNames.Add(sequence.name);
             }
 
+            Slider[] JointSliders = {Joint1Slider,Joint2Slider, Joint3Slider, Joint4Slider, Joint5Slider, Joint6Slider };
+            Label[] JointLabels = { Joint1Label, Joint2Label, Joint3Label, Joint4Label, Joint5Label, Joint6Label };
+            for(int i =0; i < 6; i++)
+                UpdateSlidersValues(joints[i], JointSliders[i], JointLabels[i]);
+
 
             actualPositon = new Position(returnAnglesFromJoints(joints));
             positionsHistory.Add(actualPositon);
@@ -96,6 +105,14 @@ namespace HAL062app.moduly.manipulator
             sequencesList.Add(history);
             initialization = false;
            
+        }
+
+        private void UpdateSlidersValues(Joint joint, Slider slider, Label label)
+        {
+            slider.Minimum = joint.angleMin;
+            slider.Maximum=joint.angleMax;
+            slider.Maximum = joint.angle;
+            label.Content = joint.angle;
         }
 
         private void JointGridClicked(object sender, MouseButtonEventArgs e)
@@ -241,7 +258,7 @@ namespace HAL062app.moduly.manipulator
             double[] ans = new double[joints.Length];
             int id = 0;
             foreach(Joint joint in joints)
-                ans[id++] = joint.angle;
+                ans[id++] = joint.angle + joint.relative0;
             return ans;
         }
 
@@ -306,6 +323,28 @@ namespace HAL062app.moduly.manipulator
                 TextBox textBox = (TextBox)sender;
                 selectedPosition.Duration = Convert.ToInt32( textBox.Text);
             }
+        }
+
+
+        private void TurnOnManipulator_Click(object sender, RoutedEventArgs e)
+        {
+
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(128);
+            frame.buffer[2] = (byte)(1);
+            frame.buffer[3] = (byte)(1);
+            frame.buffer[4] = (byte)(2);
+            frame.buffer[5] = (byte)(2);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            SendMessage_action(frame);
+
+
         }
     }
 }

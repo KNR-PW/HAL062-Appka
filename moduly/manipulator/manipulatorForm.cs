@@ -19,11 +19,13 @@ namespace HAL062app.moduly.manipulator
     {
 
         public Action<Position> sendPositionToController_Action;
+        public Action<Message> sendFrameToController_Action;
         
         public manipulatorForm()
         {
             InitializeComponent();
             manipulatorWPF1.test += testa;
+            sterowanieWPF1.SendMessage_action += SendFrame;
             sterowanieWPF1.SendPosition_action += SendPosition;
             sterowanieWPF1.CreateVisualization_action += CreateVisualization;
         }
@@ -50,6 +52,11 @@ namespace HAL062app.moduly.manipulator
         private void CreateVisualization(Position position)
         {
             manipulatorWPF1.ForwardKinematics(position.joints);
+
+        }
+        private void SendFrame(Message msg)
+        {
+            sendFrameToController_Action(msg);
 
         }
 
