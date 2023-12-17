@@ -21,9 +21,21 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <!-- Tworzenie dostosowanego wyglądu zakładek -->
-                                <StackPanel Width="148" Height="30" TextBlock.TextAlignment="Center" TextBlock.FontSize="20"   >
+                                <StackPanel  Width="148" Height="30" TextBlock.TextAlignment="Center" TextBlock.FontSize="20"   >
                                     <!-- Dostosuj rozmiar ikony -->
 
+                                    <ContentPresenter Content="{TemplateBinding Content}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="CustomFontSizeTabItem" TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <!-- Dostosuj rozmiar czcionki dla konkretnej zakładki -->
+                                <StackPanel Width="148" Height="30" TextBlock.TextAlignment="Center" TextBlock.FontSize="11">
                                     <ContentPresenter Content="{TemplateBinding Content}" />
                                 </StackPanel>
                             </DataTemplate>
@@ -106,17 +118,18 @@
                     <Button Content="Undo" Click="UndoButton_Click" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="98"/>
                     <Button Content="Reset" Click="ResetButton_Click" HorizontalAlignment="Center" Margin="0,67,0,0" Grid.Row="4" VerticalAlignment="Top" Height="20" Width="72"/>
                     <TextBlock Grid.Row="5" Text="Opcje" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0" Grid.RowSpan="3" />
-
+                    <Button Content="Włącz&#xD;&#xA;manipulator" Click="Control_turnOnManipulator" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="98" />
+                    <Button Content="Surowe&#xD;&#xA;wyłączenie" Click="Control_rawTurnOffManipulator" HorizontalAlignment="Left" Margin="190,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
+                    <Button Content="Ustaw i wyłącz&#xD;&#xA;manipulator" Click="Control_turnOffManipulator" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="98" />
 
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Kinematyka">
+            <TabItem Header="Kinematyka&#xD;&#xA;odwrotna"  Style="{StaticResource CustomFontSizeTabItem}">
                 <Grid>
-                    <Button Content="Włącz Manipulator" Click="TurnOnManipulator_Click" HorizontalAlignment="Left" Margin="10,10,0,10" Width="280" Grid.Row="4" VerticalAlignment="Top" Height="44" />
 
                 </Grid>
-                
+
             </TabItem>
             <TabItem Header="Historia" >
                 <Grid>
@@ -131,36 +144,37 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Ustawienia" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,0,0,0" />
                     <Grid Grid.Row="1" Height="250">
-                        <Button Content="Zapisz sekwencję" HorizontalAlignment="Left" Margin="149,179,0,0" VerticalAlignment="Top" Height="65" Width="139" Click="SaveSequenceButton_Click"/>
-                        <ComboBox x:Name="sequenceCombobox" SelectionChanged="sequenceCombobox_SelectionChanged" HorizontalAlignment="Left" DropDownOpened="SequencesComboBox_DropDownOpened" Margin="10,179,0,0" VerticalAlignment="Top" Width="120" Height="28">
+                        <Button Content="Zapisz sekwencję" HorizontalAlignment="Left" Margin="149,179,0,0" VerticalAlignment="Top" Height="65" Width="139" Click="History_SaveSequenceButton_Click"/>
+                        <ComboBox x:Name="History_sequenceCombobox" SelectionChanged="History_sequenceCombobox_SelectionChanged" HorizontalAlignment="Left" DropDownOpened="History_SequencesComboBox_DropDownOpened" Margin="10,179,0,0" VerticalAlignment="Top" Width="120" Height="28">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock FontSize="20" Text="{Binding name}" />
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Button Content="Wczytaj sekwencję" HorizontalAlignment="Left" Margin="10,212,0,0" VerticalAlignment="Top" Height="32" Width="120"/>
-                        <Button  HorizontalAlignment="Left" Margin="223,108,0,0" VerticalAlignment="Top" Height="43" Width="65">
+                        <Button x:Name="History_loadSequence" Content="Wczytaj sekwencję" HorizontalAlignment="Left" Margin="10,212,0,0" VerticalAlignment="Top" Height="32" Width="120"/>
+                        <Button x:Name="History_nextPosition" HorizontalAlignment="Left" Margin="223,108,0,0" VerticalAlignment="Top" Height="43" Width="65" Click="History_nextPosition_Click">
                             <TextBlock Text="Następna pozycja" TextWrapping="Wrap"/>
                         </Button>
 
-                        <Button  HorizontalAlignment="Left"  Margin="148,108,0,0" VerticalAlignment="Top" Height="43" Width="70">
+                        <Button x:Name="History_earlierPosition" HorizontalAlignment="Left"  Margin="148,108,0,0" VerticalAlignment="Top" Height="43" Width="70" Click="History_earlierPosition_Click">
                             <TextBlock Text="Poprzednia pozycja" TextWrapping="Wrap"/>
                         </Button>
-                        <TextBox HorizontalAlignment="Left" Margin="149,156,0,0" TextWrapping="Wrap" Text="Nowa nazwa sekwencji" VerticalAlignment="Top" Width="139" Height="18"/>
-                        <Button Content="Zapisz pozycję" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="35" Width="120"/>
-                        <Button Content="Usuń pozycję" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" Height="28" Width="120" />
-                        <Button Content="Wyślij&#xD;&#xA;sekwencję" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="35" Width="278" FontSize="11"/>
-                        <Button Content="Wyślij pozycję" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Height="51" Width="120"/>
-                        <Button Content="Symuluj&#xD;&#xA;sekwencję" HorizontalAlignment="Left" Margin="149,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.278,0.802" Height="53" Width="139"/>
+                        <TextBox x:Name="History_newSequenceName" HorizontalAlignment="Left" Margin="149,156,0,0" TextWrapping="Wrap" Text="Nowa nazwa sekwencji" VerticalAlignment="Top" Width="139" Height="18"/>
+                        <Button x:Name="History_savePosition" Content="Zapisz pozycję" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="28" Width="120" Click="History_savePosition_Click"/>
+                        <Button x:Name="History_deletePosition" Content="Usuń pozycję" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" Height="28" Width="120" Click="History_deletePosition_Click" />
+                        <Button x:Name="History_sendSequence" Content="Wyślij&#xD;&#xA;sekwencję" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="35" Width="278" FontSize="11" Click="History_sendSequence_Click"/>
+                        <Button x:Name="History_sendPosition" Content="Wyślij pozycję" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Height="28" Width="120" Click="History_sendPosition_Click"/>
+                        <Button x:Name="History_turnOffChangingPosition" Content="Wyłącz zmianę pozycji" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Height="28" Width="120" FontSize="11" Click="History_turnOffChangingPosition_Click" />
+                        <Button x:Name="History_simulateSequence" Content="Symuluj&#xD;&#xA;sekwencję" HorizontalAlignment="Left" Margin="149,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.278,0.802" Height="53" Width="139" Click="History_simulateSequence_Click"/>
                     </Grid>
                     <UniformGrid Grid.Row="2" Columns="3" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                         <TextBlock Background="LightGray" VerticalAlignment="Center" Grid.Column="0" FontSize="14" Text= "    ID:"/>
-                        <TextBlock Background="LightGray" VerticalAlignment="Center" FontSize="14" Text="Duration:" Grid.Column="1"/>
-                        <TextBlock Background="LightGray" VerticalAlignment="Center" FontSize="14" Text="Angles:" Grid.Column="2"/>
+                        <TextBlock Background="LightGray" VerticalAlignment="Center" FontSize="14" Text="Czas trwania:" Grid.Column="1"/>
+                        <TextBlock Background="LightGray" VerticalAlignment="Center" FontSize="14" Text="Kąty:" Grid.Column="2"/>
 
                     </UniformGrid>
-                    <ListBox x:Name="SequenceListBox" SelectionChanged="SequenceListBox_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <ListBox x:Name="History_SequenceListBox" SelectionChanged="History_SequenceListBox_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <ListBox.Resources>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="Height" Value="100"/>

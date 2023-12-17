@@ -25,19 +25,19 @@ namespace HAL062app.moduly.manipulator
     {
         private class Joint
         {
-            public double angle = 0;
-            public double angleMin = -180;
-            public double angleMax = 180;
-            public double rotPointX = 0;
-            public double rotPointY = 0;
-            public double rotPointZ = 0;
-            public double rotAxisX = 0;
-            public double rotAxisY = 0;
-            public double rotAxisZ = 0;
-            public double defaultAngle = 0;
-            public double lastAngle = 0;
-            public double relative0 = 0; //to jest wartosc, ktora odpowiada za zmiane katow zerowych w modelu 3D na katy zerowe w mainboardzie manipulatora
-            public Joint(double min, double max, double angle, double relative0)
+            public float angle = 0;
+            public float angleMin = -180;
+            public float angleMax = 180;
+            public float rotPointX = 0;
+            public float rotPointY = 0;
+            public float rotPointZ = 0;
+            public float rotAxisX = 0;
+            public float rotAxisY = 0;
+            public float rotAxisZ = 0;
+            public float defaultAngle = 0;
+            public float lastAngle = 0;
+            public float relative0 = 0; //to jest wartosc, ktora odpowiada za zmiane katow zerowych w modelu 3D na katy zerowe w mainboardzie manipulatora
+            public Joint(float min, float max, float angle, float relative0)
             {
                 this.angleMin = min;
                 this.angleMax = max;
@@ -53,11 +53,12 @@ namespace HAL062app.moduly.manipulator
         public Action<Position> CreateVisualization_action;
         public Action<Message> SendMessage_action;
 
-
+        Slider[] _JointSliders = new Slider[6];
+        Label[] _JointLabels = new Label[6];
 
         Joint[] joints = new Joint[6];
-        Position actualPositon = null; 
-        double[] angles = new double[6];
+        Position actualPosition = null; 
+        float[] angles = new float[6];
         bool initialization = true;
         int activeJointChange = 1;
         object activeSenderSlider = null;
@@ -68,19 +69,26 @@ namespace HAL062app.moduly.manipulator
         List<Sequence> sequencesList = new List<Sequence>();
         List<string> sequenceNames = new List<string>();
         string filePath = "sequenceList.txt";
-        private int id = 0;
+        private int _id = 0;
+        private float[] relativeZeros = new float[6]; //Dla modelu wgrywanego z plików kąty są inne, niż te dla manipulatora w łaziku. Tutaj przechowujemy różnicę tych kątów, aby przy wysyłaniu do łazika ten kąt odjąć
+        Sequence loadedSequence; 
+        int selectedPositionInSequence = 0; //Która pozycja z sekwencji aktualnie jest wyświetlana
+        bool turnOffSequencePositionChanging = false; //Klikanie w pozycję na historii w sekwencji zmienia/ nie zmienia wizualizacji
+        Position settingPosition = null; //to jest zmienna przechowująca aktualne położenie, wykorzystywane w zapisywaniu w sekcji sekwencji
+        //manager sekwencji - zapisywanie do pliku
+        private SequenceManager sequenceManager = null;
 
 
         public SterowanieWPF()
         {
-            InitializeComponent();
-            joints[0] = new Joint(-90,90,0,0);
+            InitializeComponent(); //to tutaj zmienia się maksymalne, minimalne i startowe kąty dla symulacji 
+            joints[0] = new Joint(-90,90,0,0); 
             joints[1] = new Joint(-60,90,0,50);
-            joints[2] = new Joint(-60,-60,0,-60);
+            joints[2] = new Joint(-60,70,0,-60);
             joints[3] = new Joint(-90,90,0,180);
             joints[4] = new Joint(-90,60,0,10);
             joints[5] = new Joint(-360,360,0,90);
-            addValues.Add("-5.0", -5.0);
+            addValues.Add("-5.0", -5.0); //to odpowiada tylko za przyciski do szczegółowej zmiany kąta, nic ważnego
             addValues.Add("5.0", 5.0);
             addValues.Add("-1.0", -1.0);
             addValues.Add("1.0", 1.0);
@@ -95,23 +103,31 @@ namespace HAL062app.moduly.manipulator
 
             Slider[] JointSliders = {Joint1Slider,Joint2Slider, Joint3Slider, Joint4Slider, Joint5Slider, Joint6Slider };
             Label[] JointLabels = { Joint1Label, Joint2Label, Joint3Label, Joint4Label, Joint5Label, Joint6Label };
-            for(int i =0; i < 6; i++)
-                UpdateSlidersValues(joints[i], JointSliders[i], JointLabels[i]);
+            _JointSliders = JointSliders;
+            _JointLabels = JointLabels;
+            for (int i = 0; i < 6; i++)
+            {
+                UpdateSlidersValues(joints[i], _JointSliders[i], _JointLabels[i]);
+                relativeZeros[i] = joints[i].relative0;
+            }
 
-
-            actualPositon = new Position(returnAnglesFromJoints(joints));
-            positionsHistory.Add(actualPositon);
+            actualPosition = new Position(returnAnglesFromJoints(joints));
+            actualPosition.Duration = 5;
+            positionsHistory.Add(actualPosition);
             history = new Sequence("History", positionsHistory);
             sequencesList.Add(history);
             initialization = false;
-           
+
+
+          //  sequenceManager= new SequenceManager();
+            //sequenceManager.LoadFromFile("sequences.json");
         }
 
         private void UpdateSlidersValues(Joint joint, Slider slider, Label label)
         {
             slider.Minimum = joint.angleMin;
-            slider.Maximum=joint.angleMax;
-            slider.Maximum = joint.angle;
+            slider.Maximum= joint.angleMax;
+            slider.Value = joint.angle;
             label.Content = joint.angle;
         }
 
@@ -140,7 +156,7 @@ namespace HAL062app.moduly.manipulator
             {
                 Grid parentGrid = slider.Tag as Grid;
                 JointGridClicked(parentGrid, null);
-                joints[Convert.ToInt32(parentGrid.Tag.ToString())-1].angle = slider.Value;
+                joints[Convert.ToInt32(parentGrid.Tag.ToString())-1].angle = (float)slider.Value;
                 slider.Background = Brushes.LightGray;
                     angleTextbox.Text = slider.Value.ToString("0.00");
                     Label associatedLabel = FindLabelInGrid(parentGrid);
@@ -148,8 +164,19 @@ namespace HAL062app.moduly.manipulator
                 {
                     associatedLabel.Content = slider.Value.ToString("0.00");
                 }
+                    actualPosition = new Position(returnAnglesFromJoints(joints));
                     SendVisualizationPosition();
-            }    
+                    
+                }    
+
+        }
+        private void ChangeSlidersValue(Position position)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                _JointSliders[i].Value = position.joints[i] - relativeZeros[i];
+                _JointLabels[i].Content =( position.joints[i] - relativeZeros[i]).ToString("0.00");
+            }
 
         }
         private Label FindLabelInGrid(Grid grid) // To tylko do zmiany wartości w sliderze
@@ -192,7 +219,7 @@ namespace HAL062app.moduly.manipulator
 
         }
 
-        private double CalculateToBounds(int jointID, double newValue)
+        private float CalculateToBounds(int jointID, float newValue)
         {
             if (newValue < joints[jointID].angleMin)
                 return joints[jointID].angleMin;
@@ -206,10 +233,12 @@ namespace HAL062app.moduly.manipulator
         {
             if (sender is Button btn)
             {
-                joints[activeJointChange - 1].angle = CalculateToBounds(activeJointChange - 1, joints[activeJointChange - 1].angle + addValues[btn.Tag.ToString()]);
+                joints[activeJointChange - 1].angle = CalculateToBounds(activeJointChange - 1, joints[activeJointChange - 1].angle + (float)addValues[btn.Tag.ToString()]);
                 angleTextbox.Text = joints[activeJointChange - 1].angle.ToString("0.00");
                 if (activeSenderSlider is Slider slider)
                     slider.Value = joints[activeJointChange - 1].angle;
+
+            
             }
 
         }
@@ -234,15 +263,17 @@ namespace HAL062app.moduly.manipulator
         private void SendButton_Click(object sender, EventArgs e)
         {
             joints[activeJointChange - 1].lastAngle = joints[activeJointChange - 1].angle;
-            //actualPositon.update(returnAnglesFromJoints(joints));
+            //actualPosition.update(returnAnglesFromJoints(joints));
             Position actPosition = new Position(returnAnglesFromJoints(joints));
+            actPosition.addRelative0(relativeZeros);
+            actPosition.Duration = 5;
             positionsHistory.Add(actPosition);
             //tutaj to do wysylania zrobic
             SendPosition_action(actPosition);
-            actPosition.id = ++id;
-            if (sequenceCombobox.SelectedItem is Sequence selectedSequence)
+            actPosition.id = ++_id;
+            if (History_sequenceCombobox.SelectedItem is Sequence selectedSequence)
             {
-                CollectionViewSource.GetDefaultView(SequenceListBox.ItemsSource).Refresh();
+                CollectionViewSource.GetDefaultView(History_SequenceListBox.ItemsSource).Refresh();
             }
         }
 
@@ -253,80 +284,21 @@ namespace HAL062app.moduly.manipulator
 
         }
 
-        double[] returnAnglesFromJoints(Joint[] joints)
+        float[] returnAnglesFromJoints(Joint[] joints)
         {
-            double[] ans = new double[joints.Length];
+            float[] ans = new float[joints.Length];
             int id = 0;
             foreach(Joint joint in joints)
                 ans[id++] = joint.angle + joint.relative0;
             return ans;
         }
 
-        private void SaveSequenceButton_Click(object sender, RoutedEventArgs e)
-        {
-          //  string json = JsonConvert.SerializeObject(this, Formatting.Indented);
-         //   System.IO.File.WriteAllText(filePath, json);
-
-        }
-        private void SequencesComboBox_DropDownOpened(object sender, EventArgs e)
-        {
-            // string json = System.IO.File.ReadAllText(filePath);
-            ///return JsonConvert.DeserializeObject<Sequence>(json);
-            //
-            sequenceCombobox.ItemsSource = sequencesList;
-        }
-        
-
-        private void HistoryTab_opened(object sender, ContextMenuEventArgs e)
-        {
-            if(sequenceCombobox.SelectedIndex == 0)
-            {
-                //LoadSequenceToList(history);
-
-            }
-
-        }
-
-        private void LoadSequenceToList(Sequence sequence)
-        {
-            
-            SequenceListBox.Items.Clear();
-           
-            SequenceListBox.ItemsSource = sequence.sequence;
 
 
-        }
-        private void RefreshPositionListInList(Sequence sequence)
-        {
-            
 
-        }
-        private void sequenceCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(sequenceCombobox.SelectedItem is Sequence selectedSequence)
-            {
-                LoadSequenceToList(selectedSequence);
-            }
-        }
+       
 
-        private void SequenceListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var selectedSequence = SequenceListBox.SelectedItem as Position;
-            CreateVisualization_action(selectedSequence);
-        }
-
-        private void positionDuration_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            if (SequenceListBox.SelectedItem is Position selectedPosition)
-            {
-                TextBox textBox = (TextBox)sender;
-                selectedPosition.Duration = Convert.ToInt32( textBox.Text);
-            }
-        }
-
-
-        private void TurnOnManipulator_Click(object sender, RoutedEventArgs e)
+        private void Control_turnOnManipulator(object sender, RoutedEventArgs e)
         {
 
             Message frame = new Message();
@@ -345,6 +317,242 @@ namespace HAL062app.moduly.manipulator
             SendMessage_action(frame);
 
 
+        }
+
+        private async void Control_turnOffManipulator(object sender, RoutedEventArgs e)
+        {
+            actualPosition.addRelative0(relativeZeros);
+            Position TurnOffPosition = actualPosition.deepCopy();
+            Position[] returnHomePositions = new Position[3];
+            returnHomePositions[0] = TurnOffPosition.deepCopy();
+            returnHomePositions[0].joints[1] = 0;
+            returnHomePositions[0].joints[2] = 40;
+            returnHomePositions[1] = returnHomePositions[0].deepCopy();
+            returnHomePositions[1].joints[0] = 0;
+            returnHomePositions[1].joints[3] = 0;
+            returnHomePositions[1].joints[4] = 0;
+            returnHomePositions[1].joints[5] = 0;
+            returnHomePositions[2] = returnHomePositions[1].deepCopy();
+            returnHomePositions[2].joints[1] = -40;
+            returnHomePositions[2].joints[2] = 70;
+            returnHomePositions[0].addRelativeToJoints();
+            returnHomePositions[1].addRelativeToJoints();
+            returnHomePositions[2].addRelativeToJoints();
+
+            simulateStep(TurnOffPosition, returnHomePositions[0], false);
+            ChangeSlidersValue(returnHomePositions[0]);
+            await Task.Delay(5000);
+            simulateStep(returnHomePositions[0], returnHomePositions[1], false);
+            ChangeSlidersValue(returnHomePositions[1]);
+            await Task.Delay(5000);
+            simulateStep(returnHomePositions[1], returnHomePositions[2], false);
+            ChangeSlidersValue(returnHomePositions[2]);
+            await Task.Delay(5000);
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(128);
+            frame.buffer[2] = (byte)(0);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            SendMessage_action(frame);
+
+        }
+
+        private void Control_rawTurnOffManipulator(object sender, RoutedEventArgs e)
+        {
+
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(128);
+            frame.buffer[2] = (byte)(0);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            SendMessage_action(frame);
+
+        }
+
+
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////                                  Sekwencje
+        //////////////////////////////////////////////////////////////////////////////////
+
+        private void SaveSequenceButton_Click(object sender, RoutedEventArgs e)
+        {
+            //  string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+            //   System.IO.File.WriteAllText(filePath, json);
+        }
+        private void HistoryTab_opened(object sender, ContextMenuEventArgs e)
+        {
+            if (History_sequenceCombobox.SelectedIndex == 0)
+            {
+                //LoadSequenceToList(history);
+            }
+        }
+        private void LoadSequenceToList(Sequence sequence)
+        {
+            //History_SequenceListBox.Items.Clear();
+
+            History_SequenceListBox.ItemsSource = null;
+            History_SequenceListBox.ItemsSource = sequence.sequence;
+        }
+        private void positionDuration_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (History_SequenceListBox.SelectedItem is Position selectedPosition)
+            {
+                TextBox textBox = (TextBox)sender;
+                selectedPosition.Duration = Convert.ToInt32(textBox.Text);
+            }
+        }
+        private void History_sequenceCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (History_sequenceCombobox.SelectedItem is Sequence selectedSequence)
+            {
+                LoadSequenceToList(selectedSequence);
+                loadedSequence = selectedSequence;
+            }
+        }
+        private void History_SequenceListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedSequencePosition = History_SequenceListBox.SelectedItem as Position;
+            if (!turnOffSequencePositionChanging && selectedSequencePosition != null)
+            {
+                CreateVisualization_action(selectedSequencePosition);
+                actualPosition = selectedSequencePosition;
+                ChangeSlidersValue(actualPosition);
+            }
+            selectedPositionInSequence = History_SequenceListBox.SelectedIndex;
+
+        }
+        private void History_SequencesComboBox_DropDownOpened(object sender, EventArgs e)
+        {
+            // string json = System.IO.File.ReadAllText(filePath);
+            ///return JsonConvert.DeserializeObject<Sequence>(json);
+            //
+            History_sequenceCombobox.ItemsSource = sequencesList;
+        }
+        private void History_SaveSequenceButton_Click(object sender, RoutedEventArgs e)
+        {
+            //  string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+            //   System.IO.File.WriteAllText(filePath, json);
+
+        }
+
+        private void simulateStep(Position firstPosition, Position secondPosition, bool simulateOnly)
+        {
+
+            
+            CreateVisualization_action(secondPosition);
+
+            if (!simulateOnly)
+            {
+                
+                SendPosition_action(secondPosition);
+            }
+        }
+
+        private void History_nextPosition_Click(object sender, RoutedEventArgs e)
+        {
+            if (loadedSequence != null)
+                if (selectedPositionInSequence + 1 < loadedSequence.length())
+                {
+                    simulateStep(loadedSequence.sequence[selectedPositionInSequence], loadedSequence.sequence[selectedPositionInSequence + 1], true);
+                    selectedPositionInSequence++;
+                    History_SequenceListBox.SelectedIndex = selectedPositionInSequence;
+                }
+        }
+        private void History_earlierPosition_Click(object sender, RoutedEventArgs e)
+        {
+            if (loadedSequence != null)
+                if (selectedPositionInSequence - 1 >=0)
+                {
+                    simulateStep(loadedSequence.sequence[selectedPositionInSequence], loadedSequence.sequence[selectedPositionInSequence - 1], true);
+                    selectedPositionInSequence--;
+                    History_SequenceListBox.SelectedIndex = selectedPositionInSequence;
+                }
+        }
+        private void History_simulateSequence_Click(object sender, RoutedEventArgs e)
+        {
+            if (loadedSequence != null)
+                simulateSequence(loadedSequence,true);
+        }
+        private async void simulateSequence(Sequence sequence, bool simulateOnly)
+        {
+            if (loadedSequence != null)
+                for (int i = 0; i < loadedSequence.length(); i++)
+                {
+                    if (selectedPositionInSequence + 1 < loadedSequence.length())
+                    {
+                        simulateStep(loadedSequence.sequence[selectedPositionInSequence], loadedSequence.sequence[selectedPositionInSequence + 1], simulateOnly);
+                        await Task.Delay(loadedSequence.sequence[selectedPositionInSequence].Duration * 1000);
+                        selectedPositionInSequence++;
+                        History_SequenceListBox.SelectedIndex = selectedPositionInSequence;
+                    }
+
+                }
+
+        }
+        private void History_savePosition_Click(object sender, RoutedEventArgs e)
+        {
+            if (loadedSequence != null)
+            {
+                int _temp = selectedPositionInSequence;
+                loadedSequence.addPosition(actualPosition.deepCopy());
+                LoadSequenceToList(loadedSequence);
+                selectedPositionInSequence = _temp;
+            }
+        }
+
+        private void History_deletePosition_Click(object sender, RoutedEventArgs e)
+        {
+            if (loadedSequence != null)
+            {
+                loadedSequence.removePosition(selectedPositionInSequence);
+                selectedPositionInSequence = (selectedPositionInSequence-1>=0?selectedPositionInSequence-1:0);
+                LoadSequenceToList(loadedSequence);
+            }
+        }
+        private void History_sendSequence_Click(object sender, RoutedEventArgs e)
+        {
+            if (loadedSequence != null)
+                simulateSequence(loadedSequence, false);
+        }
+        private void History_sendPosition_Click(object sender, RoutedEventArgs e)
+        {
+            if (loadedSequence != null)
+            {
+                var selectedSequencePosition = History_SequenceListBox.SelectedItem as Position;
+                SendPosition_action(selectedSequencePosition);
+            }
+        }
+        private void History_turnOffChangingPosition_Click(object sender, RoutedEventArgs e)
+        {
+            if(turnOffSequencePositionChanging==false)
+            { 
+                History_turnOffChangingPosition.Content = "Włącz zmianę pozycji";
+                turnOffSequencePositionChanging = true;
+            }
+            else
+            {
+                History_turnOffChangingPosition.Content = "Wyłącz zmianę pozycji";
+                turnOffSequencePositionChanging = false;
+            }
         }
     }
 }

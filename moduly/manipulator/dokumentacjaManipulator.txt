@@ -1,0 +1,24 @@
+﻿Dokumentacja dotycząca modułu manipulatora.
+
+Ze względu na symulację 3D manipulatora wykorzystałem wbudowany silnik graficzny WPF, przez który narobiło się dużo plików
+
+
+* InverseKinematics:
+
+*manipulatorController:
+
+*manipulatorModel:
+	To tutaj zwykłe kąty zamieniają się na ramki, a następnie wysyłane są do komunikacji
+*manipulatorWPF:
+*positon:
+	Klasa, która przechowuje wszystkie kąty w konkretnej chwili
+*sequence:
+	Klasa, która przechowuje sekwencje ruchów manipulatora
+	-złożona z wielu klas pozycji
+	-stosowane do historii ruchu oraz w przyszłości zapisywaniu pliku 
+*SterowaieWPF:
+*manipulatorForm:
+	Odpowiada za wysyłanie danych pomiędzy:
+	-sterowanieWPF
+	-InverseKinematics
+	-manipulatorController

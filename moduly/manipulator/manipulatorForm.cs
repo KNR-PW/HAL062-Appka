@@ -23,11 +23,12 @@ namespace HAL062app.moduly.manipulator
         
         public manipulatorForm()
         {
+           
             InitializeComponent();
-            manipulatorWPF1.test += testa;
             sterowanieWPF1.SendMessage_action += SendFrame;
             sterowanieWPF1.SendPosition_action += SendPosition;
             sterowanieWPF1.CreateVisualization_action += CreateVisualization;
+
         }
        
         private void button1_Click(object sender, EventArgs e)
@@ -36,11 +37,6 @@ namespace HAL062app.moduly.manipulator
             
         }
        
-        private void testa (int a)
-        {
-           
-
-        }
 
         private void SendPosition(Position position)
         {

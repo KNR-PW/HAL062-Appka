@@ -144,6 +144,7 @@
     </Compile>
     <Compile Include="moduly\laboratorium\laboratoriumModel.cs" />
     <Compile Include="moduly\manipulator\InverseKinematics.cs" />
+    <Compile Include="moduly\manipulator\InverseKinematicsEmbeddy.cs" />
     <Compile Include="moduly\manipulator\manipulatorController.cs" />
     <Compile Include="moduly\manipulator\manipulatorForm.cs">
       <SubType>Form</SubType>
@@ -157,6 +158,7 @@
     </Compile>
     <Compile Include="moduly\manipulator\position.cs" />
     <Compile Include="moduly\manipulator\sequence.cs" />
+    <Compile Include="moduly\manipulator\SequenceManager.cs" />
     <Compile Include="moduly\manipulator\SterowanieWPF.xaml.cs">
       <DependentUpon>SterowanieWPF.xaml</DependentUpon>
     </Compile>
@@ -256,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Image1.png" />
+    <Content Include="moduly\manipulator\dokumentacjaManipulator.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,17 +30,42 @@ namespace HAL062app.moduly.manipulator
             this.name = name;
             this.sequence = sequence;
         }
-
+        public override string ToString()
+        {
+            return name;
+        }
+        public void addPositionAtIndex(Position position, int index)
+        {
+            position.id = sequence.Count;
+            sequence.Add(position);
+            //refreshIndexing();
+        }
+        private void refreshIndexing()
+        {
+            for(int i = 0; i < sequence.Count; i++)
+            {
+                this.sequence[i].id = i;
+            }
+        }
         public void addPosition(Position position)
         {
+            position.id = sequence.Count;
             sequence.Add(position);
+           
         }
         public void removePosition(int sequencePosition)
         {
             if (sequencePosition >= 0 && sequencePosition < sequence.Count)
             {
                 sequence.RemoveAt(sequencePosition);
+                refreshIndexing();
             }
         }
+
+       public int length()
+        {
+            return sequence.Count;
+        }
+       
     }
 }

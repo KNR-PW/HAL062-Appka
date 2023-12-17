@@ -89,12 +89,12 @@ namespace HAL062app.moduly.manipulator
             frames[1].buffer[1] = (byte)(130);
             frames[2].buffer[1] = (byte)(131);
 
-            x1 = BitConverter.GetBytes((float)(position.joints[0] * Math.PI / 180.0));
-            x2 = BitConverter.GetBytes((float)(position.joints[1] * Math.PI / 180.0));
-            x3 = BitConverter.GetBytes((float)(position.joints[2] * Math.PI / 180.0));
-            x4 = BitConverter.GetBytes((float)(position.joints[3] * Math.PI / 180.0));
-            x5 = BitConverter.GetBytes((float)(position.joints[4] * Math.PI / 180.0));
-            x6 = BitConverter.GetBytes((float)(position.joints[5] * Math.PI / 180.0));
+            x1 = BitConverter.GetBytes((float)((position.joints[0] -position.relative0[0])* Math.PI / 180.0));
+            x2 = BitConverter.GetBytes((float)((position.joints[1] -position.relative0[1])* Math.PI / 180.0));
+            x3 = BitConverter.GetBytes((float)((position.joints[2] -position.relative0[2])* Math.PI / 180.0));
+            x4 = BitConverter.GetBytes((float)((position.joints[3] -position.relative0[3])* Math.PI / 180.0));
+            x5 = BitConverter.GetBytes((float)((position.joints[4] -position.relative0[4])* Math.PI / 180.0));
+            x6 = BitConverter.GetBytes((float)((position.joints[5] -position.relative0[5])* Math.PI / 180.0));
 
             for (int j = 0; j < 4; j++)
             {

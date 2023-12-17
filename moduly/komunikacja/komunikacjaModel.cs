@@ -133,7 +133,8 @@ namespace HAL062app.moduly.komunikacja
             logMessages.Add(message);
             UpdateLogTerminal(logMessages);
            
-            if(bluetoothClient.Connected)
+            if(isBluetoothOn())
+                if(bluetoothClient.Connected)
                 Task.Run(async () => await SendBluetoothMessage(message));
             if (isTelnetConnected())
                 Task.Run(async () => await SendTelnetMessage(message));

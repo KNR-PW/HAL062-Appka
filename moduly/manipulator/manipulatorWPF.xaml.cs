@@ -25,15 +25,15 @@ namespace HAL062app.moduly.manipulator
     class Joint
     {
         public Model3D model = null;
-        public double angle = 0;
-        public double angleMin = -180;
-        public double angleMax = 180;
-        public double rotPointX = 0;
-        public double rotPointY = 0;
-        public double rotPointZ = 0;
-        public double rotAxisX = 0;
-        public double rotAxisY = 0;
-        public double rotAxisZ = 0;
+        public float angle = 0;
+        public float angleMin = -180;
+        public float angleMax = 180;
+        public float rotPointX = 0;
+        public float rotPointY = 0;
+        public float rotPointZ = 0;
+        public float rotAxisX = 0;
+        public float rotAxisY = 0;
+        public float rotAxisZ = 0;
 
         public Joint(Model3D pModel)
         {
@@ -68,9 +68,9 @@ namespace HAL062app.moduly.manipulator
         bool switchingJoint = false;
         bool isAnimating = false;
         bool isInitialized = false;
-        double LearningRate = 0.01;
-        double SamplingDistance = 0.15;
-        double DistanceThreshold = 20;
+        float LearningRate = 0.01F;
+        float SamplingDistance = 0.15F;
+        float DistanceThreshold = 20;
         int movements = 10;
         Vector3D reachingPoint;
         System.Windows.Forms.Timer timer1;
@@ -124,7 +124,7 @@ namespace HAL062app.moduly.manipulator
             viewport.Children.Add(RoboticArm);
            
 
-            //double[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle};
+            //float[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle};
             //ForwardKinematics(angles);
 
             //changeSelectedJoint();
@@ -135,13 +135,13 @@ namespace HAL062app.moduly.manipulator
 
             
         }
-        private double ToDegrees(double radian)
+        private float ToDegrees(float radian)
         {
-            return radian * 180.0 / Math.PI;
+            return radian * 180.0F / (float)Math.PI;
         }
-        private double ToRadians(double degrees)
+        private float ToRadians(float degrees)
         {
-            return degrees * (Math.PI / 180.0);
+            return degrees * ((float)Math.PI / 180.0F);
         }
 
 
@@ -209,7 +209,7 @@ namespace HAL062app.moduly.manipulator
                 joints[1].rotAxisZ = 0;
                 joints[1].rotPointX = 0;
                 joints[1].rotPointY = 0;
-                joints[1].rotPointZ = 169.5;
+                joints[1].rotPointZ = 169.5F;
                 joints[1].angle = 50;
                 //dof2-dof3
                 joints[2].angleMin = -163;
@@ -217,19 +217,19 @@ namespace HAL062app.moduly.manipulator
                 joints[2].rotAxisX = 0;
                 joints[2].rotAxisY = 1;
                 joints[2].rotAxisZ = 0;
-                joints[2].rotPointX = -423.52;
+                joints[2].rotPointX = -423.52F;
                 joints[2].rotPointY = 0;
-                joints[2].rotPointZ = 520.4;
+                joints[2].rotPointZ = 520.4F;
                 joints[2].angle = 11;
                 //dof3-dof4
                 joints[3].angleMin = -240;
                 joints[3].angleMax = 240;
-                joints[3].rotAxisX = 0.9867;
+                joints[3].rotAxisX = 0.9867F;
                 joints[3].rotAxisY = 0;
-                joints[3].rotAxisZ = -0.162538;
-                joints[3].rotPointX = -423.52;
+                joints[3].rotAxisZ = -0.162538F;
+                joints[3].rotPointX = -423.52F;
                 joints[3].rotPointY = -14;
-                joints[3].rotPointZ = 520.40;
+                joints[3].rotPointZ = 520.40F;
                 joints[3].angle = 0;
 
                 //dof4-dof5
@@ -238,9 +238,9 @@ namespace HAL062app.moduly.manipulator
                 joints[4].rotAxisX = 0;
                 joints[4].rotAxisY = 1;
                 joints[4].rotAxisZ = 0;
-                joints[4].rotPointX = 79.205;
+                joints[4].rotPointX = 79.205F;
                 joints[4].rotPointY = -14;
-                joints[4].rotPointZ = 437.587;
+                joints[4].rotPointZ = 437.587F;
                 joints[4].angle = 60;
 
                 //dof5-gripper
@@ -249,9 +249,9 @@ namespace HAL062app.moduly.manipulator
                 joints[5].rotAxisX = 1;
                 joints[5].rotAxisY = 0;
                 joints[5].rotAxisZ = 0;
-                joints[5].rotPointX = 162.696;
+                joints[5].rotPointX = 162.696F;
                 joints[5].rotPointY = -14;
-                joints[5].rotPointZ = 438.799;
+                joints[5].rotPointZ = 438.799F;
                 joints[5].angle = 0;
 
 
@@ -263,8 +263,11 @@ namespace HAL062app.moduly.manipulator
             return RA;
         }
 
-        public Vector3D ForwardKinematics(double[] angles)
+        public Vector3D ForwardKinematics(float[] anglesFloat)
         {
+            float[] angles = new float[6];
+            for(int i = 0; i<anglesFloat.Length; i++)
+            angles[i] = (float)anglesFloat[i];
             F1 = new Transform3DGroup();
             R = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(joints[0].rotAxisX, joints[0].rotAxisY, joints[0].rotAxisZ), angles[0]), new Point3D(joints[0].rotPointX, joints[0].rotPointY, joints[0].rotPointZ));
             F1.Children.Add(R);
@@ -322,7 +325,7 @@ namespace HAL062app.moduly.manipulator
 
         public void timer1_Tick(object sender, EventArgs e)
         {
-            double[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle };
+            float[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle };
             angles = InverseKinematics(reachingPoint, angles);
              joints[0].angle = angles[0];
             joints[1].angle = angles[1];
@@ -372,7 +375,7 @@ namespace HAL062app.moduly.manipulator
             }
         }
        
-        public double[] InverseKinematics(Vector3D target, double[] angles)
+        public float[] InverseKinematics(Vector3D target, float[] angles)
         {
             if (DistanceFromTarget(target, angles) < DistanceThreshold)
             {
@@ -380,13 +383,13 @@ namespace HAL062app.moduly.manipulator
                 return angles;
             }
 
-            double[] oldAngles = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+            float[] oldAngles = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F };
             angles.CopyTo(oldAngles, 0);
             for (int i = 0; i <= 5; i++)
             {
                 // Gradient descent
                 // Update : Solution -= LearningRate * Gradient
-                double gradient = PartialGradient(target, angles, i);
+                float gradient = PartialGradient(target, angles, i);
                 angles[i] -= LearningRate * gradient;
 
                 // Clamp
@@ -402,12 +405,13 @@ namespace HAL062app.moduly.manipulator
 
             return angles;
         }
-        public double DistanceFromTarget(Vector3D target, double[] angles)
+        public float DistanceFromTarget(Vector3D target, float[] angles)
         {
+            
             Vector3D point = ForwardKinematics(angles);
-            return Math.Sqrt(Math.Pow((point.X - target.X), 2.0) + Math.Pow((point.Y - target.Y), 2.0) + Math.Pow((point.Z - target.Z), 2.0));
+            return (float)Math.Sqrt(Math.Pow((point.X - target.X), 2.0) + Math.Pow((point.Y - target.Y), 2.0) + Math.Pow((point.Z - target.Z), 2.0));
         }
-        public bool checkAngles(double[] oldAngles, double[] angles)
+        public bool checkAngles(float[] oldAngles, float[] angles)
         {
             for (int i = 0; i <= 5; i++)
             {
@@ -451,23 +455,23 @@ namespace HAL062app.moduly.manipulator
         {
             /** Debug sphere, it takes the x,y,z of the textBoxes and update its position
              * This is useful when using x,y,z in the "new Point3D(x,y,z)* when defining a new RotateTransform3D() to check where the joints is actually  rotating */
-            double[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle };
+            float[] angles = { (float)joints[0].angle, (float)joints[1].angle, (float)joints[2].angle, (float)joints[3].angle, (float)joints[4].angle, (float)joints[5].angle };
             ForwardKinematics(angles);
            
         }
-        public double PartialGradient(Vector3D target, double[] angles, int i)
+        public float PartialGradient(Vector3D target, float[] angles, int i)
         {
             // Saves the angle,
             // it will be restored later
-            double angle = angles[i];
+            float angle = angles[i];
 
             // Gradient : [F(x+SamplingDistance) - F(x)] / h
-            double f_x = DistanceFromTarget(target, angles);
+            float f_x = DistanceFromTarget(target, angles);
 
             angles[i] += SamplingDistance;
-            double f_x_plus_d = DistanceFromTarget(target, angles);
+            float f_x_plus_d = DistanceFromTarget(target, angles);
 
-            double gradient = (f_x_plus_d - f_x) / SamplingDistance;
+            float gradient = (f_x_plus_d - f_x) / SamplingDistance;
 
             // Restores
             angles[i] = angle;
