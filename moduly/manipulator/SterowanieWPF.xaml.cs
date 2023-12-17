@@ -66,9 +66,6 @@ namespace HAL062app.moduly.manipulator
         private List<Position> positionsHistory = new List<Position>();
         private Sequence history = null;
         //sekwencje
-        List<Sequence> sequencesList = new List<Sequence>();
-        List<string> sequenceNames = new List<string>();
-        string filePath = "sequenceList.txt";
         private int _id = 0;
         private float[] relativeZeros = new float[6]; //Dla modelu wgrywanego z plików kąty są inne, niż te dla manipulatora w łaziku. Tutaj przechowujemy różnicę tych kątów, aby przy wysyłaniu do łazika ten kąt odjąć
         Sequence loadedSequence; 
@@ -76,8 +73,8 @@ namespace HAL062app.moduly.manipulator
         bool turnOffSequencePositionChanging = false; //Klikanie w pozycję na historii w sekwencji zmienia/ nie zmienia wizualizacji
         Position settingPosition = null; //to jest zmienna przechowująca aktualne położenie, wykorzystywane w zapisywaniu w sekcji sekwencji
         //manager sekwencji - zapisywanie do pliku
-        private SequenceManager sequenceManager = null;
-
+        private SequenceManager sequenceManager = new SequenceManager();
+        private string sequencePath = "sequenceList.json";
 
         public SterowanieWPF()
         {
@@ -96,10 +93,7 @@ namespace HAL062app.moduly.manipulator
             addValues.Add("0.5", 0.5);
             addValues.Add("-0.1", -0.1);
             addValues.Add("0.1", 0.1);
-            foreach (var sequence in sequencesList)
-            {
-                sequenceNames.Add(sequence.name);
-            }
+           
 
             Slider[] JointSliders = {Joint1Slider,Joint2Slider, Joint3Slider, Joint4Slider, Joint5Slider, Joint6Slider };
             Label[] JointLabels = { Joint1Label, Joint2Label, Joint3Label, Joint4Label, Joint5Label, Joint6Label };
@@ -113,14 +107,12 @@ namespace HAL062app.moduly.manipulator
 
             actualPosition = new Position(returnAnglesFromJoints(joints));
             actualPosition.Duration = 5;
-            positionsHistory.Add(actualPosition);
-            history = new Sequence("History", positionsHistory);
-            sequencesList.Add(history);
+            history = new Sequence("History", new List<Position>());
+            history.sequence.Add(actualPosition);
             initialization = false;
 
 
-          //  sequenceManager= new SequenceManager();
-            //sequenceManager.LoadFromFile("sequences.json");
+            
         }
 
         private void UpdateSlidersValues(Joint joint, Slider slider, Label label)
@@ -263,14 +255,13 @@ namespace HAL062app.moduly.manipulator
         private void SendButton_Click(object sender, EventArgs e)
         {
             joints[activeJointChange - 1].lastAngle = joints[activeJointChange - 1].angle;
-            //actualPosition.update(returnAnglesFromJoints(joints));
             Position actPosition = new Position(returnAnglesFromJoints(joints));
             actPosition.addRelative0(relativeZeros);
             actPosition.Duration = 5;
-            positionsHistory.Add(actPosition);
-            //tutaj to do wysylania zrobic
+            actPosition.id = history.sequence.Count;
+            history.sequence.Add(actPosition);
             SendPosition_action(actPosition);
-            actPosition.id = ++_id;
+            
             if (History_sequenceCombobox.SelectedItem is Sequence selectedSequence)
             {
                 CollectionViewSource.GetDefaultView(History_SequenceListBox.ItemsSource).Refresh();
@@ -393,11 +384,6 @@ namespace HAL062app.moduly.manipulator
         //////                                  Sekwencje
         //////////////////////////////////////////////////////////////////////////////////
 
-        private void SaveSequenceButton_Click(object sender, RoutedEventArgs e)
-        {
-            //  string json = JsonConvert.SerializeObject(this, Formatting.Indented);
-            //   System.IO.File.WriteAllText(filePath, json);
-        }
         private void HistoryTab_opened(object sender, ContextMenuEventArgs e)
         {
             if (History_sequenceCombobox.SelectedIndex == 0)
@@ -412,6 +398,34 @@ namespace HAL062app.moduly.manipulator
             History_SequenceListBox.ItemsSource = null;
             History_SequenceListBox.ItemsSource = sequence.sequence;
         }
+        private void simulateStep(Position firstPosition, Position secondPosition, bool simulateOnly)
+        {
+
+
+            CreateVisualization_action(secondPosition);
+
+            if (!simulateOnly)
+            {
+
+                SendPosition_action(secondPosition);
+            }
+        }
+        private async void simulateSequence(Sequence sequence, bool simulateOnly)
+        {
+            if (loadedSequence != null)
+                for (int i = 0; i < loadedSequence.length(); i++)
+                {
+                    if (selectedPositionInSequence + 1 < loadedSequence.length())
+                    {
+                        simulateStep(loadedSequence.sequence[selectedPositionInSequence], loadedSequence.sequence[selectedPositionInSequence + 1], simulateOnly);
+                        await Task.Delay(loadedSequence.sequence[selectedPositionInSequence].Duration * 1000);
+                        selectedPositionInSequence++;
+                        History_SequenceListBox.SelectedIndex = selectedPositionInSequence;
+                    }
+
+                }
+
+        }
         private void positionDuration_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (History_SequenceListBox.SelectedItem is Position selectedPosition)
@@ -424,8 +438,10 @@ namespace HAL062app.moduly.manipulator
         {
             if (History_sequenceCombobox.SelectedItem is Sequence selectedSequence)
             {
-                LoadSequenceToList(selectedSequence);
-                loadedSequence = selectedSequence;
+                loadedSequence = selectedSequence.deepCopy();
+                LoadSequenceToList(loadedSequence);
+                History_newSequenceName.Text = loadedSequence.name;
+                
             }
         }
         private void History_SequenceListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -434,7 +450,7 @@ namespace HAL062app.moduly.manipulator
             if (!turnOffSequencePositionChanging && selectedSequencePosition != null)
             {
                 CreateVisualization_action(selectedSequencePosition);
-                actualPosition = selectedSequencePosition;
+                actualPosition = selectedSequencePosition.deepCopy();
                 ChangeSlidersValue(actualPosition);
             }
             selectedPositionInSequence = History_SequenceListBox.SelectedIndex;
@@ -442,31 +458,28 @@ namespace HAL062app.moduly.manipulator
         }
         private void History_SequencesComboBox_DropDownOpened(object sender, EventArgs e)
         {
-            // string json = System.IO.File.ReadAllText(filePath);
-            ///return JsonConvert.DeserializeObject<Sequence>(json);
-            //
-            History_sequenceCombobox.ItemsSource = sequencesList;
+            History_sequenceCombobox.ItemsSource = null;
+            sequenceManager.LoadFromFile(sequencePath);
+            if (sequenceManager.Sequences == null)
+            {
+                sequenceManager.Sequences = new List<Sequence>();
+                sequenceManager.Sequences.Add(history);
+            }
+            else if (!sequenceManager.Sequences.Any(seq => seq.name == "History"))
+                sequenceManager.Sequences.Add(history);
+            History_sequenceCombobox.ItemsSource = sequenceManager.Sequences;
         }
         private void History_SaveSequenceButton_Click(object sender, RoutedEventArgs e)
         {
-            //  string json = JsonConvert.SerializeObject(this, Formatting.Indented);
-            //   System.IO.File.WriteAllText(filePath, json);
-
-        }
-
-        private void simulateStep(Position firstPosition, Position secondPosition, bool simulateOnly)
-        {
-
-            
-            CreateVisualization_action(secondPosition);
-
-            if (!simulateOnly)
+            if (loadedSequence != null)
             {
-                
-                SendPosition_action(secondPosition);
+                Sequence newSequence = loadedSequence.deepCopy();
+                newSequence.name = History_newSequenceName.Text;
+                sequenceManager.Sequences.Add(newSequence);
+                sequenceManager.SaveToFile(sequencePath);
+                sequenceManager.Sequences.Add(history);
             }
         }
-
         private void History_nextPosition_Click(object sender, RoutedEventArgs e)
         {
             if (loadedSequence != null)
@@ -492,22 +505,6 @@ namespace HAL062app.moduly.manipulator
             if (loadedSequence != null)
                 simulateSequence(loadedSequence,true);
         }
-        private async void simulateSequence(Sequence sequence, bool simulateOnly)
-        {
-            if (loadedSequence != null)
-                for (int i = 0; i < loadedSequence.length(); i++)
-                {
-                    if (selectedPositionInSequence + 1 < loadedSequence.length())
-                    {
-                        simulateStep(loadedSequence.sequence[selectedPositionInSequence], loadedSequence.sequence[selectedPositionInSequence + 1], simulateOnly);
-                        await Task.Delay(loadedSequence.sequence[selectedPositionInSequence].Duration * 1000);
-                        selectedPositionInSequence++;
-                        History_SequenceListBox.SelectedIndex = selectedPositionInSequence;
-                    }
-
-                }
-
-        }
         private void History_savePosition_Click(object sender, RoutedEventArgs e)
         {
             if (loadedSequence != null)
@@ -516,9 +513,9 @@ namespace HAL062app.moduly.manipulator
                 loadedSequence.addPosition(actualPosition.deepCopy());
                 LoadSequenceToList(loadedSequence);
                 selectedPositionInSequence = _temp;
+
             }
         }
-
         private void History_deletePosition_Click(object sender, RoutedEventArgs e)
         {
             if (loadedSequence != null)

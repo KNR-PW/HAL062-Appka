@@ -66,6 +66,13 @@ namespace HAL062app.moduly.manipulator
         {
             return sequence.Count;
         }
+        public Sequence deepCopy()
+        {
+            Sequence copy = new Sequence("copy", new List<Position>());
+            copy.sequence = this.sequence;
+            copy.name = this.name;
+            return copy;
+        }
        
     }
 }

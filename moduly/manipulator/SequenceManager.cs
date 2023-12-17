@@ -17,16 +17,38 @@ namespace HAL062app.moduly.manipulator
         }
         public void SaveToFile(string path)
         {
-            string json = JsonConvert.SerializeObject(Sequences);
-            File.WriteAllText(path, json);
+
+            var updatedSequences = new List<Sequence>();
+
+            foreach (var sequence in Sequences)
+            {
+               
+                var existingSequence = updatedSequences.FirstOrDefault(seq => seq.name == sequence.name);
+
+                if (existingSequence != null)
+                {
+            
+                    existingSequence.sequence = sequence.sequence;
+                }
+                else
+                { 
+                    updatedSequences.Add(new Sequence(sequence.name, sequence.sequence));
+                }
+            }
+            updatedSequences.Remove(updatedSequences.Find(seq => seq.name == "History"));
+            // Podmieniamy oryginalną listę zaktualizowaną listą
+            Sequences = updatedSequences;
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(Sequences, Newtonsoft.Json.Formatting.Indented);
+            System.IO.File.WriteAllText(path, json);
 
         }
         public void LoadFromFile(string filePath)
         {
-            if (File.Exists(filePath))
+            if (System.IO.File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);
-                Sequences = JsonConvert.DeserializeObject<List<Sequence>>(json);
+                Sequences = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Sequence>>(json);
             }
         }
 
