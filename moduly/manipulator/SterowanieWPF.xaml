@@ -55,10 +55,11 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <!-- Automatycznie dopasuje wysokość do zawartości -->
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Wybór członu" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
-                    <UniformGrid Grid.Row="1" Rows="6" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="300">
+                    <UniformGrid Grid.Row="1" Rows="7" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="300">
 
                         <Grid x:Name="Joint1Grid" Tag="1" HorizontalAlignment="Stretch" Height="40" MouseDown="JointGridClicked">
                             <TextBlock Text="DOF 1" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
@@ -90,6 +91,12 @@
                             <TextBlock Text="Gripper" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontSize="11" FontWeight="Bold" Height="18"/>
                             <Slider x:Name="Joint6Slider" VerticalAlignment="Center" Maximum="360" Minimum="-360" Tag="{Binding ElementName=Joint6Grid}" ValueChanged="JointSlider_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
                             <Label x:Name="Joint6Label" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+                        </Grid>
+                        <Grid Tag="7" HorizontalAlignment="Stretch" Height="40">
+                            <Button x:Name="Control_OpenGripperBtn" Content="Otwieranie"  HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" Height="28" Width="60" Click="Control_OpenGripperBtn_Click"/>
+                            <Button x:Name="Control_idkGripperBtn" Content="Zatrzymaj"  HorizontalAlignment="Left" Margin="100,5,0,0" VerticalAlignment="Top" Height="28" Width="60" Click="Control_idkGripperBtn_Click"/>
+                            <Button x:Name="Control_CloseGripperBtn" Content="Zamykanie"  HorizontalAlignment="Left" Margin="180,5,0,0" VerticalAlignment="Top" Height="28" Width="60" Click="Control_CloseGripperBtn_Click"/>
+
                         </Grid>
                     </UniformGrid>
                     <TextBlock Grid.Row="3" x:Name="DOFcontrolText" Text="Sterowanie" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
@@ -144,7 +151,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Ustawienia" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,0,0,0" />
                     <Grid Grid.Row="1" Height="250">
-                        <Button Content="Zapisz sekwencję" HorizontalAlignment="Left" Margin="149,179,0,0" VerticalAlignment="Top" Height="65" Width="139" Click="History_SaveSequenceButton_Click"/>
+                        <Button Content="Zapisz sekwencję" HorizontalAlignment="Left" Margin="149,179,0,0" VerticalAlignment="Top" Height="28" Width="139" Click="History_SaveSequenceButton_Click"/>
                         <ComboBox x:Name="History_sequenceCombobox" SelectionChanged="History_sequenceCombobox_SelectionChanged" HorizontalAlignment="Left" DropDownOpened="History_SequencesComboBox_DropDownOpened" Margin="10,179,0,0" VerticalAlignment="Top" Width="120" Height="28">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -167,6 +174,7 @@
                         <Button x:Name="History_sendPosition" Content="Wyślij pozycję" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Height="28" Width="120" Click="History_sendPosition_Click"/>
                         <Button x:Name="History_turnOffChangingPosition" Content="Wyłącz zmianę pozycji" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Height="28" Width="120" FontSize="11" Click="History_turnOffChangingPosition_Click" />
                         <Button x:Name="History_simulateSequence" Content="Symuluj&#xD;&#xA;sekwencję" HorizontalAlignment="Left" Margin="149,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.278,0.802" Height="53" Width="139" Click="History_simulateSequence_Click"/>
+                        <Button x:Name="History_newSequence" Content="Nowa sekwencja" HorizontalAlignment="Left" Margin="148,212,0,0" VerticalAlignment="Top" Height="32" Width="139" Click="History_newSequence_Click" />
                     </Grid>
                     <UniformGrid Grid.Row="2" Columns="3" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                         <TextBlock Background="LightGray" VerticalAlignment="Center" Grid.Column="0" FontSize="14" Text= "    ID:"/>

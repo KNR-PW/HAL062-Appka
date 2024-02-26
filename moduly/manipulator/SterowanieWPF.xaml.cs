@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 using Newtonsoft.Json;
 
 namespace HAL062app.moduly.manipulator
@@ -75,16 +76,16 @@ namespace HAL062app.moduly.manipulator
         //manager sekwencji - zapisywanie do pliku
         private SequenceManager sequenceManager = new SequenceManager();
         private string sequencePath = "sequenceList.json";
-
+        bool simulatingSequence = false;
         public SterowanieWPF()
         {
             InitializeComponent(); //to tutaj zmienia się maksymalne, minimalne i startowe kąty dla symulacji 
             joints[0] = new Joint(-90,90,0,0); 
             joints[1] = new Joint(-60,90,0,50);
             joints[2] = new Joint(-60,70,0,-60);
-            joints[3] = new Joint(-90,90,0,180);
+            joints[3] = new Joint(-90,90,0,210);
             joints[4] = new Joint(-90,60,0,10);
-            joints[5] = new Joint(-360,360,0,90);
+            joints[5] = new Joint(-360,360,0,0);
             addValues.Add("-5.0", -5.0); //to odpowiada tylko za przyciski do szczegółowej zmiany kąta, nic ważnego
             addValues.Add("5.0", 5.0);
             addValues.Add("-1.0", -1.0);
@@ -257,7 +258,7 @@ namespace HAL062app.moduly.manipulator
             joints[activeJointChange - 1].lastAngle = joints[activeJointChange - 1].angle;
             Position actPosition = new Position(returnAnglesFromJoints(joints));
             actPosition.addRelative0(relativeZeros);
-            actPosition.Duration = 5;
+            actPosition.Duration = 3;
             actPosition.id = history.sequence.Count;
             history.sequence.Add(actPosition);
             SendPosition_action(actPosition);
@@ -324,8 +325,8 @@ namespace HAL062app.moduly.manipulator
             returnHomePositions[1].joints[4] = 0;
             returnHomePositions[1].joints[5] = 0;
             returnHomePositions[2] = returnHomePositions[1].deepCopy();
-            returnHomePositions[2].joints[1] = -40;
-            returnHomePositions[2].joints[2] = 70;
+            returnHomePositions[2].joints[1] = -55;
+            returnHomePositions[2].joints[2] = 60;
             returnHomePositions[0].addRelativeToJoints();
             returnHomePositions[1].addRelativeToJoints();
             returnHomePositions[2].addRelativeToJoints();
@@ -377,7 +378,59 @@ namespace HAL062app.moduly.manipulator
         }
 
 
+        private void Control_CloseGripperBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(157);
+            frame.buffer[2] = (byte)(1);
+            frame.buffer[3] = (byte)('x');
+            frame.buffer[4] = (byte)('x');
+            frame.buffer[5] = (byte)('x');
+            frame.buffer[6] = (byte)('x');
+            frame.buffer[7] = (byte)('x');
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
 
+            SendMessage_action(frame);
+        }
+
+        private void Control_idkGripperBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(157);
+            frame.buffer[2] = (byte)(0);
+            frame.buffer[3] = (byte)('x');
+            frame.buffer[4] = (byte)('x');
+            frame.buffer[5] = (byte)('x');
+            frame.buffer[6] = (byte)('x');
+            frame.buffer[7] = (byte)('x');
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            SendMessage_action(frame);
+        }
+
+        private void Control_OpenGripperBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(157);
+            frame.buffer[2] = (byte)(2);
+            frame.buffer[3] = (byte)('x');
+            frame.buffer[4] = (byte)('x');
+            frame.buffer[5] = (byte)('x');
+            frame.buffer[6] = (byte)('x');
+            frame.buffer[7] = (byte)('x');
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            SendMessage_action(frame);
+        }
 
 
         //////////////////////////////////////////////////////////////////////////////////
@@ -412,19 +465,37 @@ namespace HAL062app.moduly.manipulator
         }
         private async void simulateSequence(Sequence sequence, bool simulateOnly)
         {
-            if (loadedSequence != null)
-                for (int i = 0; i < loadedSequence.length(); i++)
+            simulatingSequence = !simulatingSequence;
+            if (simulatingSequence) {
+                if (loadedSequence != null)
                 {
-                    if (selectedPositionInSequence + 1 < loadedSequence.length())
+                    History_simulateSequence.Content = "Zatrzymaj sekwencję";
+                    for (int i = 0; i < loadedSequence.length(); i++)
                     {
-                        simulateStep(loadedSequence.sequence[selectedPositionInSequence], loadedSequence.sequence[selectedPositionInSequence + 1], simulateOnly);
-                        await Task.Delay(loadedSequence.sequence[selectedPositionInSequence].Duration * 1000);
-                        selectedPositionInSequence++;
-                        History_SequenceListBox.SelectedIndex = selectedPositionInSequence;
+                        if (selectedPositionInSequence + 1 < loadedSequence.length())
+                        {
+                            simulateStep(loadedSequence.sequence[selectedPositionInSequence], loadedSequence.sequence[selectedPositionInSequence + 1], simulateOnly);
+                            await Task.Delay(loadedSequence.sequence[selectedPositionInSequence].Duration * 1000);
+                            selectedPositionInSequence++;
+                            History_SequenceListBox.SelectedIndex = selectedPositionInSequence;
+                        }
+                        if (!simulatingSequence)
+                        {
+                            History_simulateSequence.Content = "Symuluj sekwencję";
+
+                            break;
+                        }
+
                     }
-
                 }
-
+                else
+                    simulatingSequence = false; 
+            }
+            else
+            {
+                simulatingSequence = false;
+                History_simulateSequence.Content = "Symuluj sekwencję";
+            }
         }
         private void positionDuration_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -549,6 +620,19 @@ namespace HAL062app.moduly.manipulator
             {
                 History_turnOffChangingPosition.Content = "Wyłącz zmianę pozycji";
                 turnOffSequencePositionChanging = false;
+            }
+        }
+
+        private void History_newSequence_Click(object sender, RoutedEventArgs e)
+        {
+            if (loadedSequence != null)
+            {
+                List<Position> newPositions = new List<Position>();
+                newPositions.Add(actualPosition);
+                Sequence newSequence = new Sequence(History_newSequenceName.Text,newPositions);  
+                sequenceManager.Sequences.Add(newSequence);
+                sequenceManager.SaveToFile(sequencePath);
+                sequenceManager.Sequences.Add(history);
             }
         }
     }

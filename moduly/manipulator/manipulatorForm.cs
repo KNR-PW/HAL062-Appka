@@ -31,11 +31,7 @@ namespace HAL062app.moduly.manipulator
 
         }
        
-        private void button1_Click(object sender, EventArgs e)
-        {
-            manipulatorWPF1.StartInverseKinematics(sender, e);
-            
-        }
+        
        
 
         private void SendPosition(Position position)

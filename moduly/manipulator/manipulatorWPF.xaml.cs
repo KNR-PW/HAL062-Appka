@@ -355,25 +355,7 @@ namespace HAL062app.moduly.manipulator
             return result;
         }
 
-        public void StartInverseKinematics(object sender, EventArgs e)
-        {
-            
-            if (timer1.Enabled)
-            {
-                //KinematicPointBtn.Content = "Go to position";
-                isAnimating = false;
-                timer1.Stop();
-                movements = 0;
-            }
-            else
-            {
-                geometry.Transform = new TranslateTransform3D(reachingPoint);
-                movements = 5000;
-              //  KinematicPointBtn.Content = "STOP";
-                isAnimating = true;
-                timer1.Start();
-            }
-        }
+      
        
         public float[] InverseKinematics(Vector3D target, float[] angles)
         {

@@ -24,12 +24,13 @@ namespace HAL062app.moduly.manipulator
         
 
        public List<Position> sequence {get; set; }
-
+        [JsonConstructor]
         public Sequence(string name, List<Position> sequence)
         {
             this.name = name;
             this.sequence = sequence;
         }
+        
         public override string ToString()
         {
             return name;
@@ -50,7 +51,9 @@ namespace HAL062app.moduly.manipulator
         public void addPosition(Position position)
         {
             position.id = sequence.Count;
+
             sequence.Add(position);
+
            
         }
         public void removePosition(int sequencePosition)

@@ -9,7 +9,7 @@ namespace HAL062app.moduly.manipulator
     public class Position
     {
         public float[] joints { get; set; }
-        public float[] relative0 { get;set; }
+        public float[] relative0 { get; set; } = new float[] { 0,50,-60,210,10,0};
         public int id { get; set; }
         public int Duration { get; set; }
         public Position(float[] angles)
@@ -23,6 +23,7 @@ namespace HAL062app.moduly.manipulator
                     joints[i] = angles[i];
                 }
             }
+
             
         }
         public void addRelative0(float[] relative)
@@ -51,7 +52,7 @@ namespace HAL062app.moduly.manipulator
             Position copy = new Position(joints);
             copy.Duration = this.Duration;
             copy.id = this.id;
-            copy.relative0 = this.relative0;
+            //copy.relative0 = this.relative0;
             return copy;
         }
         public void addRelativeToJoints()
