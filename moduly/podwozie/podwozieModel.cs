@@ -31,7 +31,7 @@ namespace HAL062app.moduly.podwozie
             komunikacjaModel.SendMMessageToHALService(message);
 
         }
-
+        
        
 
     }

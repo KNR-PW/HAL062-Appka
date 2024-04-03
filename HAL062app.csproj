@@ -209,6 +209,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="moduly\manipulator\models\base.STL">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -258,8 +259,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Image1.png" />
     <Content Include="moduly\manipulator\dokumentacjaManipulator.txt" />
+    <None Include="moduly\podwozie\rover.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

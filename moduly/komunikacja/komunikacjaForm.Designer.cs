@@ -1157,6 +1157,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.tableLayoutPanel2);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "komunikacjaForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "komunikacjaForm";
