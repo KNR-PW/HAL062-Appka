@@ -126,16 +126,19 @@ namespace HAL062app.moduly.komunikacja
             SendMMessageToHALService(message);
             //dorobic zwracanie informacji, jesli kolejka pusta
         }
-        public void SendMMessageToHALService(Message message)
-        {
 
+        public async void SendMMessageToHALService(Message message)
+        {
+            Task.Delay(200);
             messageQueue.Enqueue(message);
             logMessages.Add(message);
             UpdateLogTerminal(logMessages);
            
             if(isBluetoothOn())
-                if(bluetoothClient.Connected)
+                if (bluetoothClient.Connected) { 
                 Task.Run(async () => await SendBluetoothMessage(message));
+                 
+                }
             if (isTelnetConnected())
                 Task.Run(async () => await SendTelnetMessage(message));
         }
@@ -485,6 +488,7 @@ namespace HAL062app.moduly.komunikacja
             {
                 buffer = System.Text.Encoding.ASCII.GetBytes(msg.text);
                 await bluetoothClient.GetStream().WriteAsync(buffer, 0, buffer.Length);
+                
             }
             catch (Exception ex)
             {

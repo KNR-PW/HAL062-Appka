@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace HAL062app.moduly.podwozie
 {
@@ -22,9 +23,15 @@ namespace HAL062app.moduly.podwozie
         private int forwardSpeedMaxLimit = 10;
         private int turningSpeedMaxLimit = 5;
         int limitRadius = 160;
+
+        public Action<motorData> sendMotorDataToController_Action;
+
         public podwozieForm()
         {
             InitializeComponent();
+            
+            
+            
             joystickPosition.X = joystickPictureBox.ClientSize.Width/2;
             joystickPosition.Y = joystickPictureBox.ClientSize.Height/2;
             ForwardSpeedTrack.Maximum = forwardSpeedMaxLimit;
@@ -32,6 +39,9 @@ namespace HAL062app.moduly.podwozie
             TurningSpeedTrack.Maximum = turningSpeedMaxLimit;
             TurningSpeedTrack.Minimum = -turningSpeedMaxLimit;
             joystickPictureBox.Refresh();
+
+
+
         }
 
       
@@ -43,7 +53,7 @@ namespace HAL062app.moduly.podwozie
             e.Graphics.FillEllipse(Brushes.White, joystickPosition.X - joystickRadius, joystickPosition.Y-joystickRadius, 2*joystickRadius, 2*joystickRadius);
         }
 
-        private void joystickPictureBox_MouseDown(object sender, MouseEventArgs e)
+        private void joystickPictureBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if(e.Button == MouseButtons.Left) { 
             isDragging = true;
@@ -52,7 +62,7 @@ namespace HAL062app.moduly.podwozie
             }
         }
 
-        private void joystickPictureBox_MouseUp(object sender, MouseEventArgs e)
+        private void joystickPictureBox_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -69,7 +79,7 @@ namespace HAL062app.moduly.podwozie
         {
             return (int)Math.Sqrt(Math.Abs(c * c - b * b));
         }
-        private void joystickPictureBox_MouseMove(object sender, MouseEventArgs e)
+        async private void joystickPictureBox_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if(isDragging)
             {
@@ -94,13 +104,14 @@ namespace HAL062app.moduly.podwozie
                     joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2  - pitagoras(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
 
                 joystickPictureBox.Refresh();
+             
                 UpdateJoystick();
                 lastMousePosition = e.Location;
 
             }
         }
 
-        private void UpdateJoystick()
+        async private void UpdateJoystick()
         {
             ForwardSpeedTrack.Maximum = forwardSpeedMaxLimit;
             ForwardSpeedTrack.Minimum = -forwardSpeedMaxLimit;
@@ -111,11 +122,22 @@ namespace HAL062app.moduly.podwozie
             turningSpeed = turningSpeedMaxLimit*(joystickPosition.X - joystickPictureBox.ClientSize.Width/2) / limitRadius;
             ForwardSpeedTrack.Value = forwardSpeed;
             TurningSpeedTrack.Value = turningSpeed;
+            await Task.Delay(200);
+            sendSpeeds(forwardSpeed,turningSpeed);
+
+        }
+        private void sendSpeeds(int fspeed, int tspeed)
+        {
+            float coeff = 100.0f / 6.45f;
+            int rightSpeed = (int)(coeff * (6.45f * fspeed + 2.97f * tspeed));
+            int leftSpeed = (int)(coeff * (6.45f * fspeed - 2.97f * tspeed));
+            motorData data = new motorData(rightSpeed, 0, rightSpeed, leftSpeed, 0, leftSpeed);
+            sendMotorDataToController_Action(data);
 
         }
     }
 
-
+    
 
 
 }

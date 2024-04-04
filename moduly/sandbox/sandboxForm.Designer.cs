@@ -30,7 +30,9 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CreateFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.frameTextBox = new System.Windows.Forms.TextBox();
+            this.ClearFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dataCheckBox8 = new System.Windows.Forms.CheckBox();
             this.dataCheckBox7 = new System.Windows.Forms.CheckBox();
@@ -69,10 +71,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PrefixTextBox = new System.Windows.Forms.TextBox();
             this.data8textBox = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.CreateFrameBtn = new HAL062app.CustomControls.CustomButton();
-            this.ClearFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.SendFrameBtn = new HAL062app.CustomControls.CustomButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -118,6 +118,26 @@
             this.panel1.Size = new System.Drawing.Size(708, 314);
             this.panel1.TabIndex = 0;
             // 
+            // CreateFrameBtn
+            // 
+            this.CreateFrameBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.CreateFrameBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.CreateFrameBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.CreateFrameBtn.BorderRadius = 20;
+            this.CreateFrameBtn.BorderSize = 0;
+            this.CreateFrameBtn.FlatAppearance.BorderSize = 0;
+            this.CreateFrameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CreateFrameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.CreateFrameBtn.ForeColor = System.Drawing.Color.White;
+            this.CreateFrameBtn.Location = new System.Drawing.Point(486, 98);
+            this.CreateFrameBtn.Name = "CreateFrameBtn";
+            this.CreateFrameBtn.Size = new System.Drawing.Size(211, 40);
+            this.CreateFrameBtn.TabIndex = 5;
+            this.CreateFrameBtn.Text = "Oblicz";
+            this.CreateFrameBtn.TextColor = System.Drawing.Color.White;
+            this.CreateFrameBtn.UseVisualStyleBackColor = false;
+            this.CreateFrameBtn.Click += new System.EventHandler(this.CreateFrameBtn_Click);
+            // 
             // frameTextBox
             // 
             this.frameTextBox.BackColor = System.Drawing.Color.DimGray;
@@ -133,6 +153,26 @@
             this.frameTextBox.Size = new System.Drawing.Size(328, 27);
             this.frameTextBox.TabIndex = 4;
             this.frameTextBox.Text = "#00XXXXXXXXXXXXXXXX";
+            // 
+            // ClearFrameBtn
+            // 
+            this.ClearFrameBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.ClearFrameBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.ClearFrameBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.ClearFrameBtn.BorderRadius = 20;
+            this.ClearFrameBtn.BorderSize = 0;
+            this.ClearFrameBtn.FlatAppearance.BorderSize = 0;
+            this.ClearFrameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClearFrameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.ClearFrameBtn.ForeColor = System.Drawing.Color.White;
+            this.ClearFrameBtn.Location = new System.Drawing.Point(486, 144);
+            this.ClearFrameBtn.Name = "ClearFrameBtn";
+            this.ClearFrameBtn.Size = new System.Drawing.Size(211, 40);
+            this.ClearFrameBtn.TabIndex = 3;
+            this.ClearFrameBtn.Text = "Wyczyść";
+            this.ClearFrameBtn.TextColor = System.Drawing.Color.White;
+            this.ClearFrameBtn.UseVisualStyleBackColor = false;
+            this.ClearFrameBtn.Click += new System.EventHandler(this.ClearFrameBtn_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -778,54 +818,6 @@
             this.data8textBox.TabIndex = 25;
             this.data8textBox.Text = "XX";
             // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(13, 13);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(444, 314);
-            this.panel2.TabIndex = 1;
-            // 
-            // CreateFrameBtn
-            // 
-            this.CreateFrameBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.CreateFrameBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.CreateFrameBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.CreateFrameBtn.BorderRadius = 20;
-            this.CreateFrameBtn.BorderSize = 0;
-            this.CreateFrameBtn.FlatAppearance.BorderSize = 0;
-            this.CreateFrameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CreateFrameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.CreateFrameBtn.ForeColor = System.Drawing.Color.White;
-            this.CreateFrameBtn.Location = new System.Drawing.Point(486, 98);
-            this.CreateFrameBtn.Name = "CreateFrameBtn";
-            this.CreateFrameBtn.Size = new System.Drawing.Size(211, 40);
-            this.CreateFrameBtn.TabIndex = 5;
-            this.CreateFrameBtn.Text = "Oblicz";
-            this.CreateFrameBtn.TextColor = System.Drawing.Color.White;
-            this.CreateFrameBtn.UseVisualStyleBackColor = false;
-            this.CreateFrameBtn.Click += new System.EventHandler(this.CreateFrameBtn_Click);
-            // 
-            // ClearFrameBtn
-            // 
-            this.ClearFrameBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClearFrameBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClearFrameBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ClearFrameBtn.BorderRadius = 20;
-            this.ClearFrameBtn.BorderSize = 0;
-            this.ClearFrameBtn.FlatAppearance.BorderSize = 0;
-            this.ClearFrameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClearFrameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.ClearFrameBtn.ForeColor = System.Drawing.Color.White;
-            this.ClearFrameBtn.Location = new System.Drawing.Point(486, 144);
-            this.ClearFrameBtn.Name = "ClearFrameBtn";
-            this.ClearFrameBtn.Size = new System.Drawing.Size(211, 40);
-            this.ClearFrameBtn.TabIndex = 3;
-            this.ClearFrameBtn.Text = "Wyczyść";
-            this.ClearFrameBtn.TextColor = System.Drawing.Color.White;
-            this.ClearFrameBtn.UseVisualStyleBackColor = false;
-            this.ClearFrameBtn.Click += new System.EventHandler(this.ClearFrameBtn_Click);
-            // 
             // SendFrameBtn
             // 
             this.SendFrameBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -845,6 +837,14 @@
             this.SendFrameBtn.TextColor = System.Drawing.Color.White;
             this.SendFrameBtn.UseVisualStyleBackColor = false;
             this.SendFrameBtn.Click += new System.EventHandler(this.SendFrameBtn_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(13, 13);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(444, 314);
+            this.panel2.TabIndex = 1;
             // 
             // sandboxForm
             // 

@@ -26,7 +26,7 @@ namespace HAL062app.moduly.manipulator
                 if (display != null)
                 {
 
-
+                    
                     //  model.wywolaj += UpdateTextBox1;
                     //    display.DequeueAction += dequeue;
                     display.sendFrameToController_Action += sendMessageToKomunikacja;

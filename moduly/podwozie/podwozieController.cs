@@ -54,10 +54,16 @@ namespace HAL062app.moduly.podwozie
                      * W drugą stronę analogicznie, ale na odwrót 
                      */
 
-                    
+                    display.sendMotorDataToController_Action += sendMotorDataToModel_Action;
+
+
                 }
             }
 
+        }
+        private void sendMotorDataToModel_Action (motorData data)
+        {
+            model.sendSpeed(data);
         }
 
         private void sendMessageToKomunikacja(Message msg)

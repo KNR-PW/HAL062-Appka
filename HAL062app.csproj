@@ -163,6 +163,7 @@
       <DependentUpon>SterowanieWPF.xaml</DependentUpon>
     </Compile>
     <Compile Include="moduly\Message.cs" />
+    <Compile Include="moduly\podwozie\motorData.cs" />
     <Compile Include="moduly\podwozie\podwozieController.cs" />
     <Compile Include="moduly\podwozie\podwozieForm.cs">
       <SubType>Form</SubType>
