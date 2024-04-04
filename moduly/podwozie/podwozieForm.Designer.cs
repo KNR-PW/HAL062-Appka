@@ -33,6 +33,7 @@
             this.TurningSpeedTrack = new System.Windows.Forms.TrackBar();
             this.ForwardSpeedTrack = new System.Windows.Forms.TrackBar();
             this.joystickPictureBox = new System.Windows.Forms.PictureBox();
+            this.customButton1 = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -41,18 +42,21 @@
             this.LBStextbox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.LBtext = new System.Windows.Forms.Label();
+            this.LBbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.LFStextbox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.LFtext = new System.Windows.Forms.Label();
+            this.LFbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.LMStextbox = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.LMtext = new System.Windows.Forms.Label();
+            this.LMbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -61,24 +65,20 @@
             this.RBStextbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.RBtext = new System.Windows.Forms.Label();
+            this.RBbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.RFStextbox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.RFtext = new System.Windows.Forms.Label();
+            this.RFbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.RMStextbox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.RMtext = new System.Windows.Forms.Label();
-            this.customButton1 = new HAL062app.CustomControls.CustomButton();
-            this.LBbutton = new HAL062app.CustomControls.CustomToggleButton();
-            this.LFbutton = new HAL062app.CustomControls.CustomToggleButton();
-            this.LMbutton = new HAL062app.CustomControls.CustomToggleButton();
-            this.RBbutton = new HAL062app.CustomControls.CustomToggleButton();
-            this.RFbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.RMbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -172,6 +172,26 @@
             this.joystickPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseDown);
             this.joystickPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseMove);
             this.joystickPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseUp);
+            // 
+            // customButton1
+            // 
+            this.customButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.customButton1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.customButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.customButton1.BorderRadius = 12;
+            this.customButton1.BorderSize = 0;
+            this.customButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customButton1.FlatAppearance.BorderSize = 0;
+            this.customButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.customButton1.Font = new System.Drawing.Font("Radikal WUT", 16F, System.Drawing.FontStyle.Bold);
+            this.customButton1.ForeColor = System.Drawing.Color.White;
+            this.customButton1.Location = new System.Drawing.Point(370, 356);
+            this.customButton1.Name = "customButton1";
+            this.customButton1.Size = new System.Drawing.Size(86, 82);
+            this.customButton1.TabIndex = 3;
+            this.customButton1.Text = "Start";
+            this.customButton1.TextColor = System.Drawing.Color.White;
+            this.customButton1.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel3
             // 
@@ -291,6 +311,20 @@
             this.LBtext.Text = "Napęd\r\nwłączony";
             this.LBtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // LBbutton
+            // 
+            this.LBbutton.AutoSize = true;
+            this.LBbutton.Checked = true;
+            this.LBbutton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.LBbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LBbutton.Location = new System.Drawing.Point(66, 3);
+            this.LBbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.LBbutton.Name = "LBbutton";
+            this.LBbutton.Size = new System.Drawing.Size(89, 21);
+            this.LBbutton.TabIndex = 1;
+            this.LBbutton.Text = "customToggleButton4";
+            this.LBbutton.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 2;
@@ -372,6 +406,20 @@
             this.LFtext.Text = "Napęd\r\nwłączony";
             this.LFtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // LFbutton
+            // 
+            this.LFbutton.AutoSize = true;
+            this.LFbutton.Checked = true;
+            this.LFbutton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.LFbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LFbutton.Location = new System.Drawing.Point(66, 3);
+            this.LFbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.LFbutton.Name = "LFbutton";
+            this.LFbutton.Size = new System.Drawing.Size(89, 21);
+            this.LFbutton.TabIndex = 1;
+            this.LFbutton.Text = "customToggleButton5";
+            this.LFbutton.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel11
             // 
             this.tableLayoutPanel11.ColumnCount = 2;
@@ -452,6 +500,18 @@
             this.LMtext.TabIndex = 4;
             this.LMtext.Text = "Napęd\r\nwłączony";
             this.LMtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // LMbutton
+            // 
+            this.LMbutton.AutoSize = true;
+            this.LMbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LMbutton.Location = new System.Drawing.Point(66, 3);
+            this.LMbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.LMbutton.Name = "LMbutton";
+            this.LMbutton.Size = new System.Drawing.Size(89, 21);
+            this.LMbutton.TabIndex = 1;
+            this.LMbutton.Text = "customToggleButton6";
+            this.LMbutton.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
@@ -563,6 +623,20 @@
             this.RBtext.Text = "Napęd\r\nwłączony";
             this.RBtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // RBbutton
+            // 
+            this.RBbutton.AutoSize = true;
+            this.RBbutton.Checked = true;
+            this.RBbutton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.RBbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RBbutton.Location = new System.Drawing.Point(66, 3);
+            this.RBbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.RBbutton.Name = "RBbutton";
+            this.RBbutton.Size = new System.Drawing.Size(89, 21);
+            this.RBbutton.TabIndex = 1;
+            this.RBbutton.Text = "customToggleButton3";
+            this.RBbutton.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 2;
@@ -644,6 +718,20 @@
             this.RFtext.Text = "Napęd\r\nwłączony";
             this.RFtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // RFbutton
+            // 
+            this.RFbutton.AutoSize = true;
+            this.RFbutton.Checked = true;
+            this.RFbutton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.RFbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RFbutton.Location = new System.Drawing.Point(66, 3);
+            this.RFbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.RFbutton.Name = "RFbutton";
+            this.RFbutton.Size = new System.Drawing.Size(89, 21);
+            this.RFbutton.TabIndex = 1;
+            this.RFbutton.Text = "customToggleButton2";
+            this.RFbutton.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
@@ -724,94 +812,6 @@
             this.RMtext.TabIndex = 4;
             this.RMtext.Text = "Napęd\r\nwłączony";
             this.RMtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // customButton1
-            // 
-            this.customButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.customButton1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.customButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.customButton1.BorderRadius = 12;
-            this.customButton1.BorderSize = 0;
-            this.customButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customButton1.FlatAppearance.BorderSize = 0;
-            this.customButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.customButton1.Font = new System.Drawing.Font("Radikal WUT", 16F, System.Drawing.FontStyle.Bold);
-            this.customButton1.ForeColor = System.Drawing.Color.White;
-            this.customButton1.Location = new System.Drawing.Point(370, 356);
-            this.customButton1.Name = "customButton1";
-            this.customButton1.Size = new System.Drawing.Size(86, 82);
-            this.customButton1.TabIndex = 3;
-            this.customButton1.Text = "Start";
-            this.customButton1.TextColor = System.Drawing.Color.White;
-            this.customButton1.UseVisualStyleBackColor = false;
-            // 
-            // LBbutton
-            // 
-            this.LBbutton.AutoSize = true;
-            this.LBbutton.Checked = true;
-            this.LBbutton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.LBbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LBbutton.Location = new System.Drawing.Point(66, 3);
-            this.LBbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.LBbutton.Name = "LBbutton";
-            this.LBbutton.Size = new System.Drawing.Size(89, 21);
-            this.LBbutton.TabIndex = 1;
-            this.LBbutton.Text = "customToggleButton4";
-            this.LBbutton.UseVisualStyleBackColor = true;
-            // 
-            // LFbutton
-            // 
-            this.LFbutton.AutoSize = true;
-            this.LFbutton.Checked = true;
-            this.LFbutton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.LFbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LFbutton.Location = new System.Drawing.Point(66, 3);
-            this.LFbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.LFbutton.Name = "LFbutton";
-            this.LFbutton.Size = new System.Drawing.Size(89, 21);
-            this.LFbutton.TabIndex = 1;
-            this.LFbutton.Text = "customToggleButton5";
-            this.LFbutton.UseVisualStyleBackColor = true;
-            // 
-            // LMbutton
-            // 
-            this.LMbutton.AutoSize = true;
-            this.LMbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LMbutton.Location = new System.Drawing.Point(66, 3);
-            this.LMbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.LMbutton.Name = "LMbutton";
-            this.LMbutton.Size = new System.Drawing.Size(89, 21);
-            this.LMbutton.TabIndex = 1;
-            this.LMbutton.Text = "customToggleButton6";
-            this.LMbutton.UseVisualStyleBackColor = true;
-            // 
-            // RBbutton
-            // 
-            this.RBbutton.AutoSize = true;
-            this.RBbutton.Checked = true;
-            this.RBbutton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.RBbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RBbutton.Location = new System.Drawing.Point(66, 3);
-            this.RBbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.RBbutton.Name = "RBbutton";
-            this.RBbutton.Size = new System.Drawing.Size(89, 21);
-            this.RBbutton.TabIndex = 1;
-            this.RBbutton.Text = "customToggleButton3";
-            this.RBbutton.UseVisualStyleBackColor = true;
-            // 
-            // RFbutton
-            // 
-            this.RFbutton.AutoSize = true;
-            this.RFbutton.Checked = true;
-            this.RFbutton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.RFbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RFbutton.Location = new System.Drawing.Point(66, 3);
-            this.RFbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.RFbutton.Name = "RFbutton";
-            this.RFbutton.Size = new System.Drawing.Size(89, 21);
-            this.RFbutton.TabIndex = 1;
-            this.RFbutton.Text = "customToggleButton2";
-            this.RFbutton.UseVisualStyleBackColor = true;
             // 
             // RMbutton
             // 

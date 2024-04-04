@@ -24,12 +24,17 @@ namespace HAL062app.moduly.podwozie
         private int turningSpeedMaxLimit = 5;
         int limitRadius = 160;
 
+
+        private Timer timer;
+        private int readInterval = 50;
+        private int elapsedTime = 0;
+
         public Action<motorData> sendMotorDataToController_Action;
 
         public podwozieForm()
         {
             InitializeComponent();
-            
+            InitializeTimer();
             
             
             joystickPosition.X = joystickPictureBox.ClientSize.Width/2;
@@ -44,8 +49,27 @@ namespace HAL062app.moduly.podwozie
 
         }
 
-      
-    
+        private void InitializeTimer()
+        {
+            timer = new Timer();
+            timer.Interval = 100;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+        }
+        private async void Timer_Tick(object sender, EventArgs e)
+        {
+            elapsedTime += timer.Interval;
+
+            if (elapsedTime >= readInterval)
+            {
+                // Wywołaj funkcję aktualizacji joysticka i odczytu prędkości
+                UpdateJoystick();
+                elapsedTime = 0; // Zresetuj licznik czasu
+            }
+
+        }
+
 
         private void joystickPictureBox_Paint(object sender, PaintEventArgs e)
         {
@@ -58,7 +82,7 @@ namespace HAL062app.moduly.podwozie
             if(e.Button == MouseButtons.Left) { 
             isDragging = true;
             lastMousePosition = e.Location;
-            UpdateJoystick();
+        
             }
         }
 
@@ -71,7 +95,7 @@ namespace HAL062app.moduly.podwozie
                 joystickPosition.Y = joystickPictureBox.ClientSize.Height / 2 ;
                 joystickPictureBox.Refresh();
                 lastMousePosition = e.Location;
-                UpdateJoystick();
+               
             }
         }
 
@@ -105,13 +129,12 @@ namespace HAL062app.moduly.podwozie
 
                 joystickPictureBox.Refresh();
              
-                UpdateJoystick();
                 lastMousePosition = e.Location;
 
             }
         }
 
-        async private void UpdateJoystick()
+        private async void UpdateJoystick()
         {
             ForwardSpeedTrack.Maximum = forwardSpeedMaxLimit;
             ForwardSpeedTrack.Minimum = -forwardSpeedMaxLimit;
@@ -122,7 +145,7 @@ namespace HAL062app.moduly.podwozie
             turningSpeed = turningSpeedMaxLimit*(joystickPosition.X - joystickPictureBox.ClientSize.Width/2) / limitRadius;
             ForwardSpeedTrack.Value = forwardSpeed;
             TurningSpeedTrack.Value = turningSpeed;
-            await Task.Delay(200);
+            
             sendSpeeds(forwardSpeed,turningSpeed);
 
         }

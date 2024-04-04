@@ -127,9 +127,8 @@ namespace HAL062app.moduly.komunikacja
             //dorobic zwracanie informacji, jesli kolejka pusta
         }
 
-        public async void SendMMessageToHALService(Message message)
+        public void SendMMessageToHALService(Message message)
         {
-            Task.Delay(200);
             messageQueue.Enqueue(message);
             logMessages.Add(message);
             UpdateLogTerminal(logMessages);

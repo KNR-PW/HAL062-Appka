@@ -79,25 +79,15 @@ namespace HAL062app.moduly.podwozie
             byte[] x6 = BitConverter.GetBytes(0);
             frame.buffer[0] = (byte)('#');
             frame.buffer[1] = (byte)(20);
-            
 
-            x1 = BitConverter.GetBytes((float)(motorData.RF));
-            x2 = BitConverter.GetBytes((float)(motorData.RM));  
-            x3 = BitConverter.GetBytes((float)(motorData.RB));  
-            x4 = BitConverter.GetBytes((float)(motorData.LF)); 
-            x5 = BitConverter.GetBytes((float)(motorData.LM)); 
-            x6 = BitConverter.GetBytes((float)(motorData.LB)); 
-
-            for (int j = 0; j < 4; j++)
-            {
-                frame.buffer[2 + j] = x1[3 - j];
-                frame.buffer[2 + 4 + j] = x2[3 - j];
-                frame.buffer[2 + j] = x3[3 - j];
-                frame.buffer[2 + 4 + j] = x4[3 - j];
-                frame.buffer[2 + j] = x5[3 - j];
-                frame.buffer[2 + 4 + j] = x6[3 - j];
-            }
-
+            frame.buffer[2] = (byte)motorData.RF;
+            frame.buffer[3] = (byte)motorData.RM;  
+            frame.buffer[4] = (byte)motorData.RB;  
+            frame.buffer[5] = (byte)motorData.LF; 
+            frame.buffer[6] = (byte)motorData.LM;
+            frame.buffer[7] = (byte)motorData.LB;
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
           
             return frame;
