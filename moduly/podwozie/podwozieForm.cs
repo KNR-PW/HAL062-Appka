@@ -18,13 +18,13 @@ namespace HAL062app.moduly.podwozie
         bool isDragging = false;
         private System.Drawing.Point lastMousePosition = System.Drawing.Point.Empty;
         private int joystickRadius = 30;
-        private int forwardSpeed = 0;
-        private int turningSpeed = 0;
-        private int forwardSpeedMaxLimit = 10;
-        private int turningSpeedMaxLimit = 5;
+        private float forwardSpeed = 0;
+        private float turningSpeed = 0;
+        private float forwardSpeedMaxLimit = 9;
+        private float turningSpeedMaxLimit = 3;
         int limitRadius = 160;
-
-
+        Keys LastKeys = Keys.None;
+        private bool isMoving = false;
         private Timer timer;
         private int readInterval = 50;
         private int elapsedTime = 0;
@@ -35,14 +35,14 @@ namespace HAL062app.moduly.podwozie
         {
             InitializeComponent();
             InitializeTimer();
-            
-            
+            this.KeyPreview = true;
+
             joystickPosition.X = joystickPictureBox.ClientSize.Width/2;
             joystickPosition.Y = joystickPictureBox.ClientSize.Height/2;
-            ForwardSpeedTrack.Maximum = forwardSpeedMaxLimit;
-            ForwardSpeedTrack.Minimum = -forwardSpeedMaxLimit;
-            TurningSpeedTrack.Maximum = turningSpeedMaxLimit;
-            TurningSpeedTrack.Minimum = -turningSpeedMaxLimit;
+            ForwardSpeedTrack.Maximum = (int)forwardSpeedMaxLimit;
+            ForwardSpeedTrack.Minimum = (int)-forwardSpeedMaxLimit;
+            TurningSpeedTrack.Maximum = (int)turningSpeedMaxLimit;
+            TurningSpeedTrack.Minimum = (int)-turningSpeedMaxLimit;
             joystickPictureBox.Refresh();
 
 
@@ -52,7 +52,7 @@ namespace HAL062app.moduly.podwozie
         private void InitializeTimer()
         {
             timer = new Timer();
-            timer.Interval = 100;
+            timer.Interval = 25;
             timer.Tick += Timer_Tick;
             timer.Start();
 
@@ -66,6 +66,8 @@ namespace HAL062app.moduly.podwozie
                 // Wywołaj funkcję aktualizacji joysticka i odczytu prędkości
                 UpdateJoystick();
                 elapsedTime = 0; // Zresetuj licznik czasu
+               // if(isMoving) MoveJoystick(LastKeys);
+
             }
 
         }
@@ -79,7 +81,8 @@ namespace HAL062app.moduly.podwozie
 
         private void joystickPictureBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left) { 
+            joystickPictureBox.Focus();
+            if (e.Button == MouseButtons.Left) { 
             isDragging = true;
             lastMousePosition = e.Location;
         
@@ -88,6 +91,7 @@ namespace HAL062app.moduly.podwozie
 
         private void joystickPictureBox_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+            joystickPictureBox.Focus();
             if (e.Button == MouseButtons.Left)
             {
                 isDragging = false;
@@ -105,7 +109,8 @@ namespace HAL062app.moduly.podwozie
         }
         async private void joystickPictureBox_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            if(isDragging)
+            joystickPictureBox.Focus();
+            if (isDragging)
             {
                 int deltaX = e.X - lastMousePosition.X;
                 int deltaY = e.Y - lastMousePosition.Y;
@@ -114,8 +119,7 @@ namespace HAL062app.moduly.podwozie
                 int height = joystickPictureBox.ClientSize.Height;
                 int width = joystickPictureBox.ClientSize.Width;
                 
-                textBox3.Text = joystickPosition.X.ToString();
-                RFStextbox.Text = joystickPosition.Y.ToString();
+              
 
                 if (joystickPosition.X - width / 2 >= 0)
                     joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + pitagoras(limitRadius, joystickPosition.Y - height/2) - joystickRadius);
@@ -136,31 +140,129 @@ namespace HAL062app.moduly.podwozie
 
         private async void UpdateJoystick()
         {
-            ForwardSpeedTrack.Maximum = forwardSpeedMaxLimit;
-            ForwardSpeedTrack.Minimum = -forwardSpeedMaxLimit;
-            TurningSpeedTrack.Maximum = turningSpeedMaxLimit;
-            TurningSpeedTrack.Minimum = -turningSpeedMaxLimit;
+            ForwardSpeedTrack.Maximum = (int)forwardSpeedMaxLimit;
+            ForwardSpeedTrack.Minimum = (int)-forwardSpeedMaxLimit;
+            TurningSpeedTrack.Maximum = (int)turningSpeedMaxLimit;
+            TurningSpeedTrack.Minimum = (int)-turningSpeedMaxLimit;
 
-            forwardSpeed = -forwardSpeedMaxLimit*(joystickPosition.Y - joystickPictureBox.ClientSize.Height/2) / limitRadius;
-            turningSpeed = turningSpeedMaxLimit*(joystickPosition.X - joystickPictureBox.ClientSize.Width/2) / limitRadius;
-            ForwardSpeedTrack.Value = forwardSpeed;
-            TurningSpeedTrack.Value = turningSpeed;
-            
+            forwardSpeed = -((float)joystickPosition.Y - (float)joystickPictureBox.ClientSize.Height/2.0f) / (float)(limitRadius-joystickRadius);
+            turningSpeed = ((float)joystickPosition.X - (float)joystickPictureBox.ClientSize.Width/2.0f) / (float)(limitRadius-joystickRadius);
+            ForwardSpeedTrack.Value = (int)forwardSpeed;
+            TurningSpeedTrack.Value = (int)turningSpeed;
+            LMStextbox.Text = forwardSpeed.ToString();
+            RMStextbox.Text = turningSpeed.ToString();
             sendSpeeds(forwardSpeed,turningSpeed);
 
         }
-        private void sendSpeeds(int fspeed, int tspeed)
+        private void sendSpeeds(float fspeed, float tspeed)
         {
             float coeff = 100.0f / 6.45f;
+          
             int rightSpeed = (int)(coeff * (6.45f * fspeed + 2.97f * tspeed));
             int leftSpeed = (int)(coeff * (6.45f * fspeed - 2.97f * tspeed));
-            motorData data = new motorData(rightSpeed, 0, rightSpeed, leftSpeed, 0, leftSpeed);
+            LFStextbox.Text = leftSpeed.ToString();
+            LBStextbox.Text = leftSpeed.ToString();
+            RFStextbox.Text = rightSpeed.ToString();
+            RBStextbox.Text = rightSpeed.ToString();
+            motorData data = new motorData(rightSpeed, leftSpeed, 0, 0, 0, 0);
             sendMotorDataToController_Action(data);
 
+        }
+
+       
+
+     
+        private void joystickPictureBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            /*
+            int step = 5;
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    joystickPosition.Y -= step; // Przesuń joystick w górę
+                    break;
+                case Keys.Down:
+                    joystickPosition.Y += step; // Przesuń joystick w dół
+                    break;
+                case Keys.Left:
+                    joystickPosition.X -= step; // Przesuń joystick w lewo
+                    break;
+                case Keys.Right:
+                    joystickPosition.X += step; // Przesuń joystick w prawo
+                    break;
+            }
+
+            // Sprawdź, czy wciśnięte są klawisze strzałki w górę i lewo jednocześnie
+            if (e.KeyCode == Keys.Up && e.KeyCode == Keys.Left)
+            {
+                joystickPosition.Y -= step; // Przesuń joystick w górę
+                joystickPosition.X -= step; // Przesuń joystick w lewo
+            }
+            joystickPictureBox.Refresh();
+            */
+        }
+
+        private void podwozieForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            /*switch (e.KeyCode)
+            {
+                case Keys.Up:
+                case Keys.Down:
+                case Keys.Left:
+                case Keys.Right:
+                    isMoving = true; // Ustawienie flagi, że obrazek jest przesuwany
+                    MoveJoystick(e.KeyCode); // Przesuń obrazek
+                    break;
+            }*/
+        }
+
+        private void MoveJoystick(Keys key)
+        {
+         /*
+            int step = 5;
+            // Określ kierunek przesunięcia na podstawie wciśniętego klawisza
+            switch (key)
+            {
+                case Keys.Up:
+                    joystickPosition.Y = -step; // Przesuń obrazek w górę
+                    break;
+                case Keys.Down:
+                    joystickPosition.Y = step; // Przesuń obrazek w dół
+                    break;
+                case Keys.Left:
+                    joystickPosition.X = -step; // Przesuń obrazek w lewo
+                    break;
+                case Keys.Right:
+                    joystickPosition.X = step; // Przesuń obrazek w prawo
+                    break;
+            }
+            UpdateJoystick();
+            joystickPictureBox.Refresh();
+            // Przesuń pozycję obrazka
+
+            // Sprawdź, czy obrazek nadal ma być przesuwany
+            if (isMoving)
+            {
+                // Kontynuuj przesuwanie obrazka
+                MoveJoystick(key);
+            }*/
+        }
+
+        private void podwozieForm_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            /*switch (e.KeyCode)
+            {
+                case Keys.Up:
+                case Keys.Down:
+                case Keys.Left:
+                case Keys.Right:
+                    isMoving = false; // Ustawienie flagi, że obrazek nie jest już przesuwany
+                    break;
+            }*/
         }
     }
 
     
-
+    
 
 }

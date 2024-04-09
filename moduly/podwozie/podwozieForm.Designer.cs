@@ -143,6 +143,7 @@
             this.TurningSpeedTrack.Name = "TurningSpeedTrack";
             this.TurningSpeedTrack.Size = new System.Drawing.Size(359, 82);
             this.TurningSpeedTrack.TabIndex = 0;
+            this.TurningSpeedTrack.TabStop = false;
             this.TurningSpeedTrack.TickStyle = System.Windows.Forms.TickStyle.Both;
             // 
             // ForwardSpeedTrack
@@ -155,6 +156,7 @@
             this.ForwardSpeedTrack.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.ForwardSpeedTrack.Size = new System.Drawing.Size(86, 345);
             this.ForwardSpeedTrack.TabIndex = 1;
+            this.ForwardSpeedTrack.TabStop = false;
             this.ForwardSpeedTrack.TickStyle = System.Windows.Forms.TickStyle.Both;
             // 
             // joystickPictureBox
@@ -172,6 +174,7 @@
             this.joystickPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseDown);
             this.joystickPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseMove);
             this.joystickPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseUp);
+            this.joystickPictureBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.joystickPictureBox_PreviewKeyDown);
             // 
             // customButton1
             // 
@@ -835,6 +838,8 @@
             this.Name = "podwozieForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "podwozieForm";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.podwozieForm_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.podwozieForm_KeyUp);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
