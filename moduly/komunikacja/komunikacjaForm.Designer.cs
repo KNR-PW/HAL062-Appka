@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(komunikacjaForm));
             this.sendTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -802,8 +803,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(264, 224);
             this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "0 - HAL062\n1 - Terminal\n2 - Podwozie\n3 - Laboratorium\n4 - Manipulator\n400 - Sandb" +
-    "ox\n400->60 - ErrorLog\n";
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
             // tableLayoutPanel15
             // 

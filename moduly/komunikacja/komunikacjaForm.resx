@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>0 - HAL062
+1 - Terminal
+2 - Podwozie
+3 - Laboratorium
+4 - Manipulator
+400 - Sandbox
+400-&gt;60 - ErrorLog
+
+Bluetooth łazika - Elon-Musk, hasło 1234
+Jeżeli nie pokazuje się, to najpierw trzeba w ustawieniach komputerach połączyć się z tym BT</value>
+  </data>
 </root>

@@ -33,7 +33,7 @@
             this.TurningSpeedTrack = new System.Windows.Forms.TrackBar();
             this.ForwardSpeedTrack = new System.Windows.Forms.TrackBar();
             this.joystickPictureBox = new System.Windows.Forms.PictureBox();
-            this.customButton1 = new HAL062app.CustomControls.CustomButton();
+            this.startJoystickButton = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -80,6 +80,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.RMtext = new System.Windows.Forms.Label();
             this.RMbutton = new HAL062app.CustomControls.CustomToggleButton();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.IntervalOfSendingTextbox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.SetFrequencyButton = new System.Windows.Forms.Button();
+            this.TimerTickTextbox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.errorTextbox = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TurningSpeedTrack)).BeginInit();
@@ -95,6 +105,9 @@
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -104,6 +117,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel12, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -123,7 +137,7 @@
             this.tableLayoutPanel2.Controls.Add(this.TurningSpeedTrack, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.ForwardSpeedTrack, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.joystickPictureBox, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.customButton1, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.startJoystickButton, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(701, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -174,27 +188,27 @@
             this.joystickPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseDown);
             this.joystickPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseMove);
             this.joystickPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseUp);
-            this.joystickPictureBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.joystickPictureBox_PreviewKeyDown);
             // 
-            // customButton1
+            // startJoystickButton
             // 
-            this.customButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.customButton1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.customButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.customButton1.BorderRadius = 12;
-            this.customButton1.BorderSize = 0;
-            this.customButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customButton1.FlatAppearance.BorderSize = 0;
-            this.customButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.customButton1.Font = new System.Drawing.Font("Radikal WUT", 16F, System.Drawing.FontStyle.Bold);
-            this.customButton1.ForeColor = System.Drawing.Color.White;
-            this.customButton1.Location = new System.Drawing.Point(370, 356);
-            this.customButton1.Name = "customButton1";
-            this.customButton1.Size = new System.Drawing.Size(86, 82);
-            this.customButton1.TabIndex = 3;
-            this.customButton1.Text = "Start";
-            this.customButton1.TextColor = System.Drawing.Color.White;
-            this.customButton1.UseVisualStyleBackColor = false;
+            this.startJoystickButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.startJoystickButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.startJoystickButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.startJoystickButton.BorderRadius = 12;
+            this.startJoystickButton.BorderSize = 0;
+            this.startJoystickButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.startJoystickButton.FlatAppearance.BorderSize = 0;
+            this.startJoystickButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.startJoystickButton.Font = new System.Drawing.Font("Radikal WUT", 16F, System.Drawing.FontStyle.Bold);
+            this.startJoystickButton.ForeColor = System.Drawing.Color.White;
+            this.startJoystickButton.Location = new System.Drawing.Point(370, 356);
+            this.startJoystickButton.Name = "startJoystickButton";
+            this.startJoystickButton.Size = new System.Drawing.Size(86, 82);
+            this.startJoystickButton.TabIndex = 3;
+            this.startJoystickButton.Text = "Start";
+            this.startJoystickButton.TextColor = System.Drawing.Color.White;
+            this.startJoystickButton.UseVisualStyleBackColor = false;
+            this.startJoystickButton.Click += new System.EventHandler(this.startJoystickButton_Click_1);
             // 
             // tableLayoutPanel3
             // 
@@ -828,6 +842,134 @@
             this.RMbutton.Text = "customToggleButton1";
             this.RMbutton.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel12.ColumnCount = 2;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.Controls.Add(this.panel1, 1, 0);
+            this.tableLayoutPanel12.Controls.Add(this.errorTextbox, 1, 1);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(701, 451);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 2;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.95699F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.04301F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(460, 187);
+            this.tableLayoutPanel12.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tableLayoutPanel13);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(233, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(223, 137);
+            this.panel1.TabIndex = 0;
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.ColumnCount = 2;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel13.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel13.Controls.Add(this.IntervalOfSendingTextbox, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.label6, 0, 2);
+            this.tableLayoutPanel13.Controls.Add(this.SetFrequencyButton, 1, 2);
+            this.tableLayoutPanel13.Controls.Add(this.TimerTickTextbox, 1, 1);
+            this.tableLayoutPanel13.Controls.Add(this.label9, 0, 1);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 3;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(223, 137);
+            this.tableLayoutPanel13.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 46);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Okres wysyłania [ms]";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // IntervalOfSendingTextbox
+            // 
+            this.IntervalOfSendingTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.IntervalOfSendingTextbox.Location = new System.Drawing.Point(136, 3);
+            this.IntervalOfSendingTextbox.Name = "IntervalOfSendingTextbox";
+            this.IntervalOfSendingTextbox.Size = new System.Drawing.Size(84, 20);
+            this.IntervalOfSendingTextbox.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Location = new System.Drawing.Point(0, 92);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(133, 45);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Zapisz ustawienia";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SetFrequencyButton
+            // 
+            this.SetFrequencyButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SetFrequencyButton.Location = new System.Drawing.Point(138, 97);
+            this.SetFrequencyButton.Margin = new System.Windows.Forms.Padding(5);
+            this.SetFrequencyButton.Name = "SetFrequencyButton";
+            this.SetFrequencyButton.Size = new System.Drawing.Size(80, 35);
+            this.SetFrequencyButton.TabIndex = 8;
+            this.SetFrequencyButton.Text = "Ustaw";
+            this.SetFrequencyButton.UseVisualStyleBackColor = true;
+            this.SetFrequencyButton.Click += new System.EventHandler(this.SetFrequencyButton_Click);
+            // 
+            // TimerTickTextbox
+            // 
+            this.TimerTickTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TimerTickTextbox.Location = new System.Drawing.Point(136, 49);
+            this.TimerTickTextbox.Name = "TimerTickTextbox";
+            this.TimerTickTextbox.Size = new System.Drawing.Size(84, 20);
+            this.TimerTickTextbox.TabIndex = 10;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label9.Location = new System.Drawing.Point(3, 46);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(127, 46);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Okres próbkowania zegara [ms]";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // errorTextbox
+            // 
+            this.errorTextbox.AutoSize = true;
+            this.errorTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.errorTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.errorTextbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.errorTextbox.Location = new System.Drawing.Point(233, 145);
+            this.errorTextbox.Name = "errorTextbox";
+            this.errorTextbox.Size = new System.Drawing.Size(223, 41);
+            this.errorTextbox.TabIndex = 1;
+            this.errorTextbox.Text = "Komunikaty";
+            // 
             // podwozieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -862,6 +1004,11 @@
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tableLayoutPanel12.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel13.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -919,6 +1066,16 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label RFtext;
         private CustomControls.CustomToggleButton RFbutton;
-        private CustomControls.CustomButton customButton1;
+        private CustomControls.CustomButton startJoystickButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox IntervalOfSendingTextbox;
+        private System.Windows.Forms.Button SetFrequencyButton;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox TimerTickTextbox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label errorTextbox;
     }
 }
