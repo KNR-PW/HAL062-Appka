@@ -40,5 +40,36 @@ namespace HAL062app.moduly.laboratorium
             msg.text = textBox2.Text;
             MessageAction?.Invoke(msg);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //#194500500XXXXXXXXXX #C20300320032000000
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

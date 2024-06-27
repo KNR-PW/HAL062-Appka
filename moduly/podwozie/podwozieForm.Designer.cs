@@ -33,7 +33,6 @@
             this.TurningSpeedTrack = new System.Windows.Forms.TrackBar();
             this.ForwardSpeedTrack = new System.Windows.Forms.TrackBar();
             this.joystickPictureBox = new System.Windows.Forms.PictureBox();
-            this.startJoystickButton = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -42,21 +41,18 @@
             this.LBStextbox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.LBtext = new System.Windows.Forms.Label();
-            this.LBbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.LFStextbox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.LFtext = new System.Windows.Forms.Label();
-            this.LFbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.LMStextbox = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.LMtext = new System.Windows.Forms.Label();
-            this.LMbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -65,21 +61,18 @@
             this.RBStextbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.RBtext = new System.Windows.Forms.Label();
-            this.RBbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.RFStextbox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.RFtext = new System.Windows.Forms.Label();
-            this.RFbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.RMStextbox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.RMtext = new System.Windows.Forms.Label();
-            this.RMbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
@@ -90,6 +83,20 @@
             this.TimerTickTextbox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.errorTextbox = new System.Windows.Forms.Label();
+            this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.horizontalKeyboardTextbox = new System.Windows.Forms.TextBox();
+            this.verticalKeyboardTextbox = new System.Windows.Forms.TextBox();
+            this.returnKeyboardTextbox = new System.Windows.Forms.TextBox();
+            this.startJoystickButton = new HAL062app.CustomControls.CustomButton();
+            this.LBbutton = new HAL062app.CustomControls.CustomToggleButton();
+            this.LFbutton = new HAL062app.CustomControls.CustomToggleButton();
+            this.LMbutton = new HAL062app.CustomControls.CustomToggleButton();
+            this.RBbutton = new HAL062app.CustomControls.CustomToggleButton();
+            this.RFbutton = new HAL062app.CustomControls.CustomToggleButton();
+            this.RMbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TurningSpeedTrack)).BeginInit();
@@ -108,6 +115,7 @@
             this.tableLayoutPanel12.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
+            this.tableLayoutPanel14.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -188,27 +196,6 @@
             this.joystickPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseDown);
             this.joystickPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseMove);
             this.joystickPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.joystickPictureBox_MouseUp);
-            // 
-            // startJoystickButton
-            // 
-            this.startJoystickButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.startJoystickButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.startJoystickButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.startJoystickButton.BorderRadius = 12;
-            this.startJoystickButton.BorderSize = 0;
-            this.startJoystickButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.startJoystickButton.FlatAppearance.BorderSize = 0;
-            this.startJoystickButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startJoystickButton.Font = new System.Drawing.Font("Radikal WUT", 16F, System.Drawing.FontStyle.Bold);
-            this.startJoystickButton.ForeColor = System.Drawing.Color.White;
-            this.startJoystickButton.Location = new System.Drawing.Point(370, 356);
-            this.startJoystickButton.Name = "startJoystickButton";
-            this.startJoystickButton.Size = new System.Drawing.Size(86, 82);
-            this.startJoystickButton.TabIndex = 3;
-            this.startJoystickButton.Text = "Start";
-            this.startJoystickButton.TextColor = System.Drawing.Color.White;
-            this.startJoystickButton.UseVisualStyleBackColor = false;
-            this.startJoystickButton.Click += new System.EventHandler(this.startJoystickButton_Click_1);
             // 
             // tableLayoutPanel3
             // 
@@ -328,20 +315,6 @@
             this.LBtext.Text = "Napęd\r\nwłączony";
             this.LBtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // LBbutton
-            // 
-            this.LBbutton.AutoSize = true;
-            this.LBbutton.Checked = true;
-            this.LBbutton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.LBbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LBbutton.Location = new System.Drawing.Point(66, 3);
-            this.LBbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.LBbutton.Name = "LBbutton";
-            this.LBbutton.Size = new System.Drawing.Size(89, 21);
-            this.LBbutton.TabIndex = 1;
-            this.LBbutton.Text = "customToggleButton4";
-            this.LBbutton.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 2;
@@ -423,20 +396,6 @@
             this.LFtext.Text = "Napęd\r\nwłączony";
             this.LFtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // LFbutton
-            // 
-            this.LFbutton.AutoSize = true;
-            this.LFbutton.Checked = true;
-            this.LFbutton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.LFbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LFbutton.Location = new System.Drawing.Point(66, 3);
-            this.LFbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.LFbutton.Name = "LFbutton";
-            this.LFbutton.Size = new System.Drawing.Size(89, 21);
-            this.LFbutton.TabIndex = 1;
-            this.LFbutton.Text = "customToggleButton5";
-            this.LFbutton.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanel11
             // 
             this.tableLayoutPanel11.ColumnCount = 2;
@@ -517,18 +476,6 @@
             this.LMtext.TabIndex = 4;
             this.LMtext.Text = "Napęd\r\nwłączony";
             this.LMtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // LMbutton
-            // 
-            this.LMbutton.AutoSize = true;
-            this.LMbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LMbutton.Location = new System.Drawing.Point(66, 3);
-            this.LMbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.LMbutton.Name = "LMbutton";
-            this.LMbutton.Size = new System.Drawing.Size(89, 21);
-            this.LMbutton.TabIndex = 1;
-            this.LMbutton.Text = "customToggleButton6";
-            this.LMbutton.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
@@ -640,20 +587,6 @@
             this.RBtext.Text = "Napęd\r\nwłączony";
             this.RBtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // RBbutton
-            // 
-            this.RBbutton.AutoSize = true;
-            this.RBbutton.Checked = true;
-            this.RBbutton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.RBbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RBbutton.Location = new System.Drawing.Point(66, 3);
-            this.RBbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.RBbutton.Name = "RBbutton";
-            this.RBbutton.Size = new System.Drawing.Size(89, 21);
-            this.RBbutton.TabIndex = 1;
-            this.RBbutton.Text = "customToggleButton3";
-            this.RBbutton.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 2;
@@ -734,20 +667,6 @@
             this.RFtext.TabIndex = 4;
             this.RFtext.Text = "Napęd\r\nwłączony";
             this.RFtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // RFbutton
-            // 
-            this.RFbutton.AutoSize = true;
-            this.RFbutton.Checked = true;
-            this.RFbutton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.RFbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RFbutton.Location = new System.Drawing.Point(66, 3);
-            this.RFbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.RFbutton.Name = "RFbutton";
-            this.RFbutton.Size = new System.Drawing.Size(89, 21);
-            this.RFbutton.TabIndex = 1;
-            this.RFbutton.Text = "customToggleButton2";
-            this.RFbutton.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel5
             // 
@@ -830,18 +749,6 @@
             this.RMtext.Text = "Napęd\r\nwłączony";
             this.RMtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // RMbutton
-            // 
-            this.RMbutton.AutoSize = true;
-            this.RMbutton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RMbutton.Location = new System.Drawing.Point(66, 3);
-            this.RMbutton.MinimumSize = new System.Drawing.Size(45, 21);
-            this.RMbutton.Name = "RMbutton";
-            this.RMbutton.Size = new System.Drawing.Size(89, 21);
-            this.RMbutton.TabIndex = 1;
-            this.RMbutton.Text = "customToggleButton1";
-            this.RMbutton.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
@@ -850,12 +757,13 @@
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel12.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel12.Controls.Add(this.errorTextbox, 1, 1);
+            this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel14, 0, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel12.Location = new System.Drawing.Point(701, 451);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 2;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.95699F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.04301F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.75269F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.24731F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(460, 187);
             this.tableLayoutPanel12.TabIndex = 2;
             // 
@@ -865,7 +773,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(233, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(223, 137);
+            this.panel1.Size = new System.Drawing.Size(223, 105);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel13
@@ -886,7 +794,7 @@
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(223, 137);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(223, 105);
             this.tableLayoutPanel13.TabIndex = 0;
             // 
             // label1
@@ -898,7 +806,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 46);
+            this.label1.Size = new System.Drawing.Size(133, 30);
             this.label1.TabIndex = 5;
             this.label1.Text = "Okres wysyłania [ms]";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -917,7 +825,7 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label6.Location = new System.Drawing.Point(0, 92);
+            this.label6.Location = new System.Drawing.Point(0, 60);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(133, 45);
@@ -928,7 +836,7 @@
             // SetFrequencyButton
             // 
             this.SetFrequencyButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SetFrequencyButton.Location = new System.Drawing.Point(138, 97);
+            this.SetFrequencyButton.Location = new System.Drawing.Point(138, 65);
             this.SetFrequencyButton.Margin = new System.Windows.Forms.Padding(5);
             this.SetFrequencyButton.Name = "SetFrequencyButton";
             this.SetFrequencyButton.Size = new System.Drawing.Size(80, 35);
@@ -940,7 +848,7 @@
             // TimerTickTextbox
             // 
             this.TimerTickTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TimerTickTextbox.Location = new System.Drawing.Point(136, 49);
+            this.TimerTickTextbox.Location = new System.Drawing.Point(136, 33);
             this.TimerTickTextbox.Name = "TimerTickTextbox";
             this.TimerTickTextbox.Size = new System.Drawing.Size(84, 20);
             this.TimerTickTextbox.TabIndex = 10;
@@ -951,9 +859,9 @@
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label9.Location = new System.Drawing.Point(3, 46);
+            this.label9.Location = new System.Drawing.Point(3, 30);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(127, 46);
+            this.label9.Size = new System.Drawing.Size(127, 30);
             this.label9.TabIndex = 11;
             this.label9.Text = "Okres próbkowania zegara [ms]";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -964,11 +872,193 @@
             this.errorTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.errorTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.errorTextbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.errorTextbox.Location = new System.Drawing.Point(233, 145);
+            this.errorTextbox.Location = new System.Drawing.Point(233, 113);
             this.errorTextbox.Name = "errorTextbox";
-            this.errorTextbox.Size = new System.Drawing.Size(223, 41);
+            this.errorTextbox.Size = new System.Drawing.Size(223, 73);
             this.errorTextbox.TabIndex = 1;
             this.errorTextbox.Text = "Komunikaty";
+            // 
+            // tableLayoutPanel14
+            // 
+            this.tableLayoutPanel14.ColumnCount = 2;
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel14.Controls.Add(this.label18, 0, 2);
+            this.tableLayoutPanel14.Controls.Add(this.label15, 0, 1);
+            this.tableLayoutPanel14.Controls.Add(this.label12, 0, 0);
+            this.tableLayoutPanel14.Controls.Add(this.horizontalKeyboardTextbox, 1, 0);
+            this.tableLayoutPanel14.Controls.Add(this.verticalKeyboardTextbox, 1, 1);
+            this.tableLayoutPanel14.Controls.Add(this.returnKeyboardTextbox, 1, 2);
+            this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(4, 4);
+            this.tableLayoutPanel14.Name = "tableLayoutPanel14";
+            this.tableLayoutPanel14.RowCount = 3;
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(222, 105);
+            this.tableLayoutPanel14.TabIndex = 2;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label18.Location = new System.Drawing.Point(3, 70);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(105, 35);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "Prędkość powrotu do środka joysticka";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label15.Location = new System.Drawing.Point(3, 35);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(105, 35);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "Czułość pionowa klawiatury";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label12.Location = new System.Drawing.Point(3, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(105, 35);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Czułość pozioma klawiatury";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // horizontalKeyboardTextbox
+            // 
+            this.horizontalKeyboardTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.horizontalKeyboardTextbox.Location = new System.Drawing.Point(114, 3);
+            this.horizontalKeyboardTextbox.Name = "horizontalKeyboardTextbox";
+            this.horizontalKeyboardTextbox.Size = new System.Drawing.Size(105, 20);
+            this.horizontalKeyboardTextbox.TabIndex = 6;
+            // 
+            // verticalKeyboardTextbox
+            // 
+            this.verticalKeyboardTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.verticalKeyboardTextbox.Location = new System.Drawing.Point(114, 38);
+            this.verticalKeyboardTextbox.Name = "verticalKeyboardTextbox";
+            this.verticalKeyboardTextbox.Size = new System.Drawing.Size(105, 20);
+            this.verticalKeyboardTextbox.TabIndex = 7;
+            // 
+            // returnKeyboardTextbox
+            // 
+            this.returnKeyboardTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.returnKeyboardTextbox.Location = new System.Drawing.Point(114, 73);
+            this.returnKeyboardTextbox.Name = "returnKeyboardTextbox";
+            this.returnKeyboardTextbox.Size = new System.Drawing.Size(105, 20);
+            this.returnKeyboardTextbox.TabIndex = 8;
+            // 
+            // startJoystickButton
+            // 
+            this.startJoystickButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.startJoystickButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.startJoystickButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.startJoystickButton.BorderRadius = 12;
+            this.startJoystickButton.BorderSize = 0;
+            this.startJoystickButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.startJoystickButton.FlatAppearance.BorderSize = 0;
+            this.startJoystickButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.startJoystickButton.Font = new System.Drawing.Font("Radikal WUT", 16F, System.Drawing.FontStyle.Bold);
+            this.startJoystickButton.ForeColor = System.Drawing.Color.White;
+            this.startJoystickButton.Location = new System.Drawing.Point(370, 356);
+            this.startJoystickButton.Name = "startJoystickButton";
+            this.startJoystickButton.Size = new System.Drawing.Size(86, 82);
+            this.startJoystickButton.TabIndex = 3;
+            this.startJoystickButton.Text = "Start";
+            this.startJoystickButton.TextColor = System.Drawing.Color.White;
+            this.startJoystickButton.UseVisualStyleBackColor = false;
+            this.startJoystickButton.Click += new System.EventHandler(this.startJoystickButton_Click_1);
+            // 
+            // LBbutton
+            // 
+            this.LBbutton.AutoSize = true;
+            this.LBbutton.Checked = true;
+            this.LBbutton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.LBbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LBbutton.Location = new System.Drawing.Point(66, 3);
+            this.LBbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.LBbutton.Name = "LBbutton";
+            this.LBbutton.Size = new System.Drawing.Size(89, 21);
+            this.LBbutton.TabIndex = 1;
+            this.LBbutton.Text = "customToggleButton4";
+            this.LBbutton.UseVisualStyleBackColor = true;
+            // 
+            // LFbutton
+            // 
+            this.LFbutton.AutoSize = true;
+            this.LFbutton.Checked = true;
+            this.LFbutton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.LFbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LFbutton.Location = new System.Drawing.Point(66, 3);
+            this.LFbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.LFbutton.Name = "LFbutton";
+            this.LFbutton.Size = new System.Drawing.Size(89, 21);
+            this.LFbutton.TabIndex = 1;
+            this.LFbutton.Text = "customToggleButton5";
+            this.LFbutton.UseVisualStyleBackColor = true;
+            // 
+            // LMbutton
+            // 
+            this.LMbutton.AutoSize = true;
+            this.LMbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LMbutton.Location = new System.Drawing.Point(66, 3);
+            this.LMbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.LMbutton.Name = "LMbutton";
+            this.LMbutton.Size = new System.Drawing.Size(89, 21);
+            this.LMbutton.TabIndex = 1;
+            this.LMbutton.Text = "customToggleButton6";
+            this.LMbutton.UseVisualStyleBackColor = true;
+            // 
+            // RBbutton
+            // 
+            this.RBbutton.AutoSize = true;
+            this.RBbutton.Checked = true;
+            this.RBbutton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.RBbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RBbutton.Location = new System.Drawing.Point(66, 3);
+            this.RBbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.RBbutton.Name = "RBbutton";
+            this.RBbutton.Size = new System.Drawing.Size(89, 21);
+            this.RBbutton.TabIndex = 1;
+            this.RBbutton.Text = "customToggleButton3";
+            this.RBbutton.UseVisualStyleBackColor = true;
+            // 
+            // RFbutton
+            // 
+            this.RFbutton.AutoSize = true;
+            this.RFbutton.Checked = true;
+            this.RFbutton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.RFbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RFbutton.Location = new System.Drawing.Point(66, 3);
+            this.RFbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.RFbutton.Name = "RFbutton";
+            this.RFbutton.Size = new System.Drawing.Size(89, 21);
+            this.RFbutton.TabIndex = 1;
+            this.RFbutton.Text = "customToggleButton2";
+            this.RFbutton.UseVisualStyleBackColor = true;
+            // 
+            // RMbutton
+            // 
+            this.RMbutton.AutoSize = true;
+            this.RMbutton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RMbutton.Location = new System.Drawing.Point(66, 3);
+            this.RMbutton.MinimumSize = new System.Drawing.Size(45, 21);
+            this.RMbutton.Name = "RMbutton";
+            this.RMbutton.Size = new System.Drawing.Size(89, 21);
+            this.RMbutton.TabIndex = 1;
+            this.RMbutton.Text = "customToggleButton1";
+            this.RMbutton.UseVisualStyleBackColor = true;
             // 
             // podwozieForm
             // 
@@ -1009,6 +1099,8 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tableLayoutPanel13.PerformLayout();
+            this.tableLayoutPanel14.ResumeLayout(false);
+            this.tableLayoutPanel14.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1077,5 +1169,13 @@
         private System.Windows.Forms.TextBox TimerTickTextbox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label errorTextbox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label15;
+
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox horizontalKeyboardTextbox;
+        private System.Windows.Forms.TextBox verticalKeyboardTextbox;
+        private System.Windows.Forms.TextBox returnKeyboardTextbox;
     }
 }

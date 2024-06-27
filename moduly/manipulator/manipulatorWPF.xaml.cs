@@ -83,16 +83,18 @@ namespace HAL062app.moduly.manipulator
         private const string MODEL_PATH5 = "dof5.STL";
         private const string MODEL_PATH6 = "gripper.STL";
         private const string MODEL_PATH7 = "base.STL";
-
+       
         public event Action<int> test;
 
         public manipulatorWPF()
         {
             
             InitializeComponent();
-            basePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\moduly\\manipulator\\models\\";
+            //basePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\moduly\\manipulator\\models\\";
+            basePath = AppDomain.CurrentDomain.BaseDirectory + @"\\moduly\\manipulator\\models\\";
+            //sePath = "\\moduly\\manipulator\\models\\"; Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "dof1.STL", SearchOption.AllDirectories)[0]
             List<string> modelsNames = new List<string>();
-     
+          
 
             modelsNames.Add(MODEL_PATH1);
             modelsNames.Add(MODEL_PATH2);

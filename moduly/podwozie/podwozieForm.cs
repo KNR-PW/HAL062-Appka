@@ -28,13 +28,16 @@ namespace HAL062app.moduly.podwozie
       
         private bool isMoving = false;
         private Timer timer;
-        private int readInterval = 50;
+        private int readInterval = 100;
         private int timerInterval = 25;
         private int elapsedTime = 0;
         private bool isRunning = false;
 
         private bool isKeyboardPressedVertically = false;
         private bool isKeyboardPressedHorizontally = false;
+        private int horizontalKeyboardDelta = 4;
+        private int verticalKeyboardDelta = 10;
+        private int returnKeyboardDelta= 10;
         public Action<motorData> sendMotorDataToController_Action;
 
     
@@ -56,7 +59,9 @@ namespace HAL062app.moduly.podwozie
             TurningSpeedTrack.Minimum = (int)-turningSpeedMaxLimit;
             joystickPictureBox.Refresh();
 
-
+           horizontalKeyboardTextbox.Text = horizontalKeyboardDelta.ToString();
+           verticalKeyboardTextbox.Text = verticalKeyboardDelta.ToString();
+            returnKeyboardTextbox.Text = returnKeyboardDelta.ToString();
 
         }
 
@@ -82,7 +87,7 @@ namespace HAL062app.moduly.podwozie
 
             }
             if(!isDragging)
-            returnToZeroJoystickPosition();
+          returnToZeroJoystickPosition();
 
         }
 
@@ -187,8 +192,8 @@ namespace HAL062app.moduly.podwozie
 
         private void podwozieForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            int deltaX = 2;
-            int deltaY = 5;
+            int deltaX = horizontalKeyboardDelta;
+            int deltaY = verticalKeyboardDelta;
             int height = joystickPictureBox.ClientSize.Height;
             int width = joystickPictureBox.ClientSize.Width;
 
@@ -228,8 +233,7 @@ namespace HAL062app.moduly.podwozie
             else
                 joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - pitagoras(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
             joystickPictureBox.Refresh();
-            UpdateJoystick();
-
+          
 
 
         }
@@ -247,7 +251,7 @@ namespace HAL062app.moduly.podwozie
             if (!isUpPressed && !isDownPressed)
                 isKeyboardPressedVertically = false;
             joystickPictureBox.Refresh();
-            UpdateJoystick();
+           
         }
 
 
@@ -273,21 +277,23 @@ namespace HAL062app.moduly.podwozie
 
         private void SetFrequencyButton_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(TimerTickTextbox.Text, out int tickValue) && int.TryParse(IntervalOfSendingTextbox.Text, out int sendValue))
+            if (int.TryParse(TimerTickTextbox.Text, out int tickValue) && int.TryParse(IntervalOfSendingTextbox.Text, out int sendValue) && int.TryParse(returnKeyboardTextbox.Text, out int returnDelta) && int.TryParse(horizontalKeyboardTextbox.Text, out int horizontalDelta) && int.TryParse(verticalKeyboardTextbox.Text, out int verticalDelta))
             {
-                if(tickValue <=0 || sendValue <=0)
+                if (tickValue <= 0 || sendValue <= 0 || returnDelta <= 0 || horizontalDelta <= 0 || verticalDelta <= 0)
                 {
                     errorTextbox.Text = "Wartości powinny być dodatnie";
 
                 }
-                else if(tickValue >= sendValue)
+                else if (tickValue >= sendValue)
                 {
                     errorTextbox.Text = "Wartość interwału zegara powinna być mniejsza od okresu wysyłania";
                 }
                 else
                 {
                     errorTextbox.Text = "Ustawiono!";
-                   
+                    horizontalKeyboardDelta = horizontalDelta;
+                    verticalKeyboardDelta = verticalDelta;
+                    returnKeyboardDelta = returnDelta;
                     timer.Stop();
                     timerInterval = tickValue;
                     readInterval = sendValue;
@@ -296,26 +302,29 @@ namespace HAL062app.moduly.podwozie
                     startJoystickButton.BackColor = Color.FromArgb(0, 192, 0);
                     InitializeTimer();
 
+
                 }
 
             }
             else
             {
                 errorTextbox.Text = "Wartości powinny być liczbami całkowitymi";
-            }
-
+            } 
         }
+
+
+        
 
         private void returnToZeroJoystickPosition()
         {
-            int changeDelta = 10;
+            int changeDelta = returnKeyboardDelta;
             int xZero = joystickPictureBox.ClientSize.Width / 2;
             int yZero = joystickPictureBox.ClientSize.Height / 2;
             if (!isKeyboardPressedHorizontally)
             {
-                if (joystickPosition.X > xZero + 5 || joystickPosition.X < xZero - 5)
+                if (joystickPosition.X > xZero + changeDelta || joystickPosition.X < xZero - changeDelta)
                 {
-                    if (joystickPosition.X > xZero + 5)
+                    if (joystickPosition.X > xZero + changeDelta)
                         joystickPosition.X -= changeDelta;
                     else
                         joystickPosition.X += changeDelta;
@@ -325,9 +334,9 @@ namespace HAL062app.moduly.podwozie
             }
             if (!isKeyboardPressedVertically)
             {
-                if (joystickPosition.Y > yZero + 5 || joystickPosition.Y < yZero - 5)
+                if (joystickPosition.Y > yZero + changeDelta || joystickPosition.Y < yZero - changeDelta)
                 {
-                    if (joystickPosition.Y > yZero + 5)
+                    if (joystickPosition.Y > yZero + changeDelta)
                         joystickPosition.Y -= changeDelta;
                     else
                         joystickPosition.Y += changeDelta;
@@ -336,7 +345,7 @@ namespace HAL062app.moduly.podwozie
                     joystickPosition.Y = yZero;
             }
             joystickPictureBox.Refresh();
-            UpdateJoystick();
+      
         }
 
 
