@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-
 namespace HAL062app
 {
     public partial class mainForm : Form
@@ -60,6 +59,10 @@ namespace HAL062app
         }
         private void mainForm_Load(object sender, EventArgs e)
         {
+            ShowModule("Podwozie");
+            ShowModule("Manipulator");
+            ShowModule("Sandbox");
+            ShowModule("Laboratorium");
             ShowModule("Komunikacja");
 
         }

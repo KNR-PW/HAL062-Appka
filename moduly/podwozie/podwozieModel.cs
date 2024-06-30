@@ -1,5 +1,6 @@
 ﻿using HAL062app.moduly.komunikacja;
 using HAL062app.moduly.manipulator;
+using HAL062app.moduly;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Concurrent;

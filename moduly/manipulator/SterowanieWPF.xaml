@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HAL062app.moduly.manipulator"
              mc:Ignorable="d" 
-             d:DesignHeight="661" d:DesignWidth="300" Margin="0">
+             d:DesignHeight="661" d:DesignWidth="300" Margin="0"
+             UseLayoutRounding="True"
+             SnapsToDevicePixels="True">
     <Grid Margin="0">
         <TabControl Margin="0">
             <TabControl.Resources>

@@ -90,6 +90,10 @@
             this.horizontalKeyboardTextbox = new System.Windows.Forms.TextBox();
             this.verticalKeyboardTextbox = new System.Windows.Forms.TextBox();
             this.returnKeyboardTextbox = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
+            this.XboxBatteryLabel = new System.Windows.Forms.Label();
+            this.ConnectWithXboxPadBtn = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
             this.startJoystickButton = new HAL062app.CustomControls.CustomButton();
             this.LBbutton = new HAL062app.CustomControls.CustomToggleButton();
             this.LFbutton = new HAL062app.CustomControls.CustomToggleButton();
@@ -116,6 +120,7 @@
             this.panel1.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
+            this.tableLayoutPanel15.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -758,6 +763,7 @@
             this.tableLayoutPanel12.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel12.Controls.Add(this.errorTextbox, 1, 1);
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel14, 0, 0);
+            this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel15, 0, 1);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel12.Location = new System.Drawing.Point(701, 451);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
@@ -959,6 +965,59 @@
             this.returnKeyboardTextbox.Size = new System.Drawing.Size(105, 20);
             this.returnKeyboardTextbox.TabIndex = 8;
             // 
+            // tableLayoutPanel15
+            // 
+            this.tableLayoutPanel15.ColumnCount = 2;
+            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel15.Controls.Add(this.XboxBatteryLabel, 0, 1);
+            this.tableLayoutPanel15.Controls.Add(this.ConnectWithXboxPadBtn, 1, 0);
+            this.tableLayoutPanel15.Controls.Add(this.label19, 0, 0);
+            this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(4, 116);
+            this.tableLayoutPanel15.Name = "tableLayoutPanel15";
+            this.tableLayoutPanel15.RowCount = 2;
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.13433F));
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.86567F));
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(222, 67);
+            this.tableLayoutPanel15.TabIndex = 3;
+            // 
+            // XboxBatteryLabel
+            // 
+            this.XboxBatteryLabel.AutoSize = true;
+            this.XboxBatteryLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.XboxBatteryLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.XboxBatteryLabel.Location = new System.Drawing.Point(3, 49);
+            this.XboxBatteryLabel.Name = "XboxBatteryLabel";
+            this.XboxBatteryLabel.Size = new System.Drawing.Size(105, 18);
+            this.XboxBatteryLabel.TabIndex = 14;
+            this.XboxBatteryLabel.Text = "Bateria: -%";
+            this.XboxBatteryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ConnectWithXboxPadBtn
+            // 
+            this.ConnectWithXboxPadBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConnectWithXboxPadBtn.Location = new System.Drawing.Point(116, 5);
+            this.ConnectWithXboxPadBtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ConnectWithXboxPadBtn.Name = "ConnectWithXboxPadBtn";
+            this.ConnectWithXboxPadBtn.Size = new System.Drawing.Size(101, 39);
+            this.ConnectWithXboxPadBtn.TabIndex = 9;
+            this.ConnectWithXboxPadBtn.Text = "Włącz";
+            this.ConnectWithXboxPadBtn.UseVisualStyleBackColor = true;
+            this.ConnectWithXboxPadBtn.Click += new System.EventHandler(this.ConnectWithXboxPadBtn_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label19.Location = new System.Drawing.Point(3, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(105, 49);
+            this.label19.TabIndex = 5;
+            this.label19.Text = "Włącz sterowanie gamepadem";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // startJoystickButton
             // 
             this.startJoystickButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -1101,6 +1160,8 @@
             this.tableLayoutPanel13.PerformLayout();
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
+            this.tableLayoutPanel15.ResumeLayout(false);
+            this.tableLayoutPanel15.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1177,5 +1238,9 @@
         private System.Windows.Forms.TextBox horizontalKeyboardTextbox;
         private System.Windows.Forms.TextBox verticalKeyboardTextbox;
         private System.Windows.Forms.TextBox returnKeyboardTextbox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
+        private System.Windows.Forms.Button ConnectWithXboxPadBtn;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label XboxBatteryLabel;
     }
 }
