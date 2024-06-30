@@ -18,6 +18,7 @@ using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
+using HAL062app.moduly.komunikacja;
 using HelixToolkit.Wpf;
 namespace HAL062app.moduly.manipulator
 {
@@ -147,9 +148,13 @@ namespace HAL062app.moduly.manipulator
         }
 
 
-       
+        private void HandleTimerIntervalService(object sender, EventArgs e)
+        {
+            
+            Console.WriteLine("Timer interval service triggered.");
+        }
 
-   
+
 
 
 

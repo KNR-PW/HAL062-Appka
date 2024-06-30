@@ -2,23 +2,61 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace HAL062app
 {
     public class TimerManager
     {
-        private Timer mainTimer;
+        private  Timer _timer;
+        private int elapsedTime;
+        private int readInterval;
 
-        public void StartTimer()
+        public TimerManager(int interval, int readInterval)
         {
-            mainTimer = new Timer(MainTimer_Elapsed, null, 0, 1000); // Interwał 1000ms (1 sekunda)
+            _timer = new Timer();
+            _timer.Interval = interval;
+
+            _timer.Tick += Timer_Tick;
+            elapsedTime = 0;
+            _timer.Start();
+            
+
         }
 
         private void MainTimer_Elapsed(object state)
         {
-            // Wykonaj swoje operacje, które mają być wykonywane co sekundę
+            
+        }
+        public event EventHandler TimerIntervalService;
+
+        protected virtual void OnTimerIntervalService(EventArgs e)
+        {
+            TimerIntervalService?.Invoke(this, e);
+        }
+        private async void Timer_Tick(object sender, EventArgs e)
+        {
+            elapsedTime += _timer.Interval;
+
+            if (elapsedTime >= readInterval)
+            {
+                elapsedTime = 0;
+               await Task.Run((() => OnTimerIntervalService(EventArgs.Empty)));
+            }
+        }
+        public void Start()
+        {
+            if (!_timer.Enabled)
+            {
+                elapsedTime = 0;
+                _timer.Start();
+            }
         }
 
+        public void Stop()
+        {
+            _timer.Stop();
+        }
     }
 }

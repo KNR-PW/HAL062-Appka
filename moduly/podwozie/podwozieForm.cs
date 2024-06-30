@@ -35,6 +35,10 @@ namespace HAL062app.moduly.podwozie
         private int elapsedTime = 0;
         private bool isRunning = false;
 
+        private readonly TimerManager _timerService;
+        private bool isTimerRunning = false;
+        public event EventHandler TimerIntervalService;
+
         private bool isKeyboardPressedVertically = false;
         private bool isKeyboardPressedHorizontally = false;
         private int horizontalKeyboardDelta = 4;
@@ -44,11 +48,12 @@ namespace HAL062app.moduly.podwozie
 
         private bool usingXboxPad = false;
         private XboxPad _XboxPad;
-        private System.Drawing.Point lastMouseXbox = System.Drawing.Point.Empty;
-
-        public podwozieForm()
+       
+        public podwozieForm(TimerManager timerService)
         {
             InitializeComponent();
+            _timerService = timerService;
+            _timerService.TimerIntervalService += OnTimerIntervalService;
             InitializeTimer();
             this.KeyPreview = true;
 
@@ -87,17 +92,22 @@ namespace HAL062app.moduly.podwozie
             if (elapsedTime >= readInterval)
             {
                 // Wywołaj funkcję aktualizacji joysticka i odczytu prędkości
-                UpdateJoystick();
+                //UpdateJoystick();
                 elapsedTime = 0; // Zresetuj licznik czasu
                                  // if(isMoving) MoveJoystick(LastKeys);
 
             }
-            if (!isDragging)
-                returnToZeroJoystickPosition();
+           // if (!isDragging)
+               // returnToZeroJoystickPosition();
 
         }
 
-
+        private void OnTimerIntervalService(object sender, EventArgs e)
+        {
+            UpdateJoystick();
+            if (!isDragging)
+                returnToZeroJoystickPosition();
+        }
         private void joystickPictureBox_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.FillEllipse(Brushes.Gray, joystickPictureBox.ClientSize.Width / 2 - limitRadius, joystickPictureBox.ClientSize.Height / 2 - limitRadius, 2 * limitRadius, 2 * limitRadius);
@@ -202,6 +212,7 @@ namespace HAL062app.moduly.podwozie
         }
 
 
+        
 
         private void podwozieForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
@@ -361,69 +372,7 @@ namespace HAL062app.moduly.podwozie
             joystickPictureBox.Refresh();
             }
         }
-        /*
-                private void ConnectWithXboxPadBtn_Click(object sender, EventArgs e)
-                {
-
-                    if (!XboxPad.IsConnected)
-                    {
-                        XboxPad = new Controller(UserIndex.One);
-                        CheckXboxPadBattery();
-
-                        errorTextbox.Text = (XboxPad.IsConnected ? "Połączono z padem" : "Nie można połączyć się z padem");
-
-                    }
-                    else
-                    {
-                        errorTextbox.Text = "Pad został już podłączony";
-                        CheckXboxPadBattery();
-                    }    
-
-                    if(XboxPad.IsConnected)
-                    {
-                        XboxPadStateChanged += OnXboxPadStateChanged;
-                    }
-
-
-                }
-                /*
-                private void CheckXboxPadBattery()
-                {
-                    if (XboxPad.IsConnected)
-                    {
-                        string batteryText = "";
-                        if (XboxPad.GetBatteryInformation(BatteryDeviceType.Gamepad).BatteryType == BatteryType.Alkaline)
-                            XboxBatteryLabel.Text = "Bateria: alkaiczne - brak informacji";
-                        else if (XboxPad.GetBatteryInformation(BatteryDeviceType.Gamepad).BatteryType == BatteryType.Unknown)
-                            XboxBatteryLabel.Text = "Bateria: nieznany typ";
-                        else
-                        {
-
-
-                            switch (XboxPad.GetBatteryInformation(BatteryDeviceType.Gamepad).BatteryLevel)
-                            {
-                                case BatteryLevel.Empty: batteryText = "pusta"; break;
-                                case BatteryLevel.Low: batteryText = "niski stan"; break;
-                                case BatteryLevel.Medium: batteryText = "średni stan"; break;
-                                case BatteryLevel.Full: batteryText = "naładowana"; break;
-                                default: batteryText = "brak"; break;
-
-
-                            }
-                            XboxBatteryLabel.Text = "Bateria: " + batteryText;
-                        }
-                    }
-                    else
-                    {
-                        XboxBatteryLabel.Text = "Bateria: brak";
-                    }
-                }
-                static void OnXboxPadStateChanged(object sender, State state)
-                {
-                    RightThumbX = state.Gamepad.RightThumbX;
-
-                }
-        */
+       
         private void OnXboxPadStateChanged(object sender, State state)
         {
             Invoke(new MethodInvoker(delegate
@@ -439,21 +388,8 @@ namespace HAL062app.moduly.podwozie
 
         private void UpdateJoystick_Xbox(State state)
         {
-
-            /*
-            if(state.Gamepad.RightThumbY > Gamepad.RightThumbDeadZone ||state.Gamepad.RightThumbY < -Gamepad.RightThumbDeadZone)
-            forwardSpeed =forwardSpeedMaxLimit* state.Gamepad.RightThumbY / 32768;
-            if (state.Gamepad.RightThumbX > Gamepad.RightThumbDeadZone || state.Gamepad.LeftThumbX < -Gamepad.LeftThumbDeadZone)
-                turningSpeed = turningSpeedMaxLimit * state.Gamepad.RightThumbX / 32768;
-            ForwardSpeedTrack.Value = (int)forwardSpeed;
-            TurningSpeedTrack.Value = (int)turningSpeed;
-            */
             joystickPictureBox_XboxPadStateChange(state);
 
-           // errorTextbox.Text = $"RightThumb x{state.Gamepad.RightThumbX} y{state.Gamepad.RightThumbY} " + $"forward : {forwardSpeed}, turning {turningSpeed} ";
-            
-            
-          //  joystickPictureBox.Refresh();
         }
 
         private void ConnectWithXboxPadBtn_Click(object sender, EventArgs e)
@@ -483,18 +419,18 @@ namespace HAL062app.moduly.podwozie
                 int gamePadX = 0;
                 int gamePadY = 0;
                 int pt =(int)Math.Sqrt( (int)state.Gamepad.RightThumbX* (int)state.Gamepad.RightThumbX + (int)state.Gamepad.RightThumbY * (int)state.Gamepad.RightThumbY);
-               errorTextbox.Text = $"X = {state.Gamepad.RightThumbX / 32768f} Y = {state.Gamepad.RightThumbY / 32768f} + {pt}";
+              errorTextbox.Text = $"X = {state.Gamepad.RightThumbX / 32768f} Y = {state.Gamepad.RightThumbY / 32768f} + {pt}";
                if (pt > 8689)
-                    gamePadX =(int)((float)30 * (float)state.Gamepad.RightThumbX / 32768f);
+                    gamePadX =(int)((float)100 * (float)state.Gamepad.RightThumbX / 32768f);
                if (pt > 8689)
-                    gamePadY = -(int)((float)30 * (float)state.Gamepad.RightThumbY / 32768f);
+                    gamePadY = -(int)((float)100 * (float)state.Gamepad.RightThumbY / 32768f);
 
-                gamePadX = gamePadX * limitRadius / 30;
-                gamePadY = gamePadY * limitRadius / 30;
+                gamePadX = gamePadX * (limitRadius-joystickRadius) / 100;
+                gamePadY = gamePadY * (limitRadius-joystickRadius) / 100;
                 joystickPosition.X = gamePadX + width/2;
                 joystickPosition.Y = gamePadY + height/2;
                 //errorTextbox.Text = $"X = {joystickPosition.X} Y = {joystickPosition.Y}";
-
+                /*
                 if (joystickPosition.X - width / 2 >= 0)
                     joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + pitagoras(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
                 else
@@ -504,7 +440,7 @@ namespace HAL062app.moduly.podwozie
                     joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + pitagoras(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
                 else
                     joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - pitagoras(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
-                
+                */
                 joystickPictureBox.Refresh();
 
 

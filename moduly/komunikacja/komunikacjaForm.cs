@@ -19,10 +19,12 @@ namespace HAL062app.moduly.komunikacja
         public event Action<Message> SendTerminalMsg;
 
 
-        // Uart
-        public event Action RefreshUartPorts_action;
-        public event Action<string,int> ConnectUart_action;
-        public event Action DisconnectUart_action;
+        // Timer
+        private readonly TimerManager _timerService;
+
+        private bool isTimerRunning = false;
+        public event EventHandler TimerIntervalService;
+
         //telnet
         public event Action<string, int> ConnectTelnet_action;
         public event Action disconnectTelnet_action;
@@ -36,16 +38,16 @@ namespace HAL062app.moduly.komunikacja
         public event Action<bool> BluetoothStatusRequest;
         private bool BluetoothStatusBoolean = false;
 
-        public komunikacjaForm()
+        public komunikacjaForm(TimerManager timerService)
         {
             InitializeComponent();
-            UartBaudRateCombo.Items.AddRange(baudRates.Select(x => x.ToString()).ToArray());
-            UartBaudRateCombo.SelectedIndex = 9;
+            _timerService = timerService;
+            _timerService.TimerIntervalService += OnTimerIntervalService;
         }
 
         private void komunikacjaForm_Load(object sender, EventArgs e)
         {
-            RefreshUartPorts_action();
+           
             ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 192, 192);
             BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 192, 192);
             EthernetStatus(false);
@@ -95,42 +97,32 @@ namespace HAL062app.moduly.komunikacja
 
         //////////////////////////////////////////////////
         ///
-        ///                 UART
+        ///                 Timer
         ///
         //////////////////////////////////////////////////
-        private int[] baudRates = { 110, 300, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200 };
-        public void UpdatePorts(string[] ports)
+        private void UARTswitch_CheckedChanged(object sender, EventArgs e)
         {
-            UartPortCombo.Items.Clear();
-            UartPortCombo.Items.AddRange(ports.Select(x => x.ToString()).ToArray());
-
-        }
-
-        private void UartRefreshBtn_click(object sender, EventArgs e)
-        {
-            RefreshUartPorts_action();
-        }
-
-        private void ConnectUartBtn_Click(object sender, EventArgs e)
-        {
-            if (ConnectUartBtn.Text == "Połącz")
+            if (!isTimerRunning)
             {
-                if (UartPortCombo.SelectedItem != null)
-                {
-                    ConnectUartBtn.BackColor = Color.FromArgb(192,0, 0);
-                    ConnectUart_action(UartPortCombo.SelectedItem.ToString(), baudRates[UartBaudRateCombo.SelectedIndex]);
-                    ConnectUartBtn.Text = "Rozłącz";
-                }
-                else
-                    ConnectUart_action("-1", baudRates[UartBaudRateCombo.SelectedIndex]);
-            } else
+                EventAggregator.Instance.RaiseTimerStartRequested();
+                isTimerRunning = true;
+            }else
             {
-                ConnectUartBtn.BackColor = Color.FromArgb(0, 192, 0);
-                ConnectUartBtn.Text = "Połącz";
-                DisconnectUart_action();
-
+                EventAggregator.Instance.RaiseTimerStopRequested();
+                isTimerRunning = false;
             }
         }
+
+        private void OnTimerIntervalService(object sender, EventArgs e)
+        {
+            SetGeneralInfo();
+        }
+    private void SetGeneralInfo()
+        {
+            GeneralInformationLabel.Text = $"Ilość wysłanych wiadomości: {TerminalBox.Items.Count}";
+
+        }
+
         //////////////////////////////////////////////////
         ///
         ///                 Telnet/SSH 

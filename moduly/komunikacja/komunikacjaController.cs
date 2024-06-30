@@ -28,11 +28,7 @@ namespace HAL062app.moduly.komunikacja
                     display.SendTerminalMsg += ReceiveTerminalMsg;
                     model.UpdateLogTerminal += UpdateTerminal;
 
-                    //Uart
-                    model.SendUARTdetectedPorts_action += UpdateUARTComboBox;
-                    display.RefreshUartPorts_action += RequestUARTports;
-                    display.ConnectUart_action += ConnectUart;
-                    display.DisconnectUart_action += DisconnectUart;
+                    
                     //Telnet/SSH
                     display.ConnectTelnet_action += ConnectTelnet;
                     display.EthernetStatus_action += EthernetStatus;
@@ -60,23 +56,9 @@ namespace HAL062app.moduly.komunikacja
             display.UpdateTerminal(logs);
 
         }
-        //UART
-        private void UpdateUARTComboBox(string[] ports)
-        {
-            display.UpdatePorts(ports);
-
-        }
-        private void RequestUARTports()
-        {
-            model.RefreshPortsUART();
-        }
-        private void ConnectUart(string portName, int baudRate)
-        {
-            model.ConnectUART(portName, baudRate);
-        }
-        private void DisconnectUart() {
-            model.DisconnectUART();
-        }
+        
+       
+       
         //Telnet/SSH
         private void ConnectTelnet(string ip, int port)
         {

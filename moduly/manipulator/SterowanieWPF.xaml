@@ -45,7 +45,7 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            <TabItem Header="Sterowanie"  >
+            <TabItem Header="Planowanie&#xD;&#xA;ruchu" Style="{StaticResource CustomFontSizeTabItem}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -65,7 +65,7 @@
 
                         <Grid x:Name="Joint1Grid" Tag="1" HorizontalAlignment="Stretch" Height="40" MouseDown="JointGridClicked">
                             <TextBlock Text="DOF 1" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
-                            <Slider x:Name="Joint1Slider" VerticalAlignment="Center" Maximum="180" Minimum="-180" Tag="{Binding ElementName=Joint1Grid}"  HorizontalAlignment="Left" Width="200" Margin="50,1,0,0" ValueChanged="JointSlider_ValueChanged"/>
+                            <Slider x:Name="Joint1Slider" IsDirectionReversed="True" VerticalAlignment="Center" Maximum="180" Minimum="-180" Tag="{Binding ElementName=Joint1Grid}"  HorizontalAlignment="Left" Width="200" Margin="50,1,0,0" ValueChanged="JointSlider_ValueChanged"/>
                             <Label x:Name="Joint1Label" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
 
                         </Grid>
@@ -126,11 +126,11 @@
                     <Button Content="Send" Click="SendButton_Click" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="98"/>
                     <Button Content="Undo" Click="UndoButton_Click" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="98"/>
                     <Button Content="Reset" Click="ResetButton_Click" HorizontalAlignment="Center" Margin="0,67,0,0" Grid.Row="4" VerticalAlignment="Top" Height="20" Width="72"/>
-                    <TextBlock Grid.Row="5" Text="Opcje" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0" Grid.RowSpan="3" />
+                    <TextBlock Grid.Row="5" Text="Podstawowe funkcje" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0" Grid.RowSpan="3" />
                     <Button Content="Włącz&#xD;&#xA;manipulator" Click="Control_turnOnManipulator" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="98" />
                     <Button Content="Surowe&#xD;&#xA;wyłączenie" Click="Control_rawTurnOffManipulator" HorizontalAlignment="Left" Margin="190,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
                     <Button Content="Ustaw i wyłącz&#xD;&#xA;manipulator" Click="Control_turnOffManipulator" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="98" />
-
+                    <Button Content="Ustaw pozycję 0" Click="ResetEveryJointBtn_Click" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
 
                 </Grid>
             </TabItem>
@@ -140,7 +140,72 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Historia" >
+            <TabItem Header="Sterowanie&#xD;&#xA;na żywo"  Style="{StaticResource CustomFontSizeTabItem}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        
+                        
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Ustawienia" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
+
+
+                    <!--<Button Content="Włącz sterownie &#xD;&#xA; przyciskami" Click="TurnOnControls_Click" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="44" Width="98"/>-->
+                    <!--<Button Content="Włącz sterownie &#xD;&#xA; przyciskami" Click="TurnOnControls_Click" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="44" Width="98"/>-->
+                    <TextBlock Grid.Row="3" Text="Sterowanie" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0"/>
+                    <!--
+                    <UniformGrid Grid.Row="4" Rows="6" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="240">
+                        <UniformGrid.Resources>
+                            <Style TargetType="Button" >
+                               
+                                <Setter Property="Width" Value="35"/>
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                            </Style>
+                        </UniformGrid.Resources>
+                        <Grid HorizontalAlignment="Stretch" Height="40" >
+                            <TextBlock Text="DOF 1" Width="60" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                            <Button Content="F" Click="DOFkeyboardBtn_clicked" Tag="F" Margin="80,5,1,5"/>
+                            <Button Content="R" Click="DOFkeyboardBtn_clicked" Tag="R" Margin="140,5,1,5"/>
+                            
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="DOF 2" Width="60" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="DOF 3" Width="60" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="DOF 4" Width="60" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="DOF 5" Width="60" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                        </Grid>
+                        <Grid HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="Gripper" Width="60" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                        </Grid>
+
+                    </UniformGrid>
+                    -->
+                    <TextBlock Grid.Row="5" Text="Podstawowe funkcje" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0" Grid.RowSpan="3" />
+                    <Button Content="Włącz&#xD;&#xA;manipulator" Click="Control_turnOnManipulator" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
+                    <Button Content="Surowe&#xD;&#xA;wyłączenie" Click="Control_rawTurnOffManipulator" HorizontalAlignment="Left" Margin="190,10,0,0" Grid.Row="7" VerticalAlignment="Top" Height="44" Width="98" />
+                    <Button Content="Ustaw i wyłącz&#xD;&#xA;manipulator" Click="Control_turnOffManipulator" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
+                    <Button Content="Ustaw pozycję 0" Click="ResetEveryJointBtn_Click" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="7" VerticalAlignment="Top" Height="44" Width="98" />
+                   
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Sekwencje" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>

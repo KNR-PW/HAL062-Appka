@@ -14,8 +14,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Xml;
 using Newtonsoft.Json;
+using SharpDX.XInput;
+
 
 namespace HAL062app.moduly.manipulator
 {
@@ -58,7 +61,7 @@ namespace HAL062app.moduly.manipulator
         Label[] _JointLabels = new Label[6];
 
         Joint[] joints = new Joint[6];
-        Position actualPosition = null; 
+        Position actualPosition = null;
         float[] angles = new float[6];
         bool initialization = true;
         int activeJointChange = 1;
@@ -69,7 +72,7 @@ namespace HAL062app.moduly.manipulator
         //sekwencje
         private int _id = 0;
         private float[] relativeZeros = new float[6]; //Dla modelu wgrywanego z plików kąty są inne, niż te dla manipulatora w łaziku. Tutaj przechowujemy różnicę tych kątów, aby przy wysyłaniu do łazika ten kąt odjąć
-        Sequence loadedSequence; 
+        Sequence loadedSequence;
         int selectedPositionInSequence = 0; //Która pozycja z sekwencji aktualnie jest wyświetlana
         bool turnOffSequencePositionChanging = false; //Klikanie w pozycję na historii w sekwencji zmienia/ nie zmienia wizualizacji
         Position settingPosition = null; //to jest zmienna przechowująca aktualne położenie, wykorzystywane w zapisywaniu w sekcji sekwencji
@@ -77,15 +80,20 @@ namespace HAL062app.moduly.manipulator
         private SequenceManager sequenceManager = new SequenceManager();
         private string sequencePath = "sequenceList.json";
         bool simulatingSequence = false;
+
+        private bool usingXboxPad = false;
+        private XboxPad _XboxPad;
+        private Position xboxPosition;
+
         public SterowanieWPF()
         {
             InitializeComponent(); //to tutaj zmienia się maksymalne, minimalne i startowe kąty dla symulacji 
-            joints[0] = new Joint(-90,90,0,0); 
-            joints[1] = new Joint(-60,90,0,50);
-            joints[2] = new Joint(-60,70,0,-60);
-            joints[3] = new Joint(-90,90,0,210);
-            joints[4] = new Joint(-90,60,0,10);
-            joints[5] = new Joint(-360,360,0,0);
+            joints[0] = new Joint(-90, 90, 0, 0);
+            joints[1] = new Joint(-60, 90, 0, 50);
+            joints[2] = new Joint(-60, 70, 0, -60);
+            joints[3] = new Joint(-90, 90, 0, 210);
+            joints[4] = new Joint(-90, 60, 0, 10);
+            joints[5] = new Joint(-360, 360, 0, 0);
             addValues.Add("-5.0", -5.0); //to odpowiada tylko za przyciski do szczegółowej zmiany kąta, nic ważnego
             addValues.Add("5.0", 5.0);
             addValues.Add("-1.0", -1.0);
@@ -94,9 +102,9 @@ namespace HAL062app.moduly.manipulator
             addValues.Add("0.5", 0.5);
             addValues.Add("-0.1", -0.1);
             addValues.Add("0.1", 0.1);
-           
 
-            Slider[] JointSliders = {Joint1Slider,Joint2Slider, Joint3Slider, Joint4Slider, Joint5Slider, Joint6Slider };
+
+            Slider[] JointSliders = { Joint1Slider, Joint2Slider, Joint3Slider, Joint4Slider, Joint5Slider, Joint6Slider };
             Label[] JointLabels = { Joint1Label, Joint2Label, Joint3Label, Joint4Label, Joint5Label, Joint6Label };
             _JointSliders = JointSliders;
             _JointLabels = JointLabels;
@@ -112,21 +120,22 @@ namespace HAL062app.moduly.manipulator
             history.sequence.Add(actualPosition);
             initialization = false;
 
+            _XboxPad = XboxPad.Instance;
+            _XboxPad.ControllerStateChanged += OnXboxPadStateChanged;
 
-            
         }
 
         private void UpdateSlidersValues(Joint joint, Slider slider, Label label)
         {
             slider.Minimum = joint.angleMin;
-            slider.Maximum= joint.angleMax;
+            slider.Maximum = joint.angleMax;
             slider.Value = joint.angle;
             label.Content = joint.angle;
         }
 
         private void JointGridClicked(object sender, MouseButtonEventArgs e)
         {
-            if(sender is Grid grid)
+            if (sender is Grid grid)
             {
                 ResetSelectedGrid();
                 grid.Background = Brushes.LightGray;
@@ -141,26 +150,26 @@ namespace HAL062app.moduly.manipulator
             }
 
         }
-      
+
         private void JointSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if(!initialization)
-            if (sender is Slider slider)
-            {
-                Grid parentGrid = slider.Tag as Grid;
-                JointGridClicked(parentGrid, null);
-                joints[Convert.ToInt32(parentGrid.Tag.ToString())-1].angle = (float)slider.Value;
-                slider.Background = Brushes.LightGray;
+            if (!initialization)
+                if (sender is Slider slider)
+                {
+                    Grid parentGrid = slider.Tag as Grid;
+                    JointGridClicked(parentGrid, null);
+                    joints[Convert.ToInt32(parentGrid.Tag.ToString()) - 1].angle = (float)slider.Value;
+                    slider.Background = Brushes.LightGray;
                     angleTextbox.Text = slider.Value.ToString("0.00");
                     Label associatedLabel = FindLabelInGrid(parentGrid);
-                if (associatedLabel != null)
-                {
-                    associatedLabel.Content = slider.Value.ToString("0.00");
-                }
+                    if (associatedLabel != null)
+                    {
+                        associatedLabel.Content = slider.Value.ToString("0.00");
+                    }
                     actualPosition = new Position(returnAnglesFromJoints(joints));
                     SendVisualizationPosition();
-                    
-                }    
+
+                }
 
         }
         private void ChangeSlidersValue(Position position)
@@ -168,7 +177,7 @@ namespace HAL062app.moduly.manipulator
             for (int i = 0; i < 6; i++)
             {
                 _JointSliders[i].Value = position.joints[i] - relativeZeros[i];
-                _JointLabels[i].Content =( position.joints[i] - relativeZeros[i]).ToString("0.00");
+                _JointLabels[i].Content = (position.joints[i] - relativeZeros[i]).ToString("0.00");
             }
 
         }
@@ -194,7 +203,6 @@ namespace HAL062app.moduly.manipulator
             }
             return null;
         }
-
         private void ResetSelectedGrid()
         {
             Joint1Grid.Background = Brushes.White;
@@ -216,7 +224,7 @@ namespace HAL062app.moduly.manipulator
         {
             if (newValue < joints[jointID].angleMin)
                 return joints[jointID].angleMin;
-            else if(newValue > joints[jointID].angleMax)
+            else if (newValue > joints[jointID].angleMax)
                 return joints[jointID].angleMax;
             else
                 return newValue;
@@ -231,7 +239,7 @@ namespace HAL062app.moduly.manipulator
                 if (activeSenderSlider is Slider slider)
                     slider.Value = joints[activeJointChange - 1].angle;
 
-            
+
             }
 
         }
@@ -262,7 +270,7 @@ namespace HAL062app.moduly.manipulator
             actPosition.id = history.sequence.Count;
             history.sequence.Add(actPosition);
             SendPosition_action(actPosition);
-            
+
             if (History_sequenceCombobox.SelectedItem is Sequence selectedSequence)
             {
                 CollectionViewSource.GetDefaultView(History_SequenceListBox.ItemsSource).Refresh();
@@ -271,25 +279,18 @@ namespace HAL062app.moduly.manipulator
 
         private void JointControlPanel(int activeJoint)
         {
-            DOFcontrolText.Text = "DOF "+activeJoint.ToString();
-            angleTextbox.Text = joints[activeJoint-1].angle.ToString("0.00");
+            DOFcontrolText.Text = "DOF " + activeJoint.ToString();
+            angleTextbox.Text = joints[activeJoint - 1].angle.ToString("0.00");
 
         }
-
         float[] returnAnglesFromJoints(Joint[] joints)
         {
             float[] ans = new float[joints.Length];
             int id = 0;
-            foreach(Joint joint in joints)
+            foreach (Joint joint in joints)
                 ans[id++] = joint.angle + joint.relative0;
             return ans;
         }
-
-
-
-
-       
-
         private void Control_turnOnManipulator(object sender, RoutedEventArgs e)
         {
 
@@ -310,7 +311,6 @@ namespace HAL062app.moduly.manipulator
 
 
         }
-
         private async void Control_turnOffManipulator(object sender, RoutedEventArgs e)
         {
             actualPosition.addRelative0(relativeZeros);
@@ -356,7 +356,6 @@ namespace HAL062app.moduly.manipulator
             SendMessage_action(frame);
 
         }
-
         private void Control_rawTurnOffManipulator(object sender, RoutedEventArgs e)
         {
 
@@ -376,8 +375,22 @@ namespace HAL062app.moduly.manipulator
             SendMessage_action(frame);
 
         }
+        private void ResetEveryJointBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Position PreviousPosition = actualPosition.deepCopy();
+            actualPosition.addRelative0(relativeZeros);
+            float[] zeroAngles = new float[6];
+            for (int i = 0; i < 6; i++)
+                zeroAngles[i] = 0;
+            Position returnHomePosition;
+            returnHomePosition = PreviousPosition.deepCopy();
+            returnHomePosition.update(zeroAngles);
+            returnHomePosition.addRelativeToJoints();
 
+            simulateStep(PreviousPosition, returnHomePosition, false);
+            ChangeSlidersValue(returnHomePosition);
 
+        }
         private void Control_CloseGripperBtn_Click(object sender, RoutedEventArgs e)
         {
             Message frame = new Message();
@@ -395,7 +408,6 @@ namespace HAL062app.moduly.manipulator
 
             SendMessage_action(frame);
         }
-
         private void Control_idkGripperBtn_Click(object sender, RoutedEventArgs e)
         {
             Message frame = new Message();
@@ -413,7 +425,6 @@ namespace HAL062app.moduly.manipulator
 
             SendMessage_action(frame);
         }
-
         private void Control_OpenGripperBtn_Click(object sender, RoutedEventArgs e)
         {
             Message frame = new Message();
@@ -431,7 +442,6 @@ namespace HAL062app.moduly.manipulator
 
             SendMessage_action(frame);
         }
-
 
         //////////////////////////////////////////////////////////////////////////////////
         //////                                  Sekwencje
@@ -466,7 +476,8 @@ namespace HAL062app.moduly.manipulator
         private async void simulateSequence(Sequence sequence, bool simulateOnly)
         {
             simulatingSequence = !simulatingSequence;
-            if (simulatingSequence) {
+            if (simulatingSequence)
+            {
                 if (loadedSequence != null)
                 {
                     History_simulateSequence.Content = "Zatrzymaj sekwencję";
@@ -489,7 +500,7 @@ namespace HAL062app.moduly.manipulator
                     }
                 }
                 else
-                    simulatingSequence = false; 
+                    simulatingSequence = false;
             }
             else
             {
@@ -512,7 +523,7 @@ namespace HAL062app.moduly.manipulator
                 loadedSequence = selectedSequence.deepCopy();
                 LoadSequenceToList(loadedSequence);
                 History_newSequenceName.Text = loadedSequence.name;
-                
+
             }
         }
         private void History_SequenceListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -564,7 +575,7 @@ namespace HAL062app.moduly.manipulator
         private void History_earlierPosition_Click(object sender, RoutedEventArgs e)
         {
             if (loadedSequence != null)
-                if (selectedPositionInSequence - 1 >=0)
+                if (selectedPositionInSequence - 1 >= 0)
                 {
                     simulateStep(loadedSequence.sequence[selectedPositionInSequence], loadedSequence.sequence[selectedPositionInSequence - 1], true);
                     selectedPositionInSequence--;
@@ -574,7 +585,7 @@ namespace HAL062app.moduly.manipulator
         private void History_simulateSequence_Click(object sender, RoutedEventArgs e)
         {
             if (loadedSequence != null)
-                simulateSequence(loadedSequence,true);
+                simulateSequence(loadedSequence, true);
         }
         private void History_savePosition_Click(object sender, RoutedEventArgs e)
         {
@@ -592,7 +603,7 @@ namespace HAL062app.moduly.manipulator
             if (loadedSequence != null)
             {
                 loadedSequence.removePosition(selectedPositionInSequence);
-                selectedPositionInSequence = (selectedPositionInSequence-1>=0?selectedPositionInSequence-1:0);
+                selectedPositionInSequence = (selectedPositionInSequence - 1 >= 0 ? selectedPositionInSequence - 1 : 0);
                 LoadSequenceToList(loadedSequence);
             }
         }
@@ -611,8 +622,8 @@ namespace HAL062app.moduly.manipulator
         }
         private void History_turnOffChangingPosition_Click(object sender, RoutedEventArgs e)
         {
-            if(turnOffSequencePositionChanging==false)
-            { 
+            if (turnOffSequencePositionChanging == false)
+            {
                 History_turnOffChangingPosition.Content = "Włącz zmianę pozycji";
                 turnOffSequencePositionChanging = true;
             }
@@ -629,11 +640,73 @@ namespace HAL062app.moduly.manipulator
             {
                 List<Position> newPositions = new List<Position>();
                 newPositions.Add(actualPosition);
-                Sequence newSequence = new Sequence(History_newSequenceName.Text,newPositions);  
+                Sequence newSequence = new Sequence(History_newSequenceName.Text, newPositions);
                 sequenceManager.Sequences.Add(newSequence);
                 sequenceManager.SaveToFile(sequencePath);
                 sequenceManager.Sequences.Add(history);
             }
         }
+        //////////////////////////////////////////////////////////////////////////////////
+        //////                                  Sterowanie poza sliderami
+        //////////////////////////////////////////////////////////////////////////////////
+       
+
+
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////                                  Xbox
+        //////////////////////////////////////////////////////////////////////////////////
+        private void OnXboxPadStateChanged(object sender, State state)
+         {
+           
+            if (!Dispatcher.CheckAccess())
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    UpdateJoystick_Xbox(state);
+                });
+            }
+            else
+            {
+                UpdateJoystick_Xbox(state);
+            }
+            
+        }
+        
+
+
+
+        private void UpdateJoystick_Xbox(State state)
+    {
+        if (!initialization)
+        {
+
+            xboxPosition = actualPosition;
+            if (Math.Abs((int)state.Gamepad.LeftThumbX)>Gamepad.LeftThumbDeadZone)
+                joystickPictureBox_XboxPadStateChange_dof(1,(float)(-state.Gamepad.LeftThumbX/32767f));
+            if (Math.Abs((int)state.Gamepad.LeftThumbY) > Gamepad.LeftThumbDeadZone)
+             joystickPictureBox_XboxPadStateChange_dof(2, (float)(state.Gamepad.LeftThumbY / 32767f));
+            }
+    }
+        async private void joystickPictureBox_XboxPadStateChange_dof(int dof, float delta)
+        {
+            if (!initialization)
+            {
+                
+                activeJointChange = dof;
+                activeSenderSlider = _JointSliders[dof-1];
+                joints[activeJointChange - 1].angle = CalculateToBounds(activeJointChange - 1, joints[activeJointChange - 1].angle + delta);
+                angleTextbox.Text = joints[activeJointChange - 1].angle.ToString("0.00");
+                if (activeSenderSlider is Slider slider)
+                    slider.Value = joints[activeJointChange - 1].angle;
+
+            }
+
+        }
+         
+
+         
     }
 }

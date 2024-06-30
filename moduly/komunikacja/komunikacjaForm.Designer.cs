@@ -39,21 +39,12 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.UartPortCombo = new HAL062app.CustomControls.CustomComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.UartBaudRateCombo = new HAL062app.CustomControls.CustomComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.UARTswitch = new HAL062app.CustomControls.CustomToggleButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
-            this.ConnectUartBtn = new HAL062app.CustomControls.CustomButton();
-            this.UartRefreshBtn = new HAL062app.CustomControls.CustomButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -94,17 +85,21 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.ReceivingToggleBtnEthernet = new HAL062app.CustomControls.CustomToggleButton();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.IntervalOfSendingNumeric = new System.Windows.Forms.NumericUpDown();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.TimerTickNumeric = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.GeneralInformationLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel13.SuspendLayout();
-            this.tableLayoutPanel12.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -124,6 +119,10 @@
             this.panel9.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IntervalOfSendingNumeric)).BeginInit();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TimerTickNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // sendTextBox
@@ -303,10 +302,10 @@
             this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.panel6, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.panel7, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.panel3, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel12, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.panel6, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.GeneralInformationLabel, 0, 3);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(11, 11);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(10);
@@ -316,103 +315,9 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(268, 307);
             this.tableLayoutPanel4.TabIndex = 6;
-            // 
-            // panel6
-            // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.UartPortCombo);
-            this.panel6.Controls.Add(this.label5);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(11, 64);
-            this.panel6.Margin = new System.Windows.Forms.Padding(10);
-            this.panel6.Name = "panel6";
-            this.panel6.Padding = new System.Windows.Forms.Padding(10);
-            this.panel6.Size = new System.Drawing.Size(246, 52);
-            this.panel6.TabIndex = 4;
-            // 
-            // UartPortCombo
-            // 
-            this.UartPortCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UartPortCombo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.UartPortCombo.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.UartPortCombo.BorderSize = 1;
-            this.UartPortCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.UartPortCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.UartPortCombo.ForeColor = System.Drawing.Color.DimGray;
-            this.UartPortCombo.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.UartPortCombo.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.UartPortCombo.ListTextColor = System.Drawing.Color.DimGray;
-            this.UartPortCombo.Location = new System.Drawing.Point(64, 8);
-            this.UartPortCombo.Margin = new System.Windows.Forms.Padding(10);
-            this.UartPortCombo.MinimumSize = new System.Drawing.Size(150, 25);
-            this.UartPortCombo.Name = "UartPortCombo";
-            this.UartPortCombo.Padding = new System.Windows.Forms.Padding(1);
-            this.UartPortCombo.Size = new System.Drawing.Size(170, 30);
-            this.UartPortCombo.TabIndex = 1;
-            this.UartPortCombo.Texts = "Port";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label5.Location = new System.Drawing.Point(6, 10);
-            this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 22);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Port:";
-            // 
-            // panel7
-            // 
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.UartBaudRateCombo);
-            this.panel7.Controls.Add(this.label6);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(11, 137);
-            this.panel7.Margin = new System.Windows.Forms.Padding(10);
-            this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(10);
-            this.panel7.Size = new System.Drawing.Size(246, 52);
-            this.panel7.TabIndex = 5;
-            // 
-            // UartBaudRateCombo
-            // 
-            this.UartBaudRateCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UartBaudRateCombo.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.UartBaudRateCombo.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.UartBaudRateCombo.BorderSize = 1;
-            this.UartBaudRateCombo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.UartBaudRateCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.UartBaudRateCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.UartBaudRateCombo.ForeColor = System.Drawing.Color.DimGray;
-            this.UartBaudRateCombo.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.UartBaudRateCombo.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.UartBaudRateCombo.ListTextColor = System.Drawing.Color.DimGray;
-            this.UartBaudRateCombo.Location = new System.Drawing.Point(64, 8);
-            this.UartBaudRateCombo.Margin = new System.Windows.Forms.Padding(10);
-            this.UartBaudRateCombo.MinimumSize = new System.Drawing.Size(150, 25);
-            this.UartBaudRateCombo.Name = "UartBaudRateCombo";
-            this.UartBaudRateCombo.Padding = new System.Windows.Forms.Padding(1);
-            this.UartBaudRateCombo.Size = new System.Drawing.Size(170, 30);
-            this.UartBaudRateCombo.TabIndex = 1;
-            this.UartBaudRateCombo.Texts = "BaudRate";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label6.Location = new System.Drawing.Point(8, 6);
-            this.label6.Margin = new System.Windows.Forms.Padding(0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 36);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Baud \r\nRate:\r\n";
             // 
             // panel3
             // 
@@ -471,8 +376,9 @@
             this.UARTswitch.Name = "UARTswitch";
             this.UARTswitch.Size = new System.Drawing.Size(55, 22);
             this.UARTswitch.TabIndex = 1;
-            this.UARTswitch.Text = "customToggleButton1";
+            this.UARTswitch.Text = "TurnOnTimerBtn";
             this.UARTswitch.UseVisualStyleBackColor = true;
+            this.UARTswitch.CheckedChanged += new System.EventHandler(this.UARTswitch_CheckedChanged);
             // 
             // label1
             // 
@@ -485,67 +391,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 42);
             this.label1.TabIndex = 0;
-            this.label1.Text = "UART";
+            this.label1.Text = "Zegar";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel12
-            // 
-            this.tableLayoutPanel12.ColumnCount = 2;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
-            this.tableLayoutPanel12.Controls.Add(this.ConnectUartBtn, 1, 0);
-            this.tableLayoutPanel12.Controls.Add(this.UartRefreshBtn, 0, 0);
-            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(4, 203);
-            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 1;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(260, 106);
-            this.tableLayoutPanel12.TabIndex = 7;
-            // 
-            // ConnectUartBtn
-            // 
-            this.ConnectUartBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ConnectUartBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ConnectUartBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.ConnectUartBtn.BorderRadius = 15;
-            this.ConnectUartBtn.BorderSize = 0;
-            this.ConnectUartBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConnectUartBtn.FlatAppearance.BorderSize = 0;
-            this.ConnectUartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ConnectUartBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
-            this.ConnectUartBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.ConnectUartBtn.Location = new System.Drawing.Point(136, 10);
-            this.ConnectUartBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
-            this.ConnectUartBtn.Name = "ConnectUartBtn";
-            this.ConnectUartBtn.Size = new System.Drawing.Size(120, 86);
-            this.ConnectUartBtn.TabIndex = 3;
-            this.ConnectUartBtn.Text = "Połącz";
-            this.ConnectUartBtn.TextColor = System.Drawing.Color.AliceBlue;
-            this.ConnectUartBtn.UseVisualStyleBackColor = false;
-            this.ConnectUartBtn.Click += new System.EventHandler(this.ConnectUartBtn_Click);
-            // 
-            // UartRefreshBtn
-            // 
-            this.UartRefreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.UartRefreshBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.UartRefreshBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.UartRefreshBtn.BorderRadius = 10;
-            this.UartRefreshBtn.BorderSize = 0;
-            this.UartRefreshBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UartRefreshBtn.FlatAppearance.BorderSize = 0;
-            this.UartRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UartRefreshBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
-            this.UartRefreshBtn.ForeColor = System.Drawing.Color.AliceBlue;
-            this.UartRefreshBtn.Location = new System.Drawing.Point(4, 10);
-            this.UartRefreshBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
-            this.UartRefreshBtn.Name = "UartRefreshBtn";
-            this.UartRefreshBtn.Size = new System.Drawing.Size(124, 86);
-            this.UartRefreshBtn.TabIndex = 4;
-            this.UartRefreshBtn.Text = "Odśwież";
-            this.UartRefreshBtn.TextColor = System.Drawing.Color.AliceBlue;
-            this.UartRefreshBtn.UseVisualStyleBackColor = false;
-            this.UartRefreshBtn.Click += new System.EventHandler(this.UartRefreshBtn_click);
             // 
             // panel4
             // 
@@ -1149,6 +996,119 @@
             this.ReceivingToggleBtnEthernet.UseVisualStyleBackColor = true;
             this.ReceivingToggleBtnEthernet.CheckedChanged += new System.EventHandler(this.ReceivingToggleBtnEthernet_CheckedChanged);
             // 
+            // panel6
+            // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.IntervalOfSendingNumeric);
+            this.panel6.Controls.Add(this.label5);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(11, 64);
+            this.panel6.Margin = new System.Windows.Forms.Padding(10);
+            this.panel6.Name = "panel6";
+            this.panel6.Padding = new System.Windows.Forms.Padding(10);
+            this.panel6.Size = new System.Drawing.Size(246, 52);
+            this.panel6.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label5.Location = new System.Drawing.Point(13, 6);
+            this.label5.Margin = new System.Windows.Forms.Padding(10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(102, 34);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Okres\r\nwysyłania [ms]:";
+            // 
+            // IntervalOfSendingNumeric
+            // 
+            this.IntervalOfSendingNumeric.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.IntervalOfSendingNumeric.Location = new System.Drawing.Point(122, 10);
+            this.IntervalOfSendingNumeric.Margin = new System.Windows.Forms.Padding(10);
+            this.IntervalOfSendingNumeric.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.IntervalOfSendingNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.IntervalOfSendingNumeric.Name = "IntervalOfSendingNumeric";
+            this.IntervalOfSendingNumeric.Size = new System.Drawing.Size(112, 29);
+            this.IntervalOfSendingNumeric.TabIndex = 9;
+            this.IntervalOfSendingNumeric.ThousandsSeparator = true;
+            this.IntervalOfSendingNumeric.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
+            // panel7
+            // 
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.TimerTickNumeric);
+            this.panel7.Controls.Add(this.label6);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(11, 137);
+            this.panel7.Margin = new System.Windows.Forms.Padding(10);
+            this.panel7.Name = "panel7";
+            this.panel7.Padding = new System.Windows.Forms.Padding(10);
+            this.panel7.Size = new System.Drawing.Size(246, 52);
+            this.panel7.TabIndex = 9;
+            // 
+            // TimerTickNumeric
+            // 
+            this.TimerTickNumeric.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.TimerTickNumeric.Location = new System.Drawing.Point(122, 10);
+            this.TimerTickNumeric.Margin = new System.Windows.Forms.Padding(10);
+            this.TimerTickNumeric.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.TimerTickNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.TimerTickNumeric.Name = "TimerTickNumeric";
+            this.TimerTickNumeric.Size = new System.Drawing.Size(112, 29);
+            this.TimerTickNumeric.TabIndex = 9;
+            this.TimerTickNumeric.ThousandsSeparator = true;
+            this.TimerTickNumeric.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Location = new System.Drawing.Point(13, 6);
+            this.label6.Margin = new System.Windows.Forms.Padding(10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 34);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Okres\r\ntaktowania [ms]:";
+            // 
+            // GeneralInformationLabel
+            // 
+            this.GeneralInformationLabel.AutoSize = true;
+            this.GeneralInformationLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GeneralInformationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.GeneralInformationLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.GeneralInformationLabel.Location = new System.Drawing.Point(11, 210);
+            this.GeneralInformationLabel.Margin = new System.Windows.Forms.Padding(10);
+            this.GeneralInformationLabel.Name = "GeneralInformationLabel";
+            this.GeneralInformationLabel.Size = new System.Drawing.Size(246, 92);
+            this.GeneralInformationLabel.TabIndex = 10;
+            this.GeneralInformationLabel.Text = "label14";
+            // 
             // komunikacjaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1170,16 +1130,12 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
+            this.tableLayoutPanel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
-            this.tableLayoutPanel12.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
@@ -1208,6 +1164,12 @@
             this.tableLayoutPanel13.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IntervalOfSendingNumeric)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TimerTickNumeric)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1227,16 +1189,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label2;
-        private CustomControls.CustomButton ConnectUartBtn;
-        private System.Windows.Forms.Label label5;
-        private CustomControls.CustomComboBox UartPortCombo;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel7;
-        private CustomControls.CustomComboBox UartBaudRateCombo;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Panel panel3;
-        private CustomControls.CustomButton UartRefreshBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private CustomControls.CustomToggleButton ReceivingToggleBtnEthernet;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
@@ -1260,7 +1214,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label12;
         private CustomControls.CustomToggleButton UARTswitch;
@@ -1278,5 +1231,12 @@
         private CustomControls.CustomButton ClearNotebookBtn;
         private CustomControls.CustomButton SaveNotebookBtn;
         private CustomControls.CustomButton LoadNotepadBtn;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.NumericUpDown TimerTickNumeric;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown IntervalOfSendingNumeric;
+        private System.Windows.Forms.Label GeneralInformationLabel;
     }
 }

@@ -20,20 +20,22 @@ namespace HAL062app
 {
     public partial class mainForm : Form
     {
-        private TimerManager timerManager = new TimerManager();
+        private TimerManager _timerManager;
         private Dictionary<string, Form> modules = new Dictionary<string, Form>();
         private String currentModule;
-     //   moduly.komunikacja.komunikacjaForm komun = new moduly.komunikacja.komunikacjaForm();
         public mainForm()
         {
             InitializeComponent();
-            timerManager.StartTimer();
+            _timerManager = new TimerManager(5, 50);
+            _timerManager.Start();
+            _timerManager.TimerIntervalService += OnTimerStartRequested;
+            EventAggregator.Instance.TimerStartRequested += OnTimerStartRequested;
+            EventAggregator.Instance.TimerStartRequested += OnTimerStopRequested;
 
 
-
-            modules.Add("Komunikacja", new moduly.komunikacja.komunikacjaForm());
+            modules.Add("Komunikacja", new moduly.komunikacja.komunikacjaForm(_timerManager));
             modules.Add("Laboratorium", new moduly.laboratorium.laboratoriumForm());
-            modules.Add("Podwozie", new moduly.podwozie.podwozieForm());
+            modules.Add("Podwozie", new moduly.podwozie.podwozieForm(_timerManager));
             modules.Add("Manipulator", new moduly.manipulator.manipulatorForm());
             modules.Add("Sandbox", new moduly.sandbox.sandboxForm());
 
@@ -67,8 +69,6 @@ namespace HAL062app
 
         }
 
-        /// <Sterowanie wyswietlaniem stron>
-        /// 
         private void ShowModule(string moduleName)
         {
             if(modules.ContainsKey(moduleName))
@@ -87,7 +87,18 @@ namespace HAL062app
             }
 
         }
-
+        private void OnTimerStartRequested(object sender, EventArgs e)
+        {
+            //_timerManager = new TimerManager(5, 15);
+            _timerManager.Start();
+            
+        }
+        private void OnTimerStopRequested(object sender, EventArgs e)
+        {
+           
+                _timerManager.Stop();
+            
+        }
         private void MainPageButton_Click(object sender, EventArgs e)
         {
 
@@ -118,10 +129,5 @@ namespace HAL062app
             ShowModule("Sandbox");
         }
 
-        
-
-        /// 
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
     }
 }

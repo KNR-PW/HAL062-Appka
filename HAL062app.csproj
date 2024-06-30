@@ -125,6 +125,7 @@
     <Compile Include="CustomControls\CustomToggleButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="EventAggregator.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>

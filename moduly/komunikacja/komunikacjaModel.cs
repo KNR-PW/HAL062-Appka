@@ -55,8 +55,7 @@ namespace HAL062app.moduly.komunikacja
         private Task receivedTask;
        
         public event Action<List<Message>> UpdateLogTerminal;
-        //UART
-        public event Action<string[]> SendUARTdetectedPorts_action;
+        
         //Telnet
         public event Action<bool> isEthernetConnected_action;
 
@@ -68,10 +67,7 @@ namespace HAL062app.moduly.komunikacja
         private Task listeningBluetoothTask;
 
 
-        //uart
-        private SerialPort UART;
-        private string[] UartPorts = SerialPort.GetPortNames();
-        private bool UartOn = false;
+        
 
         //telnet
         private TcpClient tcpClient = new TcpClient();
@@ -163,84 +159,6 @@ namespace HAL062app.moduly.komunikacja
         ///
         //////////////////////////////////////////////////
 
-
-
-        public void ConnectUART(string portName, int baudRate)
-        {
-            Message msg = new Message();
-            msg.author = 400;
-            msg.receiver = 60;
-
-            if (portName != "-1")
-            {
-                try
-                {
-                    UART = new SerialPort(portName, baudRate);
-                    UART.Open();
-                    msg.text = "UART - Połączono z portem " + portName.ToString();
-                    logMessages.Add(msg);
-                    UpdateLogTerminal(logMessages);
-
-                }
-                catch (Exception ex)
-                {
-
-                    Message error = new Message();
-                    msg.text = "UART - Błąd połączenia: " + ex.Message;
-
-                    logMessages.Add(msg);
-                    UpdateLogTerminal(logMessages);
-
-                }
-            }
-            else
-            {
-                msg.text = "Brak wybranego portu";
-                logMessages.Add(msg);
-                UpdateLogTerminal(logMessages);
-            }
-        }
-        public void DisconnectUART()
-        {
-            Message msg = new Message();
-            msg.author = 400;
-            msg.receiver = 60;
-
-            try
-            {
-
-                UART.Close();
-                msg.text = "UART - Rozłączono z portem";
-                logMessages.Add(msg);
-                UpdateLogTerminal(logMessages);
-
-            }
-            catch (Exception ex)
-            {
-
-                Message error = new Message();
-                msg.text = "UART - Błąd podczas rozłączania: " + ex.Message;
-
-                logMessages.Add(msg);
-                UpdateLogTerminal(logMessages);
-
-            }
-
-        }
-        public void RefreshPortsUART()
-        {
-            UartPorts = SerialPort.GetPortNames();
-            if (UartPorts == null || UartPorts.Length == 0)
-            {
-                Message msg = new Message();
-                msg.author = 400;
-                msg.receiver = 60;
-                msg.text = "Brak dostępnych portów COM";
-                logMessages.Add(msg);
-                UpdateLogTerminal(logMessages);
-            }
-            SendUARTdetectedPorts_action(UartPorts);
-        }
 
 
 
