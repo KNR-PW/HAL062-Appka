@@ -9,7 +9,7 @@ namespace HAL062app.moduly.manipulator
     public class Position
     {
         public float[] joints { get; set; }
-        public float[] relative0 { get; set; } = new float[] { 0,50,-60,210,10,0};
+        public float[] relative0 { get; set; } = new float[] { 0,50,-60,185,10,65};
         public int id { get; set; }
         public int Duration { get; set; }
         public Position(float[] angles)

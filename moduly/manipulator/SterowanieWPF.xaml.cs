@@ -16,6 +16,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 using Newtonsoft.Json;
+using System.Timers;
+using SharpDX.XInput;
+using static HAL062app.ControllerState;
+using Newtonsoft.Json.Linq;
 
 namespace HAL062app.moduly.manipulator
 {
@@ -77,13 +81,28 @@ namespace HAL062app.moduly.manipulator
         private SequenceManager sequenceManager = new SequenceManager();
         private string sequencePath = "sequenceList.json";
         bool simulatingSequence = false;
+
+
+        // Xbox
+        private bool usingXboxPad = false;
+        private XboxPad _XboxPad;
+        private bool isClosing = false;
+        private bool isOpening = false;
+        
+
+        private Timer timer;
+        private int readInterval = 50;
+        private int timerInterval = 50;
+        private int elapsedTime = 0;
+        private bool isTimerRunning = false;
         public SterowanieWPF()
         {
-            InitializeComponent(); //to tutaj zmienia się maksymalne, minimalne i startowe kąty dla symulacji 
+            InitializeComponent(); //to tutaj zmienia się maksymalne, minimalne i startowe kąty dla symulacji
+            InitializeTimer();
             joints[0] = new Joint(-90,90,0,0); 
             joints[1] = new Joint(-60,90,0,50);
             joints[2] = new Joint(-60,70,0,-60);
-            joints[3] = new Joint(-90,90,0,210);
+            joints[3] = new Joint(-180,180,0,100);
             joints[4] = new Joint(-90,60,0,10);
             joints[5] = new Joint(-360,360,0,0);
             addValues.Add("-5.0", -5.0); //to odpowiada tylko za przyciski do szczegółowej zmiany kąta, nic ważnego
@@ -94,8 +113,8 @@ namespace HAL062app.moduly.manipulator
             addValues.Add("0.5", 0.5);
             addValues.Add("-0.1", -0.1);
             addValues.Add("0.1", 0.1);
-           
-
+            
+            XboxControlBus.XboxControlMode += OnXboxControlModeChanged;
             Slider[] JointSliders = {Joint1Slider,Joint2Slider, Joint3Slider, Joint4Slider, Joint5Slider, Joint6Slider };
             Label[] JointLabels = { Joint1Label, Joint2Label, Joint3Label, Joint4Label, Joint5Label, Joint6Label };
             _JointSliders = JointSliders;
@@ -112,10 +131,34 @@ namespace HAL062app.moduly.manipulator
             history.sequence.Add(actualPosition);
             initialization = false;
 
-
+            _XboxPad = XboxPad.Instance;
+            _XboxPad.ControllerStateChanged += OnXboxPadStateChanged;
             
         }
+        private void InitializeTimer()
+        {
+            timer = new Timer(150);
+            timer.Interval = timerInterval;
+            timer.AutoReset = true;
+            timer.Elapsed += OnTimedEvent;
+          
+        }
+        /*
+        private async void Timer_Tick(object sender, EventArgs e)
+        {
+            elapsedTime += timer.Interval;
+            if (elapsedTime >= readInterval)
+            {
+                SendManipulatorFrames_Xbox();
+                elapsedTime = 0; 
+            }
+        }*/
+        private async void OnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            await Task.Run(() => SendManipulatorFrames_Xbox());
 
+
+        }
         private void UpdateSlidersValues(Joint joint, Slider slider, Label label)
         {
             slider.Minimum = joint.angleMin;
@@ -380,6 +423,7 @@ namespace HAL062app.moduly.manipulator
 
         private void Control_CloseGripperBtn_Click(object sender, RoutedEventArgs e)
         {
+            isClosing = true;
             Message frame = new Message();
             frame.buffer[0] = (byte)('#');
             frame.buffer[1] = (byte)(157);
@@ -398,6 +442,8 @@ namespace HAL062app.moduly.manipulator
 
         private void Control_idkGripperBtn_Click(object sender, RoutedEventArgs e)
         {
+            isOpening = false;
+            isClosing = false;
             Message frame = new Message();
             frame.buffer[0] = (byte)('#');
             frame.buffer[1] = (byte)(157);
@@ -416,6 +462,7 @@ namespace HAL062app.moduly.manipulator
 
         private void Control_OpenGripperBtn_Click(object sender, RoutedEventArgs e)
         {
+            isOpening = true;
             Message frame = new Message();
             frame.buffer[0] = (byte)('#');
             frame.buffer[1] = (byte)(157);
@@ -432,7 +479,21 @@ namespace HAL062app.moduly.manipulator
             SendMessage_action(frame);
         }
 
+        private void Control_ZeroPosition(object sender, RoutedEventArgs e)
+        {
+            Position previousPosition = actualPosition.deepCopy();
+            actualPosition.addRelative0(relativeZeros);
+            float[] zeroAngles = new float[6];
+            for (int i = 0; i < 6; i++)
+                zeroAngles[i] = 0;
+            Position returnHomePosition;
+            returnHomePosition = previousPosition.deepCopy();
+            returnHomePosition.update(zeroAngles);
+            returnHomePosition.addRelativeToJoints();
 
+            simulateStep(previousPosition, returnHomePosition, false);
+            ChangeSlidersValue(returnHomePosition);
+        }
         //////////////////////////////////////////////////////////////////////////////////
         //////                                  Sekwencje
         //////////////////////////////////////////////////////////////////////////////////
@@ -634,6 +695,204 @@ namespace HAL062app.moduly.manipulator
                 sequenceManager.SaveToFile(sequencePath);
                 sequenceManager.Sequences.Add(history);
             }
+        }
+        ///////////////////////////////////////////////////////////////
+        /////                       Xbox
+        ///////////////////////////////////////////////////////////////
+        private void OnXboxPadStateChanged(object sender, State state)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                UpdateManipulatorPosition_Xbox(state);
+            });
+
+        }
+       
+        private void UpdateManipulatorPosition_Xbox(State state)
+        {
+            if ((GamepadButtonFlags.Start & XboxPad.Instance.GetPressedButtons()) != 0)
+            {
+                if (!isTimerRunning)
+                {
+                    timer.Start();
+                    isTimerRunning = true;
+                    usingXboxPad = true;
+                    XboxControlBus.SendXboxModeChanged(1);
+                    Control_turnOnManipulator(null, new RoutedEventArgs());
+                    
+                }
+                else
+                {
+                    timer.Stop();
+                    isTimerRunning = false;
+                    usingXboxPad = false;
+                    XboxControlBus.SendXboxModeChanged(0);
+                }
+            }
+            if ((GamepadButtonFlags.Y & XboxPad.Instance.GetPressedButtons()) != 0)
+            {  
+                    timer.Stop();
+                    isTimerRunning = false;
+                    usingXboxPad = false;
+                    Control_turnOffManipulator(null, new RoutedEventArgs());
+                
+            }
+            if (usingXboxPad) { 
+            if ((GamepadButtonFlags.DPadUp & XboxPad.Instance.GetPressedButtons()) != 0)
+            {
+                isClosing = true;
+                Message frame = new Message();
+                frame.buffer[0] = (byte)('#');
+                frame.buffer[1] = (byte)(157);
+                frame.buffer[2] = (byte)(1);
+                frame.buffer[3] = (byte)('x');
+                frame.buffer[4] = (byte)('x');
+                frame.buffer[5] = (byte)('x');
+                frame.buffer[6] = (byte)('x');
+                frame.buffer[7] = (byte)('x');
+                frame.buffer[8] = (byte)('x');
+                frame.buffer[9] = (byte)('x');
+                frame.text = new string(frame.encodeMessage());
+
+                SendMessage_action(frame);
+            }
+            if ((GamepadButtonFlags.DPadRight & XboxPad.Instance.GetPressedButtons()) != 0)
+            {
+                isOpening = false;
+                isClosing = false;
+                Message frame = new Message();
+                frame.buffer[0] = (byte)('#');
+                frame.buffer[1] = (byte)(157);
+                frame.buffer[2] = (byte)(0);
+                frame.buffer[3] = (byte)('x');
+                frame.buffer[4] = (byte)('x');
+                frame.buffer[5] = (byte)('x');
+                frame.buffer[6] = (byte)('x');
+                frame.buffer[7] = (byte)('x');
+                frame.buffer[8] = (byte)('x');
+                frame.buffer[9] = (byte)('x');
+                frame.text = new string(frame.encodeMessage());
+                SendMessage_action(frame);
+            }
+            if ((GamepadButtonFlags.DPadDown & XboxPad.Instance.GetPressedButtons()) != 0)
+            {
+                isOpening = true;
+                Message frame = new Message();
+                frame.buffer[0] = (byte)('#');
+                frame.buffer[1] = (byte)(157);
+                frame.buffer[2] = (byte)(2);
+                frame.buffer[3] = (byte)('x');
+                frame.buffer[4] = (byte)('x');
+                frame.buffer[5] = (byte)('x');
+                frame.buffer[6] = (byte)('x');
+                frame.buffer[7] = (byte)('x');
+                frame.buffer[8] = (byte)('x');
+                frame.buffer[9] = (byte)('x');
+                frame.text = new string(frame.encodeMessage());
+
+                SendMessage_action(frame);
+            }
+            if ((GamepadButtonFlags.A & XboxPad.Instance.GetPressedButtons()) != 0)
+            {
+                Control_ZeroPosition(null, new RoutedEventArgs());
+            }
+            }
+        }
+        private void OnXboxControlModeChanged(int value)
+        {
+            if(value ==1 && !isTimerRunning)
+            {
+                timer.Start();
+                isTimerRunning = true;
+                usingXboxPad = true;
+            } if(value == 0)
+            {
+                timer.Stop();
+                isTimerRunning = false;
+                usingXboxPad = false;
+            }
+        }
+        private void Control_turnOnGamePad(object sender, RoutedEventArgs e)
+        {
+            if (!isTimerRunning)
+            {
+                timer.Start();
+                isTimerRunning = true;
+                usingXboxPad = true;
+
+                XboxControlBus.SendXboxModeChanged(1);
+            }
+            else
+            {
+                timer.Stop();
+                isTimerRunning = false;
+                usingXboxPad = false;
+
+                XboxControlBus.SendXboxModeChanged(0);
+            }    
+        }
+        private async Task SendManipulatorFrames_Xbox()
+        {
+            Gamepad _gamepad = _XboxPad.GetCurrentState().Gamepad;
+            if (Math.Abs((int)_gamepad.LeftThumbX) > Gamepad.LeftThumbDeadZone)
+               await UpdateDofPositionXbox(5, -mapXboxThumb(_gamepad.LeftThumbX));
+            if (Math.Abs((int)_gamepad.LeftThumbY) > Gamepad.LeftThumbDeadZone)
+                await UpdateDofPositionXbox(2, 0.2f*mapXboxThumb(_gamepad.LeftThumbY));
+            if (Math.Abs((int)_gamepad.RightThumbX) > Gamepad.RightThumbDeadZone)
+                await UpdateDofPositionXbox(4, mapXboxThumb(_gamepad.RightThumbX));
+            if (Math.Abs((int)_gamepad.RightThumbY) > Gamepad.RightThumbDeadZone)
+                await UpdateDofPositionXbox(3, -mapXboxThumb(_gamepad.RightThumbY));
+            if(Math.Abs((int)_gamepad.RightTrigger) >Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.LeftTrigger) < Gamepad.TriggerThreshold)
+                await UpdateDofPositionXbox(1, -50f * mapXboxThumb(_gamepad.RightTrigger));
+            if (Math.Abs((int)_gamepad.LeftTrigger) > Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.RightTrigger) < Gamepad.TriggerThreshold)
+                await UpdateDofPositionXbox(1, 50f*mapXboxThumb(_gamepad.LeftTrigger));
+            if((GamepadButtonFlags.LeftShoulder & XboxPad.Instance.GetPressedButtons()) != 0)
+                await UpdateDofPositionXbox(6, -1f);
+            if ((GamepadButtonFlags.RightShoulder& XboxPad.Instance.GetPressedButtons()) != 0)
+                await UpdateDofPositionXbox(6, 1f);
+            Dispatcher.Invoke(() =>
+            {
+                Position actPosition = new Position(returnAnglesFromJoints(joints));
+                actPosition.addRelative0(relativeZeros);
+                SendPosition_action(actPosition);
+            });
+
+        }
+        private Task UpdateDofPositionXbox(int dof, float delta)
+        {
+           
+            if(!initialization)
+            {
+                activeJointChange = dof;
+                activeSenderSlider = _JointSliders[dof - 1];
+                
+                joints[activeJointChange - 1].angle = CalculateToBounds(activeJointChange - 1, joints[activeJointChange - 1].angle + delta);
+                if (joints[activeJointChange - 1].angle + delta > joints[activeJointChange - 1].angleMax && joints[activeJointChange - 1].angle == joints[activeJointChange - 1].angleMax)
+                {
+                    XboxPad.Instance.VibrateGamepad(0, 0.1f);
+                    
+                }
+                else if (joints[activeJointChange - 1].angle + delta < joints[activeJointChange - 1].angleMin && joints[activeJointChange - 1].angle == joints[activeJointChange - 1].angleMin)
+                {
+                    XboxPad.Instance.VibrateGamepad(0.1f, 0);
+                }
+                else
+                    XboxPad.Instance.StopVibration();
+                Dispatcher.Invoke(() =>
+                {
+                    angleTextbox.Text = joints[activeJointChange - 1].angle.ToString("0.00");
+                        if (activeSenderSlider is Slider slider)
+                    slider.Value = joints[activeJointChange - 1].angle;
+                   
+                });
+               
+            }
+            return Task.CompletedTask;
+        }
+        private float mapXboxThumb(int value)
+        {
+
+            return (float)value / 32768f;
         }
     }
 }

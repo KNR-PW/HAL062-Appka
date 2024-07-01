@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
 using SharpDX.XInput;
+using static HAL062app.ControllerState;
 
 namespace HAL062app.moduly.podwozie
 {
@@ -54,6 +55,7 @@ namespace HAL062app.moduly.podwozie
 
             _XboxPad = XboxPad.Instance;
             _XboxPad.ControllerStateChanged += OnXboxPadStateChanged;
+            XboxControlBus.XboxControlMode += OnXboxControlModeChanged;
 
             joystickPosition.X = joystickPictureBox.ClientSize.Width / 2;
             joystickPosition.Y = joystickPictureBox.ClientSize.Height / 2;
@@ -424,6 +426,27 @@ namespace HAL062app.moduly.podwozie
 
                 }
         */
+
+        private void OnXboxControlModeChanged(int value)
+        {
+            if (value == 0)
+            {
+                isRunning = true;
+                startJoystickButton.Text = "Stop";
+                startJoystickButton.BackColor = Color.FromArgb(192, 0, 0);
+                usingXboxPad = true;
+            }
+            if (value == 1)
+            {
+                isRunning = false;
+                startJoystickButton.Text = "Start";
+                startJoystickButton.BackColor = Color.FromArgb(0, 192, 0);
+                usingXboxPad = false;
+            }
+
+
+           
+        }
         private void OnXboxPadStateChanged(object sender, State state)
         {
             Invoke(new MethodInvoker(delegate
@@ -439,7 +462,7 @@ namespace HAL062app.moduly.podwozie
 
         private void UpdateJoystick_Xbox(State state)
         {
-
+          
             /*
             if(state.Gamepad.RightThumbY > Gamepad.RightThumbDeadZone ||state.Gamepad.RightThumbY < -Gamepad.RightThumbDeadZone)
             forwardSpeed =forwardSpeedMaxLimit* state.Gamepad.RightThumbY / 32768;
@@ -482,15 +505,22 @@ namespace HAL062app.moduly.podwozie
 
                 int gamePadX = 0;
                 int gamePadY = 0;
-                int pt =(int)Math.Sqrt( (int)state.Gamepad.RightThumbX* (int)state.Gamepad.RightThumbX + (int)state.Gamepad.RightThumbY * (int)state.Gamepad.RightThumbY);
-               errorTextbox.Text = $"X = {state.Gamepad.RightThumbX / 32768f} Y = {state.Gamepad.RightThumbY / 32768f} + {pt}";
-               if (pt > 8689)
-                    gamePadX =(int)((float)30 * (float)state.Gamepad.RightThumbX / 32768f);
-               if (pt > 8689)
-                    gamePadY = -(int)((float)30 * (float)state.Gamepad.RightThumbY / 32768f);
+                /* int pt =(int)Math.Sqrt( (int)state.Gamepad.RightThumbX* (int)state.Gamepad.RightThumbX + (int)state.Gamepad.RightThumbY * (int)state.Gamepad.RightThumbY);
+                errorTextbox.Text = $"X = {state.Gamepad.RightThumbX / 32768f} Y = {state.Gamepad.RightThumbY / 32768f} + {pt}";
+                if (pt > 8689)
+                     gamePadX =(int)((float)30 * (float)state.Gamepad.RightThumbX / 32768f);
+                if (pt > 8689)
+                     gamePadY = -(int)((float)30 * (float)state.Gamepad.RightThumbY / 32768f);
+                */
+                if (Math.Abs( (int)state.Gamepad.LeftThumbX) > 8689)
+                    gamePadX = (int)((float)100 * (float)state.Gamepad.LeftThumbX / 32768f);
+                if((int)state.Gamepad.RightTrigger > Gamepad.TriggerThreshold && (int)state.Gamepad.LeftTrigger < Gamepad.TriggerThreshold)
+                    gamePadY = -(int)((float)100*(float)state.Gamepad.RightTrigger/255f);
+                if ((int)state.Gamepad.LeftTrigger > Gamepad.TriggerThreshold && (int)state.Gamepad.RightTrigger < Gamepad.TriggerThreshold)
+                    gamePadY = (int)((float)100 * (float)state.Gamepad.LeftTrigger / 255f);
 
-                gamePadX = gamePadX * limitRadius / 30;
-                gamePadY = gamePadY * limitRadius / 30;
+                gamePadX = gamePadX * limitRadius / 100;
+                gamePadY = gamePadY * limitRadius / 120;
                 joystickPosition.X = gamePadX + width/2;
                 joystickPosition.Y = gamePadY + height/2;
                 //errorTextbox.Text = $"X = {joystickPosition.X} Y = {joystickPosition.Y}";
