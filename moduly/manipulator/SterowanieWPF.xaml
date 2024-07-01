@@ -128,9 +128,10 @@
                     <Button Content="Reset" Click="ResetButton_Click" HorizontalAlignment="Center" Margin="0,67,0,0" Grid.Row="4" VerticalAlignment="Top" Height="20" Width="72"/>
                     <TextBlock Grid.Row="5" Text="Podstawowe funkcje" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0" Grid.RowSpan="3" />
                     <Button Content="Włącz&#xD;&#xA;manipulator" Click="Control_turnOnManipulator" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="98" />
+                    <Button Content="Pozycja&#xD;&#xA;zero" Click="Control_ZeroPosition" HorizontalAlignment="Center" Margin="0,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="60" />
                     <Button Content="Surowe&#xD;&#xA;wyłączenie" Click="Control_rawTurnOffManipulator" HorizontalAlignment="Left" Margin="190,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
                     <Button Content="Ustaw i wyłącz&#xD;&#xA;manipulator" Click="Control_turnOffManipulator" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="98" />
-                    <Button Content="Ustaw pozycję 0" Click="ResetEveryJointBtn_Click" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
+                    <Button Content="Włącz sterowanie&#xD;&#xA;gamepadem" Click="Control_turnOnGamePad" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
 
                 </Grid>
             </TabItem>

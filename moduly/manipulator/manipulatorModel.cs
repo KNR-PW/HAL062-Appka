@@ -59,11 +59,11 @@ namespace HAL062app.moduly.manipulator
             frames = angleFrames(position);
 
             SendMessageToKomunikacja(frames[0]);
-            await Task.Delay(200);
+            await Task.Delay(50);
             SendMessageToKomunikacja(frames[1]);
-            await Task.Delay(200);
+            await Task.Delay(50);
             SendMessageToKomunikacja(frames[2]);
-            await Task.Delay(200);
+            await Task.Delay(50);
         }
 
         Message[] angleFrames(Position position)

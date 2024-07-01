@@ -58,7 +58,42 @@ namespace HAL062app
                 Thread.Sleep(100);
             }
         }
+        public void VibrateGamepad(float leftMotor, float rightMotor)
+        {
+            if(controller.IsConnected)
+            {
+                ushort leftMotorSpeed = (ushort)(leftMotor * ushort.MaxValue);
+                ushort rightMotorSpeed = (ushort)(rightMotor * ushort.MaxValue);
 
+                Vibration vibration = new Vibration
+                {
+                    LeftMotorSpeed = leftMotorSpeed,
+                    RightMotorSpeed = rightMotorSpeed
+                };
+
+                controller.SetVibration(vibration);
+
+            }
+
+        }
+        public GamepadButtonFlags GetPressedButtons()
+        {
+            if (controller.IsConnected)
+            {
+                var state = controller.GetState().Gamepad;
+                return state.Buttons;
+            }
+
+            return GamepadButtonFlags.None;
+        }
+        public void StopVibration()
+        {
+            if (controller.IsConnected)
+            {
+                Vibration stopVibration = new Vibration();
+                controller.SetVibration(stopVibration);
+            }
+        }
         public State GetCurrentState()
         {
             return controller.GetState();
@@ -85,7 +120,9 @@ namespace HAL062app
             LeftTrigger = state.Gamepad.LeftTrigger;
             RightTrigger = state.Gamepad.RightTrigger;
         }
+      
 
+        
         public bool HasChanged(State newState)
         {
             return Buttons != newState.Gamepad.Buttons ||
@@ -98,6 +135,15 @@ namespace HAL062app
         }
 
 
+        public static class XboxControlBus
+        {
+            public static Action<int> XboxControlMode;
+
+            public static void SendXboxModeChanged(int value)
+            {
+                XboxControlMode?.Invoke(value);
+            }
+        }
 
     }
 }
