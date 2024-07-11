@@ -26,10 +26,7 @@ namespace HAL062app.moduly.laboratorium
                 if (display != null)
                 {
 
-                  
-                    model.wywolaj += UpdateTextBox1;
-                    display.DequeueAction += dequeue;
-                    display.MessageAction += sendMessageToKomunikacja;
+                    display.SendFrame_Action += sendMessageToKomunikacja;
                     
                 }
             }
@@ -40,16 +37,9 @@ namespace HAL062app.moduly.laboratorium
             model.SendMessageToKomunikacja(msg);
 
         }
-        private void dequeue()
-        {
-            model.wyswietlKolejnaWiadomosc();
-                
-        }
+      
         
-        private void UpdateTextBox1(string msg)
-        {
-            display.Updateee(msg);
-        }
+       
 
     }
 }

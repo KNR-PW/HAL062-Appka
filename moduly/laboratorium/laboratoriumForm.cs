@@ -12,64 +12,161 @@ namespace HAL062app.moduly.laboratorium
 {
     public partial class laboratoriumForm : Form
     {
-        public event Action DequeueAction;
-        public event Action<Message> MessageAction;
+        public event Action<Message> SendFrame_Action;
 
         public laboratoriumForm()
         {
             InitializeComponent();
         }
 
-        private void customButton1_Click(object sender, EventArgs e)
+        private void ModulUpBtn_Click(object sender, EventArgs e)
         {
-            DequeueAction?.Invoke();
+            Message frame = new Message();    
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(194);
+            frame.buffer[2] = (byte)(3);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(50);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)(0);
+            frame.buffer[9] = (byte)(0);
+            frame.text = new string(frame.encodeMessage());
+            SendFrame_Action(frame);
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void ModulStopBtn_Click(object sender, EventArgs e)
         {
-
-        }
-        public void Updateee(string  text)
-        {
-            textBox1.Text = text;
-        }
-
-        private void customButton2_Click(object sender, EventArgs e)
-        {
-            Message msg = new Message();
-            msg.text = textBox2.Text;
-            MessageAction?.Invoke(msg);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //#194500500XXXXXXXXXX #C20300320032000000
-            
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(194);
+            frame.buffer[2] = (byte)(3);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)(0);
+            frame.buffer[9] = (byte)(0);
+            frame.text = new string(frame.encodeMessage());
+            SendFrame_Action(frame);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void ModulDownBtn_Click(object sender, EventArgs e)
         {
-
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(194);
+            frame.buffer[2] = (byte)(3);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(50);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)(0);
+            frame.buffer[9] = (byte)(0);
+            frame.text = new string(frame.encodeMessage());
+            SendFrame_Action(frame);
+        }
+        private void WiertloUpBtn_Click(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(194);
+            frame.buffer[2] = (byte)(3);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(50);
+            frame.buffer[8] = (byte)(0);
+            frame.buffer[9] = (byte)(0);
+            frame.text = new string(frame.encodeMessage());
+            SendFrame_Action(frame);
+        }
+        private void WiertloStopBtn_Click(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(194);
+            frame.buffer[2] = (byte)(3);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)(0);
+            frame.buffer[9] = (byte)(0);
+            frame.text = new string(frame.encodeMessage());
+            SendFrame_Action(frame);
+        }
+        private void WiertloDownBtn_Click(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(194);
+            frame.buffer[2] = (byte)(3);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)(50);
+            frame.buffer[9] = (byte)(0);
+            frame.text = new string(frame.encodeMessage());
+            SendFrame_Action(frame);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void SilnikOnBtn_Click(object sender, EventArgs e)
         {
-
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(194);
+            frame.buffer[2] = (byte)(3);
+            frame.buffer[3] = (byte)(50);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)(0);
+            frame.buffer[9] = (byte)(0);
+            frame.text = new string(frame.encodeMessage());
+            SendFrame_Action(frame);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void SilnikStopBtn_Click(object sender, EventArgs e)
         {
-
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(194);
+            frame.buffer[2] = (byte)(3);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)(0);
+            frame.buffer[9] = (byte)(0);
+            frame.text = new string(frame.encodeMessage());
+            SendFrame_Action(frame);
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void SilnikReverseBtn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(194);
+            frame.buffer[2] = (byte)(3);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(50);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)(0);
+            frame.buffer[9] = (byte)(0);
+            frame.text = new string(frame.encodeMessage());
+            SendFrame_Action(frame);
         }
     }
 }

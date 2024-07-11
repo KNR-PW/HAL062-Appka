@@ -73,6 +73,9 @@
             this.data8textBox = new System.Windows.Forms.TextBox();
             this.SendFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -85,13 +88,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericData2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericData1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericID)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.7457F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.2543F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.53608F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.46392F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -100,22 +104,22 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 500F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1184, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ClearFrameBtn);
             this.panel1.Controls.Add(this.CreateFrameBtn);
             this.panel1.Controls.Add(this.frameTextBox);
-            this.panel1.Controls.Add(this.ClearFrameBtn);
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Controls.Add(this.SendFrameBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(463, 13);
+            this.panel1.Location = new System.Drawing.Point(415, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(708, 314);
+            this.panel1.Size = new System.Drawing.Size(756, 494);
             this.panel1.TabIndex = 0;
             // 
             // CreateFrameBtn
@@ -129,7 +133,7 @@
             this.CreateFrameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateFrameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.CreateFrameBtn.ForeColor = System.Drawing.Color.White;
-            this.CreateFrameBtn.Location = new System.Drawing.Point(486, 98);
+            this.CreateFrameBtn.Location = new System.Drawing.Point(534, 218);
             this.CreateFrameBtn.Name = "CreateFrameBtn";
             this.CreateFrameBtn.Size = new System.Drawing.Size(211, 40);
             this.CreateFrameBtn.TabIndex = 5;
@@ -140,17 +144,19 @@
             // 
             // frameTextBox
             // 
+            this.frameTextBox.AcceptsTab = true;
+            this.frameTextBox.AllowDrop = true;
             this.frameTextBox.BackColor = System.Drawing.Color.DimGray;
             this.frameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.frameTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.frameTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.frameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.frameTextBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.frameTextBox.Location = new System.Drawing.Point(144, 152);
+            this.frameTextBox.Location = new System.Drawing.Point(79, 277);
             this.frameTextBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
-            this.frameTextBox.MaxLength = 1;
+            this.frameTextBox.MaxLength = 19;
             this.frameTextBox.Name = "frameTextBox";
-            this.frameTextBox.Size = new System.Drawing.Size(328, 27);
+            this.frameTextBox.Size = new System.Drawing.Size(442, 27);
             this.frameTextBox.TabIndex = 4;
             this.frameTextBox.Text = "#00XXXXXXXXXXXXXXXX";
             // 
@@ -165,7 +171,7 @@
             this.ClearFrameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClearFrameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.ClearFrameBtn.ForeColor = System.Drawing.Color.White;
-            this.ClearFrameBtn.Location = new System.Drawing.Point(486, 144);
+            this.ClearFrameBtn.Location = new System.Drawing.Point(534, 264);
             this.ClearFrameBtn.Name = "ClearFrameBtn";
             this.ClearFrameBtn.Size = new System.Drawing.Size(211, 40);
             this.ClearFrameBtn.TabIndex = 3;
@@ -188,6 +194,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.Controls.Add(this.label12, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label11, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.dataCheckBox8, 9, 3);
             this.tableLayoutPanel2.Controls.Add(this.dataCheckBox7, 8, 3);
             this.tableLayoutPanel2.Controls.Add(this.dataCheckBox6, 7, 3);
@@ -226,15 +234,15 @@
             this.tableLayoutPanel2.Controls.Add(this.PrefixTextBox, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.data8textBox, 9, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 192);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 327);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.11765F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(708, 122);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(756, 167);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // dataCheckBox8
@@ -242,10 +250,11 @@
             this.dataCheckBox8.AutoSize = true;
             this.dataCheckBox8.Checked = true;
             this.dataCheckBox8.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dataCheckBox8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataCheckBox8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataCheckBox8.Location = new System.Drawing.Point(634, 103);
+            this.dataCheckBox8.Location = new System.Drawing.Point(679, 125);
             this.dataCheckBox8.Name = "dataCheckBox8";
-            this.dataCheckBox8.Size = new System.Drawing.Size(15, 14);
+            this.dataCheckBox8.Size = new System.Drawing.Size(73, 38);
             this.dataCheckBox8.TabIndex = 45;
             this.dataCheckBox8.UseVisualStyleBackColor = true;
             // 
@@ -254,10 +263,11 @@
             this.dataCheckBox7.AutoSize = true;
             this.dataCheckBox7.Checked = true;
             this.dataCheckBox7.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dataCheckBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataCheckBox7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataCheckBox7.Location = new System.Drawing.Point(564, 103);
+            this.dataCheckBox7.Location = new System.Drawing.Point(604, 125);
             this.dataCheckBox7.Name = "dataCheckBox7";
-            this.dataCheckBox7.Size = new System.Drawing.Size(15, 14);
+            this.dataCheckBox7.Size = new System.Drawing.Size(68, 38);
             this.dataCheckBox7.TabIndex = 44;
             this.dataCheckBox7.UseVisualStyleBackColor = true;
             // 
@@ -266,10 +276,11 @@
             this.dataCheckBox6.AutoSize = true;
             this.dataCheckBox6.Checked = true;
             this.dataCheckBox6.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dataCheckBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataCheckBox6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataCheckBox6.Location = new System.Drawing.Point(494, 103);
+            this.dataCheckBox6.Location = new System.Drawing.Point(529, 125);
             this.dataCheckBox6.Name = "dataCheckBox6";
-            this.dataCheckBox6.Size = new System.Drawing.Size(15, 14);
+            this.dataCheckBox6.Size = new System.Drawing.Size(68, 38);
             this.dataCheckBox6.TabIndex = 43;
             this.dataCheckBox6.UseVisualStyleBackColor = true;
             // 
@@ -278,10 +289,11 @@
             this.dataCheckBox5.AutoSize = true;
             this.dataCheckBox5.Checked = true;
             this.dataCheckBox5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dataCheckBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataCheckBox5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataCheckBox5.Location = new System.Drawing.Point(424, 103);
+            this.dataCheckBox5.Location = new System.Drawing.Point(454, 125);
             this.dataCheckBox5.Name = "dataCheckBox5";
-            this.dataCheckBox5.Size = new System.Drawing.Size(15, 14);
+            this.dataCheckBox5.Size = new System.Drawing.Size(68, 38);
             this.dataCheckBox5.TabIndex = 42;
             this.dataCheckBox5.UseVisualStyleBackColor = true;
             // 
@@ -290,10 +302,11 @@
             this.dataCheckBox4.AutoSize = true;
             this.dataCheckBox4.Checked = true;
             this.dataCheckBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dataCheckBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataCheckBox4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataCheckBox4.Location = new System.Drawing.Point(354, 103);
+            this.dataCheckBox4.Location = new System.Drawing.Point(379, 125);
             this.dataCheckBox4.Name = "dataCheckBox4";
-            this.dataCheckBox4.Size = new System.Drawing.Size(15, 14);
+            this.dataCheckBox4.Size = new System.Drawing.Size(68, 38);
             this.dataCheckBox4.TabIndex = 41;
             this.dataCheckBox4.UseVisualStyleBackColor = true;
             // 
@@ -302,10 +315,11 @@
             this.dataCheckBox3.AutoSize = true;
             this.dataCheckBox3.Checked = true;
             this.dataCheckBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dataCheckBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataCheckBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataCheckBox3.Location = new System.Drawing.Point(284, 103);
+            this.dataCheckBox3.Location = new System.Drawing.Point(304, 125);
             this.dataCheckBox3.Name = "dataCheckBox3";
-            this.dataCheckBox3.Size = new System.Drawing.Size(15, 14);
+            this.dataCheckBox3.Size = new System.Drawing.Size(68, 38);
             this.dataCheckBox3.TabIndex = 40;
             this.dataCheckBox3.UseVisualStyleBackColor = true;
             // 
@@ -314,10 +328,11 @@
             this.dataCheckBox2.AutoSize = true;
             this.dataCheckBox2.Checked = true;
             this.dataCheckBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dataCheckBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataCheckBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataCheckBox2.Location = new System.Drawing.Point(214, 103);
+            this.dataCheckBox2.Location = new System.Drawing.Point(229, 125);
             this.dataCheckBox2.Name = "dataCheckBox2";
-            this.dataCheckBox2.Size = new System.Drawing.Size(15, 14);
+            this.dataCheckBox2.Size = new System.Drawing.Size(68, 38);
             this.dataCheckBox2.TabIndex = 39;
             this.dataCheckBox2.UseVisualStyleBackColor = true;
             // 
@@ -327,7 +342,7 @@
             this.numericData8.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericData8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericData8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.numericData8.Location = new System.Drawing.Point(634, 70);
+            this.numericData8.Location = new System.Drawing.Point(679, 85);
             this.numericData8.Maximum = new decimal(new int[] {
             128,
             0,
@@ -339,7 +354,7 @@
             0,
             -2147483648});
             this.numericData8.Name = "numericData8";
-            this.numericData8.Size = new System.Drawing.Size(70, 23);
+            this.numericData8.Size = new System.Drawing.Size(73, 23);
             this.numericData8.TabIndex = 35;
             // 
             // numericData7
@@ -348,7 +363,7 @@
             this.numericData7.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericData7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericData7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.numericData7.Location = new System.Drawing.Point(564, 70);
+            this.numericData7.Location = new System.Drawing.Point(604, 85);
             this.numericData7.Maximum = new decimal(new int[] {
             128,
             0,
@@ -360,7 +375,7 @@
             0,
             -2147483648});
             this.numericData7.Name = "numericData7";
-            this.numericData7.Size = new System.Drawing.Size(63, 23);
+            this.numericData7.Size = new System.Drawing.Size(68, 23);
             this.numericData7.TabIndex = 34;
             // 
             // dataCheckBox1
@@ -370,9 +385,9 @@
             this.dataCheckBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.dataCheckBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataCheckBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataCheckBox1.Location = new System.Drawing.Point(144, 103);
+            this.dataCheckBox1.Location = new System.Drawing.Point(154, 125);
             this.dataCheckBox1.Name = "dataCheckBox1";
-            this.dataCheckBox1.Size = new System.Drawing.Size(63, 15);
+            this.dataCheckBox1.Size = new System.Drawing.Size(68, 38);
             this.dataCheckBox1.TabIndex = 2;
             this.dataCheckBox1.UseVisualStyleBackColor = true;
             // 
@@ -382,7 +397,7 @@
             this.numericData6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericData6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericData6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.numericData6.Location = new System.Drawing.Point(494, 70);
+            this.numericData6.Location = new System.Drawing.Point(529, 85);
             this.numericData6.Maximum = new decimal(new int[] {
             128,
             0,
@@ -394,7 +409,7 @@
             0,
             -2147483648});
             this.numericData6.Name = "numericData6";
-            this.numericData6.Size = new System.Drawing.Size(63, 23);
+            this.numericData6.Size = new System.Drawing.Size(68, 23);
             this.numericData6.TabIndex = 33;
             // 
             // numericData5
@@ -403,7 +418,7 @@
             this.numericData5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericData5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericData5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.numericData5.Location = new System.Drawing.Point(424, 70);
+            this.numericData5.Location = new System.Drawing.Point(454, 85);
             this.numericData5.Maximum = new decimal(new int[] {
             128,
             0,
@@ -415,7 +430,7 @@
             0,
             -2147483648});
             this.numericData5.Name = "numericData5";
-            this.numericData5.Size = new System.Drawing.Size(63, 23);
+            this.numericData5.Size = new System.Drawing.Size(68, 23);
             this.numericData5.TabIndex = 32;
             // 
             // numericData4
@@ -424,7 +439,7 @@
             this.numericData4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericData4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericData4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.numericData4.Location = new System.Drawing.Point(354, 70);
+            this.numericData4.Location = new System.Drawing.Point(379, 85);
             this.numericData4.Maximum = new decimal(new int[] {
             128,
             0,
@@ -436,7 +451,7 @@
             0,
             -2147483648});
             this.numericData4.Name = "numericData4";
-            this.numericData4.Size = new System.Drawing.Size(63, 23);
+            this.numericData4.Size = new System.Drawing.Size(68, 23);
             this.numericData4.TabIndex = 31;
             // 
             // numericData3
@@ -445,7 +460,7 @@
             this.numericData3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericData3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericData3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.numericData3.Location = new System.Drawing.Point(284, 70);
+            this.numericData3.Location = new System.Drawing.Point(304, 85);
             this.numericData3.Maximum = new decimal(new int[] {
             128,
             0,
@@ -457,7 +472,7 @@
             0,
             -2147483648});
             this.numericData3.Name = "numericData3";
-            this.numericData3.Size = new System.Drawing.Size(63, 23);
+            this.numericData3.Size = new System.Drawing.Size(68, 23);
             this.numericData3.TabIndex = 30;
             // 
             // numericData2
@@ -466,7 +481,7 @@
             this.numericData2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericData2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericData2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.numericData2.Location = new System.Drawing.Point(214, 70);
+            this.numericData2.Location = new System.Drawing.Point(229, 85);
             this.numericData2.Maximum = new decimal(new int[] {
             128,
             0,
@@ -478,7 +493,7 @@
             0,
             -2147483648});
             this.numericData2.Name = "numericData2";
-            this.numericData2.Size = new System.Drawing.Size(63, 23);
+            this.numericData2.Size = new System.Drawing.Size(68, 23);
             this.numericData2.TabIndex = 29;
             // 
             // numericData1
@@ -487,7 +502,7 @@
             this.numericData1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericData1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericData1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.numericData1.Location = new System.Drawing.Point(144, 70);
+            this.numericData1.Location = new System.Drawing.Point(154, 85);
             this.numericData1.Maximum = new decimal(new int[] {
             128,
             0,
@@ -499,7 +514,7 @@
             0,
             -2147483648});
             this.numericData1.Name = "numericData1";
-            this.numericData1.Size = new System.Drawing.Size(63, 23);
+            this.numericData1.Size = new System.Drawing.Size(68, 23);
             this.numericData1.TabIndex = 28;
             // 
             // numericID
@@ -508,14 +523,14 @@
             this.numericID.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.numericID.Location = new System.Drawing.Point(74, 70);
+            this.numericID.Location = new System.Drawing.Point(79, 85);
             this.numericID.Maximum = new decimal(new int[] {
             256,
             0,
             0,
             0});
             this.numericID.Name = "numericID";
-            this.numericID.Size = new System.Drawing.Size(63, 23);
+            this.numericID.Size = new System.Drawing.Size(68, 23);
             this.numericID.TabIndex = 26;
             // 
             // data7textBox
@@ -527,11 +542,11 @@
             this.data7textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data7textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.data7textBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.data7textBox.Location = new System.Drawing.Point(571, 34);
-            this.data7textBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
+            this.data7textBox.Location = new System.Drawing.Point(611, 47);
+            this.data7textBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.data7textBox.MaxLength = 2;
             this.data7textBox.Name = "data7textBox";
-            this.data7textBox.Size = new System.Drawing.Size(49, 27);
+            this.data7textBox.Size = new System.Drawing.Size(54, 27);
             this.data7textBox.TabIndex = 24;
             this.data7textBox.Text = "XX";
             // 
@@ -544,11 +559,11 @@
             this.data6textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data6textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.data6textBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.data6textBox.Location = new System.Drawing.Point(501, 34);
-            this.data6textBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
+            this.data6textBox.Location = new System.Drawing.Point(536, 47);
+            this.data6textBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.data6textBox.MaxLength = 2;
             this.data6textBox.Name = "data6textBox";
-            this.data6textBox.Size = new System.Drawing.Size(49, 27);
+            this.data6textBox.Size = new System.Drawing.Size(54, 27);
             this.data6textBox.TabIndex = 23;
             this.data6textBox.Text = "XX";
             // 
@@ -561,11 +576,11 @@
             this.data5textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data5textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.data5textBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.data5textBox.Location = new System.Drawing.Point(431, 34);
-            this.data5textBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
+            this.data5textBox.Location = new System.Drawing.Point(461, 47);
+            this.data5textBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.data5textBox.MaxLength = 2;
             this.data5textBox.Name = "data5textBox";
-            this.data5textBox.Size = new System.Drawing.Size(49, 27);
+            this.data5textBox.Size = new System.Drawing.Size(54, 27);
             this.data5textBox.TabIndex = 22;
             this.data5textBox.Text = "XX";
             // 
@@ -578,11 +593,11 @@
             this.data4textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data4textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.data4textBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.data4textBox.Location = new System.Drawing.Point(361, 34);
-            this.data4textBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
+            this.data4textBox.Location = new System.Drawing.Point(386, 47);
+            this.data4textBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.data4textBox.MaxLength = 2;
             this.data4textBox.Name = "data4textBox";
-            this.data4textBox.Size = new System.Drawing.Size(49, 27);
+            this.data4textBox.Size = new System.Drawing.Size(54, 27);
             this.data4textBox.TabIndex = 21;
             this.data4textBox.Text = "XX";
             // 
@@ -595,11 +610,11 @@
             this.data3textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data3textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.data3textBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.data3textBox.Location = new System.Drawing.Point(291, 34);
-            this.data3textBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
+            this.data3textBox.Location = new System.Drawing.Point(311, 47);
+            this.data3textBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.data3textBox.MaxLength = 2;
             this.data3textBox.Name = "data3textBox";
-            this.data3textBox.Size = new System.Drawing.Size(49, 27);
+            this.data3textBox.Size = new System.Drawing.Size(54, 27);
             this.data3textBox.TabIndex = 20;
             this.data3textBox.Text = "XX";
             // 
@@ -612,11 +627,11 @@
             this.data2textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data2textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.data2textBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.data2textBox.Location = new System.Drawing.Point(221, 34);
-            this.data2textBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
+            this.data2textBox.Location = new System.Drawing.Point(236, 47);
+            this.data2textBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.data2textBox.MaxLength = 2;
             this.data2textBox.Name = "data2textBox";
-            this.data2textBox.Size = new System.Drawing.Size(49, 27);
+            this.data2textBox.Size = new System.Drawing.Size(54, 27);
             this.data2textBox.TabIndex = 19;
             this.data2textBox.Text = "XX";
             // 
@@ -629,11 +644,11 @@
             this.data1textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data1textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.data1textBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.data1textBox.Location = new System.Drawing.Point(151, 34);
-            this.data1textBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
+            this.data1textBox.Location = new System.Drawing.Point(161, 47);
+            this.data1textBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.data1textBox.MaxLength = 2;
             this.data1textBox.Name = "data1textBox";
-            this.data1textBox.Size = new System.Drawing.Size(49, 27);
+            this.data1textBox.Size = new System.Drawing.Size(54, 27);
             this.data1textBox.TabIndex = 18;
             this.data1textBox.Text = "XX";
             // 
@@ -646,11 +661,11 @@
             this.IDtextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.IDtextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.IDtextBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.IDtextBox.Location = new System.Drawing.Point(81, 34);
-            this.IDtextBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
+            this.IDtextBox.Location = new System.Drawing.Point(86, 47);
+            this.IDtextBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.IDtextBox.MaxLength = 2;
             this.IDtextBox.Name = "IDtextBox";
-            this.IDtextBox.Size = new System.Drawing.Size(49, 27);
+            this.IDtextBox.Size = new System.Drawing.Size(54, 27);
             this.IDtextBox.TabIndex = 17;
             this.IDtextBox.Text = "00";
             // 
@@ -659,10 +674,10 @@
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label10.Location = new System.Drawing.Point(641, 11);
+            this.label10.Location = new System.Drawing.Point(686, 11);
             this.label10.Margin = new System.Windows.Forms.Padding(10);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(56, 12);
+            this.label10.Size = new System.Drawing.Size(59, 20);
             this.label10.TabIndex = 16;
             this.label10.Text = "#8";
             this.label10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -672,10 +687,10 @@
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label9.Location = new System.Drawing.Point(571, 11);
+            this.label9.Location = new System.Drawing.Point(611, 11);
             this.label9.Margin = new System.Windows.Forms.Padding(10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 12);
+            this.label9.Size = new System.Drawing.Size(54, 20);
             this.label9.TabIndex = 15;
             this.label9.Text = "#7";
             this.label9.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -685,10 +700,10 @@
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label8.Location = new System.Drawing.Point(501, 11);
+            this.label8.Location = new System.Drawing.Point(536, 11);
             this.label8.Margin = new System.Windows.Forms.Padding(10);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 12);
+            this.label8.Size = new System.Drawing.Size(54, 20);
             this.label8.TabIndex = 14;
             this.label8.Text = "#6";
             this.label8.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -698,10 +713,10 @@
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label7.Location = new System.Drawing.Point(431, 11);
+            this.label7.Location = new System.Drawing.Point(461, 11);
             this.label7.Margin = new System.Windows.Forms.Padding(10);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 12);
+            this.label7.Size = new System.Drawing.Size(54, 20);
             this.label7.TabIndex = 13;
             this.label7.Text = "#5";
             this.label7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -711,10 +726,10 @@
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label6.Location = new System.Drawing.Point(361, 11);
+            this.label6.Location = new System.Drawing.Point(386, 11);
             this.label6.Margin = new System.Windows.Forms.Padding(10);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 12);
+            this.label6.Size = new System.Drawing.Size(54, 20);
             this.label6.TabIndex = 12;
             this.label6.Text = "#4";
             this.label6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -724,10 +739,10 @@
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label5.Location = new System.Drawing.Point(291, 11);
+            this.label5.Location = new System.Drawing.Point(311, 11);
             this.label5.Margin = new System.Windows.Forms.Padding(10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 12);
+            this.label5.Size = new System.Drawing.Size(54, 20);
             this.label5.TabIndex = 11;
             this.label5.Text = "#3";
             this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -737,10 +752,10 @@
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(221, 11);
+            this.label4.Location = new System.Drawing.Point(236, 11);
             this.label4.Margin = new System.Windows.Forms.Padding(10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 12);
+            this.label4.Size = new System.Drawing.Size(54, 20);
             this.label4.TabIndex = 10;
             this.label4.Text = "#2";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -750,10 +765,10 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label3.Location = new System.Drawing.Point(151, 11);
+            this.label3.Location = new System.Drawing.Point(161, 11);
             this.label3.Margin = new System.Windows.Forms.Padding(10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 12);
+            this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 9;
             this.label3.Text = "#1";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -763,10 +778,10 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label2.Location = new System.Drawing.Point(81, 11);
+            this.label2.Location = new System.Drawing.Point(86, 11);
             this.label2.Margin = new System.Windows.Forms.Padding(10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 12);
+            this.label2.Size = new System.Drawing.Size(54, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "ID";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -779,7 +794,7 @@
             this.label1.Location = new System.Drawing.Point(11, 11);
             this.label1.Margin = new System.Windows.Forms.Padding(10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 12);
+            this.label1.Size = new System.Drawing.Size(54, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "Prefix";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -793,11 +808,11 @@
             this.PrefixTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PrefixTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.PrefixTextBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.PrefixTextBox.Location = new System.Drawing.Point(11, 34);
-            this.PrefixTextBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
+            this.PrefixTextBox.Location = new System.Drawing.Point(11, 47);
+            this.PrefixTextBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.PrefixTextBox.MaxLength = 1;
             this.PrefixTextBox.Name = "PrefixTextBox";
-            this.PrefixTextBox.Size = new System.Drawing.Size(49, 27);
+            this.PrefixTextBox.Size = new System.Drawing.Size(54, 27);
             this.PrefixTextBox.TabIndex = 6;
             this.PrefixTextBox.Text = "#";
             // 
@@ -810,11 +825,11 @@
             this.data8textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.data8textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.data8textBox.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.data8textBox.Location = new System.Drawing.Point(641, 34);
-            this.data8textBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
+            this.data8textBox.Location = new System.Drawing.Point(686, 47);
+            this.data8textBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.data8textBox.MaxLength = 2;
             this.data8textBox.Name = "data8textBox";
-            this.data8textBox.Size = new System.Drawing.Size(56, 27);
+            this.data8textBox.Size = new System.Drawing.Size(59, 27);
             this.data8textBox.TabIndex = 25;
             this.data8textBox.Text = "XX";
             // 
@@ -829,7 +844,7 @@
             this.SendFrameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SendFrameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.SendFrameBtn.ForeColor = System.Drawing.Color.White;
-            this.SendFrameBtn.Location = new System.Drawing.Point(486, 52);
+            this.SendFrameBtn.Location = new System.Drawing.Point(534, 172);
             this.SendFrameBtn.Name = "SendFrameBtn";
             this.SendFrameBtn.Size = new System.Drawing.Size(211, 40);
             this.SendFrameBtn.TabIndex = 2;
@@ -840,11 +855,53 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.richTextBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(13, 13);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(444, 314);
+            this.panel2.Size = new System.Drawing.Size(396, 494);
             this.panel2.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label11.Location = new System.Drawing.Point(11, 92);
+            this.label11.Margin = new System.Windows.Forms.Padding(10);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 19);
+            this.label11.TabIndex = 46;
+            this.label11.Text = "decimal";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label12.Location = new System.Drawing.Point(4, 132);
+            this.label12.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(61, 24);
+            this.label12.TabIndex = 47;
+            this.label12.Text = "zapełnij XX";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.AcceptsTab = true;
+            this.richTextBox1.AutoWordSelection = true;
+            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(396, 494);
+            this.richTextBox1.TabIndex = 7;
+            this.richTextBox1.Text = "Notatnik\n\nOkienko do ramek przyjmuje max 19 znaków\nDziała z Ctrl+C, Ctrl+V\n";
             // 
             // sandboxForm
             // 
@@ -869,6 +926,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericData2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericData1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericID)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -920,5 +978,8 @@
         private System.Windows.Forms.CheckBox dataCheckBox4;
         private System.Windows.Forms.CheckBox dataCheckBox3;
         private System.Windows.Forms.CheckBox dataCheckBox2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

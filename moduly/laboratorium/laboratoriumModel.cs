@@ -32,22 +32,17 @@ namespace HAL062app.moduly.laboratorium
             receivedQueue.Enqueue(message);
             
         }
-        public void wyswietlKolejnaWiadomosc()
-        {
-
-            bool success = receivedQueue.TryDequeue(out Message message);
-            if (success)
-                wywolaj?.Invoke(message.text);
-            else
-                wywolaj?.Invoke("Brak wiadomosci w kolejce");
-        }
+       
         public void SendMessageToKomunikacja(Message message)
         {
-            message.author = 2;
+            message.author = 3;
             komunikacjaModel.SendMMessageToHALService(message);
 
         }
-     
+        public void sendFrame(Message frame)
+        {
+            SendMessageToKomunikacja(frame);
+        }
        
     }
 }
