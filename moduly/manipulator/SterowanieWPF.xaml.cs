@@ -376,13 +376,13 @@ namespace HAL062app.moduly.manipulator
 
             simulateStep(TurnOffPosition, returnHomePositions[0], false);
             ChangeSlidersValue(returnHomePositions[0]);
-            await Task.Delay(5000);
+            await Task.Delay(2000);
             simulateStep(returnHomePositions[0], returnHomePositions[1], false);
             ChangeSlidersValue(returnHomePositions[1]);
-            await Task.Delay(5000);
+            await Task.Delay(2000);
             simulateStep(returnHomePositions[1], returnHomePositions[2], false);
             ChangeSlidersValue(returnHomePositions[2]);
-            await Task.Delay(5000);
+            await Task.Delay(3000);
             Message frame = new Message();
             frame.buffer[0] = (byte)('#');
             frame.buffer[1] = (byte)(128);
@@ -837,15 +837,15 @@ namespace HAL062app.moduly.manipulator
             if (Math.Abs((int)_gamepad.LeftThumbX) > Gamepad.LeftThumbDeadZone)
                await UpdateDofPositionXbox(5, -mapXboxThumb(_gamepad.LeftThumbX));
             if (Math.Abs((int)_gamepad.LeftThumbY) > Gamepad.LeftThumbDeadZone)
-                await UpdateDofPositionXbox(2, 0.2f*mapXboxThumb(_gamepad.LeftThumbY));
+                await UpdateDofPositionXbox(2, 0.6f*mapXboxThumb(_gamepad.LeftThumbY));
             if (Math.Abs((int)_gamepad.RightThumbX) > Gamepad.RightThumbDeadZone)
                 await UpdateDofPositionXbox(4, mapXboxThumb(_gamepad.RightThumbX));
             if (Math.Abs((int)_gamepad.RightThumbY) > Gamepad.RightThumbDeadZone)
                 await UpdateDofPositionXbox(3, -mapXboxThumb(_gamepad.RightThumbY));
             if(Math.Abs((int)_gamepad.RightTrigger) >Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.LeftTrigger) < Gamepad.TriggerThreshold)
-                await UpdateDofPositionXbox(1, -50f * mapXboxThumb(_gamepad.RightTrigger));
+                await UpdateDofPositionXbox(1, -100f * mapXboxThumb(_gamepad.RightTrigger));
             if (Math.Abs((int)_gamepad.LeftTrigger) > Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.RightTrigger) < Gamepad.TriggerThreshold)
-                await UpdateDofPositionXbox(1, 50f*mapXboxThumb(_gamepad.LeftTrigger));
+                await UpdateDofPositionXbox(1,100f*mapXboxThumb(_gamepad.LeftTrigger));
             if((GamepadButtonFlags.LeftShoulder & XboxPad.Instance.GetPressedButtons()) != 0)
                 await UpdateDofPositionXbox(6, -1f);
             if ((GamepadButtonFlags.RightShoulder& XboxPad.Instance.GetPressedButtons()) != 0)

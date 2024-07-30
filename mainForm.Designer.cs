@@ -199,7 +199,7 @@
             this.sandboxBtn.Name = "sandboxBtn";
             this.sandboxBtn.Size = new System.Drawing.Size(236, 40);
             this.sandboxBtn.TabIndex = 5;
-            this.sandboxBtn.Text = "Sandbox";
+            this.sandboxBtn.Text = "Debug";
             this.sandboxBtn.TextColor = System.Drawing.Color.White;
             this.sandboxBtn.UseVisualStyleBackColor = false;
             this.sandboxBtn.Click += new System.EventHandler(this.customButton6_Click);

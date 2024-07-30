@@ -82,7 +82,7 @@ namespace HAL062app.moduly.manipulator
         private const string MODEL_PATH4 = "dof4.STL";
         private const string MODEL_PATH5 = "dof5.STL";
         private const string MODEL_PATH6 = "gripper.STL";
-        private const string MODEL_PATH7 = "base.STL";
+        private const string MODEL_PATH7 = "rover.STL";
        
         public event Action<int> test;
 
@@ -179,6 +179,8 @@ namespace HAL062app.moduly.manipulator
                     
                     joints.Add(new Joint(link));
                 }
+                
+             
                 changeModelColor(joints[0], Colors.LightBlue);
                 RA.Children.Add(joints[0].model);
                 changeModelColor(joints[1], Colors.Red);
@@ -192,7 +194,7 @@ namespace HAL062app.moduly.manipulator
                 changeModelColor(joints[5], Colors.LightSlateGray);
                 RA.Children.Add(joints[5].model);
                 RA.Children.Add(joints[6].model);
-
+                
                 //base-dof1
                 joints[0].angleMin = -180;
                 joints[0].angleMax = 180;

@@ -30,10 +30,12 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ClearFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.CreateFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.frameTextBox = new System.Windows.Forms.TextBox();
-            this.ClearFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.dataCheckBox8 = new System.Windows.Forms.CheckBox();
             this.dataCheckBox7 = new System.Windows.Forms.CheckBox();
             this.dataCheckBox6 = new System.Windows.Forms.CheckBox();
@@ -73,8 +75,6 @@
             this.data8textBox = new System.Windows.Forms.TextBox();
             this.SendFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -117,10 +117,30 @@
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Controls.Add(this.SendFrameBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(415, 13);
+            this.panel1.Location = new System.Drawing.Point(414, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(756, 494);
+            this.panel1.Size = new System.Drawing.Size(757, 494);
             this.panel1.TabIndex = 0;
+            // 
+            // ClearFrameBtn
+            // 
+            this.ClearFrameBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.ClearFrameBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.ClearFrameBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.ClearFrameBtn.BorderRadius = 20;
+            this.ClearFrameBtn.BorderSize = 0;
+            this.ClearFrameBtn.FlatAppearance.BorderSize = 0;
+            this.ClearFrameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClearFrameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.ClearFrameBtn.ForeColor = System.Drawing.Color.White;
+            this.ClearFrameBtn.Location = new System.Drawing.Point(534, 264);
+            this.ClearFrameBtn.Name = "ClearFrameBtn";
+            this.ClearFrameBtn.Size = new System.Drawing.Size(211, 40);
+            this.ClearFrameBtn.TabIndex = 3;
+            this.ClearFrameBtn.Text = "Wyczyść";
+            this.ClearFrameBtn.TextColor = System.Drawing.Color.White;
+            this.ClearFrameBtn.UseVisualStyleBackColor = false;
+            this.ClearFrameBtn.Click += new System.EventHandler(this.ClearFrameBtn_Click);
             // 
             // CreateFrameBtn
             // 
@@ -159,26 +179,6 @@
             this.frameTextBox.Size = new System.Drawing.Size(442, 27);
             this.frameTextBox.TabIndex = 4;
             this.frameTextBox.Text = "#00XXXXXXXXXXXXXXXX";
-            // 
-            // ClearFrameBtn
-            // 
-            this.ClearFrameBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClearFrameBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClearFrameBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ClearFrameBtn.BorderRadius = 20;
-            this.ClearFrameBtn.BorderSize = 0;
-            this.ClearFrameBtn.FlatAppearance.BorderSize = 0;
-            this.ClearFrameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClearFrameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.ClearFrameBtn.ForeColor = System.Drawing.Color.White;
-            this.ClearFrameBtn.Location = new System.Drawing.Point(534, 264);
-            this.ClearFrameBtn.Name = "ClearFrameBtn";
-            this.ClearFrameBtn.Size = new System.Drawing.Size(211, 40);
-            this.ClearFrameBtn.TabIndex = 3;
-            this.ClearFrameBtn.Text = "Wyczyść";
-            this.ClearFrameBtn.TextColor = System.Drawing.Color.White;
-            this.ClearFrameBtn.UseVisualStyleBackColor = false;
-            this.ClearFrameBtn.Click += new System.EventHandler(this.ClearFrameBtn_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -242,8 +242,34 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(756, 167);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(757, 167);
             this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label12.Location = new System.Drawing.Point(4, 132);
+            this.label12.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(61, 24);
+            this.label12.TabIndex = 47;
+            this.label12.Text = "zapełnij XX";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label11.Location = new System.Drawing.Point(11, 92);
+            this.label11.Margin = new System.Windows.Forms.Padding(10);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 19);
+            this.label11.TabIndex = 46;
+            this.label11.Text = "decimal";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // dataCheckBox8
             // 
@@ -254,7 +280,7 @@
             this.dataCheckBox8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataCheckBox8.Location = new System.Drawing.Point(679, 125);
             this.dataCheckBox8.Name = "dataCheckBox8";
-            this.dataCheckBox8.Size = new System.Drawing.Size(73, 38);
+            this.dataCheckBox8.Size = new System.Drawing.Size(74, 38);
             this.dataCheckBox8.TabIndex = 45;
             this.dataCheckBox8.UseVisualStyleBackColor = true;
             // 
@@ -354,7 +380,7 @@
             0,
             -2147483648});
             this.numericData8.Name = "numericData8";
-            this.numericData8.Size = new System.Drawing.Size(73, 23);
+            this.numericData8.Size = new System.Drawing.Size(74, 23);
             this.numericData8.TabIndex = 35;
             // 
             // numericData7
@@ -677,7 +703,7 @@
             this.label10.Location = new System.Drawing.Point(686, 11);
             this.label10.Margin = new System.Windows.Forms.Padding(10);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 20);
+            this.label10.Size = new System.Drawing.Size(60, 20);
             this.label10.TabIndex = 16;
             this.label10.Text = "#8";
             this.label10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -829,7 +855,7 @@
             this.data8textBox.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
             this.data8textBox.MaxLength = 2;
             this.data8textBox.Name = "data8textBox";
-            this.data8textBox.Size = new System.Drawing.Size(59, 27);
+            this.data8textBox.Size = new System.Drawing.Size(60, 27);
             this.data8textBox.TabIndex = 25;
             this.data8textBox.Text = "XX";
             // 
@@ -859,34 +885,8 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(13, 13);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(396, 494);
+            this.panel2.Size = new System.Drawing.Size(395, 494);
             this.panel2.TabIndex = 1;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label11.Location = new System.Drawing.Point(11, 92);
-            this.label11.Margin = new System.Windows.Forms.Padding(10);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 19);
-            this.label11.TabIndex = 46;
-            this.label11.Text = "decimal";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label12.Location = new System.Drawing.Point(4, 132);
-            this.label12.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(61, 24);
-            this.label12.TabIndex = 47;
-            this.label12.Text = "zapełnij XX";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // richTextBox1
             // 
@@ -899,7 +899,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(396, 494);
+            this.richTextBox1.Size = new System.Drawing.Size(395, 494);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "Notatnik\n\nOkienko do ramek przyjmuje max 19 znaków\nDziała z Ctrl+C, Ctrl+V\n";
             // 

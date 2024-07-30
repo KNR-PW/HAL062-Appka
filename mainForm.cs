@@ -35,7 +35,7 @@ namespace HAL062app
             modules.Add("Laboratorium", new moduly.laboratorium.laboratoriumForm());
             modules.Add("Podwozie", new moduly.podwozie.podwozieForm());
             modules.Add("Manipulator", new moduly.manipulator.manipulatorForm());
-            modules.Add("Sandbox", new moduly.sandbox.sandboxForm());
+            modules.Add("Debug", new moduly.sandbox.sandboxForm());
 
 
             moduly.komunikacja.komunikacjaModel komunikacjaM = new moduly.komunikacja.komunikacjaModel();
@@ -61,7 +61,7 @@ namespace HAL062app
         {
             ShowModule("Podwozie");
             ShowModule("Manipulator");
-            ShowModule("Sandbox");
+            ShowModule("Debug");
             ShowModule("Laboratorium");
             ShowModule("Komunikacja");
 
@@ -115,7 +115,7 @@ namespace HAL062app
 
         private void customButton6_Click(object sender, EventArgs e)
         {
-            ShowModule("Sandbox");
+            ShowModule("Debug");
         }
 
         

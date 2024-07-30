@@ -127,6 +127,9 @@
 400-&gt;60 - ErrorLog
 
 Bluetooth łazika - Elon-Musk, hasło 1234
-Jeżeli nie pokazuje się, to najpierw trzeba w ustawieniach komputerach połączyć się z tym BT</value>
+Jeżeli nie pokazuje się, to najpierw trzeba w ustawieniach komputerach połączyć się z tym BT
+Jeśli mainboard cały czas się restartuje, to uruchom jeżdżenie w zakładce podwozie. 
+Wtedy aplikacja będzie ciągle wysyłać wiadomości, więc mainboard bedzie miał ciągłą komunikacje
+Możliwe, że przy wysyłaniu innych ramek, dwie zostaną wysłane w tym samym czasie, co zawiesi mainboarda</value>
   </data>
 </root>

@@ -22,7 +22,11 @@
                     <GradientStop Color="Gray" Offset="1"/>
                 </LinearGradientBrush>
             </helix:HelixViewport3D.Background>
-            <helix:GridLinesVisual3D Width="10000" Length="10000" Thickness="10" MinorDistance="100" MajorDistance="500" Fill="#E5CFCECE" />
+            <helix:GridLinesVisual3D Width="10000" Length="10000" Thickness="10" MinorDistance="100" MajorDistance="50" Fill="#E5CFCECE">
+                <helix:GridLinesVisual3D.Transform>
+                    <TranslateTransform3D OffsetZ="-430" />
+                </helix:GridLinesVisual3D.Transform>
+            </helix:GridLinesVisual3D>
             <helix:DefaultLights/>
         </helix:HelixViewport3D>
 
