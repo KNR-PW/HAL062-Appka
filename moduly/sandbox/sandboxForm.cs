@@ -76,5 +76,10 @@ namespace HAL062app.moduly.sandbox
             frameTextBox.Text = "";
 
         }
+
+        private void sandboxForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+        }
     }
 }

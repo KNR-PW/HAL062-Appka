@@ -31,15 +31,18 @@
             this.SidePanel = new System.Windows.Forms.Panel();
             this.FastOptionPanel = new System.Windows.Forms.Panel();
             this.ButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.StatusPanel = new System.Windows.Forms.Panel();
+            this.ContextPanel = new System.Windows.Forms.Panel();
+            this.UpperPanel = new System.Windows.Forms.Panel();
+            this.ResetViewBtn = new HAL062app.CustomControls.CustomButton();
+            this.UnpinBtn = new HAL062app.CustomControls.CustomButton();
             this.MainPageButton = new HAL062app.CustomControls.CustomButton();
             this.CommunicationButton = new HAL062app.CustomControls.CustomButton();
             this.ChassisButton = new HAL062app.CustomControls.CustomButton();
             this.ManipulatorButton = new HAL062app.CustomControls.CustomButton();
             this.LaboButton = new HAL062app.CustomControls.CustomButton();
             this.sandboxBtn = new HAL062app.CustomControls.CustomButton();
-            this.StatusPanel = new System.Windows.Forms.Panel();
-            this.ContextPanel = new System.Windows.Forms.Panel();
-            this.UpperPanel = new System.Windows.Forms.Panel();
+            this.PinBtn = new HAL062app.CustomControls.CustomButton();
             this.SidePanel.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +53,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.SidePanel.AutoSize = true;
             this.SidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.SidePanel.Controls.Add(this.PinBtn);
+            this.SidePanel.Controls.Add(this.ResetViewBtn);
+            this.SidePanel.Controls.Add(this.UnpinBtn);
             this.SidePanel.Controls.Add(this.FastOptionPanel);
             this.SidePanel.Controls.Add(this.ButtonPanel);
             this.SidePanel.Controls.Add(this.StatusPanel);
@@ -63,10 +69,10 @@
             // 
             this.FastOptionPanel.AutoSize = true;
             this.FastOptionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.FastOptionPanel.Location = new System.Drawing.Point(15, 502);
+            this.FastOptionPanel.Location = new System.Drawing.Point(15, 585);
             this.FastOptionPanel.Margin = new System.Windows.Forms.Padding(15);
             this.FastOptionPanel.Name = "FastOptionPanel";
-            this.FastOptionPanel.Size = new System.Drawing.Size(256, 286);
+            this.FastOptionPanel.Size = new System.Drawing.Size(256, 203);
             this.FastOptionPanel.TabIndex = 2;
             // 
             // ButtonPanel
@@ -83,6 +89,81 @@
             this.ButtonPanel.Name = "ButtonPanel";
             this.ButtonPanel.Size = new System.Drawing.Size(256, 357);
             this.ButtonPanel.TabIndex = 1;
+            // 
+            // StatusPanel
+            // 
+            this.StatusPanel.AutoSize = true;
+            this.StatusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.StatusPanel.Location = new System.Drawing.Point(15, 15);
+            this.StatusPanel.Margin = new System.Windows.Forms.Padding(15);
+            this.StatusPanel.Name = "StatusPanel";
+            this.StatusPanel.Size = new System.Drawing.Size(256, 70);
+            this.StatusPanel.TabIndex = 0;
+            // 
+            // ContextPanel
+            // 
+            this.ContextPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ContextPanel.AutoSize = true;
+            this.ContextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.ContextPanel.Location = new System.Drawing.Point(355, 132);
+            this.ContextPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.ContextPanel.Name = "ContextPanel";
+            this.ContextPanel.Size = new System.Drawing.Size(1200, 700);
+            this.ContextPanel.TabIndex = 1;
+            // 
+            // UpperPanel
+            // 
+            this.UpperPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpperPanel.AutoSize = true;
+            this.UpperPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.UpperPanel.Location = new System.Drawing.Point(358, 29);
+            this.UpperPanel.Margin = new System.Windows.Forms.Padding(15);
+            this.UpperPanel.Name = "UpperPanel";
+            this.UpperPanel.Size = new System.Drawing.Size(1197, 85);
+            this.UpperPanel.TabIndex = 2;
+            // 
+            // ResetViewBtn
+            // 
+            this.ResetViewBtn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.ResetViewBtn.BackgroundColor = System.Drawing.Color.CornflowerBlue;
+            this.ResetViewBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.ResetViewBtn.BorderRadius = 10;
+            this.ResetViewBtn.BorderSize = 0;
+            this.ResetViewBtn.FlatAppearance.BorderSize = 0;
+            this.ResetViewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResetViewBtn.ForeColor = System.Drawing.Color.White;
+            this.ResetViewBtn.Location = new System.Drawing.Point(189, 485);
+            this.ResetViewBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.ResetViewBtn.Name = "ResetViewBtn";
+            this.ResetViewBtn.Size = new System.Drawing.Size(72, 40);
+            this.ResetViewBtn.TabIndex = 7;
+            this.ResetViewBtn.Text = "Zresetuj widok";
+            this.ResetViewBtn.TextColor = System.Drawing.Color.White;
+            this.ResetViewBtn.UseVisualStyleBackColor = false;
+            this.ResetViewBtn.Click += new System.EventHandler(this.ResetViewBtn_Click);
+            // 
+            // UnpinBtn
+            // 
+            this.UnpinBtn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.UnpinBtn.BackgroundColor = System.Drawing.Color.CornflowerBlue;
+            this.UnpinBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.UnpinBtn.BorderRadius = 10;
+            this.UnpinBtn.BorderSize = 0;
+            this.UnpinBtn.FlatAppearance.BorderSize = 0;
+            this.UnpinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UnpinBtn.ForeColor = System.Drawing.Color.White;
+            this.UnpinBtn.Location = new System.Drawing.Point(25, 485);
+            this.UnpinBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.UnpinBtn.Name = "UnpinBtn";
+            this.UnpinBtn.Size = new System.Drawing.Size(72, 40);
+            this.UnpinBtn.TabIndex = 6;
+            this.UnpinBtn.Text = "Odepnij zakładkę";
+            this.UnpinBtn.TextColor = System.Drawing.Color.White;
+            this.UnpinBtn.UseVisualStyleBackColor = false;
+            this.UnpinBtn.Click += new System.EventHandler(this.UnpinBtn_Click);
             // 
             // MainPageButton
             // 
@@ -204,40 +285,25 @@
             this.sandboxBtn.UseVisualStyleBackColor = false;
             this.sandboxBtn.Click += new System.EventHandler(this.customButton6_Click);
             // 
-            // StatusPanel
+            // PinBtn
             // 
-            this.StatusPanel.AutoSize = true;
-            this.StatusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.StatusPanel.Location = new System.Drawing.Point(15, 15);
-            this.StatusPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.StatusPanel.Name = "StatusPanel";
-            this.StatusPanel.Size = new System.Drawing.Size(256, 70);
-            this.StatusPanel.TabIndex = 0;
-            // 
-            // ContextPanel
-            // 
-            this.ContextPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ContextPanel.AutoSize = true;
-            this.ContextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.ContextPanel.Location = new System.Drawing.Point(355, 132);
-            this.ContextPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.ContextPanel.Name = "ContextPanel";
-            this.ContextPanel.Size = new System.Drawing.Size(1200, 700);
-            this.ContextPanel.TabIndex = 1;
-            // 
-            // UpperPanel
-            // 
-            this.UpperPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpperPanel.AutoSize = true;
-            this.UpperPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.UpperPanel.Location = new System.Drawing.Point(358, 29);
-            this.UpperPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.UpperPanel.Name = "UpperPanel";
-            this.UpperPanel.Size = new System.Drawing.Size(1197, 85);
-            this.UpperPanel.TabIndex = 2;
+            this.PinBtn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.PinBtn.BackgroundColor = System.Drawing.Color.CornflowerBlue;
+            this.PinBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.PinBtn.BorderRadius = 10;
+            this.PinBtn.BorderSize = 0;
+            this.PinBtn.FlatAppearance.BorderSize = 0;
+            this.PinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PinBtn.ForeColor = System.Drawing.Color.White;
+            this.PinBtn.Location = new System.Drawing.Point(107, 485);
+            this.PinBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.PinBtn.Name = "PinBtn";
+            this.PinBtn.Size = new System.Drawing.Size(72, 40);
+            this.PinBtn.TabIndex = 8;
+            this.PinBtn.Text = "Przypnij zakładkę";
+            this.PinBtn.TextColor = System.Drawing.Color.White;
+            this.PinBtn.UseVisualStyleBackColor = false;
+            this.PinBtn.Click += new System.EventHandler(this.PinBtn_Click);
             // 
             // mainForm
             // 
@@ -275,6 +341,9 @@
         private CustomControls.CustomButton ManipulatorButton;
         private CustomControls.CustomButton LaboButton;
         private CustomControls.CustomButton sandboxBtn;
+        private CustomControls.CustomButton ResetViewBtn;
+        private CustomControls.CustomButton UnpinBtn;
+        private CustomControls.CustomButton PinBtn;
     }
 }
 

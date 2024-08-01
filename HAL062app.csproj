@@ -15,7 +15,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\domin\Desktop\LazikApkaV4.1\</PublishUrl>
+    <PublishUrl>C:\Users\domin\Desktop\LazikApkaV4.2\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,7 +25,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <ApplicationRevision>33</ApplicationRevision>
+    <TargetCulture>pl-PL</TargetCulture>
+    <ProductName>a</ProductName>
+    <PublisherName>Chmielak Technology Incorporated</PublisherName>
+    <ApplicationRevision>38</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -190,11 +193,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimerManager.cs" />
     <Compile Include="moduly\XboxPad.cs" />
+    <Content Include="_JakWlaczycApke.txt" />
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="moduly\komunikacja\komunikacjaForm.resx">
       <DependentUpon>komunikacjaForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="moduly\laboratorium\laboratoriumForm.resx">
       <DependentUpon>laboratoriumForm.cs</DependentUpon>

@@ -912,6 +912,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "sandboxForm";
             this.Text = "sandboxForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.sandboxForm_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -52,8 +52,9 @@ namespace HAL062app.moduly.manipulator
 
         }
 
-
-
-
+        private void manipulatorForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+        }
     }
 }

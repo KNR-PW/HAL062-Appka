@@ -21,7 +21,7 @@ namespace HAL062app.moduly.sandbox
             modules = moduleForms;
             this.model = model;
 
-            if (modules.TryGetValue("Sandbox", out Form form))
+            if (modules.TryGetValue("Debug", out Form form))
             {
                 display = form as sandboxForm;
 

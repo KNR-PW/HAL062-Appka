@@ -189,6 +189,7 @@
             this.ClearFilterBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ClearFilterBtn.BorderRadius = 10;
             this.ClearFilterBtn.BorderSize = 0;
+            this.ClearFilterBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ClearFilterBtn.FlatAppearance.BorderSize = 0;
             this.ClearFilterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClearFilterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -710,6 +711,7 @@
             this.BluetoothRefreshBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.BluetoothRefreshBtn.BorderRadius = 10;
             this.BluetoothRefreshBtn.BorderSize = 0;
+            this.BluetoothRefreshBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BluetoothRefreshBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BluetoothRefreshBtn.FlatAppearance.BorderSize = 0;
             this.BluetoothRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1161,6 +1163,7 @@
             this.Name = "komunikacjaForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "komunikacjaForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.komunikacjaForm_FormClosing);
             this.Load += new System.EventHandler(this.komunikacjaForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

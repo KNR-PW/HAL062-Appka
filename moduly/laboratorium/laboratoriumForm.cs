@@ -168,5 +168,10 @@ namespace HAL062app.moduly.laboratorium
             frame.text = new string(frame.encodeMessage());
             SendFrame_Action(frame);
         }
+
+        private void laboratoriumForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+        }
     }
 }

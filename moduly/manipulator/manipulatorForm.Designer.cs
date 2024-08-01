@@ -84,6 +84,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "manipulatorForm";
             this.Text = "manipulatorForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.manipulatorForm_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

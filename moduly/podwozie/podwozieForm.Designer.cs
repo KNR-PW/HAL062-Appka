@@ -30,10 +30,11 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.TurningSpeedTrack = new System.Windows.Forms.TrackBar();
             this.ForwardSpeedTrack = new System.Windows.Forms.TrackBar();
             this.joystickPictureBox = new System.Windows.Forms.PictureBox();
             this.startJoystickButton = new HAL062app.CustomControls.CustomButton();
+            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
+            this.ArmRoverBtn = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -103,9 +104,9 @@
             this.label19 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TurningSpeedTrack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ForwardSpeedTrack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.joystickPictureBox)).BeginInit();
+            this.tableLayoutPanel16.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -147,31 +148,19 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.TurningSpeedTrack, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.ForwardSpeedTrack, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.joystickPictureBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.startJoystickButton, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel16, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(701, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(460, 442);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // TurningSpeedTrack
-            // 
-            this.TurningSpeedTrack.Cursor = System.Windows.Forms.Cursors.Default;
-            this.TurningSpeedTrack.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TurningSpeedTrack.LargeChange = 1;
-            this.TurningSpeedTrack.Location = new System.Drawing.Point(4, 356);
-            this.TurningSpeedTrack.Minimum = -10;
-            this.TurningSpeedTrack.Name = "TurningSpeedTrack";
-            this.TurningSpeedTrack.Size = new System.Drawing.Size(359, 82);
-            this.TurningSpeedTrack.TabIndex = 0;
-            this.TurningSpeedTrack.TabStop = false;
-            this.TurningSpeedTrack.TickStyle = System.Windows.Forms.TickStyle.Both;
             // 
             // ForwardSpeedTrack
             // 
@@ -212,7 +201,7 @@
             this.startJoystickButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startJoystickButton.FlatAppearance.BorderSize = 0;
             this.startJoystickButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startJoystickButton.Font = new System.Drawing.Font("Radikal WUT", 16F, System.Drawing.FontStyle.Bold);
+            this.startJoystickButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.startJoystickButton.ForeColor = System.Drawing.Color.White;
             this.startJoystickButton.Location = new System.Drawing.Point(370, 356);
             this.startJoystickButton.Name = "startJoystickButton";
@@ -222,6 +211,41 @@
             this.startJoystickButton.TextColor = System.Drawing.Color.White;
             this.startJoystickButton.UseVisualStyleBackColor = false;
             this.startJoystickButton.Click += new System.EventHandler(this.startJoystickButton_Click_1);
+            // 
+            // tableLayoutPanel16
+            // 
+            this.tableLayoutPanel16.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel16.ColumnCount = 2;
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel16.Controls.Add(this.ArmRoverBtn, 1, 0);
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(4, 356);
+            this.tableLayoutPanel16.Name = "tableLayoutPanel16";
+            this.tableLayoutPanel16.RowCount = 1;
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(359, 82);
+            this.tableLayoutPanel16.TabIndex = 4;
+            // 
+            // ArmRoverBtn
+            // 
+            this.ArmRoverBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ArmRoverBtn.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.ArmRoverBtn.BackgroundColor = System.Drawing.Color.DarkSlateGray;
+            this.ArmRoverBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.ArmRoverBtn.BorderRadius = 12;
+            this.ArmRoverBtn.BorderSize = 0;
+            this.ArmRoverBtn.FlatAppearance.BorderSize = 0;
+            this.ArmRoverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ArmRoverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ArmRoverBtn.ForeColor = System.Drawing.Color.White;
+            this.ArmRoverBtn.Location = new System.Drawing.Point(194, 3);
+            this.ArmRoverBtn.Name = "ArmRoverBtn";
+            this.ArmRoverBtn.Size = new System.Drawing.Size(150, 76);
+            this.ArmRoverBtn.TabIndex = 0;
+            this.ArmRoverBtn.Text = "Uzbrojenie";
+            this.ArmRoverBtn.TextColor = System.Drawing.Color.White;
+            this.ArmRoverBtn.UseVisualStyleBackColor = false;
+            this.ArmRoverBtn.Click += new System.EventHandler(this.ArmRoverBtn_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -871,6 +895,7 @@
             this.tableLayoutPanel12.RowCount = 2;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.75269F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.24731F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(460, 187);
             this.tableLayoutPanel12.TabIndex = 2;
             // 
@@ -1129,14 +1154,15 @@
             this.Name = "podwozieForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "podwozieForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.podwozieForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.podwozieForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.podwozieForm_KeyUp);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TurningSpeedTrack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ForwardSpeedTrack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.joystickPictureBox)).EndInit();
+            this.tableLayoutPanel16.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
@@ -1170,7 +1196,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TrackBar TurningSpeedTrack;
         private System.Windows.Forms.TrackBar ForwardSpeedTrack;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.PictureBox joystickPictureBox;
@@ -1242,5 +1267,7 @@
         private System.Windows.Forms.Button ConnectWithXboxPadBtn;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label XboxBatteryLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
+        private CustomControls.CustomButton ArmRoverBtn;
     }
 }

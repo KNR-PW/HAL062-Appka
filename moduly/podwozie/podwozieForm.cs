@@ -42,6 +42,7 @@ namespace HAL062app.moduly.podwozie
         private int verticalKeyboardDelta = 10;
         private int returnKeyboardDelta = 10;
         public Action<motorData> sendMotorDataToController_Action;
+        public Action<Message> sendMessage_Action;
 
         private bool usingXboxPad = false;
         private XboxPad _XboxPad;
@@ -62,8 +63,7 @@ namespace HAL062app.moduly.podwozie
 
             ForwardSpeedTrack.Maximum = (int)forwardSpeedMaxLimit;
             ForwardSpeedTrack.Minimum = (int)-forwardSpeedMaxLimit;
-            TurningSpeedTrack.Maximum = (int)turningSpeedMaxLimit;
-            TurningSpeedTrack.Minimum = (int)-turningSpeedMaxLimit;
+           
             joystickPictureBox.Refresh();
 
             horizontalKeyboardTextbox.Text = horizontalKeyboardDelta.ToString();
@@ -176,13 +176,12 @@ namespace HAL062app.moduly.podwozie
            
             ForwardSpeedTrack.Maximum = (int)forwardSpeedMaxLimit;
             ForwardSpeedTrack.Minimum = (int)-forwardSpeedMaxLimit;
-            TurningSpeedTrack.Maximum = (int)turningSpeedMaxLimit;
-            TurningSpeedTrack.Minimum = (int)-turningSpeedMaxLimit;
+           
             
             forwardSpeed = -((float)joystickPosition.Y - (float)joystickPictureBox.ClientSize.Height / 2.0f) / (float)(limitRadius - joystickRadius);
             turningSpeed = ((float)joystickPosition.X - (float)joystickPictureBox.ClientSize.Width / 2.0f) / (float)(limitRadius - joystickRadius);
             ForwardSpeedTrack.Value = (int)forwardSpeed;
-            TurningSpeedTrack.Value = (int)turningSpeed;
+            
     
             sendSpeeds(forwardSpeed, turningSpeed);
 
@@ -539,6 +538,28 @@ namespace HAL062app.moduly.podwozie
 
 
             }
+        }
+
+        private void ArmRoverBtn_Click(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(22);
+            frame.buffer[2] = (byte)(1);
+            frame.buffer[3] = (byte)(1);
+            frame.buffer[4] = (byte)(1);
+            frame.buffer[5] = (byte)('x');
+            frame.buffer[6] = (byte)('x');
+            frame.buffer[7] = (byte)('x');
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+            sendMessage_Action(frame);
+        }
+
+        private void podwozieForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
         }
     }
 }

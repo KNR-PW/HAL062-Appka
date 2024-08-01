@@ -294,7 +294,10 @@ namespace HAL062app.moduly.komunikacja
 
         }
 
-        
+        private void komunikacjaForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+        }
     }
     
 }

@@ -55,7 +55,7 @@ namespace HAL062app.moduly.podwozie
                      */
 
                     display.sendMotorDataToController_Action += sendMotorDataToModel_Action;
-
+                    display.sendMessage_Action += sendMessageToKomunikacja;
 
                 }
             }

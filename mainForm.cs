@@ -14,7 +14,21 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/*
+ * Zgaduję, że skoro tu jesteś to szukasz jakichkolwiek rzeczy związanych z tym, jak poruszać się po plikach 
+ * Zamysłem tego projektu jest wykorzystanie architektury MVC -> Model-View-Controller
+ * Każda zakładka, to oddzielna aplikacja, którą łączy ten plik.
+ * Jak działa poruszanie danych pomiędzy plikami? Zostało to opisane w podwozieController
+ * Ogólnie w tym pliku polecam nic nie zmieniać, bo popsucie czegokolwiek tu rozwali całą aplikację
+ * W tym pliku powinny się znaleźć tylko inicjacje programu i aplikacji.
+ * 
+ * Starałem się umieszczać instrukcję i wyjaśnienia, jak co działa podczas pisania programu, ale..
+ * ale program był pisany ponad 2 lata, ja się uczyłem C# i może być tutaj dużo dziwnych trików
+ * 
+ * Sama historia programu, to pomysł na przejściówkę na melu. Potem był to plan na inżynierkę, ostatecznie na dyplomie robiłem autonomicznego drona z grantu KNTI 2024
+ * 
+ * Autor: Dominik Chmielak
+ */
 
 namespace HAL062app
 {
@@ -22,7 +36,9 @@ namespace HAL062app
     {
         private TimerManager timerManager = new TimerManager();
         private Dictionary<string, Form> modules = new Dictionary<string, Form>();
-        private String currentModule;
+        private Dictionary<string, bool> isPinned = new Dictionary<string, bool>();
+        
+        private String currentModule = "Komunikacja";
      //   moduly.komunikacja.komunikacjaForm komun = new moduly.komunikacja.komunikacjaForm();
         public mainForm()
         {
@@ -37,6 +53,9 @@ namespace HAL062app
             modules.Add("Manipulator", new moduly.manipulator.manipulatorForm());
             modules.Add("Debug", new moduly.sandbox.sandboxForm());
 
+            foreach (var module in modules)
+                isPinned.Add(module.Key, true);
+            
 
             moduly.komunikacja.komunikacjaModel komunikacjaM = new moduly.komunikacja.komunikacjaModel();
             moduly.laboratorium.laboratoriumModel laboratoriumM = new moduly.laboratorium.laboratoriumModel(komunikacjaM);
@@ -71,18 +90,29 @@ namespace HAL062app
         /// 
         private void ShowModule(string moduleName)
         {
-            if(modules.ContainsKey(moduleName))
+            if (modules.ContainsKey(moduleName))
             {
-                if(currentModule!= null)
+                if (currentModule != null)
                 {
-                    modules[currentModule].Hide();
+                  //  modules[currentModule].Hide();
                 }
-                ContextPanel.Controls.Clear();
-                currentModule = moduleName;
-                modules[moduleName].FormBorderStyle = FormBorderStyle.None;
-                modules[moduleName].Dock = DockStyle.Fill;
-                modules[moduleName].TopLevel = false;
-                ContextPanel.Controls.Add(modules[moduleName]);
+                if (isPinned[moduleName])
+                {
+                    ContextPanel.Controls.Clear();
+                    currentModule = moduleName;
+                    modules[moduleName].FormBorderStyle = FormBorderStyle.None;
+                    modules[moduleName].Dock = DockStyle.Fill;
+                    modules[moduleName].TopLevel = false;
+                    ContextPanel.Controls.Add(modules[moduleName]);
+                } else
+                {
+                    ContextPanel.Controls.Clear();
+                    currentModule = moduleName;
+                    modules[moduleName].FormBorderStyle = FormBorderStyle.Sizable; 
+                    modules[moduleName].TopLevel = true;
+                    modules[moduleName].Dock = DockStyle.None; 
+                    modules[moduleName].Show();
+                }
                 modules[moduleName].Show();
             }
 
@@ -118,7 +148,29 @@ namespace HAL062app
             ShowModule("Debug");
         }
 
-        
+        private void UnpinBtn_Click(object sender, EventArgs e)
+        {
+            isPinned[currentModule] = false;
+            ShowModule(currentModule);
+        }
+
+        private void ResetViewBtn_Click(object sender, EventArgs e)
+        {
+
+            foreach (var module in modules)
+            {
+                isPinned[module.Key]= true;
+                modules[module.Key].Hide();
+            }
+            ShowModule(currentModule);
+
+        }
+
+        private void PinBtn_Click(object sender, EventArgs e)
+        {
+            isPinned[currentModule] = true;
+            ShowModule(currentModule);
+        }
 
         /// 
         /// <param name="sender"></param>

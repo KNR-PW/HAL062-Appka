@@ -15,8 +15,8 @@ using System.Threading.Tasks;
  * ... No w sumie to posiadamy 7 plików XD
  * klasa position oraz sequence, z której korzystać ma kilka plików
  * 
- *  Czemu sterowanie jest w WPF, a nie w zwykłym form? Nie wiem XD
- *  A tak na serio, to posiada chyba bardziej nowoczesny widok i pozwala oddzielić wszystkie funkcje sterowania od form. Z mojego punktu widzenia czytelniejsze było programowanie w ten sposób ~Chmielak
+ *  Czemu sterowanie jest w WPF, a nie w zwykłym form? 
+ *  Nowoczesny widok i pozwala oddzielić wszystkie funkcje sterowania od form. Z mojego punktu widzenia czytelniejsze było programowanie w ten sposób 
  *  
  * Model odbiera kinematykę (wszystkie kąty i xyz dla inverse kinematic, a także sekwencje, którą ma odtworzyć)
  * Oblicza wszystko na kąty, które przesyła do wizualizacji oraz do komunikacji w postaci ramek
