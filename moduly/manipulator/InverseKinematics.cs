@@ -6,198 +6,280 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.LinearAlgebra.Single;
+using MathNetVector = MathNet.Numerics.LinearAlgebra.Vector<float>;
+using System.Security.Cryptography.X509Certificates;
+using System.Drawing.Text;
 
 /*  Poniższy plik może wydawać się pojebany i taki jest.
  *  Historia liczenia kinematyki odwrotnej manipulatora sięga dziejów, gdy ten powstawał. Niestety soft napisany na STM (który liczył inverse kinematics) nie został nigdzie zapisany i był problematyczny ze względu na swoje mało zaawansowane sposoby liczenia pozycji i częste wypadki np. losowe obrócenie i walnięcie w coś 
  *  W związku z tym powstała myśl, aby wszystko liczone było w aplikacji i chciałem, aby było to zrobione konkretnie i profesjonalnie.
  *  Poniższy plik zawiera kompleksowy silnik matematyczny do wyliczenia całej kinematyki manipulatora (w tym prędkości i przyśpieszeń). W planie było wykrywanie kolizji oraz poruszanie członami na podstawie wzorów matematycznych i innych instrukcji.
- *  Do napisania bardzo przydały się materiały z przedmiotu Dynamika Układów Wieloczłonowych prowadzone przez Wojtyrę na Melu
+ *  Do napisania bardzo przydały się materiały z przedmiotu Dynamika Układów Wieloczłonowych (DUW) prowadzone przez Wojtyrę na Melu
  *  Jeśli nie wiesz co robisz, to lepiej nie ruszaj tego pliku.
- * 
+ *  
+ *  Zmiany dotyczące parametrów manipulatora (długości, DH, kąty) można przeprowadzić w deklaracji funkcji InverseKinematics poniżej
  * 
  *  Co więcej na napisanie go planowałem poświęcić tydzień, bo 4 zostały do zawodów ERC 2024
  *  ~ Dominik Chmielak
+ *  
+ *  
+ *  Operacje na macierzach są obliczane za pomocą biblioteki Math.NET Numerics https://numerics.mathdotnet.com/
+ *  
+ *  
  * */
+
 namespace HAL062app.moduly.manipulator
 {
-   
-    class Part
-    {
-        Vector<float> position;
-        float angle;
-        float MaximalAngle;
-        float MinimalAngle;
-        float length;
-
-    }
-
-    class Jacobian
-    {
-        public Jacobian()
-        {
-
-        }
-        public void Solver()
-        {
-
-        }
-
-        private float[] NewRaph(float[] newton) //metoda Newtona-Raphsona do znajdowania miejsc zerowych funkcji
-        {
-            float[] result = new float[newton.Length];
-
-            return result;
-
-        }
-
-        private float Taylor(float q, float dq, float d2q, float dt) //Przybliżenie miejsca startowego dla metody Newtona, wykorzystuje rozwinięcie w szereg Taylora
-        {
-            float q0 = q+dq+0.5f*d2q*dt*dt;
-            return q0;
-        }
-    }
-    class DHMatrix
-    {
-        public float[,] matrix = new float[4,4];
-
-        public DHMatrix ()
-        {
-            matrix = new float[4, 4];
-        }
-        public void Create(float theta, float d, float a, float alpha) //funkcja obliczajaca macierz denavita-hartenberga
-        {
-            this.matrix[0, 0] = (float)Math.Cos(theta);
-            this.matrix[0, 1] = (float)(-Math.Sin(theta) * Math.Cos(alpha));
-            this.matrix[0, 2] = (float)(Math.Sin(theta) * Math.Sin(alpha));
-            this.matrix[0, 3] = (float)(a * Math.Cos(theta));
-            
-            this.matrix[1, 0] = (float)(Math.Sin(theta));
-            this.matrix[1, 1] = (float)(Math.Cos(theta) * Math.Cos(alpha));
-            this.matrix[1, 2] = (float)(-Math.Cos(theta) * Math.Sin(alpha));
-            this.matrix[1, 3] = (float)(a * Math.Sin(theta));
-            
-            this.matrix[2, 0] = 0.0f;
-            this.matrix[2, 1] = (float)(Math.Sin(alpha));
-            this.matrix[2, 2] = (float)(Math.Cos(alpha));
-            this.matrix[2, 3] = d;
-            
-            this.matrix[3, 0] = 0.0f;
-            this.matrix[3, 1] = 0.0f;
-            this.matrix[3, 2] = 0.0f;
-            this.matrix[3, 3] = 1.0f;
-        }
-        public DHMatrix Multiply(DHMatrix a, DHMatrix b)
-        {
-            DHMatrix result = new DHMatrix();
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    result.matrix[i, j] = 0;
-
-
-                    for (int k = 0; k < 4; k++)
-                    {
-                        result.matrix[i, j] += a.matrix[i, k] * b.matrix[k, j];
-                    }
-                }
-            }
-
-            return result;
-        }
-        public float[] MultiplyWithVector(float[] vector)
-        {
-            float[] result = new float[4];
-
-            for (int i = 0; i < 4; i++)
-            {
-                result[i] = 0;
-                for (int j = 0; j < 4; j++)
-                {
-                    result[i] += matrix[i, j] * vector[j];
-                }
-            }
-
-            return result;
-        }
-
-        public DHMatrix Inverse()
-        {
-
-            DHMatrix result = new DHMatrix();
-            float[,] m = (float[,])matrix.Clone();
-            float[,] inv = new float[4, 4];
-            float det;
-
-            // Przygotowanie macierzy jednostkowej
-            for (int i = 0; i < 4; i++)
-                inv[i, i] = 1;
-
-            // Rozpoczęcie procesu eliminacji Gaussa-Jordana
-            for (int i = 0; i < 4; i++)
-            {
-                // Szukaj wiersza z największym elementem w kolumnie
-                int maxRow = i;
-                for (int k = i + 1; k < 4; k++)
-                    if (Math.Abs(m[k, i]) > Math.Abs(m[maxRow, i]))
-                        maxRow = k;
-
-                // Zamień wiersze
-                if (i != maxRow)
-                {
-                    for (int k = 0; k < 4; k++)
-                    {
-                        float temp = m[i, k];
-                        m[i, k] = m[maxRow, k];
-                        m[maxRow, k] = temp;
-
-                        temp = inv[i, k];
-                        inv[i, k] = inv[maxRow, k];
-                        inv[maxRow, k] = temp;
-                    }
-                }
-
-                // Sprawdź, czy macierz jest osobliwa
-                if (Math.Abs(m[i, i]) < 1e-10)
-                    throw new InvalidOperationException("Macierz jest osobliwa i nie ma odwrotności.");
-
-                // Skaluj wiersz, aby uzyskać 1 na przekątnej
-                float scale = m[i, i];
-                for (int k = 0; k < 4; k++)
-                {
-                    m[i, k] /= scale;
-                    inv[i, k] /= scale;
-                }
-
-                // Zrób zera w innych wierszach
-                for (int k = 0; k < 4; k++)
-                {
-                    if (k == i) continue;
-
-                    float factor = m[k, i];
-                    for (int j = 0; j < 4; j++)
-                    {
-                        m[k, j] -= factor * m[i, j];
-                        inv[k, j] -= factor * inv[i, j];
-                    }
-                }
-            }
-
-            // Skopiuj wynik do obiektu result
-            for (int i = 0; i < 4; i++)
-                for (int j = 0; j < 4; j++)
-                    result.matrix[i, j] = inv[i, j];
-
-            return result;
-        }
-    }
-
-
-    
 
     public class InverseKinematics
     {
-        private Vector<float> xyz;
+        public Part[] manipulatorParts;
+        public float[] deg2rad(float[] angle)
+        {
+            for (int i = 0; i < angle.Length; i++)
+                angle[i] = (angle[i] * (float)Math.PI) / 180f;
+            return angle;
+        }
+     
+        private float[] rad2deg(float[] angle)
+        {
+            for (int i = 0; i < angle.Length; i++)
+                angle[i] = (angle[i] *  180f / (float)Math.PI);
+            return angle;
+        }
+        public class DHMatrix
+        {
+            float theta, d, a, psi = new float();
+            public Matrix<float> matrix;
+            public DHMatrix()
+            {
+                matrix = DenseMatrix.OfArray(new float[,]
+                 {
+                {0.0f,0.0f,0.0f,0.0f},
+                {0.0f,0.0f,0.0f,0.0f},
+                {0.0f,0.0f,0.0f,0.0f},
+                {0.0f,0.0f,0.0f,0.0f}
+                 });
+            }
+
+          
+           
+            public void Create(float theta, float d, float a, float psi) //funkcja obliczajaca macierz denavita-hartenberga
+            {
+                this.theta = theta;
+                this.d = d;
+                this.a = a;
+                this.psi = psi;
+                this.matrix[0, 0] = (float)Math.Cos(theta);
+                this.matrix[0, 1] = (float)(-Math.Sin(theta) * Math.Cos(psi));
+                this.matrix[0, 2] = (float)(Math.Sin(theta) * Math.Sin(psi));
+                this.matrix[0, 3] = (float)(a * Math.Cos(theta));
+
+                this.matrix[1, 0] = (float)(Math.Sin(theta));
+                this.matrix[1, 1] = (float)(Math.Cos(theta) * Math.Cos(psi));
+                this.matrix[1, 2] = (float)(-Math.Cos(theta) * Math.Sin(psi));
+                this.matrix[1, 3] = (float)(a * Math.Sin(theta));
+
+                this.matrix[2, 0] = 0.0f;
+                this.matrix[2, 1] = (float)(Math.Sin(psi));
+                this.matrix[2, 2] = (float)(Math.Cos(psi));
+                this.matrix[2, 3] = d;
+
+                this.matrix[3, 0] = 0.0f;
+                this.matrix[3, 1] = 0.0f;
+                this.matrix[3, 2] = 0.0f;
+                this.matrix[3, 3] = 1.0f;
+            }
+            public void Solve(float angle)
+            {
+                this.Create(angle, d, a, psi);
+            }
+
+        }
+        public class Part //klasa odpowiedzialna za wszystkie komponenty, które mają być brane w symulacji. Głownie chodziło też o przyszłą implementację kolizji, a więc pozycje wiertła, innych dofów itp.
+        {
+            //Vector<float> position;
+            public float angle;
+            public float MaximalAngle;
+            public float MinimalAngle;
+            public float length;
+            public DHMatrix T = new DHMatrix();
+            public Part() //Implementacja nieruszających się części - do detekcji kolizji
+            {
+
+            }
+            public Part(float _angle, float _MinimalAngle, float _MaximalAngle, float length, float d, float a, float _psi) //Klasa part może posiadać też inne części, więc oddzielne przypisanie wartości dofów. 3 ostatnie wartości, to wymóg do korzystania z macierzy DH
+            {
+                this.angle = _angle * (float)Math.PI / 180f;
+                this.MaximalAngle = _MaximalAngle * (float)Math.PI / 180f;
+                this.MinimalAngle = _MinimalAngle * (float)Math.PI / 180f;
+                this.length = length;
+              
+                T.Create(angle, d, a, _psi*(float)Math.PI/180f);
+            }
+            public DHMatrix SolveDH(float theta)
+            {
+                T.Solve(theta);
+                return T;
+            }
+
+
+
+
+
+
+        }
+
+        class Jacobian //Jak nie wiesz co robisz, to zostaw.
+        {
+            Matrix<float> J_matrix = DenseMatrix.Create(6, 6, 0f);
+
+
+            Part[] _manipulatorParts = new Part[6];
+
+
+            public Jacobian(Part[] parts)
+            {
+                _manipulatorParts = parts;
+            }
+
+            public float[] solve(float[] startAngles, float[] destination) //dorobić liniowe przejścia (dalekie trajektorie dzielisz na kilka pozycji)
+            {
+                float[] result = new float[6];
+                MathNetVector _destination = DenseVector.OfArray(new float[] { destination[0], destination[1], destination[2], destination[3], destination[4], destination[5] });
+                NewRaph(startAngles, _destination);
+                return result;
+            }
+
+            public Matrix<float> CalculateJacobian(float[] q) //Tworzy jakobian 6x6, pierwsze 3 wiersze - pozycje, 3 kolejne wiersze - orientacja
+            {
+                Matrix<float> _T = DenseMatrix.CreateIdentity(4);
+                DenseMatrix[] _T_column = new DenseMatrix[6];
+                Matrix<float> o = DenseMatrix.Create(3, 6, 0f);
+
+                for (int i = 0; i < 6; i++) //tworzymy macierz 3x6 z pozycjami
+                {
+                    _manipulatorParts[i].SolveDH(q[i]);
+                    _T = _T.Multiply(_manipulatorParts[i].T.matrix);
+                    _T_column[i] = _T.Clone() as DenseMatrix;
+                    o.SetColumn(i, _T.SubMatrix(0, 3, 3, 1).Column(0));
+                }
+
+                MathNetVector z = DenseVector.OfArray(new float[] { 0, 0, 1 });
+                MathNetVector[] z_vectors = new MathNetVector[6];
+                for (int i = 0; i < 6; i++)
+                {
+                    if (i == 0)
+                    {
+                        z_vectors[i] = z;
+                    }
+                    else
+                    {
+                        z_vectors[i] = _T_column[i - 1].SubMatrix(0, 3, 2, 1).Column(0);
+                    }
+                }
+
+
+                Matrix<float> J = DenseMatrix.Create(6, 6, 0f);
+                MathNetVector o_n = o.Column(5); // end effector position
+                for (int i = 0; i < 6; i++)
+                {
+                    MathNetVector z_vector = z_vectors[i];
+                    MathNetVector o_i = o.Column(i);
+                    MathNetVector crossProduct = DenseVector.OfArray(new float[]
+                    {
+                        z_vector[1] * (o_n[2] - o_i[2]) - z_vector[2] * (o_n[1] - o_i[1]),
+                        z_vector[2] * (o_n[0] - o_i[0]) - z_vector[0] * (o_n[2] - o_i[2]),
+                        z_vector[0] * (o_n[1] - o_i[1]) - z_vector[1] * (o_n[0] - o_i[0])
+                    });
+
+                    J.SetSubMatrix(0, 3, i, 1, crossProduct.ToColumnMatrix());
+                    J.SetSubMatrix(3, 3, i, 1, z_vector.ToColumnMatrix());
+                }
+
+                return J;
+            }
+
+            public Matrix<float> ForwardKinematics(float[] q)
+            {
+                Matrix<float> T = DenseMatrix.CreateIdentity(4);
+                for (int i = 0; i < 6; i++)
+                {
+                    _manipulatorParts[i].SolveDH(q[i]);
+                    T = T * _manipulatorParts[i].T.matrix;
+                }
+                return T;
+            }
+            private float Taylor(float q, float dq, float d2q, float dt) //Przybliżenie miejsca startowego dla metody Newtona, wykorzystuje rozwinięcie w szereg Taylora
+            {
+                float q0 = q + dq + 0.5f * d2q * dt * dt;
+                return q0;
+            }
+            private MathNetVector ObjectiveFunction(float[] q, MathNetVector targetPosition)
+            {
+                Matrix<float> endEffectorTransform = ForwardKinematics(q);
+
+                float[] endEffectorPositionArray = new float[6];
+                endEffectorPositionArray[0] = endEffectorTransform[0, 3]; // x
+                endEffectorPositionArray[1] = endEffectorTransform[1, 3]; // y
+                endEffectorPositionArray[2] = endEffectorTransform[2, 3]; // z
+
+                MathNetVector endEffectorPosition = DenseVector.OfArray(endEffectorPositionArray);
+
+                // Oblicz wektor różnicy między pozycją końcówki a targetPosition
+                MathNetVector difference = endEffectorPosition - targetPosition;
+
+                return difference;
+            }
+
+            private float[] NewRaph(float[] startPosition, MathNetVector targetPosition) //metoda Newtona-Raphsona do znajdowania miejsc zerowych funkcji
+            {
+                int maxIterations = 50;
+                float tolerance = 0.1f;
+                int numVariables = startPosition.Length;
+
+                for (int iteration = 0; iteration < maxIterations; iteration++)
+                {
+                    // Oblicz funkcję celu i Jacobian
+                    MathNetVector functionValues = ObjectiveFunction(startPosition, targetPosition);
+                    Matrix<float> jacobianMatrix = CalculateJacobian(startPosition);
+
+                    // Sprawdź normę funkcji celu
+                    float normF = (float)functionValues.L2Norm();
+                    if (normF < tolerance)
+                    {
+                        Console.WriteLine($"Converged in {iteration} iterations.");
+                        return startPosition;
+                    }
+
+                    // Rozwiąż układ równań J * deltaTheta = -f
+                    MathNetVector negFunctionValues = -functionValues;
+                    //Matrix<float> jacobianTranspose = jacobianMatrix.Transpose();
+                    Matrix<float> deltaThetaMatrix = jacobianMatrix.Solve(negFunctionValues.ToColumnMatrix());
+
+                    // Aktualizuj przybliżenie
+                    for (int i = 0; i < numVariables; i++)
+                    {
+                        startPosition[i] += deltaThetaMatrix[i, 0];
+                    }
+                }
+
+                throw new Exception("Funkcja Newtona-Raphsona nie uzyskała wyniku");
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+
 
 
 
@@ -205,19 +287,36 @@ namespace HAL062app.moduly.manipulator
         // mode 0 - podajemy xyz chwytaka (najdalszy punkt, a nie podstawa)
         // mode 1 - podajemy xyz 3 dofu (historycznie pierwszy powstały tryb, bo potrzebny do obliczania innych)
         //
-
-        public InverseKinematics(Position start, int mode, Vector <float> destination) {
-        
-        
+        Jacobian solver;
+        public InverseKinematics(/*Position start, int mode, MathNetVector destination*/)
+        {
+            manipulatorParts = new Part[6];
+            manipulatorParts[0] = new Part(0f,   -180f,   180f,  0,    0, 0, 0);         //Inicjacja startowa wartości manipulatora, to tutaj można zmieniać ograniczenia i parametry
+            manipulatorParts[1] = new Part(50f,  -14f,    110f,  169.5f, 169.5f,    0f,     90f);
+            manipulatorParts[2] = new Part(11f,  -163f,   11f,   550f,   0f,        550f,   0f);
+            manipulatorParts[3] = new Part(0f,   -240f,   240f,  14f,    0f,        14f,    -90f);
+            manipulatorParts[4] = new Part(60f,   13f,    110f,  509.5f, 509.5f,    0f,     90f);
+            manipulatorParts[5] = new Part(0,    -360f,   360f,  83.5f,  0f,        0f,     -90f);
+            solver = new Jacobian(manipulatorParts);
         }
 
-        private float[] forwardDOF3(float[] joints, Vector <float> xyz) //obliczenie kątów 3 pierwszych członów na podstawie XYZ środka dof 3 
+        public float[] inverseKinematics6DOF(float[] angles, float[] destination)
+        {
+            float[] result = new float[6];
+            solver.solve(deg2rad(angles),destination);
+            return rad2deg(result);
+        }
+
+        private float[] forwardKinematicsDOF3(Part dof1, Part dof2, Part dof3) //obliczenie kątów 3 pierwszych członów na podstawie XYZ środka dof 3 
         {
             float[] result = new float[3];
-
-
-
-            return result;
+            //  dof1.SolveDH();
+            // dof2.SolveDH();
+            //  dof3.SolveDH();
+            var vector = DenseVector.OfArray(new float[] { 0, 0, 0, 1 });
+            var resultMatrix = dof1.T.matrix.Multiply(dof2.T.matrix).Multiply(dof3.T.matrix);
+            var resultVector = resultMatrix.Multiply(vector);
+            return resultVector.ToArray();
         }
 
 

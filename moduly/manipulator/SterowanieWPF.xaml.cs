@@ -20,12 +20,10 @@ using System.Timers;
 using SharpDX.XInput;
 using static HAL062app.ControllerState;
 using Newtonsoft.Json.Linq;
-
+using HAL062app.moduly.manipulator;
 namespace HAL062app.moduly.manipulator
 {
-    /// <summary>
-    /// Logika interakcji dla klasy SterowanieWPF.xaml
-    /// </summary>
+  
     public partial class SterowanieWPF : UserControl
     {
         private class Joint
@@ -95,6 +93,17 @@ namespace HAL062app.moduly.manipulator
         private int timerInterval = 50;
         private int elapsedTime = 0;
         private bool isTimerRunning = false;
+
+
+        /// Kinematyka odwrotna 
+        /// 
+        /// Kinematyka odwrotna
+
+
+        InverseKinematics inverseKinematics;
+
+
+
         public SterowanieWPF()
         {
             InitializeComponent(); //to tutaj zmienia się maksymalne, minimalne i startowe kąty dla symulacji
@@ -125,6 +134,7 @@ namespace HAL062app.moduly.manipulator
                 relativeZeros[i] = joints[i].relative0;
             }
 
+
             actualPosition = new Position(returnAnglesFromJoints(joints));
             actualPosition.Duration = 5;
             history = new Sequence("History", new List<Position>());
@@ -133,7 +143,8 @@ namespace HAL062app.moduly.manipulator
 
             _XboxPad = XboxPad.Instance;
             _XboxPad.ControllerStateChanged += OnXboxPadStateChanged;
-            
+
+            inverseKinematics  = new InverseKinematics();
         }
         private void InitializeTimer()
         {
@@ -894,5 +905,52 @@ namespace HAL062app.moduly.manipulator
 
             return (float)value / 32768f;
         }
+
+
+        ////////Kinematyka odwrotna 
+        ///
+        private void UseInverseKinematics()
+        {
+
+
+        }
+
+       
+        private void Inverse_X_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            float[] destination = new float[6];
+            destination[0] = -30f;
+            destination[1] = -30f;
+            destination[2] = 90f;
+            destination[3] = 0f;
+            destination[4] = 0f;
+            destination[5] = 0f;
+
+            float[] InverseAnglesResult = new float[6];
+            InverseAnglesResult= inverseKinematics.inverseKinematics6DOF(actualPosition.joints, destination);
+           
+            Position previousPosition = actualPosition.deepCopy();
+            actualPosition.addRelative0(relativeZeros);
+            float[] zeroAngles = new float[6];
+            for (int i = 0; i < 6; i++)
+                zeroAngles[i] = 0;
+            Position InversePosition;
+            InversePosition = previousPosition.deepCopy();
+            InversePosition.update(InverseAnglesResult);
+            InversePosition.addRelativeToJoints();
+
+            simulateStep(previousPosition, InversePosition, false);
+            ChangeSlidersValue(InversePosition);
+        }
+        private void Inverse_Y_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+        private void Inverse_Z_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+        
     }
 }

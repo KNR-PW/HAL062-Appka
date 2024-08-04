@@ -47,6 +47,10 @@
             </TabControl.Resources>
             <TabItem Header="Sterowanie"  >
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="107*"/>
+                        <ColumnDefinition Width="42*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <!-- Automatycznie dopasuje wysokość do zawartości -->
@@ -60,8 +64,8 @@
                         <RowDefinition Height="Auto"/>
                         <!-- Automatycznie dopasuje wysokość do zawartości -->
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Wybór członu" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
-                    <UniformGrid Grid.Row="1" Rows="7" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="300">
+                    <TextBlock Text="Wybór członu" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.ColumnSpan="2" />
+                    <UniformGrid Grid.Row="1" Rows="7" VerticalAlignment="Center" Height="300" Grid.ColumnSpan="2">
 
                         <Grid x:Name="Joint1Grid" Tag="1" HorizontalAlignment="Stretch" Height="40" MouseDown="JointGridClicked">
                             <TextBlock Text="DOF 1" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
@@ -101,8 +105,8 @@
 
                         </Grid>
                     </UniformGrid>
-                    <TextBlock Grid.Row="3" x:Name="DOFcontrolText" Text="Sterowanie" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
-                    <UniformGrid Grid.Row="4" Columns="8" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="40" >
+                    <TextBlock Grid.Row="3" x:Name="DOFcontrolText" Text="Sterowanie" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.ColumnSpan="2" />
+                    <UniformGrid Grid.Row="4" Columns="8" VerticalAlignment="Top" Height="40" Grid.ColumnSpan="2" >
                         <UniformGrid.Resources>
                             <Style TargetType="Button" >
                                 <Setter  Property="Margin" Value="1,5,1,5"/>
@@ -122,15 +126,15 @@
                         <Button Content="+1.0" Click="DOFvalueBtn_clicked" Tag="1.0"/>
                         <Button Content="+5.0" Click="DOFvalueBtn_clicked" Tag="5.0"/>
                     </UniformGrid>
-                    <TextBox x:Name="angleTextbox" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,43,0,0" Grid.Row="4" TextWrapping="Wrap" TextAlignment="Center" Text="-" VerticalAlignment="Top" Width="72" Height="19"/>
-                    <Button Content="Send" Click="SendButton_Click" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="98"/>
+                    <TextBox x:Name="angleTextbox" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="113,43,0,0" Grid.Row="4" TextWrapping="Wrap" TextAlignment="Center" Text="-" VerticalAlignment="Top" Width="72" Height="19"/>
+                    <Button Content="Send" Click="SendButton_Click" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="98" Grid.ColumnSpan="2"/>
                     <Button Content="Undo" Click="UndoButton_Click" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="98"/>
-                    <Button Content="Reset" Click="ResetButton_Click" HorizontalAlignment="Center" Margin="0,67,0,0" Grid.Row="4" VerticalAlignment="Top" Height="20" Width="72"/>
-                    <TextBlock Grid.Row="5" Text="Opcje" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0" Grid.RowSpan="3" />
+                    <Button Content="Reset" Click="ResetButton_Click" HorizontalAlignment="Left" Margin="113,67,0,0" Grid.Row="4" VerticalAlignment="Top" Height="20" Width="72"/>
+                    <TextBlock Grid.Row="5" Text="Opcje" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" Foreground="WhiteSmoke" Margin="0,6,0,0" Grid.ColumnSpan="2" />
                     <Button Content="Włącz&#xD;&#xA;manipulator" Click="Control_turnOnManipulator" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="98" />
-                    <Button Content="Pozycja&#xD;&#xA;zero" Click="Control_ZeroPosition" HorizontalAlignment="Center" Margin="0,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="60" />
-                    <Button Content="Surowe&#xD;&#xA;wyłączenie" Click="Control_rawTurnOffManipulator" HorizontalAlignment="Left" Margin="190,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
-                    <Button Content="Ustaw i wyłącz&#xD;&#xA;manipulator" Click="Control_turnOffManipulator" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="98" />
+                    <Button Content="Pozycja&#xD;&#xA;zero" Click="Control_ZeroPosition" HorizontalAlignment="Left" Margin="119,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="60" />
+                    <Button Content="Surowe&#xD;&#xA;wyłączenie" Click="Control_rawTurnOffManipulator" HorizontalAlignment="Left" Margin="190,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" Grid.ColumnSpan="2" />
+                    <Button Content="Ustaw i wyłącz&#xD;&#xA;manipulator" Click="Control_turnOffManipulator" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="98" Grid.ColumnSpan="2" />
                     <Button Content="Włącz sterowanie&#xD;&#xA;gamepadem" Click="Control_turnOnGamePad" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
 
 
@@ -138,7 +142,40 @@
             </TabItem>
             <TabItem Header="Kinematyka&#xD;&#xA;odwrotna"  Style="{StaticResource CustomFontSizeTabItem}">
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Automatycznie dopasuje wysokość do zawartości -->
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Automatycznie dopasuje wysokość do zawartości -->
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Wybór członu" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
+                    <UniformGrid Grid.Row="1" Rows="7" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="300">
 
+                        <Grid x:Name="JointInverse_X" Tag="1" HorizontalAlignment="Stretch" Height="40" >
+                            <TextBlock Text="X" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                            <Slider x:Name="Inverse_XSlider" VerticalAlignment="Center" Maximum="180" Minimum="-180" Tag="{Binding ElementName=Inverse1Grid}"  HorizontalAlignment="Left" Width="200" Margin="50,1,0,0" ValueChanged="Inverse_X_ValueChanged"/>
+                            <Label x:Name="Inverse_XLabel" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+
+                        </Grid>
+                        <Grid x:Name="Inverse_Y" Tag="2"  HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="Y" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                            <Slider x:Name="Inverse_YSlider" VerticalAlignment="Center" Value="50" Maximum="110" Minimum="10" Tag="{Binding ElementName=Inverse2Grid}" ValueChanged="Inverse_Y_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
+                            <Label x:Name="Inverse_YLabel" Content="10" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+                        </Grid>
+                        <Grid x:Name="JointInverse_Z" Tag="3"  HorizontalAlignment="Stretch" Height="40">
+                            <TextBlock Text="Z" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
+                            <Slider x:Name="Inverse_ZSlider" VerticalAlignment="Center" Maximum="11" Minimum="-163" Tag="{Binding ElementName=Inverse3Grid}" ValueChanged="Inverse_Z_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
+                            <Label x:Name="Inverse_ZLabel" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+                        </Grid>
+                        
+                    </UniformGrid>
                 </Grid>
 
             </TabItem>
