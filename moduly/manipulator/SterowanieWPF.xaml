@@ -136,7 +136,12 @@
                     <Button Content="Surowe&#xD;&#xA;wyłączenie" Click="Control_rawTurnOffManipulator" HorizontalAlignment="Left" Margin="190,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" Grid.ColumnSpan="2" />
                     <Button Content="Ustaw i wyłącz&#xD;&#xA;manipulator" Click="Control_turnOffManipulator" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="5" VerticalAlignment="Top" Height="44" Width="98" Grid.ColumnSpan="2" />
                     <Button Content="Włącz sterowanie&#xD;&#xA;gamepadem" Click="Control_turnOnGamePad" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="44" Width="98" />
+                    <Grid HorizontalAlignment="Left" Margin="119,10,0,0" Grid.Row="6">
+                        <Label x:Name="ToolPositon_X_label" Content="X: 0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+                        <Label x:Name="ToolPositon_Y_label" Content="Y: 0" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Center" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
+                        <Label x:Name="ToolPositon_Z_label" Content="Z: 0" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Bottom" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
 
+                    </Grid>
 
                 </Grid>
             </TabItem>
@@ -160,7 +165,7 @@
 
                         <Grid x:Name="JointInverse_X" Tag="1" HorizontalAlignment="Stretch" Height="40" >
                             <TextBlock Text="X" Width="40" HorizontalAlignment="Left" Margin="5,2,0,0" FontWeight="Bold" Height="18"/>
-                            <Slider x:Name="Inverse_XSlider" VerticalAlignment="Center" Maximum="180" Minimum="-180" Tag="{Binding ElementName=Inverse1Grid}"  HorizontalAlignment="Left" Width="200" Margin="50,1,0,0" ValueChanged="Inverse_X_ValueChanged"/>
+                            <Slider x:Name="Inverse_XSlider" VerticalAlignment="Center" Maximum="100" Minimum="-100" Tag="{Binding ElementName=Inverse1Grid}"  HorizontalAlignment="Left" Width="200" Margin="50,1,0,0" ValueChanged="Inverse_X_ValueChanged"/>
                             <Label x:Name="Inverse_XLabel" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
 
                         </Grid>
@@ -174,7 +179,8 @@
                             <Slider x:Name="Inverse_ZSlider" VerticalAlignment="Center" Maximum="11" Minimum="-163" Tag="{Binding ElementName=Inverse3Grid}" ValueChanged="Inverse_Z_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
                             <Label x:Name="Inverse_ZLabel" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
                         </Grid>
-                        
+                        <Button x:Name="inverseKinematics_Btn" Content="Button" Click="inverseKinematics_Btn_Click"/>
+
                     </UniformGrid>
                 </Grid>
 

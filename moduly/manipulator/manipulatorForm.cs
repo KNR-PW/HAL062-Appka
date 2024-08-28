@@ -28,7 +28,7 @@ namespace HAL062app.moduly.manipulator
             sterowanieWPF1.SendMessage_action += SendFrame;
             sterowanieWPF1.SendPosition_action += SendPosition;
             sterowanieWPF1.CreateVisualization_action += CreateVisualization;
-
+            sterowanieWPF1.ChangeSpherePosition_action += ChangeSpherePosition;
         }
        
         
@@ -55,6 +55,10 @@ namespace HAL062app.moduly.manipulator
         private void manipulatorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
+        }
+        private void ChangeSpherePosition(float[] xyz)
+        {
+            manipulatorWPF1.UpdateSphere(xyz);
         }
     }
 }

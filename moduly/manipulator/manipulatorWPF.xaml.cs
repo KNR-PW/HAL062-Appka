@@ -64,6 +64,8 @@ namespace HAL062app.moduly.manipulator
         RotateTransform3D R;
         TranslateTransform3D T;
 
+        SphereVisual3D sphere;
+
         Color oldColor = Colors.White;
         bool switchingJoint = false;
         bool isAnimating = false;
@@ -113,12 +115,12 @@ namespace HAL062app.moduly.manipulator
             visual = new ModelVisual3D();
             visual.Content = geometry;
 
-
+            
             var camera = new PerspectiveCamera
             {
-                Position = new Point3D(-1000, 1000, 500),
-                LookDirection = new Vector3D(400, -520, -4),
-                UpDirection = new Vector3D(0, 0, 1),
+                Position = new Point3D(1500, -2060, 1300),
+                LookDirection = new Vector3D(-1285, 2140, -1020),
+                UpDirection = new Vector3D(-0.20, 0.32, 0.93),
                 
             };
             viewport.Camera = camera;
@@ -135,10 +137,18 @@ namespace HAL062app.moduly.manipulator
             timer1.Interval = 5;
             timer1.Tick += new System.EventHandler(timer1_Tick);
 
-            
+            sphere = new SphereVisual3D()
+            {
+                Center = new Point3D(0, 0, 0),
+                Radius = 20,
+            Fill = Brushes.Red
+            };
+            viewport.Children.Add(sphere);
+
         }
         private float ToDegrees(float radian)
         {
+            
             return radian * 180.0F / (float)Math.PI;
         }
         private float ToRadians(float degrees)
@@ -147,7 +157,7 @@ namespace HAL062app.moduly.manipulator
         }
 
 
-       
+        
 
    
 
@@ -542,7 +552,11 @@ namespace HAL062app.moduly.manipulator
             return HitTestResultBehavior.Continue;
         }
 
-        
+        public void UpdateSphere(float[] xyz)
+        {
+            sphere.Center = new Point3D(xyz[0], xyz[1], xyz[2]);
+
+        }
 
         private void SetJointAngle(object sender, RoutedEventArgs e)
         {

@@ -131,7 +131,7 @@ namespace HAL062app.moduly.podwozie
             }
         }
 
-        private int pitagoras(int c, int b)
+        private int DistanceFromPoint(int c, int b)
         {
             return (int)Math.Sqrt(Math.Abs(c * c - b * b));
         }
@@ -153,14 +153,14 @@ namespace HAL062app.moduly.podwozie
 
 
                 if (joystickPosition.X - width / 2 >= 0)
-                    joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + pitagoras(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
+                    joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + DistanceFromPoint(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
                 else
-                    joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - pitagoras(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
+                    joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - DistanceFromPoint(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
 
                 if (joystickPosition.Y - height / 2 >= 0)
-                    joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + pitagoras(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
+                    joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + DistanceFromPoint(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
                 else
-                    joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - pitagoras(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
+                    joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - DistanceFromPoint(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
 
                 joystickPictureBox.Refresh();
 
@@ -238,14 +238,14 @@ namespace HAL062app.moduly.podwozie
             }
 
             if (joystickPosition.X - width / 2 >= 0)
-                joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + pitagoras(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
+                joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + DistanceFromPoint(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
             else
-                joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - pitagoras(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
+                joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - DistanceFromPoint(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
 
             if (joystickPosition.Y - height / 2 >= 0)
-                joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + pitagoras(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
+                joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + DistanceFromPoint(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
             else
-                joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - pitagoras(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
+                joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - DistanceFromPoint(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
             joystickPictureBox.Refresh();
 
 
@@ -525,14 +525,14 @@ namespace HAL062app.moduly.podwozie
                 //errorTextbox.Text = $"X = {joystickPosition.X} Y = {joystickPosition.Y}";
 
                 if (joystickPosition.X - width / 2 >= 0)
-                    joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + pitagoras(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
+                    joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + DistanceFromPoint(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
                 else
-                    joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - pitagoras(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
+                    joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - DistanceFromPoint(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
 
                 if (joystickPosition.Y - height / 2 >= 0)
-                    joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + pitagoras(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
+                    joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + DistanceFromPoint(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
                 else
-                    joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - pitagoras(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
+                    joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - DistanceFromPoint(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
                 
                 joystickPictureBox.Refresh();
 

@@ -21,9 +21,11 @@ using SharpDX.XInput;
 using static HAL062app.ControllerState;
 using Newtonsoft.Json.Linq;
 using HAL062app.moduly.manipulator;
+//using System.Windows.Forms;
+
 namespace HAL062app.moduly.manipulator
 {
-  
+
     public partial class SterowanieWPF : UserControl
     {
         private class Joint
@@ -54,13 +56,14 @@ namespace HAL062app.moduly.manipulator
 
         public Action<Position> SendPosition_action;
         public Action<Position> CreateVisualization_action;
+        public Action<float[]> ChangeSpherePosition_action;
         public Action<Message> SendMessage_action;
 
         Slider[] _JointSliders = new Slider[6];
         Label[] _JointLabels = new Label[6];
 
         Joint[] joints = new Joint[6];
-        Position actualPosition = null; 
+        Position actualPosition = null;
         float[] angles = new float[6];
         bool initialization = true;
         int activeJointChange = 1;
@@ -71,7 +74,7 @@ namespace HAL062app.moduly.manipulator
         //sekwencje
         private int _id = 0;
         private float[] relativeZeros = new float[6]; //Dla modelu wgrywanego z plików kąty są inne, niż te dla manipulatora w łaziku. Tutaj przechowujemy różnicę tych kątów, aby przy wysyłaniu do łazika ten kąt odjąć
-        Sequence loadedSequence; 
+        Sequence loadedSequence;
         int selectedPositionInSequence = 0; //Która pozycja z sekwencji aktualnie jest wyświetlana
         bool turnOffSequencePositionChanging = false; //Klikanie w pozycję na historii w sekwencji zmienia/ nie zmienia wizualizacji
         Position settingPosition = null; //to jest zmienna przechowująca aktualne położenie, wykorzystywane w zapisywaniu w sekcji sekwencji
@@ -86,7 +89,7 @@ namespace HAL062app.moduly.manipulator
         private XboxPad _XboxPad;
         private bool isClosing = false;
         private bool isOpening = false;
-        
+
 
         private Timer timer;
         private int readInterval = 50;
@@ -108,12 +111,12 @@ namespace HAL062app.moduly.manipulator
         {
             InitializeComponent(); //to tutaj zmienia się maksymalne, minimalne i startowe kąty dla symulacji
             InitializeTimer();
-            joints[0] = new Joint(-90,90,0,0); 
-            joints[1] = new Joint(-60,90,0,50);
-            joints[2] = new Joint(-60,70,0,-60);
-            joints[3] = new Joint(-180,180,0,100);
-            joints[4] = new Joint(-90,60,0,10);
-            joints[5] = new Joint(-360,360,0,0);
+            joints[0] = new Joint(-90, 90, 0, 0);
+            joints[1] = new Joint(-60, 90, 0, 50);
+            joints[2] = new Joint(-60, 70, 0, -60);
+            joints[3] = new Joint(-180, 180, 0, 100);
+            joints[4] = new Joint(-90, 60, 0, 10);
+            joints[5] = new Joint(-360, 360, 0, 0);
             addValues.Add("-5.0", -5.0); //to odpowiada tylko za przyciski do szczegółowej zmiany kąta, nic ważnego
             addValues.Add("5.0", 5.0);
             addValues.Add("-1.0", -1.0);
@@ -122,9 +125,9 @@ namespace HAL062app.moduly.manipulator
             addValues.Add("0.5", 0.5);
             addValues.Add("-0.1", -0.1);
             addValues.Add("0.1", 0.1);
-            
+
             XboxControlBus.XboxControlMode += OnXboxControlModeChanged;
-            Slider[] JointSliders = {Joint1Slider,Joint2Slider, Joint3Slider, Joint4Slider, Joint5Slider, Joint6Slider };
+            Slider[] JointSliders = { Joint1Slider, Joint2Slider, Joint3Slider, Joint4Slider, Joint5Slider, Joint6Slider };
             Label[] JointLabels = { Joint1Label, Joint2Label, Joint3Label, Joint4Label, Joint5Label, Joint6Label };
             _JointSliders = JointSliders;
             _JointLabels = JointLabels;
@@ -135,7 +138,7 @@ namespace HAL062app.moduly.manipulator
             }
 
 
-            actualPosition = new Position(returnAnglesFromJoints(joints));
+            actualPosition = new Position(returnAnglesFromJoints(joints, true));
             actualPosition.Duration = 5;
             history = new Sequence("History", new List<Position>());
             history.sequence.Add(actualPosition);
@@ -144,7 +147,7 @@ namespace HAL062app.moduly.manipulator
             _XboxPad = XboxPad.Instance;
             _XboxPad.ControllerStateChanged += OnXboxPadStateChanged;
 
-            inverseKinematics  = new InverseKinematics();
+            inverseKinematics = new InverseKinematics();
         }
         private void InitializeTimer()
         {
@@ -152,7 +155,7 @@ namespace HAL062app.moduly.manipulator
             timer.Interval = timerInterval;
             timer.AutoReset = true;
             timer.Elapsed += OnTimedEvent;
-          
+
         }
         /*
         private async void Timer_Tick(object sender, EventArgs e)
@@ -173,14 +176,14 @@ namespace HAL062app.moduly.manipulator
         private void UpdateSlidersValues(Joint joint, Slider slider, Label label)
         {
             slider.Minimum = joint.angleMin;
-            slider.Maximum= joint.angleMax;
+            slider.Maximum = joint.angleMax;
             slider.Value = joint.angle;
             label.Content = joint.angle;
         }
 
         private void JointGridClicked(object sender, MouseButtonEventArgs e)
         {
-            if(sender is Grid grid)
+            if (sender is Grid grid)
             {
                 ResetSelectedGrid();
                 grid.Background = Brushes.LightGray;
@@ -195,26 +198,26 @@ namespace HAL062app.moduly.manipulator
             }
 
         }
-      
+
         private void JointSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if(!initialization)
-            if (sender is Slider slider)
-            {
-                Grid parentGrid = slider.Tag as Grid;
-                JointGridClicked(parentGrid, null);
-                joints[Convert.ToInt32(parentGrid.Tag.ToString())-1].angle = (float)slider.Value;
-                slider.Background = Brushes.LightGray;
+            if (!initialization)
+                if (sender is Slider slider)
+                {
+                    Grid parentGrid = slider.Tag as Grid;
+                    JointGridClicked(parentGrid, null);
+                    joints[Convert.ToInt32(parentGrid.Tag.ToString()) - 1].angle = (float)slider.Value;
+                    slider.Background = Brushes.LightGray;
                     angleTextbox.Text = slider.Value.ToString("0.00");
                     Label associatedLabel = FindLabelInGrid(parentGrid);
-                if (associatedLabel != null)
-                {
-                    associatedLabel.Content = slider.Value.ToString("0.00");
-                }
-                    actualPosition = new Position(returnAnglesFromJoints(joints));
+                    if (associatedLabel != null)
+                    {
+                        associatedLabel.Content = slider.Value.ToString("0.00");
+                    }
+                    actualPosition = new Position(returnAnglesFromJoints(joints, true));
                     SendVisualizationPosition();
-                    
-                }    
+
+                }
 
         }
         private void ChangeSlidersValue(Position position)
@@ -222,8 +225,10 @@ namespace HAL062app.moduly.manipulator
             for (int i = 0; i < 6; i++)
             {
                 _JointSliders[i].Value = position.joints[i] - relativeZeros[i];
-                _JointLabels[i].Content =( position.joints[i] - relativeZeros[i]).ToString("0.00");
+                _JointLabels[i].Content = (position.joints[i] - relativeZeros[i]).ToString("0.00");
             }
+
+
 
         }
         private Label FindLabelInGrid(Grid grid) // To tylko do zmiany wartości w sliderze
@@ -270,7 +275,7 @@ namespace HAL062app.moduly.manipulator
         {
             if (newValue < joints[jointID].angleMin)
                 return joints[jointID].angleMin;
-            else if(newValue > joints[jointID].angleMax)
+            else if (newValue > joints[jointID].angleMax)
                 return joints[jointID].angleMax;
             else
                 return newValue;
@@ -285,7 +290,7 @@ namespace HAL062app.moduly.manipulator
                 if (activeSenderSlider is Slider slider)
                     slider.Value = joints[activeJointChange - 1].angle;
 
-            
+
             }
 
         }
@@ -304,19 +309,24 @@ namespace HAL062app.moduly.manipulator
         }
         private void SendVisualizationPosition()
         {
-            Position Visualization = new Position(returnAnglesFromJoints(joints));
+            float[] xyz = inverseKinematics.ToolPosition(returnAnglesFromJoints(joints, false));
+            ToolPositon_X_label.Content = "X: " + xyz[0].ToString("0.00");
+            ToolPositon_Y_label.Content = "Y: " + xyz[1].ToString("0.00");
+            ToolPositon_Z_label.Content = "Z: " + xyz[2].ToString("0.00");
+            ChangeSpherePosition_action(xyz);
+            Position Visualization = new Position(returnAnglesFromJoints(joints, true));
             CreateVisualization_action(Visualization);
         }
         private void SendButton_Click(object sender, EventArgs e)
         {
             joints[activeJointChange - 1].lastAngle = joints[activeJointChange - 1].angle;
-            Position actPosition = new Position(returnAnglesFromJoints(joints));
+            Position actPosition = new Position(returnAnglesFromJoints(joints, true));
             actPosition.addRelative0(relativeZeros);
             actPosition.Duration = 3;
             actPosition.id = history.sequence.Count;
             history.sequence.Add(actPosition);
             SendPosition_action(actPosition);
-            
+
             if (History_sequenceCombobox.SelectedItem is Sequence selectedSequence)
             {
                 CollectionViewSource.GetDefaultView(History_SequenceListBox.ItemsSource).Refresh();
@@ -325,19 +335,27 @@ namespace HAL062app.moduly.manipulator
 
         private void JointControlPanel(int activeJoint)
         {
-            DOFcontrolText.Text = "DOF "+activeJoint.ToString();
-            angleTextbox.Text = joints[activeJoint-1].angle.ToString("0.00");
+            DOFcontrolText.Text = "DOF " + activeJoint.ToString();
+            angleTextbox.Text = joints[activeJoint - 1].angle.ToString("0.00");
 
         }
 
-        float[] returnAnglesFromJoints(Joint[] joints)
+        float[] returnAnglesFromJoints(Joint[] joints, bool AddRelative) //Pozycje dla modelu po dodaniu offsetu
         {
             float[] ans = new float[joints.Length];
             int id = 0;
-            foreach(Joint joint in joints)
-                ans[id++] = joint.angle + joint.relative0;
+            if (AddRelative)
+            {
+                foreach (Joint joint in joints)
+                    ans[id++] = joint.angle + joint.relative0;
+            }else
+            {
+                foreach (Joint joint in joints)
+                    ans[id++] = joint.angle;
+            }
             return ans;
         }
+       
 
 
 
@@ -863,7 +881,7 @@ namespace HAL062app.moduly.manipulator
                 await UpdateDofPositionXbox(6, 1f);
             Dispatcher.Invoke(() =>
             {
-                Position actPosition = new Position(returnAnglesFromJoints(joints));
+                Position actPosition = new Position(returnAnglesFromJoints(joints, true));
                 actPosition.addRelative0(relativeZeros);
                 SendPosition_action(actPosition);
             });
@@ -909,38 +927,72 @@ namespace HAL062app.moduly.manipulator
 
         ////////Kinematyka odwrotna 
         ///
-        private void UseInverseKinematics()
+        private void UseInverseKinematics(float[] startAngle,float[] destination, int numberOfPoints)
         {
+            Position InversePosition=actualPosition.deepCopy();
+            InversePosition.addRelative0(relativeZeros);
+
+            float[] startPoint = inverseKinematics.ToolPosition(startAngle);
+            float deltaX = destination[0] - startPoint[0];
+            float deltaY = destination[1] - startPoint[1];
+            float deltaZ = destination[2] - startPoint[2];
+            float[] midPoint = new float[6]; 
+
+            float[] InverseKinematicsResult = new float[6];
+            for (int i = 0; i < 6; i++)
+            {
+                InverseKinematicsResult[i] = startAngle[i];
+                InversePosition.joints[i] = startAngle[i];
+            }
+            
+
+            for (int i=1; i<= numberOfPoints; i++)
+            {
+                float t = (float)i / (float)(numberOfPoints - 1);
+                midPoint[0] = startPoint[0] + t * deltaX;
+                midPoint[1] = startPoint[1] + t * deltaY;
+                midPoint[2] = startPoint[2] + t * deltaZ;
+                midPoint[3] = 0f;
+                midPoint[4] = 0f;
+                midPoint[5] = 0f;
+
+               
+                    InverseKinematicsResult = inverseKinematics.inverseKinematics6DOF(InverseKinematicsResult, midPoint);
+                    InversePosition.update(InverseKinematicsResult);
+                    InversePosition.addRelativeToJoints();
+               
+      
+                CreateVisualization_action(InversePosition);
+                ChangeSlidersValue(InversePosition);
+               
+            }
 
 
         }
-
+        
+             
+         
        
         private void Inverse_X_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            float[] destination = new float[6];
-            destination[0] = -30f;
-            destination[1] = -30f;
-            destination[2] = 90f;
-            destination[3] = 0f;
-            destination[4] = 0f;
-            destination[5] = 0f;
+            
 
+/*
             float[] InverseAnglesResult = new float[6];
-            InverseAnglesResult= inverseKinematics.inverseKinematics6DOF(actualPosition.joints, destination);
-           
-            Position previousPosition = actualPosition.deepCopy();
-            actualPosition.addRelative0(relativeZeros);
             float[] zeroAngles = new float[6];
             for (int i = 0; i < 6; i++)
                 zeroAngles[i] = 0;
+            Position previousPosition = actualPosition.deepCopy();
+            actualPosition.addRelative0(relativeZeros);
+            InverseAnglesResult = inverseKinematics.inverseKinematics6DOF(InverseAnglesResult, destination);
+           
+           
+            
             Position InversePosition;
             InversePosition = previousPosition.deepCopy();
             InversePosition.update(InverseAnglesResult);
-            InversePosition.addRelativeToJoints();
-
-            simulateStep(previousPosition, InversePosition, false);
-            ChangeSlidersValue(InversePosition);
+           InversePosition.addRelativeToJoints();
+*/
         }
         private void Inverse_Y_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -951,6 +1003,22 @@ namespace HAL062app.moduly.manipulator
 
         }
 
-        
+        private async void inverseKinematics_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            ///Control_ZeroPosition(null, null);
+            float[] destination = new float[6];
+            float[] zero = new float[6];
+            zero= actualPosition.joints;
+            //actualPosition.addRelative0(relativeZeros);
+            destination[0] = (float)Inverse_XSlider.Value + 700f;
+            destination[1] = 0;
+            destination[2] = 700f;
+            destination[3] = 0f;
+            destination[4] = 0f;
+            destination[5] = 0f;
+         //   for (int i = 0; i < 6; i++)
+         //      zero[i] = zero[i]*180f/(float)Math.PI;
+             UseInverseKinematics(zero, destination, 100);
+        }
     }
 }
