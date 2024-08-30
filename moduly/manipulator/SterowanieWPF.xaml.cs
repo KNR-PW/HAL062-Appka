@@ -56,7 +56,7 @@ namespace HAL062app.moduly.manipulator
 
         public Action<Position> SendPosition_action;
         public Action<Position> CreateVisualization_action;
-        public Action<float[]> ChangeSpherePosition_action;
+        public Action<float[], int> ChangeSpherePosition_action;
         public Action<Message> SendMessage_action;
 
         Slider[] _JointSliders = new Slider[6];
@@ -313,7 +313,7 @@ namespace HAL062app.moduly.manipulator
             ToolPositon_X_label.Content = "X: " + xyz[0].ToString("0.00");
             ToolPositon_Y_label.Content = "Y: " + xyz[1].ToString("0.00");
             ToolPositon_Z_label.Content = "Z: " + xyz[2].ToString("0.00");
-            ChangeSpherePosition_action(xyz);
+            ChangeSpherePosition_action(xyz, 0);
             Position Visualization = new Position(returnAnglesFromJoints(joints, true));
             CreateVisualization_action(Visualization);
         }
@@ -927,7 +927,7 @@ namespace HAL062app.moduly.manipulator
 
         ////////Kinematyka odwrotna 
         ///
-        private void UseInverseKinematics(float[] startAngle,float[] destination, int numberOfPoints)
+        private void UseInverseKinematics(float[] startAngle,float[] destination)
         {
             Position InversePosition=actualPosition.deepCopy();
             InversePosition.addRelative0(relativeZeros);
@@ -937,16 +937,15 @@ namespace HAL062app.moduly.manipulator
             float deltaY = destination[1] - startPoint[1];
             float deltaZ = destination[2] - startPoint[2];
             float[] midPoint = new float[6]; 
-
+            float numberOfPoints = (int)Math.Sqrt (deltaX* deltaX + deltaY * deltaY + deltaZ*deltaZ)/20;
             float[] InverseKinematicsResult = new float[6];
             for (int i = 0; i < 6; i++)
             {
                 InverseKinematicsResult[i] = startAngle[i];
                 InversePosition.joints[i] = startAngle[i];
             }
-            
 
-            for (int i=1; i<= numberOfPoints; i++)
+            for (int i=1; i<= 1; i++)
             {
                 float t = (float)i / (float)(numberOfPoints - 1);
                 midPoint[0] = startPoint[0] + t * deltaX;
@@ -957,17 +956,16 @@ namespace HAL062app.moduly.manipulator
                 midPoint[5] = 0f;
 
                
-                    InverseKinematicsResult = inverseKinematics.inverseKinematics6DOF(InverseKinematicsResult, midPoint);
+                    InverseKinematicsResult = inverseKinematics.inverseKinematics6DOF(InverseKinematicsResult, destination);
                     InversePosition.update(InverseKinematicsResult);
-                    InversePosition.addRelativeToJoints();
+                   // InversePosition.addRelativeToJoints();
                
       
                 CreateVisualization_action(InversePosition);
                 ChangeSlidersValue(InversePosition);
                
             }
-
-
+            
         }
         
              
@@ -975,32 +973,60 @@ namespace HAL062app.moduly.manipulator
        
         private void Inverse_X_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            
+            float[] destination = new float[6];
+            float[] zero = new float[6];
+            zero = actualPosition.joints;
+            destination[0] = (float)Inverse_XSlider.Value;
+            destination[1] = (float)Inverse_YSlider.Value;
+            destination[2] = (float)Inverse_ZSlider.Value;
+            destination[3] = 0f;
+            destination[4] = 0f;
+            destination[5] = 0f;
+            float[] xyz = new float[3];
+            xyz[0] = destination[0];
+            xyz[1] = destination[1];
+            xyz[2] = destination[2];
+            ChangeSpherePosition_action(xyz, 1);
+            UseInverseKinematics(zero, destination);
 
-/*
-            float[] InverseAnglesResult = new float[6];
-            float[] zeroAngles = new float[6];
-            for (int i = 0; i < 6; i++)
-                zeroAngles[i] = 0;
-            Position previousPosition = actualPosition.deepCopy();
-            actualPosition.addRelative0(relativeZeros);
-            InverseAnglesResult = inverseKinematics.inverseKinematics6DOF(InverseAnglesResult, destination);
-           
-           
-            
-            Position InversePosition;
-            InversePosition = previousPosition.deepCopy();
-            InversePosition.update(InverseAnglesResult);
-           InversePosition.addRelativeToJoints();
-*/
+
+
         }
         private void Inverse_Y_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            float[] destination = new float[6];
+            float[] zero = new float[6];
+            zero = actualPosition.joints;
+            destination[0] = (float)Inverse_XSlider.Value;
+            destination[1] = (float)Inverse_YSlider.Value;
+            destination[2] = (float)Inverse_ZSlider.Value;
+            destination[3] = 0f;
+            destination[4] = 0f;
+            destination[5] = 0f;
+            float[] xyz = new float[3];
+            xyz[0] = destination[0];
+            xyz[1] = destination[1];
+            xyz[2] = destination[2];
+            ChangeSpherePosition_action(xyz, 1);
+            UseInverseKinematics(zero, destination);
         }
         private void Inverse_Z_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            float[] destination = new float[6];
+            float[] zero = new float[6];
+            zero = actualPosition.joints;
+            destination[0] = (float)Inverse_XSlider.Value;
+            destination[1] = (float)Inverse_YSlider.Value;
+            destination[2] = (float)Inverse_ZSlider.Value;
+            destination[3] = 0f;
+            destination[4] = 0f;
+            destination[5] = 0f;
+            float[] xyz = new float[3];
+            xyz[0] = destination[0];
+            xyz[1] = destination[1];
+            xyz[2] = destination[2];
+            ChangeSpherePosition_action(xyz, 1);
+            UseInverseKinematics(zero, destination);
         }
 
         private async void inverseKinematics_Btn_Click(object sender, RoutedEventArgs e)
@@ -1010,15 +1036,20 @@ namespace HAL062app.moduly.manipulator
             float[] zero = new float[6];
             zero= actualPosition.joints;
             //actualPosition.addRelative0(relativeZeros);
-            destination[0] = (float)Inverse_XSlider.Value + 700f;
-            destination[1] = 0;
-            destination[2] = 700f;
+            destination[0] = (float)Inverse_XSlider.Value;
+            destination[1] = (float)Inverse_YSlider.Value;
+            destination[2] = (float)Inverse_ZSlider.Value;
             destination[3] = 0f;
             destination[4] = 0f;
             destination[5] = 0f;
+            float[] xyz = new float[3];
+            xyz[0] = destination[0];
+            xyz[1] = destination[1];
+            xyz[2] = destination[2];
+            ChangeSpherePosition_action(xyz, 1);
          //   for (int i = 0; i < 6; i++)
          //      zero[i] = zero[i]*180f/(float)Math.PI;
-             UseInverseKinematics(zero, destination, 100);
+            UseInverseKinematics(zero, destination);
         }
     }
 }

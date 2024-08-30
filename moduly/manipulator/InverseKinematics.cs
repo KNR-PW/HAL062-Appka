@@ -1,16 +1,19 @@
-﻿using SharpDX;
+﻿using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.LinearAlgebra.Single;
+using SharpDX;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
-using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.LinearAlgebra.Single;
+using System.Windows.Media;
+using System.Xml.XPath;
 using MathNetVector = MathNet.Numerics.LinearAlgebra.Vector<float>;
-using System.Security.Cryptography.X509Certificates;
-using System.Drawing.Text;
 
 /*  Poniższy plik może wydawać się pojebany i taki jest.
  *  Historia liczenia kinematyki odwrotnej manipulatora sięga dziejów, gdy ten powstawał. Niestety soft napisany na STM (który liczył inverse kinematics) nie został nigdzie zapisany i był problematyczny ze względu na swoje mało zaawansowane sposoby liczenia pozycji i częste wypadki np. losowe obrócenie i walnięcie w coś 
@@ -38,16 +41,24 @@ namespace HAL062app.moduly.manipulator
         public Part[] manipulatorParts;
         public float[] deg2rad(float[] angle)
         {
+            float[] _angle= new float[angle.Length];
             for (int i = 0; i < angle.Length; i++)
-                angle[i] = (angle[i] * (float)Math.PI) / 180f;
-            return angle;
+            {
+                _angle[i] = angle[i];
+                _angle[i] = (_angle[i] * (float)Math.PI) / 180f;
+            }
+                return _angle;
         }
-     
-        private float[] rad2deg(float[] angle)
+
+        public float[] rad2deg(float[] angle)
         {
+            float[] _angle = new float[angle.Length];
             for (int i = 0; i < angle.Length; i++)
-                angle[i] = (angle[i] *  180f / (float)Math.PI);
-            return angle;
+            {
+                _angle[i] = angle[i];
+                _angle[i] = (_angle[i] * 180f / (float)Math.PI);
+            }
+            return _angle;
         }
         public class DHMatrix
         {
@@ -64,8 +75,8 @@ namespace HAL062app.moduly.manipulator
                  });
             }
 
-          
-           
+
+
             public void Create(float theta, float d, float a, float psi) //funkcja obliczajaca macierz denavita-hartenberga
             {
                 this.theta = theta;
@@ -117,8 +128,8 @@ namespace HAL062app.moduly.manipulator
                 this.MaximalAngle = _MaximalAngle * (float)Math.PI / 180f;
                 this.MinimalAngle = _MinimalAngle * (float)Math.PI / 180f;
                 this.length = length;
-                this.offset = _offset * (float)Math.PI/180f;
-                T.Create(angle, d, a, _psi*(float)Math.PI/180f);
+                this.offset = _offset * (float)Math.PI / 180f;
+                T.Create(angle, d, a, _psi * (float)Math.PI / 180f);
             }
             public DHMatrix SolveDH(float theta)
             {
@@ -126,7 +137,13 @@ namespace HAL062app.moduly.manipulator
                 return T;
             }
 
-
+            public float Clamp(float _angle)
+            {
+                if (_angle < MinimalAngle)
+                    return MinimalAngle;
+                if(_angle > MaximalAngle) return MaximalAngle;
+                return _angle;
+            }
 
 
 
@@ -150,11 +167,11 @@ namespace HAL062app.moduly.manipulator
             {
                 float[] result = new float[6];
                 MathNetVector _destination = DenseVector.OfArray(new float[] { destination[0], destination[1], destination[2], destination[3], destination[4], destination[5] });
-                result = NewRaph(startAngles, _destination);
+                result = Calculate3DOFAngles(startAngles, _destination);
                 return result;
             }
 
-           
+
 
             public Matrix<float> CalculateJacobian(float[] q) //Tworzy jakobian 6x6, pierwsze 3 wiersze - pozycje, 3 kolejne wiersze - orientacja
             {
@@ -205,11 +222,12 @@ namespace HAL062app.moduly.manipulator
 
                 return J;
             }
-            public float[] ForwardPositionXYZ(float[] q)
+            
+            public float[] ForwardPositionXYZ(float[] q, int DOF)
             {
                 float[] result = new float[3];
                 Matrix<float> T = DenseMatrix.CreateIdentity(4);
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < DOF; i++)
                 {
                     _manipulatorParts[i].SolveDH(q[i]);
                     T = T * _manipulatorParts[i].T.matrix;
@@ -220,15 +238,22 @@ namespace HAL062app.moduly.manipulator
 
                 return result;
             }
+            private float Distance3DOFFromPoint(float[] angles, MathNetVector b)
+            {
+
+                float[] xyz = ForwardPositionXYZ(angles, 3);
+                return (float)Math.Sqrt((xyz[0] - b[0]) * (xyz[0] - b[0]) + (xyz[1] - b[1]) * (xyz[1] - b[1]) + (xyz[2] - b[2]) * (xyz[2] - b[2]));
+
+            }
             private float DistanceFromPoint(float[] a, MathNetVector b)
             {
-                float[] xyz = ForwardPositionXYZ(a);
-                return (float)Math.Sqrt((xyz[0] - b[0])* (xyz[0] - b[0]) + (xyz[1] - b[1])* (xyz[1] - b[1]) + (xyz[2] - b[2])* (xyz[2] - b[2]));
+                float[] xyz = ForwardPositionXYZ(a,5);
+                return (float)Math.Sqrt((xyz[0] - b[0]) * (xyz[0] - b[0]) + (xyz[1] - b[1]) * (xyz[1] - b[1]) + (xyz[2] - b[2]) * (xyz[2] - b[2]));
             }
-            public Matrix<float> ForwardKinematics(float[] q)
+            public Matrix<float> ForwardKinematics(float[] q, int DOF)
             {
                 Matrix<float> T = DenseMatrix.CreateIdentity(4);
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < DOF; i++)
                 {
                     _manipulatorParts[i].SolveDH(q[i]);
                     T = T * _manipulatorParts[i].T.matrix;
@@ -240,9 +265,9 @@ namespace HAL062app.moduly.manipulator
                 float q0 = q + dq + 0.5f * d2q * dt * dt;
                 return q0;
             }
-            private MathNetVector ObjectiveFunction(float[] q, MathNetVector targetPosition)
+            private MathNetVector ObjectiveFunction(float[] q, MathNetVector targetPosition, int DOF)
             {
-                Matrix<float> endEffectorTransform = ForwardKinematics(q);
+                Matrix<float> endEffectorTransform = ForwardKinematics(q,5);
 
                 float[] endEffectorPositionArray = new float[6];
                 endEffectorPositionArray[0] = endEffectorTransform[0, 3]; // x
@@ -280,10 +305,10 @@ namespace HAL062app.moduly.manipulator
                         q4[i] -= epsilon;
                         q4[j] -= epsilon;
 
-                        MathNetVector f1 = ObjectiveFunction(q1, targetPosition);
-                        MathNetVector f2 = ObjectiveFunction(q2, targetPosition);
-                        MathNetVector f3 = ObjectiveFunction(q3, targetPosition);
-                        MathNetVector f4 = ObjectiveFunction(q4, targetPosition);
+                        MathNetVector f1 = ObjectiveFunction(q1, targetPosition, 5);
+                        MathNetVector f2 = ObjectiveFunction(q2, targetPosition, 5);
+                        MathNetVector f3 = ObjectiveFunction(q3, targetPosition, 5);
+                        MathNetVector f4 = ObjectiveFunction(q4, targetPosition, 5);
 
                         float hessianValue = (f1[0] - f2[0] - f3[0] + f4[0]) / (4 * epsilon * epsilon);
 
@@ -298,11 +323,11 @@ namespace HAL062app.moduly.manipulator
                 int maxIterations = 5000;
                 float tolerance = 0.1f;
                 float initialScale = 1.0f;
-                int numVariables = startPosition.Length;
-
+                int numVariables = 3;
+                float[] a = new float[6];
                 for (int iteration = 0; iteration < maxIterations; iteration++)
                 {
-                    MathNetVector functionValues = ObjectiveFunction(startPosition, targetPosition);
+                    MathNetVector functionValues = ObjectiveFunction(startPosition, targetPosition, 5);
                     Matrix<float> jacobianMatrix = CalculateJacobian(startPosition);
                     Matrix<float> hessianMatrix = CalculateHessian(startPosition, targetPosition);
 
@@ -329,12 +354,17 @@ namespace HAL062app.moduly.manipulator
                     float scale = initialScale;
                     float previousError = DistanceFromPoint(previousPosition, targetPosition);
                     float newError;
-                    float[] newPosition;
-                    float[] sasas1 = ForwardPositionXYZ(startPosition);
+                    float[] newPosition; 
+                   
+                     float[] sasas1 = ForwardPositionXYZ(startPosition,5);
+                    
+                    
+                    
                     do
                     {
                         // Aktualizuj przybliżenie
                         newPosition = (float[])previousPosition.Clone();
+                       
                         for (int i = 0; i < numVariables; i++)
                         {
                             newPosition[i] += scale * deltaThetaVector[i];
@@ -351,7 +381,8 @@ namespace HAL062app.moduly.manipulator
                     } while (scale > 1e-3);
 
                     startPosition = newPosition;
-                    float[] sasas = ForwardPositionXYZ(newPosition);
+                    a = rad2deg(startPosition);
+                    float[] sasas = ForwardPositionXYZ(newPosition, 5);
                     previousError = newError;
 
                     Console.WriteLine($"Iteration {iteration}, Error: {newError}, Scale: {scale}");
@@ -361,22 +392,127 @@ namespace HAL062app.moduly.manipulator
                         Console.WriteLine("Converged after " + iteration + " iterations.");
                         return startPosition;
                     }
-                    if ( iteration == 4999)
-                    { }
+                    
                 }
                 //return startPosition;
                 throw new Exception("Algorithm did not converge");
             }
+            float[] newMethod(float[] angles, MathNetVector targetPosition)
+            {
+                float[] _angles = new float[angles.Length];
+                angles.CopyTo(_angles, 0);
+                float learningRate = 0.0001f;
+                float tolerance = 0.01f;
+                float[] _oldAngles = new float[_angles.Length];
+                for (int steps = 0; steps < 100; steps++)
+                {
+                    if (DistanceFromPoint(_angles, targetPosition) < tolerance)
+                        return _angles;
+                    _angles.CopyTo(_oldAngles, 0);
+                    for (int i = 0; i < _angles.Length - 1; i++)
+                    {
+                        float gradient = partialGradient(_angles, targetPosition, i);
+                        _angles[i] -= gradient * learningRate;
+                        _angles[i] = _manipulatorParts[i].Clamp(_angles[i]);
+                        if (DistanceFromPoint(_angles, targetPosition) < tolerance || checkAngles(_angles, _oldAngles))
+                            return _angles;
+                    } 
+                }
+                return _angles;
+
+            }
+
+            bool checkAngles(float[] oldAngles, float[] angles)
+            {
+                for (int i = 0; i < angles.Length; i++)
+                    if (oldAngles[i] != angles[i])
+                        return false;
+                return true;
+            }
+            float distanceFromAtoBpoint(float[] a, float[] b)
+            {
+                return (float)Math.Sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1])* (a[1] - b[1]) + (a[2]-b[2])* (a[2] - b[2]));
+            }
+
+            public float partialGradient(float[] startAngle, MathNetVector targetPosition, int i)
+            {
+                float[] _angles = new float[startAngle.Length];
+                startAngle.CopyTo(_angles, 0);
+
+                float samplingDistance = 0.01f;
+                float f_x = DistanceFromPoint(_angles, targetPosition);
+                float gradient = new float();
+
+                for (int j = 0; j < _angles.Length; j++)
+                    _angles[j] += samplingDistance;
+                float f_x_plus_d = DistanceFromPoint(_angles, targetPosition);
+               
+                    gradient = (f_x_plus_d - f_x) / samplingDistance;
+                
+
+                return gradient;
+            }
+            public float[] rad2deg(float[] angle)
+            {
+                float[] _angle = new float[angle.Length];
+                for (int i = 0; i < angle.Length; i++)
+                {
+                    _angle[i] = angle[i];
+                    _angle[i] = (_angle[i] * 180f / (float)Math.PI);
+                }
+                return _angle;
+            }
+
+            private float deg2rad(float a)
+            {
+                return (float)(Math.PI* a/180f);
+            }
+            private float check_trigonometry(float x)
+            {
+                if(x >= 1f)
+                    return 1f;
+                if(x <= -1f)
+                    return -1f;
+                return x;
+
+            }
+            public float[] Calculate3DOFAngles(float[] startAngle, MathNetVector targetPosition)
+            {
+
+                float[] targetPoint = new float[3];
+                targetPoint[0] = targetPosition[0];
+                targetPoint[1] = targetPosition[1];
+                targetPoint[2] = targetPosition[2];
+
+                float[] newAngles = startAngle;
+                float[] oldAngles = new float[6];
+                newAngles.CopyTo(oldAngles, 0);
+                float distance = Distance3DOFFromPoint(newAngles, targetPosition);
+              
+                float degree90 = (float)(Math.PI / 2.0);
+                float rotationZ = (float)Math.Atan2(targetPosition[1], targetPosition[0]);
+                float[] dof1Position = ForwardPositionXYZ(startAngle, 1);
+                
+                float dist2_3 = distanceFromAtoBpoint(dof1Position, targetPoint);
+                float dof2Length = _manipulatorParts[1].length;
+                float dof3Length = _manipulatorParts[3].length;
+                //float angle_2_3 = (float)Math.Asin(check_trigonometry()); //tw cosinusow
+                float angle_2_3_cos = (dof2Length * dof2Length + dof3Length * dof3Length - dist2_3 * dist2_3) / (2f * dof2Length * dof3Length);
+                float angle_2_3_sin = dist2_3 / (dof2Length+dof3Length);
+                float angle_2_3 = (float)Math.Atan2( angle_2_3_sin, angle_2_3_cos);
+                float angle_1_2 = (float)Math.Acos(check_trigonometry((dof2Length * dof2Length + dist2_3 * dist2_3 - dof3Length * dof3Length) / (2f * dof2Length * dist2_3)));
+                float angle_horizontal_dof1 = (float)Math.Asin(check_trigonometry((targetPoint[2] - _manipulatorParts[0].length) / dist2_3));
+                newAngles[0] = rotationZ;
+                newAngles[1] =  -angle_1_2-angle_horizontal_dof1+degree90+deg2rad(50);
+                newAngles[2] =  degree90-angle_2_3 - deg2rad(60);
+               // for(int i = 0; i <newAngles.Length; i++)
+                //    newAngles[i] = _manipulatorParts[i].Clamp(newAngles[i]);
+                return newAngles;
+            }
+            
 
 
         }
-
-
-
-
-
-
-
 
 
 
@@ -389,12 +525,12 @@ namespace HAL062app.moduly.manipulator
         public InverseKinematics(/*Position start, int mode, MathNetVector destination*/)
         {
             manipulatorParts = new Part[6];
-            manipulatorParts[0] = new Part(0f,   -180f,   180f, 169.5f, 169.5f, 0f, -90f, 0f);         //Inicjacja startowa wartości manipulatora, to tutaj można zmieniać ograniczenia i parametry
-            manipulatorParts[1] = new Part(50f,  -14f,    110f,  550f,      0f,        550f,     0f,   -90f);
-            manipulatorParts[2] = new Part(11f,  -163f,   11f,   14f,       -14f,        0f,    -90f,    0f);
-            manipulatorParts[3] = new Part(0f,   -240f,   240f,  509.5f,    509.5f,    0,     90f,   100f);
-            manipulatorParts[4] = new Part(60f,   13f,    110f,  83.5f,     0,         252f,   0f,          90f);
-            manipulatorParts[5] = new Part(0,    -360f,   360f,  83.5f,     0f,        0f,      0f,     0f);
+            manipulatorParts[0] = new Part(0f, -90f, 90f, 169.5f, 169.5f, 0f, -90f, 0f);         //Inicjacja startowa wartości manipulatora, to tutaj można zmieniać ograniczenia i parametry
+            manipulatorParts[1] = new Part(50f, -60f, 90f, 550f, 0f, 550f, 0f, -90f);
+            manipulatorParts[2] = new Part(11f, -60f, 70f, 14f, -14f, 0f, -90f, 0f);
+            manipulatorParts[3] = new Part(0f, -180, 180, 509.5f, 509.5f, 0, 90f, 100f);
+            manipulatorParts[4] = new Part(60f, -90f, 60f, 83.5f, 0, 252f, 0f, 90f);
+            manipulatorParts[5] = new Part(0, -360f, 360f, 83.5f, 0f, 0f, 0f, 0f);
             solver = new Jacobian(manipulatorParts);
         }
 
@@ -402,15 +538,15 @@ namespace HAL062app.moduly.manipulator
         {
             float[] result = new float[3];
             float[] _angles = (float[])angles.Clone();
-            result = solver.ForwardPositionXYZ(deg2rad(_angles));
+            result = solver.ForwardPositionXYZ(deg2rad(_angles),4);
 
             return result;
         }
         public float[] inverseKinematics6DOF(float[] angles, float[] destination)
         {
             float[] result = new float[6];
-            float[] aaaaa = solver.ForwardPositionXYZ(angles);
-            result=solver.solve(deg2rad(angles),destination);
+           // float[] aaaaa = solver.ForwardPositionXYZ(angles);
+            result = solver.solve(deg2rad(angles), destination);
             return rad2deg(result);
         }
 

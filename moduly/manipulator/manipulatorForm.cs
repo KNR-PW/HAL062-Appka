@@ -56,9 +56,9 @@ namespace HAL062app.moduly.manipulator
         {
             e.Cancel = true;
         }
-        private void ChangeSpherePosition(float[] xyz)
+        private void ChangeSpherePosition(float[] xyz, int ID)
         {
-            manipulatorWPF1.UpdateSphere(xyz);
+            manipulatorWPF1.UpdateSphere(xyz, ID);
         }
     }
 }
