@@ -509,7 +509,64 @@ namespace HAL062app.moduly.manipulator
                 //    newAngles[i] = _manipulatorParts[i].Clamp(newAngles[i]);
                 return newAngles;
             }
-            
+            public float[] SolutionDOF3(float angle1, float angle2, float r, float z) //zwraca 6 zmiennych. [F(a) F(b) F'1(a) F'1(b) F'2(a) F'2(b)]
+            {
+                float d1 = _manipulatorParts[1].length;
+                float d2 = _manipulatorParts[3].length;
+                float[] result = new float[6];
+                result[0] =(float)( d1 * Math.Cos(angle1) + d2 *Math.Cos(angle1 + angle2)) - r;
+                result[1] = (float)(d1 * Math.Sin(angle1) + d2 * Math.Sin(angle1 + angle2)) - z;
+
+                //Jakobian
+                result[2] = (float)(-d1 * Math.Sin(angle1) - d2 * Math.Sin(angle1 + angle2));
+                result[3] = (float)(-d2*Math.Sin(angle1 + angle2));
+                result[4] = (float)(d1 * Math.Cos(angle1) + d2 * Math.Cos(angle1 + angle2));
+                result[5] = (float)(d2*Math.Cos(angle1 + angle2));
+                return result;
+            }
+            public float[] Calculate3DOFAnglesNewton(float[] startAngle, MathNetVector targetPosition)
+            {
+
+                float[] targetPoint = new float[3];
+                targetPoint[0] = targetPosition[0];
+                targetPoint[1] = targetPosition[1];
+                targetPoint[2] = targetPosition[2];
+
+                float[] newAngles = new float[5];
+                startAngle.CopyTo(newAngles, 0);
+                float[] oldAngles = new float[6];
+                newAngles.CopyTo(oldAngles, 0);
+                float distance = Distance3DOFFromPoint(newAngles, targetPosition);
+
+                float degree90 = (float)(Math.PI / 2.0);
+                float rotationZ = (float)Math.Atan2(targetPosition[1], targetPosition[0]);
+                float[] dof1Position = ForwardPositionXYZ(startAngle, 1);
+
+                float dist2_3 = distanceFromAtoBpoint(dof1Position, targetPoint);
+                float dof2Length = _manipulatorParts[1].length;
+                float dof3Length = _manipulatorParts[3].length;
+                //float angle_2_3 = (float)Math.Asin(check_trigonometry()); //tw cosinusow
+                float angle_2_3_cos = (dof2Length * dof2Length + dof3Length * dof3Length - dist2_3 * dist2_3) / (2f * dof2Length * dof3Length);
+                float angle_2_3_sin = dist2_3 / (dof2Length + dof3Length);
+                float angle_2_3 = (float)Math.Atan2(angle_2_3_sin, angle_2_3_cos);
+                float angle_1_2 = (float)Math.Acos(check_trigonometry((dof2Length * dof2Length + dist2_3 * dist2_3 - dof3Length * dof3Length) / (2f * dof2Length * dist2_3)));
+                float angle_horizontal_dof1 = (float)Math.Asin(check_trigonometry((targetPoint[2] - _manipulatorParts[0].length) / dist2_3));
+                newAngles[0] = rotationZ;
+                newAngles[1] = -angle_1_2 - angle_horizontal_dof1 + degree90 + deg2rad(50);
+                newAngles[2] = degree90 - angle_2_3 - deg2rad(60);
+                // for(int i = 0; i <newAngles.Length; i++)
+                //    newAngles[i] = _manipulatorParts[i].Clamp(newAngles[i]);
+
+                float radius = (float)Math.Sqrt(targetPoint[0] * targetPoint[0] + targetPoint[1] * targetPoint[1]);
+
+                for (int steps = 0; steps < 100; steps++)
+                {
+                    newAngles.CopyTo(oldAngles, 0);
+                    newAngles[1] = oldAngles[1] - 
+
+                }
+                return newAngles;
+            }
 
 
         }
