@@ -167,7 +167,7 @@ namespace HAL062app.moduly.manipulator
             {
                 float[] result = new float[6];
                 MathNetVector _destination = DenseVector.OfArray(new float[] { destination[0], destination[1], destination[2], destination[3], destination[4], destination[5] });
-                result = Calculate3DOFAngles(startAngles, _destination);
+                result = Calculate3DOFAnglesNewton(startAngles, _destination);
                 return result;
             }
 
@@ -241,7 +241,7 @@ namespace HAL062app.moduly.manipulator
             private float Distance3DOFFromPoint(float[] angles, MathNetVector b)
             {
 
-                float[] xyz = ForwardPositionXYZ(angles, 3);
+                float[] xyz = ForwardPositionXYZ(angles, 4);
                 return (float)Math.Sqrt((xyz[0] - b[0]) * (xyz[0] - b[0]) + (xyz[1] - b[1]) * (xyz[1] - b[1]) + (xyz[2] - b[2]) * (xyz[2] - b[2]));
 
             }
@@ -509,10 +509,12 @@ namespace HAL062app.moduly.manipulator
                 //    newAngles[i] = _manipulatorParts[i].Clamp(newAngles[i]);
                 return newAngles;
             }
-            public float[] SolutionDOF3(float angle1, float angle2, float r, float z) //zwraca 6 zmiennych. [F(a) F(b) F'1(a) F'1(b) F'2(a) F'2(b)]
+            public float[] NewRaphValuesDOF3(float angle1, float angle2, float r, float z) //zwraca 6 zmiennych. [F(a) F(b) F'1(a) F'1(b) F'2(a) F'2(b)]
             {
                 float d1 = _manipulatorParts[1].length;
                 float d2 = _manipulatorParts[3].length;
+                angle1 -= (float)(Math.PI / 2);
+                angle2 += (float)(Math.PI / 2);
                 float[] result = new float[6];
                 result[0] =(float)( d1 * Math.Cos(angle1) + d2 *Math.Cos(angle1 + angle2)) - r;
                 result[1] = (float)(d1 * Math.Sin(angle1) + d2 * Math.Sin(angle1 + angle2)) - z;
@@ -532,16 +534,18 @@ namespace HAL062app.moduly.manipulator
                 targetPoint[1] = targetPosition[1];
                 targetPoint[2] = targetPosition[2];
 
-                float[] newAngles = new float[5];
+                float[] newAngles = new float[6];
                 startAngle.CopyTo(newAngles, 0);
                 float[] oldAngles = new float[6];
                 newAngles.CopyTo(oldAngles, 0);
                 float distance = Distance3DOFFromPoint(newAngles, targetPosition);
 
                 float degree90 = (float)(Math.PI / 2.0);
-                float rotationZ = (float)Math.Atan2(targetPosition[1], targetPosition[0]);
+                
                 float[] dof1Position = ForwardPositionXYZ(startAngle, 1);
-
+                float radius = (float)Math.Sqrt(targetPoint[0] * targetPoint[0] + targetPoint[1] * targetPoint[1]);
+                float rotationZ = (float)Math.Atan2(targetPosition[1], targetPosition[0]) + (float)Math.Atan2( _manipulatorParts[2].length, radius);
+                
                 float dist2_3 = distanceFromAtoBpoint(dof1Position, targetPoint);
                 float dof2Length = _manipulatorParts[1].length;
                 float dof3Length = _manipulatorParts[3].length;
@@ -552,20 +556,53 @@ namespace HAL062app.moduly.manipulator
                 float angle_1_2 = (float)Math.Acos(check_trigonometry((dof2Length * dof2Length + dist2_3 * dist2_3 - dof3Length * dof3Length) / (2f * dof2Length * dist2_3)));
                 float angle_horizontal_dof1 = (float)Math.Asin(check_trigonometry((targetPoint[2] - _manipulatorParts[0].length) / dist2_3));
                 newAngles[0] = rotationZ;
-                newAngles[1] = -angle_1_2 - angle_horizontal_dof1 + degree90 + deg2rad(50);
-                newAngles[2] = degree90 - angle_2_3 - deg2rad(60);
+                //newAngles[1] = -angle_1_2 - angle_horizontal_dof1 + degree90 + deg2rad(50);
+                //newAngles[2] = degree90 - angle_2_3 - deg2rad(60);
                 // for(int i = 0; i <newAngles.Length; i++)
                 //    newAngles[i] = _manipulatorParts[i].Clamp(newAngles[i]);
 
-                float radius = (float)Math.Sqrt(targetPoint[0] * targetPoint[0] + targetPoint[1] * targetPoint[1]);
-
-                for (int steps = 0; steps < 100; steps++)
+                
+                float tolerance = 0.1f;
+                float[] newRaphValues = new float[6];
+                float[] anglesWithOffsets = new float[6];
+                for (int steps = 0; steps < 1000; steps++)
                 {
-                    newAngles.CopyTo(oldAngles, 0);
-                    newAngles[1] = oldAngles[1] - 
+                    
+                    newAngles.CopyTo(anglesWithOffsets, 0);
+                    anglesWithOffsets[1] = anglesWithOffsets[1] + deg2rad(50);
+                    anglesWithOffsets[2] = anglesWithOffsets[2]  - deg2rad(60);
+                    distance = Distance3DOFFromPoint(anglesWithOffsets, targetPosition);
+                    if (distance < tolerance)
+                    {
+                        
+                        
+                        return anglesWithOffsets;
+                    }
+                    newRaphValues = NewRaphValuesDOF3(newAngles[1], newAngles[2], radius, (-targetPoint[2] + _manipulatorParts[0].length));
+                    float determinant = newRaphValues[2] * newRaphValues[5] - newRaphValues[3] * newRaphValues[4];
+                    if (determinant!=0)
+                    {
+                        newAngles.CopyTo(oldAngles, 0);
+                        newAngles[1] = oldAngles[1] - 0.1f*(1.0f / determinant) * (newRaphValues[5] * newRaphValues[0] - newRaphValues[3] * newRaphValues[1]);
+                        newAngles[2] = oldAngles[2] - 0.1f * (1.0f / determinant) * (-newRaphValues[4] * newRaphValues[0] + newRaphValues[2] * newRaphValues[1]);
+                        newAngles[1] = _manipulatorParts[1].Clamp(newAngles[1]);
+                        newAngles[2] = _manipulatorParts[2].Clamp(newAngles[2]);
+                    }
+                   if(determinant<10f&&determinant>-10f)
+                    {
+
+
+                    }
+
+                    distance = Distance3DOFFromPoint(newAngles, targetPosition);
+                    if (distance < tolerance)
+                    {
+                        return anglesWithOffsets;
+                    }
+                    
 
                 }
-                return newAngles;
+                return anglesWithOffsets;
             }
 
 
