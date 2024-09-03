@@ -165,17 +165,66 @@ namespace HAL062app.moduly.manipulator
                 _manipulatorParts = parts;
             }
 
-           
 
 
 
+            public Matrix<float> CalculateJacobian3DOF(float[] q) // Tworzy Jacobian 6x3 dla 3 DOF
+            {
+                Matrix<float> T = DenseMatrix.CreateIdentity(4);
+                DenseMatrix[] T_column = new DenseMatrix[3];
+                Matrix<float> o = DenseMatrix.Create(3, 3, 0f);
+
+                // Tworzymy macierz 3x3 z pozycjami
+                for (int i = 0; i < 3; i++)
+                {
+                    _manipulatorParts[i].SolveDH(q[i]); // Zakładając, że masz metodę SolveDH, która aktualizuje macierz transformacji dla danego przegubu
+                    Matrix<float> multiplier = _manipulatorParts[i].T.matrix; // Pobieranie macierzy transformacji
+                    T = T.Multiply(multiplier);
+                    T_column[i] = T.Clone() as DenseMatrix;
+                    o.SetColumn(i, T.SubMatrix(0, 3, 3, 1).Column(0)); // Ustawianie kolumny pozycji
+                }
+
+                MathNet.Numerics.LinearAlgebra.Vector<float> z = DenseVector.OfArray(new float[] { 0, 0, 1 });
+                MathNet.Numerics.LinearAlgebra.Vector<float>[] z_vectors = new MathNet.Numerics.LinearAlgebra.Vector<float>[3];
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i == 0)
+                    {
+                        z_vectors[i] = z; // Pierwszy przegub, oś Z
+                    }
+                    else
+                    {
+                        z_vectors[i] = T_column[i - 1].SubMatrix(0, 3, 2, 1).Column(0); // Wektor osi Z dla kolejnych przegubów
+                    }
+                }
+
+                Matrix<float> J = DenseMatrix.Create(6, 3, 0f);
+                MathNet.Numerics.LinearAlgebra.Vector<float> o_n = o.Column(2); // Pozycja końcówki narzędzia
+                for (int i = 0; i < 3; i++)
+                {
+                    MathNet.Numerics.LinearAlgebra.Vector<float> z_vector = z_vectors[i];
+                    MathNet.Numerics.LinearAlgebra.Vector<float> o_i = o.Column(i);
+                    MathNet.Numerics.LinearAlgebra.Vector<float> crossProduct = DenseVector.OfArray(new float[]
+                    {
+            z_vector[1] * (o_n[2] - o_i[2]) - z_vector[2] * (o_n[1] - o_i[1]),
+            z_vector[2] * (o_n[0] - o_i[0]) - z_vector[0] * (o_n[2] - o_i[2]),
+            z_vector[0] * (o_n[1] - o_i[1]) - z_vector[1] * (o_n[0] - o_i[0])
+                    });
+
+                    J.SetSubMatrix(0, 3, i, 1, crossProduct.ToColumnMatrix()); // Pierwsze trzy wiersze - pozycje
+                    J.SetSubMatrix(3, 3, i, 1, z_vector.ToColumnMatrix()); // Kolejne trzy wiersze - orientacje
+                }
+
+                return J;
+            }
             public Matrix<float> CalculateJacobian(float[] q, int dof) //Tworzy jakobian 6x6, pierwsze 3 wiersze - pozycje, 3 kolejne wiersze - orientacja
             {
                 Matrix<float> _T = DenseMatrix.CreateIdentity(4);
-                DenseMatrix[] _T_column = new DenseMatrix[4];
+                DenseMatrix[] _T_column = new DenseMatrix[6];
                 Matrix<float> o = DenseMatrix.Create(3, 6, 0f);
 
-                for (int i = 0; i < dof; i++) //tworzymy macierz 3x6 z pozycjami
+                for (int i = 0; i < 6; i++) //tworzymy macierz 3x6 z pozycjami
                 {
                     _manipulatorParts[i].SolveDH(q[i]);
                     Matrix<float> multiplier = _manipulatorParts[i].T.matrix;
@@ -186,7 +235,7 @@ namespace HAL062app.moduly.manipulator
 
                 MathNetVector z = DenseVector.OfArray(new float[] { 0, 0, 1 });
                 MathNetVector[] z_vectors = new MathNetVector[6];
-                for (int i = 0; i < dof; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     if (i == 0)
                     {
@@ -201,7 +250,7 @@ namespace HAL062app.moduly.manipulator
 
                 Matrix<float> J = DenseMatrix.Create(6, 6, 0f);
                 MathNetVector o_n = o.Column(5); // end effector position
-                for (int i = 0; i < dof; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     MathNetVector z_vector = z_vectors[i];
                     MathNetVector o_i = o.Column(i);
@@ -449,11 +498,19 @@ namespace HAL062app.moduly.manipulator
             public float[] solveEffector(float[] startAngles, float[] destination)
             {
                 float[] result = new float[6];
+                float[] result2 = new float[6];
+                float[] resultd = new float[6];
+                float[] result2d = new float[6];
+
                 MathNetVector _destination = DenseVector.OfArray(new float[] { destination[0], destination[1], destination[2], destination[3], destination[4], destination[5] });
-                result = FindSoultion5DOF(startAngles, _destination);
+                //testJacobians();
+                 result2 = FindSoultion3DOF(startAngles, _destination);
+                 result = FindSoultion5DOF(startAngles, _destination,5);
+                result2d = rad2deg(result2);
+                resultd = rad2deg(result);
                 return result;
             }
-            public float[] FindSoultion5DOF(float[] _startAngle, MathNetVector targetPosition)
+            public float[] FindSoultion5DOF(float[] _startAngle, MathNetVector targetPosition, int dof)
             {
                 float[] startAngle = new float[6];
                 float[] functionResult = new float[7];
@@ -467,7 +524,7 @@ namespace HAL062app.moduly.manipulator
                 for (int a1 = 0; a1 < 10; a1++)
                 {
                   //  startAngle[1] = _manipulatorParts[1].MinimalAngle + a1diff * (float)a1;
-                    functionResult = Calculate5DOFAngles(startAngle, targetPosition);
+                    functionResult = Calculate5DOFAngles(startAngle, targetPosition, dof);
                     for (int i = 0; i < newAngles.Length; i++)
                         newAngles[i] = functionResult[i];
 
@@ -486,7 +543,53 @@ namespace HAL062app.moduly.manipulator
                 }
                 return result;
             }
-            public float[] Calculate5DOFAngles(float[] startAngle, MathNetVector targetPosition)
+
+            private void testJacobians()
+            {
+                float []angles = new float[6];
+                float[] xyz = new float[3];
+                Matrix<float> jacobian = Matrix<float>.Build.Dense(6, 6);
+                MathNetVector xyzv = MathNetVector.Build.DenseOfArray(xyz);
+                float[] maximals = new float[3];
+                float[] minimals= new float[3];
+                minimals[0] = (float)10e7;
+                minimals[1] = (float)10e7;
+                minimals[2] = (float)10e7;
+                float det = new float();
+                int x, y, z;
+                for ( x = 200; x < 1000; x+=10)
+                {
+                    for( y = 0; y< 1000; y += 100)
+                    {
+                        for( z = 0; z < 1000; z += 100)
+                        {
+                            xyz[0] = (float)x;
+                            xyz[1] = (float)y;
+                            xyz[2] = (float)z;
+                            xyzv = MathNetVector.Build.DenseOfArray(xyz);
+                            angles = FindSoultion3DOF(angles, xyzv);
+                            jacobian = CalculateJacobian(angles, 6);
+                            det = jacobian.Determinant();
+                            if(det !=0)
+                            {
+                                maximals[0] = Math.Max(maximals[0], x);
+                                minimals[0] = Math.Min(minimals[0], x);
+
+                                maximals[1] = Math.Max(maximals[1], y);
+                                minimals[1] = Math.Min(minimals[1], y);
+                                maximals[2] = Math.Max(maximals[2], z);
+                                minimals[2] = Math.Min(minimals[2], z);
+                            }
+
+                        }
+                        Console.WriteLine($"{x}  {y}");
+                    }
+                    //Console.WriteLine($"{ x}" );
+
+                }
+
+            }
+            public float[] Calculate5DOFAngles(float[] startAngle, MathNetVector targetPosition, int dof)
             {
                 float[] result = new float[7]; // kąty + distance
                 float[] targetPoint = new float[6];
@@ -498,7 +601,7 @@ namespace HAL062app.moduly.manipulator
                 startAngle.CopyTo(newAngles, 0);
                 float[] oldAngles = new float[6];
                 newAngles.CopyTo(oldAngles, 0);
-                float distance = DistanceFromDOFtoPoint(newAngles, targetPosition,5);
+                float distance = DistanceFromDOFtoPoint(newAngles, targetPosition, dof);
 
                 float radius = (float)Math.Sqrt(targetPoint[0] * targetPoint[0] + targetPoint[1] * targetPoint[1]);
                 //float rotationZ = (float)Math.Atan2(targetPosition[1], targetPosition[0]) + (float)Math.Atan2(_manipulatorParts[2].length, radius);
@@ -508,17 +611,20 @@ namespace HAL062app.moduly.manipulator
                 float[] anglesWithOffsets = new float[6];
                 Matrix<float> jacobian = Matrix<float>.Build.Dense(6, 6);
                 Matrix<float> F = Matrix<float>.Build.Dense(6,1);
-                Matrix<float> newAnglesVector = Matrix<float>.Build.Dense(6, 1);
-                Matrix<float> oldAnglesVector = Matrix<float>.Build.Dense(6, 1);
-                for (int steps = 0; steps < 100; steps++)
+                Matrix<float> newAnglesVector = Matrix<float>.Build.Dense(3, 1);
+                Matrix<float> oldAnglesVector = Matrix<float>.Build.Dense(3, 1);
+                for (int steps = 0; steps < 200; steps++)
                 {
                     
                     newAngles.CopyTo(anglesWithOffsets, 0);
+                    anglesWithOffsets[1] = -anglesWithOffsets[0] + deg2rad(25);
                     anglesWithOffsets[1] = anglesWithOffsets[1] + deg2rad(50);
-                    anglesWithOffsets[2] = anglesWithOffsets[2] - deg2rad(60);
-                    distance = DistanceFromDOFtoPoint(anglesWithOffsets, targetPosition, 3);
+                   anglesWithOffsets[2] = anglesWithOffsets[2] - deg2rad(60);
+
+                    float[] deg = rad2deg(anglesWithOffsets);
+                    distance = DistanceFromDOFtoPoint(anglesWithOffsets, targetPosition, dof);
                     
-                    jacobian = CalculateJacobian(anglesWithOffsets, 3);
+                    jacobian = CalculateJacobian3DOF(anglesWithOffsets);
                     if (distance < tolerance)
                     {
                         for (int i = 0; i < anglesWithOffsets.Length; i++)
@@ -526,15 +632,16 @@ namespace HAL062app.moduly.manipulator
                         result[6] = distance;
                         return result;
                     }
-                    float determinant = jacobian.Determinant();
-                    if (determinant != 0f)
-                    {
-                        newAngles.CopyTo(oldAngles, 0);
-                        newAnglesVector = oldAnglesVector - jacobian.PseudoInverse()* F_values(oldAngles,targetPoint,3);
-                        newAngles= newAnglesVector.ToRowMajorArray();
-                    }
-
-                    distance = DistanceFromDOFtoPoint(newAngles, targetPosition, 3);
+                    
+                    
+                        Matrix <float> a= 0.1f * jacobian.PseudoInverse() * F_values(oldAngles, targetPoint, dof);
+                    newAngles.CopyTo(oldAngles, 0);
+                        newAnglesVector = oldAnglesVector - 0.1f*jacobian.PseudoInverse()* F_values(oldAngles,targetPoint, dof);
+                    newAngles[0] = newAnglesVector[0, 0];
+                    newAngles[1] = newAnglesVector[1, 0];
+                    newAngles[2] = newAnglesVector[2, 0];
+                    deg = rad2deg(newAngles);
+                    distance = DistanceFromDOFtoPoint(newAngles, targetPosition, dof);
                     if (distance < tolerance)
                     {
                         for (int i = 0; i < anglesWithOffsets.Length; i++)
