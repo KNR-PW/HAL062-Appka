@@ -111,7 +111,7 @@ namespace HAL062app.moduly.manipulator
         {
             InitializeComponent(); //to tutaj zmienia się maksymalne, minimalne i startowe kąty dla symulacji
             InitializeTimer();
-            joints[0] = new Joint(-90, 90, 0, 0);
+            joints[0] = new Joint(-180, 90, 0, 0);
             joints[1] = new Joint(-60, 90, 0, 50);
             joints[2] = new Joint(-60, 70, 0, -60);
             joints[3] = new Joint(-180, 180, 0, 100);
@@ -927,7 +927,7 @@ namespace HAL062app.moduly.manipulator
 
         ////////Kinematyka odwrotna 
         ///
-        private void UseInverseKinematics(float[] startAngle,float[] destination)
+        private Position UseInverseKinematicsForTool(float[] startAngle,float[] destination)
         {
             Position InversePosition=actualPosition.deepCopy();
             InversePosition.addRelative0(relativeZeros);
@@ -945,7 +945,7 @@ namespace HAL062app.moduly.manipulator
                 InversePosition.joints[i] = startAngle[i];
             }
 
-            for (int i=1; i<= 1; i++)
+           /* for (int i=1; i<= numberOfPoints; i++)
             {
                 float t = (float)i / (float)(numberOfPoints - 1);
                 midPoint[0] = startPoint[0] + t * deltaX;
@@ -953,25 +953,48 @@ namespace HAL062app.moduly.manipulator
                 midPoint[2] = startPoint[2] + t * deltaZ;
                 midPoint[3] = 0f;
                 midPoint[4] = 0f;
-                midPoint[5] = 0f;
+                midPoint[5] = 0f; 
+            }*/
+            InverseKinematicsResult = inverseKinematics.inverseKinematicsTool(InverseKinematicsResult, destination);
+            InversePosition.update(InverseKinematicsResult);
+            return InversePosition;
+        }
+        private Position UseInverseKinematicsForEffector(float[] startAngle, float[] destination)
+        {
+            Position InversePosition = actualPosition.deepCopy();
+            InversePosition.addRelative0(relativeZeros);
 
-               
-                    InverseKinematicsResult = inverseKinematics.inverseKinematics6DOF(InverseKinematicsResult, destination);
-                    InversePosition.update(InverseKinematicsResult);
-                   // InversePosition.addRelativeToJoints();
-               
-      
-                CreateVisualization_action(InversePosition);
-                ChangeSlidersValue(InversePosition);
-               
+            float[] startPoint = inverseKinematics.ToolPosition(startAngle);
+            float deltaX = destination[0] - startPoint[0];
+            float deltaY = destination[1] - startPoint[1];
+            float deltaZ = destination[2] - startPoint[2];
+            float[] midPoint = new float[6];
+            float numberOfPoints = (int)Math.Sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) / 20;
+            float[] InverseKinematicsResult = new float[6];
+            for (int i = 0; i < 6; i++)
+            {
+                InverseKinematicsResult[i] = startAngle[i];
+                InversePosition.joints[i] = startAngle[i];
             }
-            
+
+            /* for (int i=1; i<= numberOfPoints; i++)
+             {
+                 float t = (float)i / (float)(numberOfPoints - 1);
+                 midPoint[0] = startPoint[0] + t * deltaX;
+                 midPoint[1] = startPoint[1] + t * deltaY;
+                 midPoint[2] = startPoint[2] + t * deltaZ;
+                 midPoint[3] = 0f;
+                 midPoint[4] = 0f;
+                 midPoint[5] = 0f; 
+             }*/
+            InverseKinematicsResult = inverseKinematics.inverseKinematicsTool(InverseKinematicsResult, destination);
+            InversePosition.update(InverseKinematicsResult);
+            return InversePosition;
         }
-        
-             
-         
-       
-        private void Inverse_X_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+
+
+
+        private async void Inverse_X_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             float[] destination = new float[6];
             float[] zero = new float[6];
@@ -987,12 +1010,15 @@ namespace HAL062app.moduly.manipulator
             xyz[1] = destination[1];
             xyz[2] = destination[2];
             ChangeSpherePosition_action(xyz, 1);
-            UseInverseKinematics(zero, destination);
+            Position InversePosition = await Task.Run(() => UseInverseKinematicsForTool(zero, destination));
+
+            CreateVisualization_action(InversePosition);
+            ChangeSlidersValue(InversePosition);
 
 
 
         }
-        private void Inverse_Y_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private async void Inverse_Y_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             float[] destination = new float[6];
             float[] zero = new float[6];
@@ -1008,9 +1034,13 @@ namespace HAL062app.moduly.manipulator
             xyz[1] = destination[1];
             xyz[2] = destination[2];
             ChangeSpherePosition_action(xyz, 1);
-            UseInverseKinematics(zero, destination);
+
+            Position InversePosition = await Task.Run(() => UseInverseKinematicsForTool(zero, destination));
+
+            CreateVisualization_action(InversePosition);
+            ChangeSlidersValue(InversePosition);
         }
-        private void Inverse_Z_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private async void Inverse_Z_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             float[] destination = new float[6];
             float[] zero = new float[6];
@@ -1026,7 +1056,10 @@ namespace HAL062app.moduly.manipulator
             xyz[1] = destination[1];
             xyz[2] = destination[2];
             ChangeSpherePosition_action(xyz, 1);
-            UseInverseKinematics(zero, destination);
+            Position InversePosition = await Task.Run(() => UseInverseKinematicsForTool(zero, destination));
+
+            CreateVisualization_action(InversePosition);
+            ChangeSlidersValue(InversePosition);
         }
 
         private async void inverseKinematics_Btn_Click(object sender, RoutedEventArgs e)
@@ -1047,9 +1080,14 @@ namespace HAL062app.moduly.manipulator
             xyz[1] = destination[1];
             xyz[2] = destination[2];
             ChangeSpherePosition_action(xyz, 1);
-         //   for (int i = 0; i < 6; i++)
-         //      zero[i] = zero[i]*180f/(float)Math.PI;
-            UseInverseKinematics(zero, destination);
+            //   for (int i = 0; i < 6; i++)
+            //      zero[i] = zero[i]*180f/(float)Math.PI;
+            UseInverseKinematicsForTool(zero, destination);
+        }
+
+        private void inverseKinematicsDOF3_Btn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

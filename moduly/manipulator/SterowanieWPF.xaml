@@ -160,7 +160,7 @@
                         <RowDefinition Height="Auto"/>
                         <!-- Automatycznie dopasuje wysokość do zawartości -->
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Wybór członu" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
+                    <TextBlock Grid.Row="0" Text="Pozycja kiści kinematycznej" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
                     <UniformGrid Grid.Row="1" Rows="7" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="300">
 
                         <Grid x:Name="JointInverse_X" Tag="1" HorizontalAlignment="Stretch" Height="40" >
@@ -179,7 +179,7 @@
                             <Slider x:Name="Inverse_ZSlider" VerticalAlignment="Center" Maximum="1000" Minimum="-1000" Tag="{Binding ElementName=Inverse3Grid}" ValueChanged="Inverse_Z_ValueChanged" HorizontalAlignment="Left" Width="200" Margin="50,1,0,0"/>
                             <Label x:Name="Inverse_ZLabel" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
                         </Grid>
-                        <Button x:Name="inverseKinematics_Btn" Content="Button" Click="inverseKinematics_Btn_Click"/>
+                        <Button x:Name="inverseKinematics_Btn" Content="Wyślij pozycję" Click="inverseKinematicsDOF3_Btn_Click"/>
 
                     </UniformGrid>
                 </Grid>
