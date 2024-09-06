@@ -26,8 +26,8 @@ namespace HAL062app.moduly.laboratorium
             frame.buffer[1] = (byte)(194);
             frame.buffer[2] = (byte)(3);
             frame.buffer[3] = (byte)(0);
-            frame.buffer[4] = (byte)(0);
-            frame.buffer[5] = (byte)(50);
+            frame.buffer[4] = (byte)(50);
+            frame.buffer[5] = (byte)(0);
             frame.buffer[6] = (byte)(0);
             frame.buffer[7] = (byte)(0);
             frame.buffer[8] = (byte)(0);
@@ -59,10 +59,10 @@ namespace HAL062app.moduly.laboratorium
             frame.buffer[0] = (byte)('#');
             frame.buffer[1] = (byte)(194);
             frame.buffer[2] = (byte)(3);
-            frame.buffer[3] = (byte)(0);
+            frame.buffer[3] = (byte)(50);
             frame.buffer[4] = (byte)(0);
             frame.buffer[5] = (byte)(0);
-            frame.buffer[6] = (byte)(50);
+            frame.buffer[6] = (byte)(0);
             frame.buffer[7] = (byte)(0);
             frame.buffer[8] = (byte)(0);
             frame.buffer[9] = (byte)(0);
@@ -77,9 +77,9 @@ namespace HAL062app.moduly.laboratorium
             frame.buffer[2] = (byte)(3);
             frame.buffer[3] = (byte)(0);
             frame.buffer[4] = (byte)(0);
-            frame.buffer[5] = (byte)(0);
+            frame.buffer[5] = (byte)(50);
             frame.buffer[6] = (byte)(0);
-            frame.buffer[7] = (byte)(50);
+            frame.buffer[7] = (byte)(0);
             frame.buffer[8] = (byte)(0);
             frame.buffer[9] = (byte)(0);
             frame.text = new string(frame.encodeMessage());
@@ -110,9 +110,9 @@ namespace HAL062app.moduly.laboratorium
             frame.buffer[3] = (byte)(0);
             frame.buffer[4] = (byte)(0);
             frame.buffer[5] = (byte)(0);
-            frame.buffer[6] = (byte)(0);
+            frame.buffer[6] = (byte)(50);
             frame.buffer[7] = (byte)(0);
-            frame.buffer[8] = (byte)(50);
+            frame.buffer[8] = (byte)(0);
             frame.buffer[9] = (byte)(0);
             frame.text = new string(frame.encodeMessage());
             SendFrame_Action(frame);
@@ -122,9 +122,9 @@ namespace HAL062app.moduly.laboratorium
         {
             Message frame = new Message();
             frame.buffer[0] = (byte)('#');
-            frame.buffer[1] = (byte)(194);
-            frame.buffer[2] = (byte)(3);
-            frame.buffer[3] = (byte)(50);
+            frame.buffer[1] = (byte)(198);
+            frame.buffer[2] = (byte)(0);
+            frame.buffer[3] = (byte)(0);
             frame.buffer[4] = (byte)(0);
             frame.buffer[5] = (byte)(0);
             frame.buffer[6] = (byte)(0);
@@ -139,8 +139,8 @@ namespace HAL062app.moduly.laboratorium
         {
             Message frame = new Message();
             frame.buffer[0] = (byte)('#');
-            frame.buffer[1] = (byte)(194);
-            frame.buffer[2] = (byte)(3);
+            frame.buffer[1] = (byte)(198);
+            frame.buffer[2] = (byte)(50);
             frame.buffer[3] = (byte)(0);
             frame.buffer[4] = (byte)(0);
             frame.buffer[5] = (byte)(0);
@@ -156,10 +156,10 @@ namespace HAL062app.moduly.laboratorium
         {
             Message frame = new Message();
             frame.buffer[0] = (byte)('#');
-            frame.buffer[1] = (byte)(194);
-            frame.buffer[2] = (byte)(3);
+            frame.buffer[1] = (byte)(198);
+            frame.buffer[2] = (byte)(100);
             frame.buffer[3] = (byte)(0);
-            frame.buffer[4] = (byte)(50);
+            frame.buffer[4] = (byte)(0);
             frame.buffer[5] = (byte)(0);
             frame.buffer[6] = (byte)(0);
             frame.buffer[7] = (byte)(0);
@@ -172,6 +172,23 @@ namespace HAL062app.moduly.laboratorium
         private void laboratoriumForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void rewolwerObrot_btn_Click(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(197);
+            frame.buffer[2] = (byte)(1);
+            frame.buffer[3] = (byte)(0);
+            frame.buffer[4] = (byte)(0);
+            frame.buffer[5] = (byte)(0);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)(0);
+            frame.buffer[9] = (byte)(0);
+            frame.text = new string(frame.encodeMessage());
+            SendFrame_Action(frame);
         }
     }
 }

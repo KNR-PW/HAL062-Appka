@@ -29,22 +29,26 @@
         private void InitializeComponent()
         {
             this.SidePanel = new System.Windows.Forms.Panel();
-            this.FastOptionPanel = new System.Windows.Forms.Panel();
-            this.ButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.StatusPanel = new System.Windows.Forms.Panel();
-            this.ContextPanel = new System.Windows.Forms.Panel();
-            this.UpperPanel = new System.Windows.Forms.Panel();
+            this.PinBtn = new HAL062app.CustomControls.CustomButton();
             this.ResetViewBtn = new HAL062app.CustomControls.CustomButton();
             this.UnpinBtn = new HAL062app.CustomControls.CustomButton();
+            this.FastOptionPanel = new System.Windows.Forms.Panel();
+            this.ButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.MainPageButton = new HAL062app.CustomControls.CustomButton();
             this.CommunicationButton = new HAL062app.CustomControls.CustomButton();
             this.ChassisButton = new HAL062app.CustomControls.CustomButton();
             this.ManipulatorButton = new HAL062app.CustomControls.CustomButton();
             this.LaboButton = new HAL062app.CustomControls.CustomButton();
             this.sandboxBtn = new HAL062app.CustomControls.CustomButton();
-            this.PinBtn = new HAL062app.CustomControls.CustomButton();
+            this.StatusPanel = new System.Windows.Forms.Panel();
+            this.ContextPanel = new System.Windows.Forms.Panel();
+            this.UpperPanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.GamePadStatusLabel = new System.Windows.Forms.Label();
             this.SidePanel.SuspendLayout();
             this.ButtonPanel.SuspendLayout();
+            this.StatusPanel.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // SidePanel
@@ -65,65 +69,25 @@
             this.SidePanel.Size = new System.Drawing.Size(286, 803);
             this.SidePanel.TabIndex = 0;
             // 
-            // FastOptionPanel
+            // PinBtn
             // 
-            this.FastOptionPanel.AutoSize = true;
-            this.FastOptionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.FastOptionPanel.Location = new System.Drawing.Point(15, 585);
-            this.FastOptionPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.FastOptionPanel.Name = "FastOptionPanel";
-            this.FastOptionPanel.Size = new System.Drawing.Size(256, 203);
-            this.FastOptionPanel.TabIndex = 2;
-            // 
-            // ButtonPanel
-            // 
-            this.ButtonPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.ButtonPanel.Controls.Add(this.MainPageButton);
-            this.ButtonPanel.Controls.Add(this.CommunicationButton);
-            this.ButtonPanel.Controls.Add(this.ChassisButton);
-            this.ButtonPanel.Controls.Add(this.ManipulatorButton);
-            this.ButtonPanel.Controls.Add(this.LaboButton);
-            this.ButtonPanel.Controls.Add(this.sandboxBtn);
-            this.ButtonPanel.Location = new System.Drawing.Point(15, 115);
-            this.ButtonPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.ButtonPanel.Name = "ButtonPanel";
-            this.ButtonPanel.Size = new System.Drawing.Size(256, 357);
-            this.ButtonPanel.TabIndex = 1;
-            // 
-            // StatusPanel
-            // 
-            this.StatusPanel.AutoSize = true;
-            this.StatusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.StatusPanel.Location = new System.Drawing.Point(15, 15);
-            this.StatusPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.StatusPanel.Name = "StatusPanel";
-            this.StatusPanel.Size = new System.Drawing.Size(256, 70);
-            this.StatusPanel.TabIndex = 0;
-            // 
-            // ContextPanel
-            // 
-            this.ContextPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ContextPanel.AutoSize = true;
-            this.ContextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.ContextPanel.Location = new System.Drawing.Point(355, 132);
-            this.ContextPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.ContextPanel.Name = "ContextPanel";
-            this.ContextPanel.Size = new System.Drawing.Size(1200, 700);
-            this.ContextPanel.TabIndex = 1;
-            // 
-            // UpperPanel
-            // 
-            this.UpperPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpperPanel.AutoSize = true;
-            this.UpperPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.UpperPanel.Location = new System.Drawing.Point(358, 29);
-            this.UpperPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.UpperPanel.Name = "UpperPanel";
-            this.UpperPanel.Size = new System.Drawing.Size(1197, 85);
-            this.UpperPanel.TabIndex = 2;
+            this.PinBtn.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.PinBtn.BackgroundColor = System.Drawing.Color.CornflowerBlue;
+            this.PinBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.PinBtn.BorderRadius = 10;
+            this.PinBtn.BorderSize = 0;
+            this.PinBtn.FlatAppearance.BorderSize = 0;
+            this.PinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PinBtn.ForeColor = System.Drawing.Color.White;
+            this.PinBtn.Location = new System.Drawing.Point(107, 485);
+            this.PinBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.PinBtn.Name = "PinBtn";
+            this.PinBtn.Size = new System.Drawing.Size(72, 40);
+            this.PinBtn.TabIndex = 8;
+            this.PinBtn.Text = "Przypnij zakładkę";
+            this.PinBtn.TextColor = System.Drawing.Color.White;
+            this.PinBtn.UseVisualStyleBackColor = false;
+            this.PinBtn.Click += new System.EventHandler(this.PinBtn_Click);
             // 
             // ResetViewBtn
             // 
@@ -164,6 +128,31 @@
             this.UnpinBtn.TextColor = System.Drawing.Color.White;
             this.UnpinBtn.UseVisualStyleBackColor = false;
             this.UnpinBtn.Click += new System.EventHandler(this.UnpinBtn_Click);
+            // 
+            // FastOptionPanel
+            // 
+            this.FastOptionPanel.AutoSize = true;
+            this.FastOptionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.FastOptionPanel.Location = new System.Drawing.Point(15, 585);
+            this.FastOptionPanel.Margin = new System.Windows.Forms.Padding(15);
+            this.FastOptionPanel.Name = "FastOptionPanel";
+            this.FastOptionPanel.Size = new System.Drawing.Size(256, 203);
+            this.FastOptionPanel.TabIndex = 2;
+            // 
+            // ButtonPanel
+            // 
+            this.ButtonPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.ButtonPanel.Controls.Add(this.MainPageButton);
+            this.ButtonPanel.Controls.Add(this.CommunicationButton);
+            this.ButtonPanel.Controls.Add(this.ChassisButton);
+            this.ButtonPanel.Controls.Add(this.ManipulatorButton);
+            this.ButtonPanel.Controls.Add(this.LaboButton);
+            this.ButtonPanel.Controls.Add(this.sandboxBtn);
+            this.ButtonPanel.Location = new System.Drawing.Point(15, 115);
+            this.ButtonPanel.Margin = new System.Windows.Forms.Padding(15);
+            this.ButtonPanel.Name = "ButtonPanel";
+            this.ButtonPanel.Size = new System.Drawing.Size(256, 357);
+            this.ButtonPanel.TabIndex = 1;
             // 
             // MainPageButton
             // 
@@ -285,25 +274,70 @@
             this.sandboxBtn.UseVisualStyleBackColor = false;
             this.sandboxBtn.Click += new System.EventHandler(this.customButton6_Click);
             // 
-            // PinBtn
+            // StatusPanel
             // 
-            this.PinBtn.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.PinBtn.BackgroundColor = System.Drawing.Color.CornflowerBlue;
-            this.PinBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.PinBtn.BorderRadius = 10;
-            this.PinBtn.BorderSize = 0;
-            this.PinBtn.FlatAppearance.BorderSize = 0;
-            this.PinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PinBtn.ForeColor = System.Drawing.Color.White;
-            this.PinBtn.Location = new System.Drawing.Point(107, 485);
-            this.PinBtn.Margin = new System.Windows.Forms.Padding(10);
-            this.PinBtn.Name = "PinBtn";
-            this.PinBtn.Size = new System.Drawing.Size(72, 40);
-            this.PinBtn.TabIndex = 8;
-            this.PinBtn.Text = "Przypnij zakładkę";
-            this.PinBtn.TextColor = System.Drawing.Color.White;
-            this.PinBtn.UseVisualStyleBackColor = false;
-            this.PinBtn.Click += new System.EventHandler(this.PinBtn_Click);
+            this.StatusPanel.AutoSize = true;
+            this.StatusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.StatusPanel.Controls.Add(this.tableLayoutPanel1);
+            this.StatusPanel.Location = new System.Drawing.Point(15, 15);
+            this.StatusPanel.Margin = new System.Windows.Forms.Padding(15);
+            this.StatusPanel.Name = "StatusPanel";
+            this.StatusPanel.Size = new System.Drawing.Size(256, 70);
+            this.StatusPanel.TabIndex = 0;
+            // 
+            // ContextPanel
+            // 
+            this.ContextPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ContextPanel.AutoSize = true;
+            this.ContextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.ContextPanel.Location = new System.Drawing.Point(355, 132);
+            this.ContextPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.ContextPanel.Name = "ContextPanel";
+            this.ContextPanel.Size = new System.Drawing.Size(1200, 700);
+            this.ContextPanel.TabIndex = 1;
+            // 
+            // UpperPanel
+            // 
+            this.UpperPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpperPanel.AutoSize = true;
+            this.UpperPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.UpperPanel.Location = new System.Drawing.Point(358, 29);
+            this.UpperPanel.Margin = new System.Windows.Forms.Padding(15);
+            this.UpperPanel.Name = "UpperPanel";
+            this.UpperPanel.Size = new System.Drawing.Size(1197, 85);
+            this.UpperPanel.TabIndex = 2;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.GamePadStatusLabel, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(256, 70);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // GamePadStatusLabel
+            // 
+            this.GamePadStatusLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.GamePadStatusLabel.AutoSize = true;
+            this.GamePadStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.GamePadStatusLabel.ForeColor = System.Drawing.Color.MediumSlateBlue;
+            this.GamePadStatusLabel.Location = new System.Drawing.Point(15, 8);
+            this.GamePadStatusLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.GamePadStatusLabel.Name = "GamePadStatusLabel";
+            this.GamePadStatusLabel.Size = new System.Drawing.Size(98, 18);
+            this.GamePadStatusLabel.TabIndex = 0;
+            this.GamePadStatusLabel.Text = "Gamepad: off";
             // 
             // mainForm
             // 
@@ -322,6 +356,9 @@
             this.SidePanel.ResumeLayout(false);
             this.SidePanel.PerformLayout();
             this.ButtonPanel.ResumeLayout(false);
+            this.StatusPanel.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,6 +381,8 @@
         private CustomControls.CustomButton ResetViewBtn;
         private CustomControls.CustomButton UnpinBtn;
         private CustomControls.CustomButton PinBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label GamePadStatusLabel;
     }
 }
 

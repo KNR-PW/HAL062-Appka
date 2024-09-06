@@ -963,7 +963,7 @@
             this.EthernetPort.Size = new System.Drawing.Size(162, 29);
             this.EthernetPort.TabIndex = 5;
             this.EthernetPort.Value = new decimal(new int[] {
-            5000,
+            8888,
             0,
             0,
             0});
@@ -1067,7 +1067,7 @@
             this.IPtextbox.Name = "IPtextbox";
             this.IPtextbox.Size = new System.Drawing.Size(160, 29);
             this.IPtextbox.TabIndex = 1;
-            this.IPtextbox.Text = "192.168.1.88";
+            this.IPtextbox.Text = "192.168.1.98";
             // 
             // label8
             // 

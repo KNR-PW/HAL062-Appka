@@ -45,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.SilnikReverseBtn = new HAL062app.CustomControls.CustomButton();
+            this.rewolwerObrot_btn = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -103,6 +104,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.Controls.Add(this.rewolwerObrot_btn, 3, 1);
             this.tableLayoutPanel3.Controls.Add(this.WiertloDownBtn, 1, 3);
             this.tableLayoutPanel3.Controls.Add(this.SilnikOnBtn, 2, 3);
             this.tableLayoutPanel3.Controls.Add(this.ModulDownBtn, 0, 3);
@@ -374,6 +376,27 @@
             this.SilnikReverseBtn.UseVisualStyleBackColor = false;
             this.SilnikReverseBtn.Click += new System.EventHandler(this.SilnikReverseBtn_Click);
             // 
+            // rewolwerObrot_btn
+            // 
+            this.rewolwerObrot_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.rewolwerObrot_btn.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.rewolwerObrot_btn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.rewolwerObrot_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.rewolwerObrot_btn.BorderRadius = 10;
+            this.rewolwerObrot_btn.BorderSize = 0;
+            this.rewolwerObrot_btn.FlatAppearance.BorderSize = 0;
+            this.rewolwerObrot_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rewolwerObrot_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.rewolwerObrot_btn.ForeColor = System.Drawing.Color.White;
+            this.rewolwerObrot_btn.Location = new System.Drawing.Point(916, 92);
+            this.rewolwerObrot_btn.Name = "rewolwerObrot_btn";
+            this.rewolwerObrot_btn.Size = new System.Drawing.Size(160, 60);
+            this.rewolwerObrot_btn.TabIndex = 18;
+            this.rewolwerObrot_btn.Text = "Zmiana pojemnika";
+            this.rewolwerObrot_btn.TextColor = System.Drawing.Color.White;
+            this.rewolwerObrot_btn.UseVisualStyleBackColor = false;
+            this.rewolwerObrot_btn.Click += new System.EventHandler(this.rewolwerObrot_btn_Click);
+            // 
             // laboratoriumForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -413,5 +436,6 @@
         private CustomControls.CustomButton SilnikOnBtn;
         private CustomControls.CustomButton ModulUpBtn;
         private CustomControls.CustomButton SilnikReverseBtn;
+        private CustomControls.CustomButton rewolwerObrot_btn;
     }
 }

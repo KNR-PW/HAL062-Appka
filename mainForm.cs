@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static HAL062app.ControllerState;
 /*
  * Zgaduję, że skoro tu jesteś to szukasz jakichkolwiek rzeczy związanych z tym, jak poruszać się po plikach 
  * Zamysłem tego projektu jest wykorzystanie architektury MVC -> Model-View-Controller
@@ -37,15 +38,15 @@ namespace HAL062app
         private TimerManager timerManager = new TimerManager();
         private Dictionary<string, Form> modules = new Dictionary<string, Form>();
         private Dictionary<string, bool> isPinned = new Dictionary<string, bool>();
-        
+
         private String currentModule = "Komunikacja";
-     //   moduly.komunikacja.komunikacjaForm komun = new moduly.komunikacja.komunikacjaForm();
+        //   moduly.komunikacja.komunikacjaForm komun = new moduly.komunikacja.komunikacjaForm();
         public mainForm()
         {
             InitializeComponent();
             timerManager.StartTimer();
-
-
+            XboxControlBus.XboxControlMode += OnXboxControlModeChanged;
+            OnXboxControlModeChanged(-1);
 
             modules.Add("Komunikacja", new moduly.komunikacja.komunikacjaForm());
             modules.Add("Laboratorium", new moduly.laboratorium.laboratoriumForm());
@@ -55,7 +56,7 @@ namespace HAL062app
 
             foreach (var module in modules)
                 isPinned.Add(module.Key, true);
-            
+
 
             moduly.komunikacja.komunikacjaModel komunikacjaM = new moduly.komunikacja.komunikacjaModel();
             moduly.laboratorium.laboratoriumModel laboratoriumM = new moduly.laboratorium.laboratoriumModel(komunikacjaM);
@@ -69,7 +70,7 @@ namespace HAL062app
             moduly.podwozie.podwozieController podwozieC = new moduly.podwozie.podwozieController(modules, podwozieM);
             moduly.manipulator.manipulatorController manipulatorC = new moduly.manipulator.manipulatorController(modules, manipulatorM);
             moduly.sandbox.sandboxController sandboxC = new moduly.sandbox.sandboxController(modules, sandboxM);
-            
+
             komunikacjaM.Subscribe(laboratoriumM);
             komunikacjaM.Subscribe(podwozieM);
             komunikacjaM.Subscribe(manipulatorM);
@@ -94,7 +95,7 @@ namespace HAL062app
             {
                 if (currentModule != null)
                 {
-                  //  modules[currentModule].Hide();
+                    //  modules[currentModule].Hide();
                 }
                 if (isPinned[moduleName])
                 {
@@ -108,9 +109,9 @@ namespace HAL062app
                 {
                     ContextPanel.Controls.Clear();
                     currentModule = moduleName;
-                    modules[moduleName].FormBorderStyle = FormBorderStyle.Sizable; 
+                    modules[moduleName].FormBorderStyle = FormBorderStyle.Sizable;
                     modules[moduleName].TopLevel = true;
-                    modules[moduleName].Dock = DockStyle.None; 
+                    modules[moduleName].Dock = DockStyle.None;
                     modules[moduleName].Show();
                 }
                 modules[moduleName].Show();
@@ -159,7 +160,7 @@ namespace HAL062app
 
             foreach (var module in modules)
             {
-                isPinned[module.Key]= true;
+                isPinned[module.Key] = true;
                 modules[module.Key].Hide();
             }
             ShowModule(currentModule);
@@ -172,6 +173,29 @@ namespace HAL062app
             ShowModule(currentModule);
         }
 
+
+        private void OnXboxControlModeChanged(int state)
+        {
+            switch(state)
+            {
+                    case -1:
+                    GamePadStatusLabel.Text = "Gamepad: off";
+                    break;
+                    case 0:
+                    GamePadStatusLabel.Text = "Gamepad: \n Drive";
+                    break;
+                    case 1:
+                    GamePadStatusLabel.Text = "Gamepad: \n Manipulator angle";
+                    break;  
+                    case 2:
+                    GamePadStatusLabel.Text = "Gamepad: \n Manipulator 3DOF";
+                    break;
+                default:
+                    GamePadStatusLabel.Text = "Gamepad: \nUnknown";
+                    break;
+            }
+
+        }
         /// 
         /// <param name="sender"></param>
         /// <param name="e"></param>

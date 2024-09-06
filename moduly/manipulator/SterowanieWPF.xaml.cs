@@ -21,6 +21,7 @@ using SharpDX.XInput;
 using static HAL062app.ControllerState;
 using Newtonsoft.Json.Linq;
 using HAL062app.moduly.manipulator;
+using MathNet.Numerics.LinearAlgebra;
 //using System.Windows.Forms;
 
 namespace HAL062app.moduly.manipulator
@@ -85,7 +86,8 @@ namespace HAL062app.moduly.manipulator
 
 
         // Xbox
-        private bool usingXboxPad = false;
+        private int GamePadState = 0;
+
         private XboxPad _XboxPad;
         private bool isClosing = false;
         private bool isOpening = false;
@@ -101,6 +103,8 @@ namespace HAL062app.moduly.manipulator
         /// Kinematyka odwrotna 
         /// 
         /// Kinematyka odwrotna
+
+        float[] toolXYZlimits = { 0, 1000, 0, 1000, 0, 1000 }; //  X max X min Y max Y min Z max Z min
 
 
         InverseKinematics inverseKinematics;
@@ -169,9 +173,10 @@ namespace HAL062app.moduly.manipulator
         }*/
         private async void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            await Task.Run(() => SendManipulatorFrames_Xbox());
-
-
+            if (GamePadState == 2)
+                await Task.Run(() => SendManipulatorFramesAngles_Xbox());
+            else if (GamePadState == 1)
+                await Task.Run(() => SendManipulatorFramesToolInverse_Xbox());
         }
         private void UpdateSlidersValues(Joint joint, Slider slider, Label label)
         {
@@ -227,6 +232,7 @@ namespace HAL062app.moduly.manipulator
                 _JointSliders[i].Value = position.joints[i] - relativeZeros[i];
                 _JointLabels[i].Content = (position.joints[i] - relativeZeros[i]).ToString("0.00");
             }
+
 
 
 
@@ -316,6 +322,7 @@ namespace HAL062app.moduly.manipulator
             ChangeSpherePosition_action(xyz, 0);
             Position Visualization = new Position(returnAnglesFromJoints(joints, true));
             CreateVisualization_action(Visualization);
+            ChangeInverseSlidersFromAnglesPosition();
         }
         private void SendButton_Click(object sender, EventArgs e)
         {
@@ -348,19 +355,19 @@ namespace HAL062app.moduly.manipulator
             {
                 foreach (Joint joint in joints)
                     ans[id++] = joint.angle + joint.relative0;
-            }else
+            } else
             {
                 foreach (Joint joint in joints)
                     ans[id++] = joint.angle;
             }
             return ans;
         }
-       
 
 
 
 
-       
+
+
 
         private void Control_turnOnManipulator(object sender, RoutedEventArgs e)
         {
@@ -579,7 +586,7 @@ namespace HAL062app.moduly.manipulator
                     }
                 }
                 else
-                    simulatingSequence = false; 
+                    simulatingSequence = false;
             }
             else
             {
@@ -602,7 +609,7 @@ namespace HAL062app.moduly.manipulator
                 loadedSequence = selectedSequence.deepCopy();
                 LoadSequenceToList(loadedSequence);
                 History_newSequenceName.Text = loadedSequence.name;
-                
+
             }
         }
         private void History_SequenceListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -654,7 +661,7 @@ namespace HAL062app.moduly.manipulator
         private void History_earlierPosition_Click(object sender, RoutedEventArgs e)
         {
             if (loadedSequence != null)
-                if (selectedPositionInSequence - 1 >=0)
+                if (selectedPositionInSequence - 1 >= 0)
                 {
                     simulateStep(loadedSequence.sequence[selectedPositionInSequence], loadedSequence.sequence[selectedPositionInSequence - 1], true);
                     selectedPositionInSequence--;
@@ -664,7 +671,7 @@ namespace HAL062app.moduly.manipulator
         private void History_simulateSequence_Click(object sender, RoutedEventArgs e)
         {
             if (loadedSequence != null)
-                simulateSequence(loadedSequence,true);
+                simulateSequence(loadedSequence, true);
         }
         private void History_savePosition_Click(object sender, RoutedEventArgs e)
         {
@@ -682,7 +689,7 @@ namespace HAL062app.moduly.manipulator
             if (loadedSequence != null)
             {
                 loadedSequence.removePosition(selectedPositionInSequence);
-                selectedPositionInSequence = (selectedPositionInSequence-1>=0?selectedPositionInSequence-1:0);
+                selectedPositionInSequence = (selectedPositionInSequence - 1 >= 0 ? selectedPositionInSequence - 1 : 0);
                 LoadSequenceToList(loadedSequence);
             }
         }
@@ -701,8 +708,8 @@ namespace HAL062app.moduly.manipulator
         }
         private void History_turnOffChangingPosition_Click(object sender, RoutedEventArgs e)
         {
-            if(turnOffSequencePositionChanging==false)
-            { 
+            if (turnOffSequencePositionChanging == false)
+            {
                 History_turnOffChangingPosition.Content = "Włącz zmianę pozycji";
                 turnOffSequencePositionChanging = true;
             }
@@ -719,7 +726,7 @@ namespace HAL062app.moduly.manipulator
             {
                 List<Position> newPositions = new List<Position>();
                 newPositions.Add(actualPosition);
-                Sequence newSequence = new Sequence(History_newSequenceName.Text,newPositions);  
+                Sequence newSequence = new Sequence(History_newSequenceName.Text, newPositions);
                 sequenceManager.Sequences.Add(newSequence);
                 sequenceManager.SaveToFile(sequencePath);
                 sequenceManager.Sequences.Add(history);
@@ -736,7 +743,7 @@ namespace HAL062app.moduly.manipulator
             });
 
         }
-       
+
         private void UpdateManipulatorPosition_Xbox(State state)
         {
             if ((GamepadButtonFlags.Start & XboxPad.Instance.GetPressedButtons()) != 0)
@@ -745,100 +752,107 @@ namespace HAL062app.moduly.manipulator
                 {
                     timer.Start();
                     isTimerRunning = true;
-                    usingXboxPad = true;
+                    GamePadState = 1;
                     XboxControlBus.SendXboxModeChanged(1);
                     Control_turnOnManipulator(null, new RoutedEventArgs());
-                    
+
                 }
                 else
                 {
                     timer.Stop();
                     isTimerRunning = false;
-                    usingXboxPad = false;
+                    GamePadState = 0;
                     XboxControlBus.SendXboxModeChanged(0);
                 }
             }
             if ((GamepadButtonFlags.Y & XboxPad.Instance.GetPressedButtons()) != 0)
-            {  
-                    timer.Stop();
-                    isTimerRunning = false;
-                    usingXboxPad = false;
-                    Control_turnOffManipulator(null, new RoutedEventArgs());
-                
-            }
-            if (usingXboxPad) { 
-            if ((GamepadButtonFlags.DPadUp & XboxPad.Instance.GetPressedButtons()) != 0)
             {
-                isClosing = true;
-                Message frame = new Message();
-                frame.buffer[0] = (byte)('#');
-                frame.buffer[1] = (byte)(157);
-                frame.buffer[2] = (byte)(1);
-                frame.buffer[3] = (byte)('x');
-                frame.buffer[4] = (byte)('x');
-                frame.buffer[5] = (byte)('x');
-                frame.buffer[6] = (byte)('x');
-                frame.buffer[7] = (byte)('x');
-                frame.buffer[8] = (byte)('x');
-                frame.buffer[9] = (byte)('x');
-                frame.text = new string(frame.encodeMessage());
+                timer.Stop();
+                isTimerRunning = false;
+                GamePadState = 0;
+                Control_turnOffManipulator(null, new RoutedEventArgs());
 
-                SendMessage_action(frame);
             }
-            if ((GamepadButtonFlags.DPadRight & XboxPad.Instance.GetPressedButtons()) != 0)
-            {
-                isOpening = false;
-                isClosing = false;
-                Message frame = new Message();
-                frame.buffer[0] = (byte)('#');
-                frame.buffer[1] = (byte)(157);
-                frame.buffer[2] = (byte)(0);
-                frame.buffer[3] = (byte)('x');
-                frame.buffer[4] = (byte)('x');
-                frame.buffer[5] = (byte)('x');
-                frame.buffer[6] = (byte)('x');
-                frame.buffer[7] = (byte)('x');
-                frame.buffer[8] = (byte)('x');
-                frame.buffer[9] = (byte)('x');
-                frame.text = new string(frame.encodeMessage());
-                SendMessage_action(frame);
-            }
-            if ((GamepadButtonFlags.DPadDown & XboxPad.Instance.GetPressedButtons()) != 0)
-            {
-                isOpening = true;
-                Message frame = new Message();
-                frame.buffer[0] = (byte)('#');
-                frame.buffer[1] = (byte)(157);
-                frame.buffer[2] = (byte)(2);
-                frame.buffer[3] = (byte)('x');
-                frame.buffer[4] = (byte)('x');
-                frame.buffer[5] = (byte)('x');
-                frame.buffer[6] = (byte)('x');
-                frame.buffer[7] = (byte)('x');
-                frame.buffer[8] = (byte)('x');
-                frame.buffer[9] = (byte)('x');
-                frame.text = new string(frame.encodeMessage());
+            if (GamePadState == 1) {
+                if ((GamepadButtonFlags.DPadUp & XboxPad.Instance.GetPressedButtons()) != 0)
+                {
+                    isClosing = true;
+                    Message frame = new Message();
+                    frame.buffer[0] = (byte)('#');
+                    frame.buffer[1] = (byte)(157);
+                    frame.buffer[2] = (byte)(1);
+                    frame.buffer[3] = (byte)('x');
+                    frame.buffer[4] = (byte)('x');
+                    frame.buffer[5] = (byte)('x');
+                    frame.buffer[6] = (byte)('x');
+                    frame.buffer[7] = (byte)('x');
+                    frame.buffer[8] = (byte)('x');
+                    frame.buffer[9] = (byte)('x');
+                    frame.text = new string(frame.encodeMessage());
 
-                SendMessage_action(frame);
-            }
-            if ((GamepadButtonFlags.A & XboxPad.Instance.GetPressedButtons()) != 0)
-            {
-                Control_ZeroPosition(null, new RoutedEventArgs());
-            }
+                    SendMessage_action(frame);
+                }
+                if ((GamepadButtonFlags.DPadRight & XboxPad.Instance.GetPressedButtons()) != 0)
+                {
+                    isOpening = false;
+                    isClosing = false;
+                    Message frame = new Message();
+                    frame.buffer[0] = (byte)('#');
+                    frame.buffer[1] = (byte)(157);
+                    frame.buffer[2] = (byte)(0);
+                    frame.buffer[3] = (byte)('x');
+                    frame.buffer[4] = (byte)('x');
+                    frame.buffer[5] = (byte)('x');
+                    frame.buffer[6] = (byte)('x');
+                    frame.buffer[7] = (byte)('x');
+                    frame.buffer[8] = (byte)('x');
+                    frame.buffer[9] = (byte)('x');
+                    frame.text = new string(frame.encodeMessage());
+                    SendMessage_action(frame);
+                }
+                if ((GamepadButtonFlags.DPadDown & XboxPad.Instance.GetPressedButtons()) != 0)
+                {
+                    isOpening = true;
+                    Message frame = new Message();
+                    frame.buffer[0] = (byte)('#');
+                    frame.buffer[1] = (byte)(157);
+                    frame.buffer[2] = (byte)(2);
+                    frame.buffer[3] = (byte)('x');
+                    frame.buffer[4] = (byte)('x');
+                    frame.buffer[5] = (byte)('x');
+                    frame.buffer[6] = (byte)('x');
+                    frame.buffer[7] = (byte)('x');
+                    frame.buffer[8] = (byte)('x');
+                    frame.buffer[9] = (byte)('x');
+                    frame.text = new string(frame.encodeMessage());
+
+                    SendMessage_action(frame);
+                }
+                if ((GamepadButtonFlags.A & XboxPad.Instance.GetPressedButtons()) != 0)
+                {
+                    Control_ZeroPosition(null, new RoutedEventArgs());
+                }
             }
         }
         private void OnXboxControlModeChanged(int value)
         {
-            if(value ==1 && !isTimerRunning)
+            if (value == 1)
             {
-                timer.Start();
-                isTimerRunning = true;
-                usingXboxPad = true;
-            } if(value == 0)
+                GamePadState = 1;
+            } if (value == 0)
             {
                 timer.Stop();
                 isTimerRunning = false;
-                usingXboxPad = false;
+                GamePadState = 0;
+            }
+            if (value == 2)
+            {
+                GamePadState = 2;
+            }
+            if ((value == 2 || value == 1) && !isTimerRunning)
+            {
+                timer.Start();
+                isTimerRunning = true;
             }
         }
         private void Control_turnOnGamePad(object sender, RoutedEventArgs e)
@@ -847,7 +861,7 @@ namespace HAL062app.moduly.manipulator
             {
                 timer.Start();
                 isTimerRunning = true;
-                usingXboxPad = true;
+                GamePadState = 1;
 
                 XboxControlBus.SendXboxModeChanged(1);
             }
@@ -855,29 +869,29 @@ namespace HAL062app.moduly.manipulator
             {
                 timer.Stop();
                 isTimerRunning = false;
-                usingXboxPad = false;
+                GamePadState = 0;
 
                 XboxControlBus.SendXboxModeChanged(0);
-            }    
+            }
         }
-        private async Task SendManipulatorFrames_Xbox()
+        private async Task SendManipulatorFramesAngles_Xbox()
         {
             Gamepad _gamepad = _XboxPad.GetCurrentState().Gamepad;
             if (Math.Abs((int)_gamepad.LeftThumbX) > Gamepad.LeftThumbDeadZone)
-               await UpdateDofPositionXbox(5, -mapXboxThumb(_gamepad.LeftThumbX));
+                await UpdateDofPositionXbox(5, -mapXboxThumb(_gamepad.LeftThumbX));
             if (Math.Abs((int)_gamepad.LeftThumbY) > Gamepad.LeftThumbDeadZone)
-                await UpdateDofPositionXbox(2, 0.6f*mapXboxThumb(_gamepad.LeftThumbY));
+                await UpdateDofPositionXbox(2, 0.6f * mapXboxThumb(_gamepad.LeftThumbY));
             if (Math.Abs((int)_gamepad.RightThumbX) > Gamepad.RightThumbDeadZone)
                 await UpdateDofPositionXbox(4, mapXboxThumb(_gamepad.RightThumbX));
             if (Math.Abs((int)_gamepad.RightThumbY) > Gamepad.RightThumbDeadZone)
                 await UpdateDofPositionXbox(3, -mapXboxThumb(_gamepad.RightThumbY));
-            if(Math.Abs((int)_gamepad.RightTrigger) >Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.LeftTrigger) < Gamepad.TriggerThreshold)
+            if (Math.Abs((int)_gamepad.RightTrigger) > Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.LeftTrigger) < Gamepad.TriggerThreshold)
                 await UpdateDofPositionXbox(1, -100f * mapXboxThumb(_gamepad.RightTrigger));
             if (Math.Abs((int)_gamepad.LeftTrigger) > Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.RightTrigger) < Gamepad.TriggerThreshold)
-                await UpdateDofPositionXbox(1,100f*mapXboxThumb(_gamepad.LeftTrigger));
-            if((GamepadButtonFlags.LeftShoulder & XboxPad.Instance.GetPressedButtons()) != 0)
+                await UpdateDofPositionXbox(1, 100f * mapXboxThumb(_gamepad.LeftTrigger));
+            if ((GamepadButtonFlags.LeftShoulder & XboxPad.Instance.GetPressedButtons()) != 0)
                 await UpdateDofPositionXbox(6, -1f);
-            if ((GamepadButtonFlags.RightShoulder& XboxPad.Instance.GetPressedButtons()) != 0)
+            if ((GamepadButtonFlags.RightShoulder & XboxPad.Instance.GetPressedButtons()) != 0)
                 await UpdateDofPositionXbox(6, 1f);
             Dispatcher.Invoke(() =>
             {
@@ -889,17 +903,17 @@ namespace HAL062app.moduly.manipulator
         }
         private Task UpdateDofPositionXbox(int dof, float delta)
         {
-           
-            if(!initialization)
+
+            if (!initialization)
             {
                 activeJointChange = dof;
                 activeSenderSlider = _JointSliders[dof - 1];
-                
+
                 joints[activeJointChange - 1].angle = CalculateToBounds(activeJointChange - 1, joints[activeJointChange - 1].angle + delta);
                 if (joints[activeJointChange - 1].angle + delta > joints[activeJointChange - 1].angleMax && joints[activeJointChange - 1].angle == joints[activeJointChange - 1].angleMax)
                 {
                     XboxPad.Instance.VibrateGamepad(0, 0.1f);
-                    
+
                 }
                 else if (joints[activeJointChange - 1].angle + delta < joints[activeJointChange - 1].angleMin && joints[activeJointChange - 1].angle == joints[activeJointChange - 1].angleMin)
                 {
@@ -910,11 +924,11 @@ namespace HAL062app.moduly.manipulator
                 Dispatcher.Invoke(() =>
                 {
                     angleTextbox.Text = joints[activeJointChange - 1].angle.ToString("0.00");
-                        if (activeSenderSlider is Slider slider)
-                    slider.Value = joints[activeJointChange - 1].angle;
-                   
+                    if (activeSenderSlider is Slider slider)
+                        slider.Value = joints[activeJointChange - 1].angle;
+
                 });
-               
+
             }
             return Task.CompletedTask;
         }
@@ -925,11 +939,103 @@ namespace HAL062app.moduly.manipulator
         }
 
 
+        private async Task SendManipulatorFramesToolInverse_Xbox()
+        {
+            Gamepad _gamepad = _XboxPad.GetCurrentState().Gamepad;
+            if (Math.Abs((int)_gamepad.LeftThumbX) > Gamepad.LeftThumbDeadZone)
+                await UpdateDofPositionXbox(5, -mapXboxThumb(_gamepad.LeftThumbX));
+            if (Math.Abs((int)_gamepad.LeftThumbY) > Gamepad.LeftThumbDeadZone)
+                await UpdateDofPositionXbox(4, 0.6f * mapXboxThumb(_gamepad.LeftThumbY));
+            if (Math.Abs((int)_gamepad.RightThumbX) > Gamepad.RightThumbDeadZone)
+                await UpdateDofPositionToolInverseXbox(1, -4f*mapXboxThumb(_gamepad.RightThumbX));
+            if (Math.Abs((int)_gamepad.RightThumbY) > Gamepad.RightThumbDeadZone)
+                await UpdateDofPositionToolInverseXbox(0, 4f*mapXboxThumb(_gamepad.RightThumbY));
+            if (Math.Abs((int)_gamepad.RightTrigger) > Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.LeftTrigger) < Gamepad.TriggerThreshold)
+                await UpdateDofPositionToolInverseXbox(2, 300f * mapXboxThumb(_gamepad.RightTrigger));
+            if (Math.Abs((int)_gamepad.LeftTrigger) > Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.RightTrigger) < Gamepad.TriggerThreshold)
+                await UpdateDofPositionToolInverseXbox(2, -300f * mapXboxThumb(_gamepad.LeftTrigger));
+            if ((GamepadButtonFlags.LeftShoulder & XboxPad.Instance.GetPressedButtons()) != 0)
+                await UpdateDofPositionXbox(6, -1f);
+            if ((GamepadButtonFlags.RightShoulder & XboxPad.Instance.GetPressedButtons()) != 0)
+                await UpdateDofPositionXbox(6, 1f);
+            Dispatcher.Invoke(() =>
+            {
+                Position actPosition = new Position(returnAnglesFromJoints(joints, true));
+                actPosition.addRelative0(relativeZeros);
+                SendPosition_action(actPosition);
+            });
+
+        }
+        private  Task UpdateDofPositionToolInverseXbox(int coordinate, float delta)
+        {
+
+            if (!initialization)
+            {
+                
+                float[] xyz = new float[3];
+                float[] actual = new float[6];
+                float[] xyza = new float[6];
+                xyz = inverseKinematics.ToolPosition(returnAnglesFromJoints(joints, false));
+                actual = actualPosition.joints;
+                xyza[0] = xyz[0];
+                xyza[1] = xyz[1];
+                xyza[2] = xyz[2];
+                xyza[3] = 0f;
+                xyza[4] = 0f;
+                xyza[5] = 0f; 
+                xyza[coordinate] += delta;
+
+                
+             
+                    XboxPad.Instance.StopVibration();
+                    Dispatcher.Invoke(() =>
+                    {
+                        ChangeSpherePosition_action(xyz, 1);
+
+                        Position InversePosition = UseInverseKinematicsForTool(actual, xyza);
+
+                        CreateVisualization_action(InversePosition);
+                        ChangeSlidersValue(InversePosition);
+
+                    });
+                
+            }
+            return Task.CompletedTask;
+        }
         ////////Kinematyka odwrotna 
         ///
+        float setXYZinBounds(float value, float min, float max)
+        {
+            if (value > max)
+                return max;
+            if (value < min)
+                return min;
+            return value;
+
+        }
+        float CalculateDistance(float[] a, float[] b)
+        {
+            return (float) Math.Sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) + (a[2] - b[2]) * (a[2] - b[2]));
+
+        }
+        bool isInToolLimit(float[] destination )
+        {
+
+            float[] xyz = inverseKinematics.ToolPosition(returnAnglesFromJoints(joints, false));
+
+            if (CalculateDistance(xyz,destination) < 1f)
+                return true;
+            return false;
+
+        }
         private Position UseInverseKinematicsForTool(float[] startAngle,float[] destination)
         {
-            Position InversePosition=actualPosition.deepCopy();
+           // destination[0] = setXYZinBounds(destination[0], toolXYZlimits[0], toolXYZlimits[1]);
+           // destination[1] = setXYZinBounds(destination[1], toolXYZlimits[2], toolXYZlimits[3]);
+           // destination[2] = setXYZinBounds(destination[2], toolXYZlimits[4], toolXYZlimits[5]);
+
+
+            Position InversePosition =actualPosition.deepCopy();
             InversePosition.addRelative0(relativeZeros);
 
             float[] startPoint = inverseKinematics.ToolPosition(startAngle);
@@ -992,7 +1098,24 @@ namespace HAL062app.moduly.manipulator
             return InversePosition;
         }
 
+        private void ChangeInverseSlidersFromAnglesPosition()
+        {/*
+            float[] xyz = inverseKinematics.ToolPosition(returnAnglesFromJoints(joints, false));
+            Inverse_XSlider.ValueChanged -= Inverse_X_ValueChanged;
+            Inverse_YSlider.ValueChanged -= Inverse_Y_ValueChanged;
+            Inverse_ZSlider.ValueChanged -= Inverse_Z_ValueChanged;
+            Inverse_XSlider.Value = xyz[0];
+            Inverse_YSlider.Value = xyz[1];
+            Inverse_ZSlider.Value = xyz[2];
 
+            Inverse_XLabel.Content = xyz[0].ToString("0.00");
+            Inverse_YLabel.Content = xyz[1].ToString("0.00");
+            Inverse_ZLabel.Content = xyz[2].ToString("0.00");
+            Inverse_XSlider.ValueChanged += Inverse_X_ValueChanged;
+            Inverse_YSlider.ValueChanged += Inverse_Y_ValueChanged;
+            Inverse_ZSlider.ValueChanged += Inverse_Z_ValueChanged;
+            */
+        }
 
         private async void Inverse_X_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -1085,9 +1208,27 @@ namespace HAL062app.moduly.manipulator
             UseInverseKinematicsForTool(zero, destination);
         }
 
-        private void inverseKinematicsDOF3_Btn_Click(object sender, RoutedEventArgs e)
+        private async void inverseKinematicsDOF3_Btn_Click(object sender, RoutedEventArgs e)
         {
+            float[] destination = new float[6];
+            float[] zero = new float[6];
+            zero = actualPosition.joints;
+            destination[0] = (float)Inverse_XSlider.Value;
+            destination[1] = (float)Inverse_YSlider.Value;
+            destination[2] = (float)Inverse_ZSlider.Value;
+            destination[3] = 0f;
+            destination[4] = 0f;
+            destination[5] = 0f;
+            float[] xyz = new float[3];
+            xyz[0] = destination[0];
+            xyz[1] = destination[1];
+            xyz[2] = destination[2];
+            ChangeSpherePosition_action(xyz, 1);
+            Position InversePosition = await Task.Run(() => UseInverseKinematicsForTool(zero, destination));
 
+            CreateVisualization_action(InversePosition);
+            ChangeSlidersValue(InversePosition);
+            SendPosition_action(InversePosition);
         }
     }
 }

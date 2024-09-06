@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -80,6 +81,25 @@ namespace HAL062app.moduly.sandbox
         private void sandboxForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void FPV_send_btn_Click(object sender, EventArgs e)
+        {
+            
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(45);
+            frame.buffer[2] = (byte)(FPV1_updown.Value);
+            frame.buffer[3] = (byte)(FPV2_updown.Value);
+            frame.buffer[4] = (byte)(FPV3_updown.Value);
+            frame.buffer[5] = (byte)('x');
+            frame.buffer[6] = (byte)('x');
+            frame.buffer[7] = (byte)('x');
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            sendFrame_action(frame);
         }
     }
 }

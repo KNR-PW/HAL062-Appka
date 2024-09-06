@@ -505,8 +505,8 @@ namespace HAL062app.moduly.manipulator
                 MathNetVector _destination = DenseVector.OfArray(new float[] { destination[0], destination[1], destination[2], destination[3], destination[4], destination[5] });
                 //testJacobians();
                  result2 = FindSoultion3DOF(startAngles, _destination);
-                 result = FindSoultion5DOF(startAngles, _destination,5);
-                result2d = rad2deg(result2);
+                 result = FindSoultion5DOF(startAngles, _destination, 1);
+                //result2d = rad2deg(result2);
                 resultd = rad2deg(result);
                 return result;
             }
@@ -523,7 +523,7 @@ namespace HAL062app.moduly.manipulator
                 float a1diff = (_manipulatorParts[1].MaximalAngle - _manipulatorParts[1].MinimalAngle) / (float)iterations;
                 for (int a1 = 0; a1 < 10; a1++)
                 {
-                  //  startAngle[1] = _manipulatorParts[1].MinimalAngle + a1diff * (float)a1;
+                    //  startAngle[1] = _manipulatorParts[1].MinimalAngle + a1diff * (float)a1;
                     functionResult = Calculate5DOFAngles(startAngle, targetPosition, dof);
                     for (int i = 0; i < newAngles.Length; i++)
                         newAngles[i] = functionResult[i];
@@ -617,7 +617,7 @@ namespace HAL062app.moduly.manipulator
                 {
                     
                     newAngles.CopyTo(anglesWithOffsets, 0);
-                    anglesWithOffsets[1] = -anglesWithOffsets[0] + deg2rad(25);
+                    anglesWithOffsets[0] = anglesWithOffsets[0] ;
                     anglesWithOffsets[1] = anglesWithOffsets[1] + deg2rad(50);
                    anglesWithOffsets[2] = anglesWithOffsets[2] - deg2rad(60);
 
