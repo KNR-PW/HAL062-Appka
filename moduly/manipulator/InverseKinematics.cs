@@ -505,10 +505,10 @@ namespace HAL062app.moduly.manipulator
                 MathNetVector _destination = DenseVector.OfArray(new float[] { destination[0], destination[1], destination[2], destination[3], destination[4], destination[5] });
                 //testJacobians();
                  result2 = FindSoultion3DOF(startAngles, _destination);
-                 result = FindSoultion5DOF(startAngles, _destination, 1);
+                 //result = FindSoultion5DOF(startAngles, _destination, 1);
                 //result2d = rad2deg(result2);
-                resultd = rad2deg(result);
-                return result;
+               // resultd = rad2deg(result);
+                return result2;
             }
             public float[] FindSoultion5DOF(float[] _startAngle, MathNetVector targetPosition, int dof)
             {

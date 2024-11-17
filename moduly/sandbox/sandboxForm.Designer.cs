@@ -80,10 +80,21 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.ClearFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.CreateFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.SendFrameBtn = new HAL062app.CustomControls.CustomButton();
             this.FPV_send_btn = new HAL062app.CustomControls.CustomButton();
+            this.lightGreenTgl = new HAL062app.CustomControls.CustomToggleButton();
+            this.lightRedTgl = new HAL062app.CustomControls.CustomToggleButton();
+            this.lightBlueTgl = new HAL062app.CustomControls.CustomToggleButton();
+            this.lightBlinkTgl = new HAL062app.CustomControls.CustomToggleButton();
+            this.lightOnTgl = new HAL062app.CustomControls.CustomToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -101,6 +112,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.FPV1_updown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FPV2_updown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FPV3_updown)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -111,6 +123,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
@@ -888,13 +901,23 @@
             this.FPV1_updown.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.FPV1_updown.Location = new System.Drawing.Point(42, 89);
             this.FPV1_updown.Maximum = new decimal(new int[] {
-            2,
+            3,
+            0,
+            0,
+            0});
+            this.FPV1_updown.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.FPV1_updown.Name = "FPV1_updown";
             this.FPV1_updown.Size = new System.Drawing.Size(68, 23);
             this.FPV1_updown.TabIndex = 29;
+            this.FPV1_updown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // FPV2_updown
             // 
@@ -904,13 +927,23 @@
             this.FPV2_updown.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.FPV2_updown.Location = new System.Drawing.Point(193, 89);
             this.FPV2_updown.Maximum = new decimal(new int[] {
-            2,
+            3,
+            0,
+            0,
+            0});
+            this.FPV2_updown.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.FPV2_updown.Name = "FPV2_updown";
             this.FPV2_updown.Size = new System.Drawing.Size(68, 23);
             this.FPV2_updown.TabIndex = 28;
+            this.FPV2_updown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // FPV3_updown
             // 
@@ -920,13 +953,23 @@
             this.FPV3_updown.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.FPV3_updown.Location = new System.Drawing.Point(344, 89);
             this.FPV3_updown.Maximum = new decimal(new int[] {
-            2,
+            3,
+            0,
+            0,
+            0});
+            this.FPV3_updown.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.FPV3_updown.Name = "FPV3_updown";
             this.FPV3_updown.Size = new System.Drawing.Size(68, 23);
             this.FPV3_updown.TabIndex = 27;
+            this.FPV3_updown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label13
             // 
@@ -969,6 +1012,104 @@
             this.label15.TabIndex = 15;
             this.label15.Text = "Zestaw kamer 3";
             this.label15.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.label20, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label19, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label18, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label17, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label16, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.lightGreenTgl, 2, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lightRedTgl, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lightBlueTgl, 3, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lightBlinkTgl, 4, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lightOnTgl, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(13, 513);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(395, 135);
+            this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // label20
+            // 
+            this.label20.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label20.Location = new System.Drawing.Point(331, 27);
+            this.label20.Margin = new System.Windows.Forms.Padding(10);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(44, 13);
+            this.label20.TabIndex = 18;
+            this.label20.Text = "Miganie";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label19
+            // 
+            this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label19.Location = new System.Drawing.Point(249, 27);
+            this.label19.Margin = new System.Windows.Forms.Padding(10);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(50, 13);
+            this.label19.TabIndex = 17;
+            this.label19.Text = "Niebieski";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label18.Location = new System.Drawing.Point(175, 27);
+            this.label18.Margin = new System.Windows.Forms.Padding(10);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(41, 13);
+            this.label18.TabIndex = 16;
+            this.label18.Text = "Zielony";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label17.Location = new System.Drawing.Point(91, 27);
+            this.label17.Margin = new System.Windows.Forms.Padding(10);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(53, 13);
+            this.label17.TabIndex = 15;
+            this.label17.Text = "Czerwony";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label16.Location = new System.Drawing.Point(19, 21);
+            this.label16.Margin = new System.Windows.Forms.Padding(10);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(41, 26);
+            this.label16.TabIndex = 14;
+            this.label16.Text = "Włącz lampkę";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // ClearFrameBtn
             // 
@@ -1051,6 +1192,71 @@
             this.FPV_send_btn.UseVisualStyleBackColor = false;
             this.FPV_send_btn.Click += new System.EventHandler(this.FPV_send_btn_Click);
             // 
+            // lightGreenTgl
+            // 
+            this.lightGreenTgl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lightGreenTgl.AutoSize = true;
+            this.lightGreenTgl.Location = new System.Drawing.Point(161, 89);
+            this.lightGreenTgl.MinimumSize = new System.Drawing.Size(45, 22);
+            this.lightGreenTgl.Name = "lightGreenTgl";
+            this.lightGreenTgl.Size = new System.Drawing.Size(70, 22);
+            this.lightGreenTgl.TabIndex = 1;
+            this.lightGreenTgl.Text = "customToggleButton1";
+            this.lightGreenTgl.UseVisualStyleBackColor = true;
+            this.lightGreenTgl.CheckedChanged += new System.EventHandler(this.LightChanged);
+            // 
+            // lightRedTgl
+            // 
+            this.lightRedTgl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lightRedTgl.AutoSize = true;
+            this.lightRedTgl.Location = new System.Drawing.Point(83, 89);
+            this.lightRedTgl.MinimumSize = new System.Drawing.Size(45, 22);
+            this.lightRedTgl.Name = "lightRedTgl";
+            this.lightRedTgl.Size = new System.Drawing.Size(70, 22);
+            this.lightRedTgl.TabIndex = 2;
+            this.lightRedTgl.Text = "customToggleButton2";
+            this.lightRedTgl.UseVisualStyleBackColor = true;
+            this.lightRedTgl.CheckedChanged += new System.EventHandler(this.LightChanged);
+            // 
+            // lightBlueTgl
+            // 
+            this.lightBlueTgl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lightBlueTgl.AutoSize = true;
+            this.lightBlueTgl.Location = new System.Drawing.Point(239, 89);
+            this.lightBlueTgl.MinimumSize = new System.Drawing.Size(45, 22);
+            this.lightBlueTgl.Name = "lightBlueTgl";
+            this.lightBlueTgl.Size = new System.Drawing.Size(70, 22);
+            this.lightBlueTgl.TabIndex = 3;
+            this.lightBlueTgl.Text = "customToggleButton3";
+            this.lightBlueTgl.UseVisualStyleBackColor = true;
+            this.lightBlueTgl.CheckedChanged += new System.EventHandler(this.LightChanged);
+            // 
+            // lightBlinkTgl
+            // 
+            this.lightBlinkTgl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lightBlinkTgl.AutoSize = true;
+            this.lightBlinkTgl.Location = new System.Drawing.Point(317, 89);
+            this.lightBlinkTgl.MinimumSize = new System.Drawing.Size(45, 22);
+            this.lightBlinkTgl.Name = "lightBlinkTgl";
+            this.lightBlinkTgl.Size = new System.Drawing.Size(73, 22);
+            this.lightBlinkTgl.TabIndex = 4;
+            this.lightBlinkTgl.Text = "customToggleButton4";
+            this.lightBlinkTgl.UseVisualStyleBackColor = true;
+            this.lightBlinkTgl.CheckedChanged += new System.EventHandler(this.LightChanged);
+            // 
+            // lightOnTgl
+            // 
+            this.lightOnTgl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lightOnTgl.AutoSize = true;
+            this.lightOnTgl.Location = new System.Drawing.Point(5, 89);
+            this.lightOnTgl.MinimumSize = new System.Drawing.Size(45, 22);
+            this.lightOnTgl.Name = "lightOnTgl";
+            this.lightOnTgl.Size = new System.Drawing.Size(70, 22);
+            this.lightOnTgl.TabIndex = 5;
+            this.lightOnTgl.Text = "customToggleButton5";
+            this.lightOnTgl.UseVisualStyleBackColor = true;
+            this.lightOnTgl.CheckedChanged += new System.EventHandler(this.LightChanged);
+            // 
             // sandboxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1081,6 +1287,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.FPV1_updown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FPV2_updown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FPV3_updown)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1143,5 +1351,16 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private CustomControls.CustomButton FPV_send_btn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private CustomControls.CustomToggleButton lightGreenTgl;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private CustomControls.CustomToggleButton lightRedTgl;
+        private CustomControls.CustomToggleButton lightBlueTgl;
+        private CustomControls.CustomToggleButton lightBlinkTgl;
+        private CustomControls.CustomToggleButton lightOnTgl;
     }
 }

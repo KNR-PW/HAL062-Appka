@@ -180,8 +180,12 @@
                             <Label x:Name="Inverse_ZLabel" Content="0" HorizontalAlignment="Left" Margin="254,0,0,0" FontSize="9" Height="20" RenderTransformOrigin="0.349,0.6"/>
                         </Grid>
                         <Button x:Name="SendToolInverse_Btn" Content="Wyślij pozycję" Click="inverseKinematicsDOF3_Btn_Click"/>
+                        
 
                     </UniformGrid>
+                    <Button x:Name="Probe1_Btn" Content="Probe 1" Click="Probe1_Btn_Click" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="2" VerticalAlignment="Top" Height="44" Width="98"/>
+                    <Button x:Name="Probe2_Btn" Content="Probe 2" Click="Probe2_Btn_Click" HorizontalAlignment="Left" Margin="113,43,0,0" Grid.Row="2" VerticalAlignment="Top" Height="44" Width="72"/>
+                    <Button x:Name="Probe3_Btn" Content="Probe 3" Click="Probe3_Btn_Click" HorizontalAlignment="Left" Margin="190,43,0,0" Grid.Row="2" VerticalAlignment="Top" Height="44" Width="98"/>
                 </Grid>
 
             </TabItem>

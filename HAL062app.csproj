@@ -15,7 +15,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\domin\Desktop\LazikApkaV4.2\</PublishUrl>
+    <PublishUrl>C:\Users\domin\Desktop\LazikApkaV4.4\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -28,7 +28,7 @@
     <TargetCulture>pl-PL</TargetCulture>
     <ProductName>a</ProductName>
     <PublisherName>Chmielak Technology Incorporated</PublisherName>
-    <ApplicationRevision>38</ApplicationRevision>
+    <ApplicationRevision>40</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

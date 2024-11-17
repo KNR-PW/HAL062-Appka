@@ -173,9 +173,9 @@ namespace HAL062app.moduly.manipulator
         }*/
         private async void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            if (GamePadState == 2)
+            if (GamePadState == 1)
                 await Task.Run(() => SendManipulatorFramesAngles_Xbox());
-            else if (GamePadState == 1)
+            else if (GamePadState == 2)
                 await Task.Run(() => SendManipulatorFramesToolInverse_Xbox());
         }
         private void UpdateSlidersValues(Joint joint, Slider slider, Label label)
@@ -1099,7 +1099,7 @@ namespace HAL062app.moduly.manipulator
         }
 
         private void ChangeInverseSlidersFromAnglesPosition()
-        {/*
+        {
             float[] xyz = inverseKinematics.ToolPosition(returnAnglesFromJoints(joints, false));
             Inverse_XSlider.ValueChanged -= Inverse_X_ValueChanged;
             Inverse_YSlider.ValueChanged -= Inverse_Y_ValueChanged;
@@ -1114,7 +1114,7 @@ namespace HAL062app.moduly.manipulator
             Inverse_XSlider.ValueChanged += Inverse_X_ValueChanged;
             Inverse_YSlider.ValueChanged += Inverse_Y_ValueChanged;
             Inverse_ZSlider.ValueChanged += Inverse_Z_ValueChanged;
-            */
+            
         }
 
         private async void Inverse_X_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -1229,6 +1229,55 @@ namespace HAL062app.moduly.manipulator
             CreateVisualization_action(InversePosition);
             ChangeSlidersValue(InversePosition);
             SendPosition_action(InversePosition);
+        }
+
+        private void Probe1_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            
+            float[] probeAngle = new float[6];
+            probeAngle[0] = 69.91f;
+            probeAngle[1] = 22.61f;
+            probeAngle[2] = -10.92f;
+            probeAngle[3] = 210.16f;
+            probeAngle[4] = 22.52f;
+            probeAngle[5] = -52.00f;
+            Position probe1Positions = new Position(probeAngle);
+       
+            ChangeSlidersValue(probe1Positions);
+            simulateStep(actualPosition, probe1Positions, false);
+            
+        }
+
+        private void Probe2_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            float[] probeAngle = new float[6];
+            probeAngle[0] = 77.14f;
+            probeAngle[1] = 12.99f;
+            probeAngle[2] = -9.38f;
+            probeAngle[3] = 218.50f;
+            probeAngle[4] = 22.42f;
+            probeAngle[5] = -53f;
+            Position probe1Positions = new Position(probeAngle);
+
+            ChangeSlidersValue(probe1Positions);
+            simulateStep(actualPosition, probe1Positions, false);
+
+
+        }
+
+        private void Probe3_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            float[] probeAngle = new float[6];
+            probeAngle[0] = 88.87f;
+            probeAngle[1] = 15.02f;
+            probeAngle[2] = -10.12f;
+            probeAngle[3] = 216.36f;
+            probeAngle[4] = 21.78f;
+            probeAngle[5] = -53f;
+            Position probe1Positions = new Position(probeAngle);
+
+            ChangeSlidersValue(probe1Positions);
+            simulateStep(actualPosition, probe1Positions, false);
         }
     }
 }

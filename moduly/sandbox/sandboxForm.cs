@@ -101,5 +101,23 @@ namespace HAL062app.moduly.sandbox
 
             sendFrame_action(frame);
         }
+
+        private void LightChanged(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(50);
+            frame.buffer[2] = (byte)(lightRedTgl.Checked? 1:0);
+            frame.buffer[3] = (byte)(lightGreenTgl.Checked ? 1 : 0);
+            frame.buffer[4] = (byte)(lightBlueTgl.Checked ? 1 : 0);
+            frame.buffer[5] = (byte)(lightBlinkTgl.Checked ? 1 : 0);
+            frame.buffer[6] = (byte)('x');
+            frame.buffer[7] = (byte)('x');
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            sendFrame_action(frame);
+        }
     }
 }
