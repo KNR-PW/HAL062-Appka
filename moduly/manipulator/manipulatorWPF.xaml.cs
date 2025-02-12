@@ -331,12 +331,12 @@ namespace HAL062app.moduly.manipulator
             F6.Children.Add(R);
             F6.Children.Add(F5);
 
-            joints[0].model.Transform = F1; //First joint
-            joints[1].model.Transform = F2; //Second joint (the "biceps")
-            joints[2].model.Transform = F3; //third joint (the "knee" or "elbow")
-            joints[3].model.Transform = F4; //the "forearm"
-            joints[4].model.Transform = F5; //the tool plate
-            joints[5].model.Transform = F6; //the tool
+            joints[0].model.Transform = F1; 
+            joints[1].model.Transform = F2;  
+            joints[2].model.Transform = F3;
+            joints[3].model.Transform = F4;
+            joints[4].model.Transform = F5;
+            joints[5].model.Transform = F6; 
 
             
 
@@ -349,17 +349,17 @@ namespace HAL062app.moduly.manipulator
         {
             float[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle };
             angles = InverseKinematics(reachingPoint, angles);
-             joints[0].angle = angles[0];
+            joints[0].angle = angles[0];
             joints[1].angle = angles[1];
-             joints[2].angle = angles[2];
+            joints[2].angle = angles[2];
             joints[3].angle = angles[3];
-           joints[4].angle = angles[4];
+            joints[4].angle = angles[4];
             joints[5].angle = angles[5];
          
 
             if ((--movements) <= 0)
             {
-               // KinematicPointBtn.Content = "Go to position";
+              
                 isAnimating = false;
                 timer1.Stop();
             }
@@ -379,42 +379,8 @@ namespace HAL062app.moduly.manipulator
 
       
        
-        public float[] InverseKinematics(Vector3D target, float[] angles)
-        {
-            if (DistanceFromTarget(target, angles) < DistanceThreshold)
-            {
-                movements = 0;
-                return angles;
-            }
-
-            float[] oldAngles = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F };
-            angles.CopyTo(oldAngles, 0);
-            for (int i = 0; i <= 5; i++)
-            {
-                // Gradient descent
-                // Update : Solution -= LearningRate * Gradient
-                float gradient = PartialGradient(target, angles, i);
-                angles[i] -= LearningRate * gradient;
-
-                // Clamp
-                angles[i] = Clamp(angles[i], joints[i].angleMin, joints[i].angleMax);
-
-                // Early termination
-                if (DistanceFromTarget(target, angles) < DistanceThreshold || checkAngles(oldAngles, angles))
-                {
-                    movements = 0;
-                    return angles;
-                }
-            }
-
-            return angles;
-        }
-        public float DistanceFromTarget(Vector3D target, float[] angles)
-        {
-            
-            Vector3D point = ForwardKinematics(angles);
-            return (float)Math.Sqrt(Math.Pow((point.X - target.X), 2.0) + Math.Pow((point.Y - target.Y), 2.0) + Math.Pow((point.Z - target.Z), 2.0));
-        }
+       
+       
         public bool checkAngles(float[] oldAngles, float[] angles)
         {
             for (int i = 0; i <= 5; i++)
@@ -457,19 +423,17 @@ namespace HAL062app.moduly.manipulator
         }
         private void execute_fk()
         {
-            /** Debug sphere, it takes the x,y,z of the textBoxes and update its position
-             * This is useful when using x,y,z in the "new Point3D(x,y,z)* when defining a new RotateTransform3D() to check where the joints is actually  rotating */
+           
             float[] angles = { (float)joints[0].angle, (float)joints[1].angle, (float)joints[2].angle, (float)joints[3].angle, (float)joints[4].angle, (float)joints[5].angle };
             ForwardKinematics(angles);
            
         }
         public float PartialGradient(Vector3D target, float[] angles, int i)
         {
-            // Saves the angle,
-            // it will be restored later
+           
             float angle = angles[i];
 
-            // Gradient : [F(x+SamplingDistance) - F(x)] / h
+           
             float f_x = DistanceFromTarget(target, angles);
 
             angles[i] += SamplingDistance;
@@ -477,88 +441,13 @@ namespace HAL062app.moduly.manipulator
 
             float gradient = (f_x_plus_d - f_x) / SamplingDistance;
 
-            // Restores
             angles[i] = angle;
 
             return gradient;
         }
 
         
-        
-        private void ReachingPoint_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-               // reachingPoint = new Vector3D(Double.Parse(TbX.Text), Double.Parse(TbY.Text), Double.Parse(TbZ.Text));
-               // geometry.Transform = new TranslateTransform3D(reachingPoint);
-            }
-            catch (Exception exc)
-            {
-
-            }
-        }
-/*
-        private void changeSelectedJoint()
-        {
-            if (joints == null)
-                return;
-
-            int sel = ((int)jointSelector.Value) - 1;
-            switchingJoint = true;
-           // unselectModel();
-            if (sel < 0)
-            {
-              
-                jointXAxis.IsEnabled = false;
-                jointYAxis.IsEnabled = false;
-                jointZAxis.IsEnabled = false;
-            }
-            else
-            {
-                if (!jointX.IsEnabled)
-                {
-                    jointX.IsEnabled = true;
-                    jointY.IsEnabled = true;
-                    jointZ.IsEnabled = true;
-                    jointXAxis.IsEnabled = true;
-                    jointYAxis.IsEnabled = true;
-                    jointZAxis.IsEnabled = true;
-                }
-                jointX.Value = joints[sel].rotPointX;
-                jointY.Value = joints[sel].rotPointY;
-                jointZ.Value = joints[sel].rotPointZ;
-                jointXAxis.IsChecked = joints[sel].rotAxisX == 1 ? true : false;
-                jointYAxis.IsChecked = joints[sel].rotAxisY == 1 ? true : false;
-                jointZAxis.IsChecked = joints[sel].rotAxisZ == 1 ? true : false;
-               // selectModel(joints[sel].model);
-                updateSpherePosition();
-            }
-            switchingJoint = false;
-        }
-        */
-        
-
        
-
-        
-        public HitTestResultBehavior ResultCallback(HitTestResult result)
-        {
-            // Did we hit 3D?
-            RayHitTestResult rayResult = result as RayHitTestResult;
-            if (rayResult != null)
-            {
-                // Did we hit a MeshGeometry3D?
-                RayMeshGeometry3DHitTestResult rayMeshResult = rayResult as RayMeshGeometry3DHitTestResult;
-                geometry.Transform = new TranslateTransform3D(new Vector3D(rayResult.PointHit.X, rayResult.PointHit.Y, rayResult.PointHit.Z));
-
-                if (rayMeshResult != null)
-                {
-                    // Yes we did!
-                }
-            }
-
-            return HitTestResultBehavior.Continue;
-        }
 
         public void UpdateSphere(float[] xyz, int ID)
         {
@@ -586,7 +475,64 @@ namespace HAL062app.moduly.manipulator
             }
         }
 
-       
+        public float DistanceFromTarget(Vector3D target, float[] angles)
+        {
+
+            Vector3D point = ForwardKinematics(angles);
+            return (float)Math.Sqrt(Math.Pow((point.X - target.X), 2.0) + Math.Pow((point.Y - target.Y), 2.0) + Math.Pow((point.Z - target.Z), 2.0));
+        }
+
+        public HitTestResultBehavior ResultCallback(HitTestResult result)
+        {
+
+            RayHitTestResult rayResult = result as RayHitTestResult;
+            if (rayResult != null)
+            {
+
+                RayMeshGeometry3DHitTestResult rayMeshResult = rayResult as RayMeshGeometry3DHitTestResult;
+                geometry.Transform = new TranslateTransform3D(new Vector3D(rayResult.PointHit.X, rayResult.PointHit.Y, rayResult.PointHit.Z));
+
+                if (rayMeshResult != null)
+                {
+
+                }
+            }
+
+            return HitTestResultBehavior.Continue;
+        }
+        private float[] InverseKinematics(Vector3D target, float[] angles)
+        {
+            if (DistanceFromTarget(target, angles) < DistanceThreshold)
+            {
+                movements = 0;
+                return angles;
+            }
+
+            float[] oldAngles = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+            angles.CopyTo(oldAngles, 0);
+            for (int i = 0; i <= 5; i++)
+            {
+               
+                float gradient = PartialGradient(target, angles, i);
+                angles[i] -= LearningRate * gradient;
+
+               
+                angles[i] = Clamp(angles[i], joints[i].angleMin, joints[i].angleMax);
+
+
+                // Early termination
+                if (DistanceFromTarget(target, angles) < DistanceThreshold || checkAngles(oldAngles, angles))
+                {
+                    movements = 0;
+                    return angles;
+                }
+            }
+
+            return angles;
+
+
+
+        }
 
        
     }

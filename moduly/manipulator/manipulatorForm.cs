@@ -29,10 +29,14 @@ namespace HAL062app.moduly.manipulator
             sterowanieWPF1.SendPosition_action += SendPosition;
             sterowanieWPF1.CreateVisualization_action += CreateVisualization;
             sterowanieWPF1.ChangeSpherePosition_action += ChangeSpherePosition;
+            sterowanieWPF1.SendXYZPositon_action += SendXYZPositon;
         }
        
         
-       
+        private void SendXYZPositon(Position position)
+        {
+            sendPositionToController_Action(position);
+        }
 
         private void SendPosition(Position position)
         {

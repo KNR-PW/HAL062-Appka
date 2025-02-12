@@ -120,6 +120,21 @@
     <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.7.25103.5738\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.7.25103.5738\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.7.25103.5738\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.7.25103.5738\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.7.25103.5738\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomControls\CustomButton.cs">
@@ -195,6 +210,20 @@
     </Compile>
     <Compile Include="moduly\sandbox\sandboxModel.cs" />
     <Compile Include="moduly\TimeProvider.cs" />
+    <Compile Include="moduly\wizualizacja\objectConfig.cs" />
+    <Compile Include="moduly\wizualizacja\engine.cs" />
+    <Compile Include="moduly\wizualizacja\positionData.cs" />
+    <Compile Include="moduly\wizualizacja\wizualizacjaController.cs" />
+    <Compile Include="moduly\wizualizacja\wizualizacjaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="moduly\wizualizacja\wizualizacjaForm.Designer.cs">
+      <DependentUpon>wizualizacjaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="moduly\wizualizacja\wizualizacjaModel.cs" />
+    <Compile Include="moduly\wizualizacja\wizualizacjaWPF.xaml.cs">
+      <DependentUpon>wizualizacjaWPF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimerManager.cs" />
@@ -218,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="moduly\sandbox\sandboxForm.resx">
       <DependentUpon>sandboxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="moduly\wizualizacja\wizualizacjaForm.resx">
+      <DependentUpon>wizualizacjaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -255,6 +287,30 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="moduly\manipulator\sequenceList.json" />
+    <Content Include="moduly\wizualizacja\models\base.STL">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduly\wizualizacja\models\dof1.STL">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduly\wizualizacja\models\dof2.STL">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduly\wizualizacja\models\dof3.STL">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduly\wizualizacja\models\dof4.STL">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduly\wizualizacja\models\dof5.STL">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduly\wizualizacja\models\gripper.STL">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="moduly\wizualizacja\models\rover.stl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -275,6 +331,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="moduly\manipulator\SterowanieWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="moduly\wizualizacja\wizualizacjaWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

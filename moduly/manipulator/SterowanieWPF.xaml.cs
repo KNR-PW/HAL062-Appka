@@ -59,6 +59,7 @@ namespace HAL062app.moduly.manipulator
         public Action<Position> CreateVisualization_action;
         public Action<float[], int> ChangeSpherePosition_action;
         public Action<Message> SendMessage_action;
+        public Action<Position> SendXYZPositon_action;
 
         Slider[] _JointSliders = new Slider[6];
         Label[] _JointLabels = new Label[6];
@@ -140,7 +141,6 @@ namespace HAL062app.moduly.manipulator
                 UpdateSlidersValues(joints[i], _JointSliders[i], _JointLabels[i]);
                 relativeZeros[i] = joints[i].relative0;
             }
-
 
             actualPosition = new Position(returnAnglesFromJoints(joints, true));
             actualPosition.Duration = 5;
@@ -1278,6 +1278,77 @@ namespace HAL062app.moduly.manipulator
 
             ChangeSlidersValue(probe1Positions);
             simulateStep(actualPosition, probe1Positions, false);
+        }
+
+     
+
+        private void SendExperimentalInverse_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            float[] poss = new float[6];
+            poss[0] = (float)X_inv_numeric.Value;
+            poss[1] = (float)Y_inv_numeric.Value;
+            poss[2] = (float)Z_inv_numeric.Value;
+            poss[3] = (float)A_inv_numeric.Value;
+            poss[4] = (float)B_inv_numeric.Value;
+            poss[5] = (float)C_inv_numeric.Value;
+
+            ChangeSpherePosition_action(poss, 1);
+            Position XYZpos = new Position(poss);
+            SendXYZPositon_action(XYZpos);
+        }
+
+        private void SendModeXYZ_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(128);
+            frame.buffer[2] = (byte)(1);
+            frame.buffer[3] = (byte)(1);
+            frame.buffer[4] = (byte)(4);
+            frame.buffer[5] = (byte)(4);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            SendMessage_action(frame);
+        }
+
+        private void SendModeAngle_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(128);
+            frame.buffer[2] = (byte)(1);
+            frame.buffer[3] = (byte)(1);
+            frame.buffer[4] = (byte)(2);
+            frame.buffer[5] = (byte)(2);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            SendMessage_action(frame);
+        }
+
+       
+
+        private void XYZABC_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (IsInitialized) { 
+            float[] poss = new float[6];
+            poss[0] = (float)X_inv_numeric.Value;
+            poss[1] = (float)Y_inv_numeric.Value;
+            poss[2] = (float)Z_inv_numeric.Value;
+            poss[3] = (float)A_inv_numeric.Value;
+            poss[4] = (float)B_inv_numeric.Value;
+            poss[5] = (float)C_inv_numeric.Value;
+
+            
+            ChangeSpherePosition_action(poss, 0);
+            }
         }
     }
 }
