@@ -60,6 +60,7 @@ namespace HAL062app.moduly.manipulator
         public Action<float[], int> ChangeSpherePosition_action;
         public Action<Message> SendMessage_action;
         public Action<Position> SendXYZPositon_action;
+        public Action<float[]> ChangeBoxPosition_action;
 
         Slider[] _JointSliders = new Slider[6];
         Label[] _JointLabels = new Label[6];
@@ -1288,9 +1289,9 @@ namespace HAL062app.moduly.manipulator
             poss[0] = (float)X_inv_numeric.Value;
             poss[1] = (float)Y_inv_numeric.Value;
             poss[2] = (float)Z_inv_numeric.Value;
-            poss[3] = (float)A_inv_numeric.Value;
-            poss[4] = (float)B_inv_numeric.Value;
-            poss[5] = (float)C_inv_numeric.Value;
+            poss[3] = (float)Yaw_inv_numeric.Value * (float)Math.PI/180f;
+            poss[4] = (float)Pitch_inv_numeric.Value * (float)Math.PI / 180f;
+            poss[5] = (float)Roll_inv_numeric.Value * (float)Math.PI / 180f;
 
             ChangeSpherePosition_action(poss, 1);
             Position XYZpos = new Position(poss);
@@ -1342,13 +1343,69 @@ namespace HAL062app.moduly.manipulator
             poss[0] = (float)X_inv_numeric.Value;
             poss[1] = (float)Y_inv_numeric.Value;
             poss[2] = (float)Z_inv_numeric.Value;
-            poss[3] = (float)A_inv_numeric.Value;
-            poss[4] = (float)B_inv_numeric.Value;
-            poss[5] = (float)C_inv_numeric.Value;
+            poss[3] = (float)Yaw_inv_numeric.Value * (float)Math.PI / 180f;
+            poss[4] = (float)Pitch_inv_numeric.Value * (float)Math.PI / 180f;
+            poss[5] = (float)Roll_inv_numeric.Value * (float)Math.PI / 180f;
 
+            ChangeBoxPosition_action(poss);
             
-            ChangeSpherePosition_action(poss, 0);
+
+            //ChangeSpherePosition_action(poss, 0);
             }
+        }
+
+        private void ManipReset_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(117);
+            frame.buffer[2] = (byte)(1);
+            frame.buffer[3] = (byte)(1);
+            frame.buffer[4] = (byte)('x');
+            frame.buffer[5] = (byte)('x');
+            frame.buffer[6] = (byte)('x');
+            frame.buffer[7] = (byte)('x');
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            SendMessage_action(frame);
+        }
+
+        private void ManipTrajectory_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(128);
+            frame.buffer[2] = (byte)(1);
+            frame.buffer[3] = (byte)(1);
+            frame.buffer[4] = (byte)(8);
+            frame.buffer[5] = (byte)(8);
+            frame.buffer[6] = (byte)(0);
+            frame.buffer[7] = (byte)(0);
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            SendMessage_action(frame);
+        }
+
+        private void ManipHold_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(128);
+            frame.buffer[2] = (byte)(1);
+            frame.buffer[3] = (byte)(1);
+            frame.buffer[4] = (byte)(1);
+            frame.buffer[5] = (byte)(1);
+            frame.buffer[6] = (byte)('x');
+            frame.buffer[7] = (byte)('x');
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            SendMessage_action(frame);
         }
     }
 }

@@ -30,6 +30,7 @@ namespace HAL062app.moduly.manipulator
             sterowanieWPF1.CreateVisualization_action += CreateVisualization;
             sterowanieWPF1.ChangeSpherePosition_action += ChangeSpherePosition;
             sterowanieWPF1.SendXYZPositon_action += SendXYZPositon;
+            sterowanieWPF1.ChangeBoxPosition_action += ChangeBoxPosition;
         }
        
         
@@ -63,6 +64,11 @@ namespace HAL062app.moduly.manipulator
         private void ChangeSpherePosition(float[] xyz, int ID)
         {
             manipulatorWPF1.UpdateSphere(xyz, ID);
+        }
+
+        private void ChangeBoxPosition(float[] xyz)
+        {
+            manipulatorWPF1.UpdateBox(xyz);
         }
     }
 }

@@ -132,14 +132,18 @@ namespace HAL062app.moduly.komunikacja
             messageQueue.Enqueue(message);
             logMessages.Add(message);
             UpdateLogTerminal(logMessages);
-           
-            if(isBluetoothOn())
-                if (bluetoothClient.Connected) { 
-                Task.Run(async () => await SendBluetoothMessage(message));
-                 
+
+            if (isBluetoothOn())
+                if (bluetoothClient.Connected)
+                {
+                    Task.Run(async () => await SendBluetoothMessage(message));
+
                 }
             if (isTelnetConnected())
+            {
                 Task.Run(async () => await SendTelnetMessage(message));
+                
+            }
         }
         private void PushMessageMainChannel(Message message) //Ta funkcja powiadamia wszystkie moduly i wysyla wiadomosc
         {
@@ -249,8 +253,7 @@ namespace HAL062app.moduly.komunikacja
         ///                 Telnet
         ///
         //////////////////////////////////////////////////
-
-
+       
         public async Task ConnectTelnet(string ipAddress, int port)
         {
             
@@ -277,17 +280,22 @@ namespace HAL062app.moduly.komunikacja
 
         public async Task SendTelnetMessage(Message message)
         {
+           
             try
             {
-                await tcpWriter.WriteAsync(message.text);
-                await tcpWriter.FlushAsync();
-                SendTerminalMessage("TCP: Wysłano");
+               
+                    await tcpWriter.WriteAsync(message.text);
+                    await tcpWriter.FlushAsync();
+                    SendTerminalMessage("TCP: Wysłano");
+              
+
             }
             catch (Exception ex)
             {
                 SendTerminalMessage("TCP: Błąd podczas wysyłania wiadomości: " + ex.Message);
 
             }
+          
 
         }
         private async Task ReceiveTelnetMessage(CancellationToken cancellationToken)
@@ -296,23 +304,24 @@ namespace HAL062app.moduly.komunikacja
             {
                 while (!cancellationToken.IsCancellationRequested)
                 {
-                    string receivedMessage = await tcpReader.ReadLineAsync();
+                        string receivedMessage = await tcpReader.ReadLineAsync();
 
-                    if (!string.IsNullOrEmpty(receivedMessage))
-                    {
-                        Message msg = new Message();
-                        msg.text = receivedMessage;
-                        msg.author = 0;
-                        messageQueue.Enqueue(msg);
-                        logMessages.Add(msg);
-                        UpdateLogTerminal(logMessages);
-                    }
+                        if (!string.IsNullOrEmpty(receivedMessage))
+                        {
+                            Message msg = new Message();
+                            msg.text = receivedMessage;
+                            msg.author = 0;
+                            messageQueue.Enqueue(msg);
+                            logMessages.Add(msg);
+                            UpdateLogTerminal(logMessages);
+                        }
                 }
             }
             catch (Exception ex)
             {
                 SendTerminalMessage("Błąd podczas odbierania wiadomości: " + ex.Message);
             }
+
         }
 
         private async void StartListeningTelnet()

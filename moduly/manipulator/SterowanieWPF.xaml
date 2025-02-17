@@ -150,15 +150,15 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <!-- Automatycznie dopasuje wysokość do zawartości -->
+                       
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                     
+                        
+                        
+                       
+                       
                         <!-- Automatycznie dopasuje wysokość do zawartości -->
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Pozycja kiści kinematycznej" TextAlignment="Center" FontSize="20" Background="DarkCyan" Height="30" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="WhiteSmoke" />
@@ -206,15 +206,16 @@
                                 <Setter Property="Increment" Value="{Binding ElementName=Increment_numeric, Path=Value}" />
                                 <EventSetter Event="ValueChanged" Handler="XYZABC_ValueChanged"/>
                             </Style>
+
                         </UniformGrid.Resources>
                         <Grid  VerticalAlignment="Top" >
                             <TextBlock Text="X"/>
-                            <xctk:IntegerUpDown x:Name="X_inv_numeric" />
+                            <xctk:IntegerUpDown x:Name="X_inv_numeric" Value="400" />
                         </Grid>
                         
                         <Grid  VerticalAlignment="Top" >
-                            <TextBlock Text="A"/>
-                            <xctk:IntegerUpDown x:Name="A_inv_numeric"/>
+                            <TextBlock Text="Yaw"/>
+                            <xctk:IntegerUpDown x:Name="Yaw_inv_numeric" Margin="50,0,0,0" Width="70"/>
                         </Grid>
 
                         <Grid  VerticalAlignment="Top" >
@@ -222,33 +223,52 @@
                             <xctk:IntegerUpDown x:Name="Y_inv_numeric"/>
                         </Grid>
                         <Grid  VerticalAlignment="Top" >
-                            <TextBlock Text="B"/>
-                            <xctk:IntegerUpDown x:Name="B_inv_numeric"/>
+                            <TextBlock Text="Pitch"/>
+                            <xctk:IntegerUpDown x:Name="Pitch_inv_numeric"  Margin="50,0,0,0" Width="70" Value="90"/>
 
                         </Grid>
                         <Grid  VerticalAlignment="Top" >
                             <TextBlock Text="Z"/>
-                            <xctk:IntegerUpDown x:Name="Z_inv_numeric"/>
+                            <xctk:IntegerUpDown x:Name="Z_inv_numeric" Value="750"/>
 
                         </Grid>
                         <Grid  VerticalAlignment="Top" >
-                            <TextBlock Text="C"/>
-                            <xctk:IntegerUpDown x:Name="C_inv_numeric"/>
+                            <TextBlock Text="Roll"/>
+                            <xctk:IntegerUpDown x:Name="Roll_inv_numeric"  Margin="50,0,0,0" Width="70"/>
 
                         </Grid>
                         <Grid  VerticalAlignment="Top" >
-                            <TextBlock Text="M"/>
-                            <xctk:IntegerUpDown x:Name="Increment_numeric" Value="1" Minimum="1" Maximum="50" Increment="1"/>
+                            <TextBlock Text="Zmiana" Width="50"/>
+                            <xctk:IntegerUpDown x:Name="Increment_numeric" Value="1" Minimum="1" Maximum="50" Increment="1"  Margin="60,0,0,0" Width="60"/>
 
                         </Grid>
                     </UniformGrid>
-                    <Button x:Name="SendExperimentalXYZ_Btn" Grid.Row="3" Content="Wyślij pozycję &#x0a;X Y Z" Click="SendExperimentalInverse_Btn_Click" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="80" Width="90"/>
-                    <Button x:Name="SendModeXYZ_Btn" Grid.Row="3" Content="Włącz tryb XYZ" Click="SendModeXYZ_Btn_Click" HorizontalAlignment="Left" Margin="105,0,0,0" VerticalAlignment="Top" Height="80" Width="90"/>
-                    <Button x:Name="SendModeAngle_Btn" Grid.Row="3" Content="Włacz tryb &#x0a;kątów" Click="SendModeAngle_Btn_Click" HorizontalAlignment="Left" Margin="200,0,0,0" VerticalAlignment="Top" Height="80" Width="90"/>
-                    <Button x:Name="Probe1_Btn" Content="Probe 1" Click="Probe1_Btn_Click" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="90"/>
-                    <Button x:Name="Probe2_Btn" Content="Probe 2" Click="Probe2_Btn_Click" HorizontalAlignment="Left" Margin="105,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="90"/>
-                    <Button x:Name="Probe3_Btn" Content="Probe 3" Click="Probe3_Btn_Click" HorizontalAlignment="Left" Margin="200,43,0,0" Grid.Row="4" VerticalAlignment="Top" Height="44" Width="90"/>
-                </Grid>
+                    <UniformGrid Grid.Row="3" Rows="2" Columns="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <UniformGrid.Resources>
+                            <Style TargetType="Button">
+                           
+                               <!--" <Setter Property="HorizontalAlignment" Value="Left"/-->
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="Width" Value="90" />
+                                <Setter Property="VerticalAlignment" Value="Top" />
+                                <Setter Property="Margin" Value="0,10,0,0" />
+                            </Style>
+                        </UniformGrid.Resources>
+                        <Button x:Name="SendExperimentalXYZ_Btn" Content="Wyślij pozycję &#x0a;X Y Z" Click="SendExperimentalInverse_Btn_Click"/>
+                        <Button x:Name="SendModeAngle_Btn" Content="Włacz tryb &#x0a;kątów" Click="SendModeAngle_Btn_Click"/>
+                        <Button x:Name="SendModeXYZ_Btn" Content="Włącz tryb XYZ" Click="SendModeXYZ_Btn_Click"/>
+                        
+                        <Button x:Name="ManipReset_Btn" Content="Reset&#x0a;Manipulatora" Click="ManipReset_Btn_Click"/>
+                        <Button x:Name="ManipHold_Btn" Content="Tryb Hold&#x0a;Manipulatora" Click="ManipHold_Btn_Click"/>
+                        <Button x:Name="ManipTrajectory_Btn" Content="Nakurwiaj&#x0a;koła" Click="ManipTrajectory_Btn_Click"/>
+                        
+                        <Button x:Name="Probe1_Btn" Content="Probe 1" Click="Probe1_Btn_Click"/>
+                        <Button x:Name="Probe2_Btn" Content="Probe 2" Click="Probe2_Btn_Click"/>
+                        <Button x:Name="Probe3_Btn" Content="Probe 3" Click="Probe3_Btn_Click"/>
+
+                    </UniformGrid>
+                   
+                     </Grid>
 
             </TabItem>
             <TabItem Header="Historia" >

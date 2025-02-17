@@ -65,6 +65,7 @@ namespace HAL062app.moduly.manipulator
         TranslateTransform3D T;
 
         SphereVisual3D [] sphere;
+        BoxVisual3D box;
 
         Color oldColor = Colors.White;
         bool switchingJoint = false;
@@ -111,6 +112,7 @@ namespace HAL062app.moduly.manipulator
             var builder = new MeshBuilder(true, true);
             var position = new Point3D(0, 0, 0);
             builder.AddSphere(position, 30, 30, 30);
+            builder.AddBox(new Point3D(0, 0, 0), 30, 30, 60);
             geometry = new GeometryModel3D(builder.ToMesh(), Materials.Brown);
             visual = new ModelVisual3D();
             visual.Content = geometry;
@@ -150,9 +152,18 @@ namespace HAL062app.moduly.manipulator
                 Radius = 20,
                 Fill = Brushes.Green
             };
+
+            box = new BoxVisual3D
+            {
+                Center = new Point3D(0, 0, 0),
+                Length = 30,
+                Width = 30,
+                Height = 60,
+                Fill = Brushes.Red
+            };
             viewport.Children.Add(sphere[0]);
             viewport.Children.Add(sphere[1]);
-
+            viewport.Children.Add(box);
         }
         private float ToDegrees(float radian)
         {
@@ -454,7 +465,44 @@ namespace HAL062app.moduly.manipulator
             sphere[ID].Center = new Point3D(xyz[0], xyz[1], xyz[2]);
 
         }
-       
+        public void UpdateBox(float[] xyzRPY)
+        {
+
+            double x = xyzRPY[0];
+            double y = xyzRPY[1];
+            double z = xyzRPY[2];
+
+            // Konwersja radianów na stopnie
+            double roll = xyzRPY[3] * (180 / Math.PI);  
+            double pitch = xyzRPY[4] * (180 / Math.PI); 
+            double yaw = xyzRPY[5] * (180 / Math.PI);   
+
+            
+            Transform3DGroup transformGroup = new Transform3DGroup();
+
+
+        // TranslateTransform3D moveToCenter = new TranslateTransform3D(-x, -y, -z);
+            box.Center = new Point3D(0, 0, 0);
+
+            RotateTransform3D rotateX = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), roll));
+            RotateTransform3D rotateY = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), pitch));
+            RotateTransform3D rotateZ = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), yaw));
+
+            
+            TranslateTransform3D moveBack = new TranslateTransform3D(x, y, z);
+
+           
+            
+            transformGroup.Children.Add(rotateX);
+            transformGroup.Children.Add(rotateY);
+            transformGroup.Children.Add(rotateZ);
+            transformGroup.Children.Add(moveBack);
+
+         
+            box.Transform = transformGroup;
+
+        }
+
         private void SetJointAngle(object sender, RoutedEventArgs e)
         {
             if (isAnimating)
