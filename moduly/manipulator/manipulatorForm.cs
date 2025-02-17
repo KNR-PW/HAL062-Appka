@@ -18,7 +18,7 @@ namespace HAL062app.moduly.manipulator
     public partial class manipulatorForm : Form
     {
 
-        public Action<Position> sendPositionToController_Action;
+        public Action<Position, bool> sendPositionToController_Action;
         public Action<Message> sendFrameToController_Action;
         
         public manipulatorForm()
@@ -36,14 +36,14 @@ namespace HAL062app.moduly.manipulator
         
         private void SendXYZPositon(Position position)
         {
-            sendPositionToController_Action(position);
+            sendPositionToController_Action(position, true);
         }
 
         private void SendPosition(Position position)
         {
 
             manipulatorWPF1.ForwardKinematics(position.joints);
-            sendPositionToController_Action(position);
+            sendPositionToController_Action(position, false);
 
         }
         private void CreateVisualization(Position position)

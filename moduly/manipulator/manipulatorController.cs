@@ -37,9 +37,9 @@ namespace HAL062app.moduly.manipulator
         }
 
 
-        private void sendAnglesToManipulator(Position position)
+        private void sendAnglesToManipulator(Position position, bool isXYZ)
         {
-            model.SendAnglesToManipulator(position);
+            model.SendAnglesToManipulator(position, isXYZ);
 
         }
         private void sendMessageToKomunikacja(Message msg)

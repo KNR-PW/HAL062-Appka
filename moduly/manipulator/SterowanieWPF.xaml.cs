@@ -1295,6 +1295,7 @@ namespace HAL062app.moduly.manipulator
 
             ChangeSpherePosition_action(poss, 1);
             Position XYZpos = new Position(poss);
+
             SendXYZPositon_action(XYZpos);
         }
 
