@@ -393,11 +393,11 @@ namespace HAL062app.moduly.komunikacja
 
                     if (bluetoothDeviceInfos == null || bluetoothDeviceInfos.Length == 0)
                     {
-                        SendTerminalMessage("Brak dostępnych urządzeń Bluetooth");
+                        SendTerminalMessage("Brak dostępnych urządzeń");
                     }
                     else
                     {
-                        SendTerminalMessage("Wykryto nowe urządzenia Bluetooth");
+                        SendTerminalMessage("Wykryto nowe urządzenia ");
                         SendBluetoothdetectedDevices_action(bluetoothDeviceNames);
                     }
                 });
@@ -406,7 +406,7 @@ namespace HAL062app.moduly.komunikacja
             }
             else
             { 
-                SendTerminalMessage("Urządzenie nie posiada włączonego Bluetooth");
+                SendTerminalMessage("Urządzenie nie posiada włączonego modulu");
             }
 
         }
@@ -448,7 +448,7 @@ namespace HAL062app.moduly.komunikacja
             }
             else
             {
-                SendTerminalMessage("Urządzenie nie posiada włączonego Bluetooth");
+                SendTerminalMessage("Urządzenie nie posiada włączonego modulu");
             }
 
 

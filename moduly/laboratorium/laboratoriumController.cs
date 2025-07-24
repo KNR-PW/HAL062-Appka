@@ -38,7 +38,10 @@ namespace HAL062app.moduly.laboratorium
 
         }
       
-        
+        private string GetDescription (int pos)
+        {
+            return "a";
+        }
        
 
     }

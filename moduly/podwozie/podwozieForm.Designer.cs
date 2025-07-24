@@ -102,6 +102,14 @@
             this.XboxBatteryLabel = new System.Windows.Forms.Label();
             this.ConnectWithXboxPadBtn = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
+            this.camera_rotate_B_btn = new HAL062app.CustomControls.CustomButton();
+            this.camera_rotate_F_btn = new HAL062app.CustomControls.CustomButton();
+            this.camera_rotate_L_btn = new HAL062app.CustomControls.CustomButton();
+            this.camera_rotate_R_btn = new HAL062app.CustomControls.CustomButton();
+            this.Camera_track = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ForwardSpeedTrack)).BeginInit();
@@ -122,6 +130,9 @@
             this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
+            this.tableLayoutPanel17.SuspendLayout();
+            this.tableLayoutPanel18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Camera_track)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -132,6 +143,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel12, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel17, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -1144,6 +1156,155 @@
             this.label19.Text = "Włącz sterowanie gamepadem";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tableLayoutPanel17
+            // 
+            this.tableLayoutPanel17.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel17.ColumnCount = 2;
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel17.Controls.Add(this.label20, 1, 0);
+            this.tableLayoutPanel17.Controls.Add(this.tableLayoutPanel18, 1, 1);
+            this.tableLayoutPanel17.Controls.Add(this.Camera_track, 1, 2);
+            this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel17.Location = new System.Drawing.Point(3, 451);
+            this.tableLayoutPanel17.Name = "tableLayoutPanel17";
+            this.tableLayoutPanel17.RowCount = 3;
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(692, 187);
+            this.tableLayoutPanel17.TabIndex = 3;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label20.Location = new System.Drawing.Point(208, 1);
+            this.label20.Margin = new System.Windows.Forms.Padding(0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(483, 18);
+            this.label20.TabIndex = 24;
+            this.label20.Text = "Obrót kamery panoramicznej";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel18
+            // 
+            this.tableLayoutPanel18.ColumnCount = 4;
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_B_btn, 0, 0);
+            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_F_btn, 0, 0);
+            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_L_btn, 0, 0);
+            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_R_btn, 1, 0);
+            this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel18.Location = new System.Drawing.Point(211, 23);
+            this.tableLayoutPanel18.Name = "tableLayoutPanel18";
+            this.tableLayoutPanel18.RowCount = 1;
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(477, 67);
+            this.tableLayoutPanel18.TabIndex = 25;
+            // 
+            // camera_rotate_B_btn
+            // 
+            this.camera_rotate_B_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.camera_rotate_B_btn.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_B_btn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_B_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.camera_rotate_B_btn.BorderRadius = 1;
+            this.camera_rotate_B_btn.BorderSize = 0;
+            this.camera_rotate_B_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_B_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.camera_rotate_B_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.camera_rotate_B_btn.ForeColor = System.Drawing.Color.White;
+            this.camera_rotate_B_btn.Location = new System.Drawing.Point(253, 4);
+            this.camera_rotate_B_btn.Name = "camera_rotate_B_btn";
+            this.camera_rotate_B_btn.Size = new System.Drawing.Size(88, 58);
+            this.camera_rotate_B_btn.TabIndex = 20;
+            this.camera_rotate_B_btn.Text = "Do tyłu";
+            this.camera_rotate_B_btn.TextColor = System.Drawing.Color.White;
+            this.camera_rotate_B_btn.UseVisualStyleBackColor = false;
+            this.camera_rotate_B_btn.Click += new System.EventHandler(this.camera_rotate_B_btn_Click);
+            // 
+            // camera_rotate_F_btn
+            // 
+            this.camera_rotate_F_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.camera_rotate_F_btn.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_F_btn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_F_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.camera_rotate_F_btn.BorderRadius = 1;
+            this.camera_rotate_F_btn.BorderSize = 0;
+            this.camera_rotate_F_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_F_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.camera_rotate_F_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.camera_rotate_F_btn.ForeColor = System.Drawing.Color.White;
+            this.camera_rotate_F_btn.Location = new System.Drawing.Point(134, 4);
+            this.camera_rotate_F_btn.Name = "camera_rotate_F_btn";
+            this.camera_rotate_F_btn.Size = new System.Drawing.Size(88, 58);
+            this.camera_rotate_F_btn.TabIndex = 19;
+            this.camera_rotate_F_btn.Text = "Do przodu";
+            this.camera_rotate_F_btn.TextColor = System.Drawing.Color.White;
+            this.camera_rotate_F_btn.UseVisualStyleBackColor = false;
+            this.camera_rotate_F_btn.Click += new System.EventHandler(this.camera_rotate_F_btn_Click);
+            // 
+            // camera_rotate_L_btn
+            // 
+            this.camera_rotate_L_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.camera_rotate_L_btn.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_L_btn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_L_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.camera_rotate_L_btn.BorderRadius = 1;
+            this.camera_rotate_L_btn.BorderSize = 0;
+            this.camera_rotate_L_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_L_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.camera_rotate_L_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.camera_rotate_L_btn.ForeColor = System.Drawing.Color.White;
+            this.camera_rotate_L_btn.Location = new System.Drawing.Point(15, 4);
+            this.camera_rotate_L_btn.Name = "camera_rotate_L_btn";
+            this.camera_rotate_L_btn.Size = new System.Drawing.Size(88, 58);
+            this.camera_rotate_L_btn.TabIndex = 17;
+            this.camera_rotate_L_btn.Text = "Obrót w lewo";
+            this.camera_rotate_L_btn.TextColor = System.Drawing.Color.White;
+            this.camera_rotate_L_btn.UseVisualStyleBackColor = false;
+            this.camera_rotate_L_btn.Click += new System.EventHandler(this.camera_rotate_L_btn_Click);
+            // 
+            // camera_rotate_R_btn
+            // 
+            this.camera_rotate_R_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.camera_rotate_R_btn.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_R_btn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_R_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.camera_rotate_R_btn.BorderRadius = 1;
+            this.camera_rotate_R_btn.BorderSize = 0;
+            this.camera_rotate_R_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_R_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.camera_rotate_R_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.camera_rotate_R_btn.ForeColor = System.Drawing.Color.White;
+            this.camera_rotate_R_btn.Location = new System.Drawing.Point(373, 4);
+            this.camera_rotate_R_btn.Name = "camera_rotate_R_btn";
+            this.camera_rotate_R_btn.Size = new System.Drawing.Size(88, 58);
+            this.camera_rotate_R_btn.TabIndex = 18;
+            this.camera_rotate_R_btn.Text = "Obrót w prawo";
+            this.camera_rotate_R_btn.TextColor = System.Drawing.Color.White;
+            this.camera_rotate_R_btn.UseVisualStyleBackColor = false;
+            this.camera_rotate_R_btn.Click += new System.EventHandler(this.camera_rotate_R_btn_Click);
+            // 
+            // Camera_track
+            // 
+            this.Camera_track.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Camera_track.LargeChange = 10;
+            this.Camera_track.Location = new System.Drawing.Point(211, 97);
+            this.Camera_track.Maximum = 100;
+            this.Camera_track.Name = "Camera_track";
+            this.Camera_track.Size = new System.Drawing.Size(477, 86);
+            this.Camera_track.TabIndex = 26;
+            this.Camera_track.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.Camera_track.Value = 50;
+            this.Camera_track.Leave += new System.EventHandler(this.Camera_track_Leave);
+            // 
             // podwozieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1188,6 +1349,10 @@
             this.tableLayoutPanel14.PerformLayout();
             this.tableLayoutPanel15.ResumeLayout(false);
             this.tableLayoutPanel15.PerformLayout();
+            this.tableLayoutPanel17.ResumeLayout(false);
+            this.tableLayoutPanel17.PerformLayout();
+            this.tableLayoutPanel18.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Camera_track)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1269,5 +1434,13 @@
         private System.Windows.Forms.Label XboxBatteryLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private CustomControls.CustomButton ArmRoverBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel18;
+        private CustomControls.CustomButton camera_rotate_L_btn;
+        private CustomControls.CustomButton camera_rotate_R_btn;
+        private CustomControls.CustomButton camera_rotate_B_btn;
+        private CustomControls.CustomButton camera_rotate_F_btn;
+        private System.Windows.Forms.TrackBar Camera_track;
     }
 }

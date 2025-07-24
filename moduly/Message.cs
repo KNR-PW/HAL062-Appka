@@ -38,6 +38,7 @@ namespace HAL062app.moduly
             text = msg;
         }
 
+
         public char[] encodeMessage()
         {
             char[] data  = new char[19];

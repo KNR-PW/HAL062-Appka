@@ -15,7 +15,8 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\domin\Desktop\LazikApkaV4.4\</PublishUrl>
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Users\domin\Desktop\LazikApkaV5_URCv2\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -28,12 +29,11 @@
     <TargetCulture>pl-PL</TargetCulture>
     <ProductName>a</ProductName>
     <PublisherName>Chmielak Technology Incorporated</PublisherName>
-    <ApplicationRevision>40</ApplicationRevision>
+    <ApplicationRevision>50</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

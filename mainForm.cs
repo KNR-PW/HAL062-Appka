@@ -53,7 +53,7 @@ namespace HAL062app
             modules.Add("Podwozie", new moduly.podwozie.podwozieForm());
             modules.Add("Manipulator", new moduly.manipulator.manipulatorForm());
             modules.Add("Debug", new moduly.sandbox.sandboxForm());
-            modules.Add("Wizualizacja", new moduly.wizualizacja.wizualizacjaForm());
+           // modules.Add("Wizualizacja", new moduly.wizualizacja.wizualizacjaForm());
 
             foreach (var module in modules)
                 isPinned.Add(module.Key, true);
@@ -64,7 +64,7 @@ namespace HAL062app
             moduly.podwozie.podwozieModel podwozieM = new moduly.podwozie.podwozieModel(komunikacjaM);
             moduly.manipulator.manipulatorModel manipulatorM = new moduly.manipulator.manipulatorModel(komunikacjaM);
             moduly.sandbox.sandboxModel sandboxM = new moduly.sandbox.sandboxModel(komunikacjaM);
-            moduly.wizualizacja.wizualizacjaModel wizualizacjaM = new moduly.wizualizacja.wizualizacjaModel(komunikacjaM);
+            //moduly.wizualizacja.wizualizacjaModel wizualizacjaM = new moduly.wizualizacja.wizualizacjaModel(komunikacjaM);
 
 
             moduly.komunikacja.komunikacjaController komunikacjaC = new moduly.komunikacja.komunikacjaController(modules, komunikacjaM);
@@ -72,13 +72,13 @@ namespace HAL062app
             moduly.podwozie.podwozieController podwozieC = new moduly.podwozie.podwozieController(modules, podwozieM);
             moduly.manipulator.manipulatorController manipulatorC = new moduly.manipulator.manipulatorController(modules, manipulatorM);
             moduly.sandbox.sandboxController sandboxC = new moduly.sandbox.sandboxController(modules, sandboxM);
-            moduly.wizualizacja.wizualizacjaController wizualizacjaC = new moduly.wizualizacja.wizualizacjaController(modules, wizualizacjaM);
+           // moduly.wizualizacja.wizualizacjaController wizualizacjaC = new moduly.wizualizacja.wizualizacjaController(modules, wizualizacjaM);
 
             komunikacjaM.Subscribe(laboratoriumM);
             komunikacjaM.Subscribe(podwozieM);
             komunikacjaM.Subscribe(manipulatorM);
             komunikacjaM.Subscribe(sandboxM);
-            komunikacjaM.Subscribe(wizualizacjaM);
+          //  komunikacjaM.Subscribe(wizualizacjaM);
 
 
         }
@@ -89,7 +89,7 @@ namespace HAL062app
             ShowModule("Debug");
             ShowModule("Laboratorium");
             ShowModule("Komunikacja");
-            ShowModule("Wizualizacja");
+            //ShowModule("Wizualizacja");
 
         }
 
@@ -151,7 +151,7 @@ namespace HAL062app
         }
         private void wizualizacjaBtn_Click(object sender, EventArgs e)
         {
-            ShowModule("Wizualizacja");
+          //  ShowModule("Wizualizacja");
         }
 
         private void customButton6_Click(object sender, EventArgs e)

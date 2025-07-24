@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
+using Newtonsoft.Json.Linq;
 using SharpDX.XInput;
 using static HAL062app.ControllerState;
 
@@ -560,6 +561,51 @@ namespace HAL062app.moduly.podwozie
         private void podwozieForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        private void camera_rotate_L_btn_Click(object sender, EventArgs e)
+        {
+            Camera_track.Value = 25;
+            Camera_track_Leave(sender, e);
+        }
+
+        private void camera_rotate_R_btn_Click(object sender, EventArgs e)
+        {
+            Camera_track.Value = 75;
+            Camera_track_Leave(sender, e);
+        }
+
+        private void camera_rotate_F_btn_Click(object sender, EventArgs e)
+        {
+            Camera_track.Value = 50;
+            Camera_track_Leave(sender, e);
+        }
+
+        private void camera_rotate_B_btn_Click(object sender, EventArgs e)
+        {
+            Camera_track.Value = 100;
+            Camera_track_Leave(sender, e);
+        }
+
+       
+
+       
+
+        private void Camera_track_Leave(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(5);
+            frame.buffer[2] = (byte)((int)Camera_track.Value);
+            frame.buffer[3] = (byte)('x');
+            frame.buffer[4] = (byte)('x');
+            frame.buffer[5] = (byte)('x');
+            frame.buffer[6] = (byte)('x');
+            frame.buffer[7] = (byte)('x');
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+            sendMessage_Action(frame);
         }
     }
 }
