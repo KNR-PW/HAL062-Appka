@@ -1,26 +1,9 @@
-﻿using HAL062app.moduly.manipulator;
-using HelixToolkit.Wpf;
-using MathNet.Numerics.Distributions;
-using SharpDX.Mathematics.Interop;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static HAL062app.moduly.wizualizacja.objectConfig;
 using Color = System.Windows.Media.Color;
 using Model3D = System.Windows.Media.Media3D.Model3D;
 
@@ -79,9 +62,9 @@ namespace HAL062app.moduly.wizualizacja
             var assembly = _assembledObjects.FirstOrDefault(obj => obj.Name == name);
             if (assembly != null)
                 assembly.TransformAssembly(x);
-            
+
         }
-     
+
 
 
     }
@@ -195,13 +178,13 @@ namespace HAL062app.moduly.wizualizacja
         public override void TransformAssembly(float[] x)
         {
 
-            
+
         }
 
     } //TODO, zrobić obsługę modeli wiertła i poruszania się
 
 
-    
+
 
     internal class CameraManager //Klasa odpowiedzialna za trzymanie i aktualizowanie pozycji kamer na podstawie poruszeń assembly
     {
@@ -263,28 +246,28 @@ namespace HAL062app.moduly.wizualizacja
         }
     }
 
-   
 
-  
+
+
 
 
     public partial class wizualizacjaWPF : UserControl
     {
-        
+
         Loader loader;
         float val = 0;
         objectConfig config;
         ModelVisual3D visual3D;
         CameraManager CameraManager;
-        
-        
+
+
         public List<string> CameraPositions { get; set; }
         public wizualizacjaWPF()
         {
             InitializeComponent();
             config = new objectConfig();
             visual3D = new ModelVisual3D();
-            loader = new Loader(config, visual3D);          
+            loader = new Loader(config, visual3D);
             viewport.Children.Add(visual3D);
 
             CameraManager = new CameraManager();
@@ -301,13 +284,13 @@ namespace HAL062app.moduly.wizualizacja
             loader.transformAssembly("Manipulator_simulation", new float[] { val, 0, 0, 0, 0, 0 });
         }
 
-        
+
         private void NewViewport_Click(object sender, RoutedEventArgs e)
         {
 
-            
+
         }
-    
+
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (sender is Slider slider)

@@ -1,30 +1,27 @@
-﻿using HAL062app.moduly.laboratorium;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace HAL062app.moduly.podwozie
 {
-    public class podwozieController
+
+    public class PodwoziePresenter
     {
-        private podwozieForm display;
-        private podwozieModel model;
-        private Dictionary<string, Form> modules;
 
-        public podwozieController(Dictionary<string, Form> moduleForms, podwozieModel model)
+        private readonly IPodwozieModel _model;
+        private readonly IPodwozieView _view;
+
+        private Dictionary<string, Form> _modules;
+
+        public PodwoziePresenter(Dictionary<string, Form> moduleForms, IPodwozieModel model)
         {
-            modules = moduleForms;
-            this.model = model;
+            _modules = moduleForms;
+            this._model = model;
 
-            if (modules.TryGetValue("Podwozie", out Form form))
+            if (_modules.TryGetValue("Podwozie", out Form form))
             {
-                display = form as podwozieForm;
+                _view = form as IPodwozieView;
 
-                if (display != null)
+                if (_view != null)
                 {
                     /*
                      * Tutaj dzieje sie cala magia związana z połączeniem modelu i widoku
@@ -54,23 +51,23 @@ namespace HAL062app.moduly.podwozie
                      * W drugą stronę analogicznie, ale na odwrót 
                      */
 
-                    display.sendMotorDataToController_Action += sendMotorDataToModel_Action;
-                    display.sendMessage_Action += sendMessageToKomunikacja;
+                    _view.SendMotorDataToController_Action += SendMotorDataToModel_Action;
+                    _view.SendMessage_Action += SendMessageToKomunikacja;
 
                 }
             }
 
         }
-        private void sendMotorDataToModel_Action (motorData data)
+        private void SendMotorDataToModel_Action(MotorData data)
         {
-            model.sendSpeed(data);
+            _model.SendSpeed(data);
         }
 
-        private void sendMessageToKomunikacja(Message msg)
+        private void SendMessageToKomunikacja(Message msg)
         {
-            model.SendMessageToKomunikacja(msg);
+            _model.SendMessageToKomunikacja(msg);
 
         }
-        
+
     }
 }

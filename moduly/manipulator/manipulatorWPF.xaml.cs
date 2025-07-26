@@ -1,24 +1,10 @@
-﻿using System;
+﻿using HelixToolkit.Wpf;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
-using System.Windows.Resources;
-using System.Windows.Shapes;
-using HelixToolkit.Wpf;
 namespace HAL062app.moduly.manipulator
 {
 
@@ -45,7 +31,7 @@ namespace HAL062app.moduly.manipulator
 
 
 
-    
+
     public partial class manipulatorWPF : UserControl
     {
         Model3DGroup RA = new Model3DGroup();
@@ -64,7 +50,7 @@ namespace HAL062app.moduly.manipulator
         RotateTransform3D R;
         TranslateTransform3D T;
 
-        SphereVisual3D [] sphere;
+        SphereVisual3D[] sphere;
         BoxVisual3D box;
 
         Color oldColor = Colors.White;
@@ -78,7 +64,7 @@ namespace HAL062app.moduly.manipulator
         Vector3D reachingPoint;
         System.Windows.Forms.Timer timer1;
 
-        
+
         private const string MODEL_PATH1 = "dof1.STL";
         private const string MODEL_PATH2 = "dof2.STL";
         private const string MODEL_PATH3 = "dof3.STL";
@@ -86,18 +72,18 @@ namespace HAL062app.moduly.manipulator
         private const string MODEL_PATH5 = "dof5.STL";
         private const string MODEL_PATH6 = "gripper.STL";
         private const string MODEL_PATH7 = "rover.STL";
-       
+
         public event Action<int> test;
 
         public manipulatorWPF()
         {
-            
+
             InitializeComponent();
             //basePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\moduly\\manipulator\\models\\";
             basePath = AppDomain.CurrentDomain.BaseDirectory + @"\\moduly\\manipulator\\models\\";
             //sePath = "\\moduly\\manipulator\\models\\"; Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "dof1.STL", SearchOption.AllDirectories)[0]
             List<string> modelsNames = new List<string>();
-          
+
 
             modelsNames.Add(MODEL_PATH1);
             modelsNames.Add(MODEL_PATH2);
@@ -123,12 +109,12 @@ namespace HAL062app.moduly.manipulator
                 Position = new Point3D(1500, -2060, 1300),
                 LookDirection = new Vector3D(-1285, 2140, -1020),
                 UpDirection = new Vector3D(-0.20, 0.32, 0.93),
-                
+
             };
             viewport.Camera = camera;
             viewport.Children.Add(visual);
             viewport.Children.Add(RoboticArm);
-           
+
 
             //float[] angles = { joints[0].angle, joints[1].angle, joints[2].angle, joints[3].angle, joints[4].angle, joints[5].angle};
             //ForwardKinematics(angles);
@@ -143,7 +129,7 @@ namespace HAL062app.moduly.manipulator
             {
                 Center = new Point3D(0, 0, 0),
                 Radius = 20,
-            Fill = Brushes.Red
+                Fill = Brushes.Red
             };
 
             sphere[1] = new SphereVisual3D
@@ -167,7 +153,7 @@ namespace HAL062app.moduly.manipulator
         }
         private float ToDegrees(float radian)
         {
-            
+
             return radian * 180.0F / (float)Math.PI;
         }
         private float ToRadians(float degrees)
@@ -176,9 +162,9 @@ namespace HAL062app.moduly.manipulator
         }
 
 
-        
 
-   
+
+
 
 
 
@@ -193,8 +179,8 @@ namespace HAL062app.moduly.manipulator
                 foreach (string modelName in modelsNames)
                 {
                     var materialGroup = new MaterialGroup();
-                   Color mainColor = Colors.LightCyan;
-                   EmissiveMaterial emissMat = new EmissiveMaterial(new SolidColorBrush(mainColor));
+                    Color mainColor = Colors.LightCyan;
+                    EmissiveMaterial emissMat = new EmissiveMaterial(new SolidColorBrush(mainColor));
                     DiffuseMaterial diffMat = new DiffuseMaterial(new SolidColorBrush(mainColor));
                     SpecularMaterial specMat = new SpecularMaterial(new SolidColorBrush(mainColor), 200);
                     materialGroup.Children.Add(emissMat);
@@ -205,11 +191,11 @@ namespace HAL062app.moduly.manipulator
                     GeometryModel3D model = link.Children[0] as GeometryModel3D;
                     model.Material = materialGroup;
                     model.BackMaterial = materialGroup;
-                    
+
                     joints.Add(new Joint(link));
                 }
-                
-             
+
+
                 changeModelColor(joints[0], Colors.LightBlue);
                 RA.Children.Add(joints[0].model);
                 changeModelColor(joints[1], Colors.Red);
@@ -223,7 +209,7 @@ namespace HAL062app.moduly.manipulator
                 changeModelColor(joints[5], Colors.LightSlateGray);
                 RA.Children.Add(joints[5].model);
                 RA.Children.Add(joints[6].model);
-                
+
                 //base-dof1
                 joints[0].angleMin = -180;
                 joints[0].angleMax = 180;
@@ -299,8 +285,8 @@ namespace HAL062app.moduly.manipulator
         public Vector3D ForwardKinematics(float[] anglesFloat)
         {
             float[] angles = new float[6];
-            for(int i = 0; i<anglesFloat.Length; i++)
-            angles[i] = (float)anglesFloat[i];
+            for (int i = 0; i < anglesFloat.Length; i++)
+                angles[i] = (float)anglesFloat[i];
             F1 = new Transform3DGroup();
             R = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(joints[0].rotAxisX, joints[0].rotAxisY, joints[0].rotAxisZ), angles[0]), new Point3D(joints[0].rotPointX, joints[0].rotPointY, joints[0].rotPointZ));
             F1.Children.Add(R);
@@ -319,7 +305,7 @@ namespace HAL062app.moduly.manipulator
             F3.Children.Add(T);
             F3.Children.Add(R);
             F3.Children.Add(F2);
-            
+
             //as before
             F4 = new Transform3DGroup();
             T = new TranslateTransform3D(0, 0, 0); //1500, 650, 1650
@@ -342,14 +328,14 @@ namespace HAL062app.moduly.manipulator
             F6.Children.Add(R);
             F6.Children.Add(F5);
 
-            joints[0].model.Transform = F1; 
-            joints[1].model.Transform = F2;  
+            joints[0].model.Transform = F1;
+            joints[1].model.Transform = F2;
             joints[2].model.Transform = F3;
             joints[3].model.Transform = F4;
             joints[4].model.Transform = F5;
-            joints[5].model.Transform = F6; 
+            joints[5].model.Transform = F6;
 
-            
+
 
             return new Vector3D(joints[5].model.Bounds.Location.X, joints[5].model.Bounds.Location.Y, joints[5].model.Bounds.Location.Z);
         }
@@ -366,11 +352,11 @@ namespace HAL062app.moduly.manipulator
             joints[3].angle = angles[3];
             joints[4].angle = angles[4];
             joints[5].angle = angles[5];
-         
+
 
             if ((--movements) <= 0)
             {
-              
+
                 isAnimating = false;
                 timer1.Stop();
             }
@@ -388,10 +374,10 @@ namespace HAL062app.moduly.manipulator
             return result;
         }
 
-      
-       
-       
-       
+
+
+
+
         public bool checkAngles(float[] oldAngles, float[] angles)
         {
             for (int i = 0; i <= 5; i++)
@@ -434,17 +420,17 @@ namespace HAL062app.moduly.manipulator
         }
         private void execute_fk()
         {
-           
+
             float[] angles = { (float)joints[0].angle, (float)joints[1].angle, (float)joints[2].angle, (float)joints[3].angle, (float)joints[4].angle, (float)joints[5].angle };
             ForwardKinematics(angles);
-           
+
         }
         public float PartialGradient(Vector3D target, float[] angles, int i)
         {
-           
+
             float angle = angles[i];
 
-           
+
             float f_x = DistanceFromTarget(target, angles);
 
             angles[i] += SamplingDistance;
@@ -457,8 +443,8 @@ namespace HAL062app.moduly.manipulator
             return gradient;
         }
 
-        
-       
+
+
 
         public void UpdateSphere(float[] xyz, int ID)
         {
@@ -473,32 +459,32 @@ namespace HAL062app.moduly.manipulator
             double z = xyzRPY[2];
 
             // Konwersja radianów na stopnie
-            double roll = xyzRPY[3] * (180 / Math.PI);  
-            double pitch = xyzRPY[4] * (180 / Math.PI); 
-            double yaw = xyzRPY[5] * (180 / Math.PI);   
+            double roll = xyzRPY[3] * (180 / Math.PI);
+            double pitch = xyzRPY[4] * (180 / Math.PI);
+            double yaw = xyzRPY[5] * (180 / Math.PI);
 
-            
+
             Transform3DGroup transformGroup = new Transform3DGroup();
 
 
-        // TranslateTransform3D moveToCenter = new TranslateTransform3D(-x, -y, -z);
+            // TranslateTransform3D moveToCenter = new TranslateTransform3D(-x, -y, -z);
             box.Center = new Point3D(0, 0, 0);
 
             RotateTransform3D rotateX = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), roll));
             RotateTransform3D rotateY = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 1, 0), pitch));
             RotateTransform3D rotateZ = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(0, 0, 1), yaw));
 
-            
+
             TranslateTransform3D moveBack = new TranslateTransform3D(x, y, z);
 
-           
-            
+
+
             transformGroup.Children.Add(rotateX);
             transformGroup.Children.Add(rotateY);
             transformGroup.Children.Add(rotateZ);
             transformGroup.Children.Add(moveBack);
 
-         
+
             box.Transform = transformGroup;
 
         }
@@ -511,9 +497,9 @@ namespace HAL062app.moduly.manipulator
                 return;
             try
             {
-                
+
                 isInitialized = false;
-               
+
                 isInitialized = true;
                 execute_fk();
             }
@@ -560,11 +546,11 @@ namespace HAL062app.moduly.manipulator
             angles.CopyTo(oldAngles, 0);
             for (int i = 0; i <= 5; i++)
             {
-               
+
                 float gradient = PartialGradient(target, angles, i);
                 angles[i] -= LearningRate * gradient;
 
-               
+
                 angles[i] = Clamp(angles[i], joints[i].angleMin, joints[i].angleMax);
 
 
@@ -582,6 +568,6 @@ namespace HAL062app.moduly.manipulator
 
         }
 
-       
+
     }
 }

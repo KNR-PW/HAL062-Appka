@@ -1,28 +1,20 @@
-﻿using InTheHand.Net.Sockets;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace HAL062app.moduly.komunikacja
 {
-    public partial class komunikacjaForm : Form
+    public partial class KomunikacjaForm : Form
     {
+
+        
+
         //Action
-
         public event Action<Message> SendTerminalMsg;
-
-
-        // Uart
-        public event Action RefreshUartPorts_action;
-        public event Action<string,int> ConnectUart_action;
-        public event Action DisconnectUart_action;
+        
         //telnet
         public event Action<string, int> ConnectTelnet_action;
         public event Action disconnectTelnet_action;
@@ -36,16 +28,14 @@ namespace HAL062app.moduly.komunikacja
         public event Action<bool> BluetoothStatusRequest;
         private bool BluetoothStatusBoolean = false;
 
-        public komunikacjaForm()
+        public KomunikacjaForm()
         {
             InitializeComponent();
-            UartBaudRateCombo.Items.AddRange(baudRates.Select(x => x.ToString()).ToArray());
-            UartBaudRateCombo.SelectedIndex = 9;
+           
         }
 
         private void komunikacjaForm_Load(object sender, EventArgs e)
         {
-            RefreshUartPorts_action();
             ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 192, 192);
             BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 192, 192);
             EthernetStatus(false);
@@ -53,21 +43,33 @@ namespace HAL062app.moduly.komunikacja
 
         public void UpdateTerminal(List<Message> logs)
         {
-           // TerminalBox.Items.Clear(); // przy wiekszej ilosci wiadomosci bedzie sie zawieszac, trzeba dodac opcje filtrowania po adresie i wtedy clear uzywac
-          //  foreach (var message in logs)
-         //   {
+            // TerminalBox.Items.Clear(); // przy wiekszej ilosci wiadomosci bedzie sie zawieszac, trzeba dodac opcje filtrowania po adresie i wtedy clear uzywac
+            //  foreach (var message in logs)
+            //   {
 
-          //      TerminalBox.Invoke(new MethodInvoker(() => TerminalBox.Items.Add(message.time.ToString("HH:mm:ss") + ": " + message.author + "->" + message.receiver + ": " + message.text)));
-          //  }
-           
+            //      TerminalBox.Invoke(new MethodInvoker(() => TerminalBox.Items.Add(message.time.ToString("HH:mm:ss") + ": " + message.author + "->" + message.receiver + ": " + message.text)));
+            //  }
+
             Message lastMsg = logs.Last();
             TerminalBox.Invoke(new MethodInvoker(() => TerminalBox.Items.Add(lastMsg.time.ToString("HH:mm:ss") + ": " + lastMsg.author + "->" + lastMsg.receiver + ": " + lastMsg.text)));
-            TerminalBox.TopIndex = TerminalBox.Items.Count -1;
+            TerminalBox.TopIndex = TerminalBox.Items.Count - 1;
+
+
+           
         }
+
+
+        public void UpdateStatistics(int SentMessages_Count, int ReceivedMessages_Count, int BufforFillLevel_Count)
+        {
+            SentMsg_label.Text = "Wysłano: " + SentMessages_Count + " wiadomości";
+            ReceivedMsg_label.Text = "Odebrano: " + ReceivedMessages_Count + " wiadomości";
+            Buffor_Label.Text = "Zapełnienie buffora: " + BufforFillLevel_Count;
+        }
+
         private void TerminalBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.TerminalBox.SelectedItem != null) 
-            Clipboard.SetDataObject(this.TerminalBox.SelectedItem.ToString());
+            if (this.TerminalBox.SelectedItem != null)
+                Clipboard.SetDataObject(this.TerminalBox.SelectedItem.ToString());
 
         }
         private void SendBtn_Click(object sender, EventArgs e)
@@ -93,44 +95,8 @@ namespace HAL062app.moduly.komunikacja
 
 
 
-        //////////////////////////////////////////////////
-        ///
-        ///                 UART
-        ///
-        //////////////////////////////////////////////////
-        private int[] baudRates = { 110, 300, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200 };
-        public void UpdatePorts(string[] ports)
-        {
-            UartPortCombo.Items.Clear();
-            UartPortCombo.Items.AddRange(ports.Select(x => x.ToString()).ToArray());
-
-        }
-
-        private void UartRefreshBtn_click(object sender, EventArgs e)
-        {
-            RefreshUartPorts_action();
-        }
-
-        private void ConnectUartBtn_Click(object sender, EventArgs e)
-        {
-            if (ConnectUartBtn.Text == "Połącz")
-            {
-                if (UartPortCombo.SelectedItem != null)
-                {
-                    ConnectUartBtn.BackColor = Color.FromArgb(192,0, 0);
-                    ConnectUart_action(UartPortCombo.SelectedItem.ToString(), baudRates[UartBaudRateCombo.SelectedIndex]);
-                    ConnectUartBtn.Text = "Rozłącz";
-                }
-                else
-                    ConnectUart_action("-1", baudRates[UartBaudRateCombo.SelectedIndex]);
-            } else
-            {
-                ConnectUartBtn.BackColor = Color.FromArgb(0, 192, 0);
-                ConnectUartBtn.Text = "Połącz";
-                DisconnectUart_action();
-
-            }
-        }
+   
+      
         //////////////////////////////////////////////////
         ///
         ///                 Telnet/SSH 
@@ -177,7 +143,7 @@ namespace HAL062app.moduly.komunikacja
         {
             EthernetStatusBoolean = status;
             EthernetSwitch.Checked = status;
-            if(!status) 
+            if (!status)
                 EthernetConnectBtn.BackColor = Color.FromArgb(192, 192, 192);
             else
                 EthernetConnectBtn.BackColor = Color.FromArgb(0, 192, 0);
@@ -185,7 +151,7 @@ namespace HAL062app.moduly.komunikacja
 
         public void EthernetConnected(bool status)
         {
-            if(status)
+            if (status)
             {
                 EthernetConnectBtn.BackColor = Color.FromArgb(192, 0, 0);
                 EthernetConnectBtn.Text = "Rozłącz";
@@ -261,7 +227,8 @@ namespace HAL062app.moduly.komunikacja
             {
                 ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 0, 0);
                 ConnectBluetoothBtn.Text = "Rozłącz";
-            } else
+            }
+            else
             {
                 ConnectBluetoothBtn.BackColor = Color.FromArgb(0, 192, 0);
                 ConnectBluetoothBtn.Text = "Połącz";
@@ -277,7 +244,7 @@ namespace HAL062app.moduly.komunikacja
         {
             BluetoothStatusBoolean = status;
             BluetoothSwitch.Checked = status;
-            if(!status)
+            if (!status)
             {
                 ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 192, 192);
                 BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 192, 192);
@@ -286,7 +253,8 @@ namespace HAL062app.moduly.komunikacja
                 BluetoothDevicesComboBox.SelectedIndex = -1;
                 BluetoothDevicesComboBox.Texts = "";
 
-            }else
+            }
+            else
             {
                 ConnectBluetoothBtn.BackColor = Color.FromArgb(0, 192, 0);
                 BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 0, 0);
@@ -298,6 +266,8 @@ namespace HAL062app.moduly.komunikacja
         {
             e.Cancel = true;
         }
+
+        
     }
-    
+
 }

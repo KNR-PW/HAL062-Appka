@@ -1,9 +1,6 @@
 ﻿using HAL062app.moduly.komunikacja;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 /*  Sterowanie jest dosyć zawiłe w przypadku manipulatora (jeśli chodzi o program) 
  *  Posiadamy 5 plików:  
@@ -30,17 +27,17 @@ using System.Threading.Tasks;
 
 namespace HAL062app.moduly.manipulator
 {
-    public class manipulatorModel : MainChannelObserver
+    public class manipulatorModel : IMessageObserver
     {
-        komunikacja.komunikacjaModel komunikacjaModel;
+        komunikacja.KomunikacjaModel komunikacjaModel;
         private ConcurrentQueue<Message> receivedQueue;
 
-        public manipulatorModel(komunikacjaModel komunikacja)
+        public manipulatorModel(KomunikacjaModel komunikacja)
         {
             receivedQueue = new ConcurrentQueue<Message>();
             this.komunikacjaModel = komunikacja;
         }
-        public void MainChannel(Message message)
+        public void ReceiveMessage(Message message)
         {
             receivedQueue.Enqueue(message);
 
@@ -73,7 +70,7 @@ namespace HAL062app.moduly.manipulator
             {
                 frames[i] = new Message();
                 frames[i].author = 4;
-                frames[i].ID = i+129;
+                frames[i].ID = i + 129;
             }
             byte[] x1 = BitConverter.GetBytes(0);
             byte[] x2 = BitConverter.GetBytes(0);
@@ -107,11 +104,11 @@ namespace HAL062app.moduly.manipulator
                 x5 = BitConverter.GetBytes((float)position.joints[4]);
                 x6 = BitConverter.GetBytes((float)position.joints[5]);
             }
-         
+
 
             for (int j = 0; j < 4; j++)
             {
-                frames[0].buffer[2+j] = x1[3 - j];
+                frames[0].buffer[2 + j] = x1[3 - j];
                 frames[0].buffer[2 + 4 + j] = x2[3 - j];
                 frames[1].buffer[2 + j] = x3[3 - j];
                 frames[1].buffer[2 + 4 + j] = x4[3 - j];

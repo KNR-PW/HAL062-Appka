@@ -1,24 +1,19 @@
 ﻿using HAL062app.moduly.komunikacja;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HAL062app.moduly.sandbox
 {
-    public class sandboxModel : MainChannelObserver
+    public class SandboxModel : IMessageObserver
     {
-        komunikacja.komunikacjaModel komunikacjaModel;
+        komunikacja.KomunikacjaModel komunikacjaModel;
         private ConcurrentQueue<Message> receivedQueue;
 
-        public sandboxModel(komunikacjaModel komunikacja)
+        public SandboxModel(KomunikacjaModel komunikacja)
         {
             receivedQueue = new ConcurrentQueue<Message>();
             this.komunikacjaModel = komunikacja;
         }
-        public void MainChannel(Message message)
+        public void ReceiveMessage(Message message)
         {
             receivedQueue.Enqueue(message); // to powoduje, ze wiadomosc z komunikacji trafia do tej queue
 

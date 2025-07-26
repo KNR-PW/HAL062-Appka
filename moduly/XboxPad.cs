@@ -1,9 +1,5 @@
 ﻿using SharpDX.XInput;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 
 namespace HAL062app
@@ -60,7 +56,7 @@ namespace HAL062app
         }
         public void VibrateGamepad(float leftMotor, float rightMotor)
         {
-            if(controller.IsConnected)
+            if (controller.IsConnected)
             {
                 ushort leftMotorSpeed = (ushort)(leftMotor * ushort.MaxValue);
                 ushort rightMotorSpeed = (ushort)(rightMotor * ushort.MaxValue);
@@ -120,9 +116,9 @@ namespace HAL062app
             LeftTrigger = state.Gamepad.LeftTrigger;
             RightTrigger = state.Gamepad.RightTrigger;
         }
-      
 
-        
+
+
         public bool HasChanged(State newState)
         {
             return Buttons != newState.Gamepad.Buttons ||

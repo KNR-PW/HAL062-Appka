@@ -1,6 +1,6 @@
 ﻿namespace HAL062app.moduly.sandbox
 {
-    partial class sandboxForm
+    partial class SandboxForm
     {
         /// <summary>
         /// Required designer variable.

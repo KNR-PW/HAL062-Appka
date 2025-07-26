@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.ComponentModel;
+using System.Windows.Forms;
 
 
 namespace HAL062app.CustomControls
 {
 
 
-    public class CustomButton: Button
+    public class CustomButton : Button
     {
         private int borderSize = 0;
         private int borderRadius = 20;
-        private Color borderColor = Color.FromArgb(0,155,154,159);
+        private Color borderColor = Color.FromArgb(0, 155, 154, 159);
 
 
         public CustomButton()
@@ -43,7 +39,7 @@ namespace HAL062app.CustomControls
                 this.Invalidate();
             }
         }
-      
+
         public int BorderRadius
         {
             get { return borderRadius; }
@@ -53,7 +49,7 @@ namespace HAL062app.CustomControls
                 this.Invalidate();
             }
         }
-      
+
         public Color BorderColor
         {
             get { return borderColor; }
@@ -63,7 +59,7 @@ namespace HAL062app.CustomControls
                 this.Invalidate();
             }
         }
-       
+
         public Color BackgroundColor
         {
             get { return this.BackColor; }
@@ -141,5 +137,5 @@ namespace HAL062app.CustomControls
             this.Invalidate();
         }
     }
-    
+
 }

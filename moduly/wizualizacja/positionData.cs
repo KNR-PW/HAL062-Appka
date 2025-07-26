@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HAL062app.moduly.wizualizacja
+﻿namespace HAL062app.moduly.wizualizacja
 {
     public class positionData
     {
@@ -27,7 +20,7 @@ namespace HAL062app.moduly.wizualizacja
     public class specialPosition : positionData
     {
         private string _ID;
-        public specialPosition(string ID, float[] angles) :base(angles)
+        public specialPosition(string ID, float[] angles) : base(angles)
         {
             _ID = ID;
         }

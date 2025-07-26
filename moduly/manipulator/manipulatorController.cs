@@ -1,9 +1,4 @@
-﻿using HAL062app.moduly.podwozie;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace HAL062app.moduly.manipulator
@@ -26,10 +21,10 @@ namespace HAL062app.moduly.manipulator
                 if (display != null)
                 {
 
-                    
+
                     //  model.wywolaj += UpdateTextBox1;
                     //    display.DequeueAction += dequeue;
-                    display.sendFrameToController_Action += sendMessageToKomunikacja;
+                    display.sendFrameToController_Action += SendMessageToKomunikacja;
                     display.sendPositionToController_Action += sendAnglesToManipulator;
                 }
             }
@@ -42,7 +37,7 @@ namespace HAL062app.moduly.manipulator
             model.SendAnglesToManipulator(position, isXYZ);
 
         }
-        private void sendMessageToKomunikacja(Message msg)
+        private void SendMessageToKomunikacja(Message msg)
         {
             model.SendMessageToKomunikacja(msg);
 

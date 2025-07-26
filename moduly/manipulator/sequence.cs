@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /*
  * Tutaj trzymać będziemy wszystkie sekwencje ruchów manipulatora 
@@ -21,16 +17,16 @@ namespace HAL062app.moduly.manipulator
     public class Sequence
     {
         public string name { get; set; }
-        
 
-       public List<Position> sequence {get; set; }
+
+        public List<Position> sequence { get; set; }
         [JsonConstructor]
         public Sequence(string name, List<Position> sequence)
         {
             this.name = name;
             this.sequence = sequence;
         }
-        
+
         public override string ToString()
         {
             return name;
@@ -43,7 +39,7 @@ namespace HAL062app.moduly.manipulator
         }
         private void refreshIndexing()
         {
-            for(int i = 0; i < sequence.Count; i++)
+            for (int i = 0; i < sequence.Count; i++)
             {
                 this.sequence[i].id = i;
             }
@@ -54,7 +50,7 @@ namespace HAL062app.moduly.manipulator
 
             sequence.Add(position);
 
-           
+
         }
         public void removePosition(int sequencePosition)
         {
@@ -65,7 +61,7 @@ namespace HAL062app.moduly.manipulator
             }
         }
 
-       public int length()
+        public int length()
         {
             return sequence.Count;
         }
@@ -76,6 +72,6 @@ namespace HAL062app.moduly.manipulator
             copy.name = this.name;
             return copy;
         }
-       
+
     }
 }

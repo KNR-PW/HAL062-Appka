@@ -1,21 +1,16 @@
 ﻿using HAL062app.moduly.komunikacja;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HAL062app.moduly.wizualizacja
 {
-    public class wizualizacjaModel : MainChannelObserver
+    public class wizualizacjaModel : IMessageObserver
     {
-        komunikacja.komunikacjaModel komunikacjaModel;
+        komunikacja.KomunikacjaModel komunikacjaModel;
         private ConcurrentQueue<Message> receivedQueue;
         private objectConfig _objectConfig;
         private engine _engine;
 
-        public wizualizacjaModel(komunikacjaModel komunikacja)
+        public wizualizacjaModel(KomunikacjaModel komunikacja)
         {
             receivedQueue = new ConcurrentQueue<Message>();
             this.komunikacjaModel = komunikacja;
@@ -23,7 +18,7 @@ namespace HAL062app.moduly.wizualizacja
             _engine = new engine(_objectConfig);
         }
 
-        public void MainChannel(Message message)
+        public void ReceiveMessage(Message message)
         {
             receivedQueue.Enqueue(message); // to powoduje, ze wiadomosc z komunikacji trafia do tej queue
 

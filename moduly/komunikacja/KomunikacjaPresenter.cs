@@ -1,26 +1,22 @@
-﻿using InTheHand.Net.Sockets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace HAL062app.moduly.komunikacja
 {
-    public class komunikacjaController
+    public class KomunikacjaPresenter
     {
-        private komunikacjaForm display;
-        private komunikacjaModel model;
+        private KomunikacjaForm display;
+        private KomunikacjaModel model;
         private Dictionary<string, Form> modules;
 
-        public komunikacjaController(Dictionary<string, Form> moduleForms, komunikacjaModel model)
+        public KomunikacjaPresenter(Dictionary<string, Form> moduleForms, KomunikacjaModel model)
         {
             modules = moduleForms;
             this.model = model;
-           
+
             if (modules.TryGetValue("Komunikacja", out Form form))
             {
-                display = form as komunikacjaForm;
+                display = form as KomunikacjaForm;
 
                 if (display != null)
                 {
@@ -28,11 +24,7 @@ namespace HAL062app.moduly.komunikacja
                     display.SendTerminalMsg += ReceiveTerminalMsg;
                     model.UpdateLogTerminal += UpdateTerminal;
 
-                    //Uart
-                    model.SendUARTdetectedPorts_action += UpdateUARTComboBox;
-                    display.RefreshUartPorts_action += RequestUARTports;
-                    display.ConnectUart_action += ConnectUart;
-                    display.DisconnectUart_action += DisconnectUart;
+                    CommunicationStatistics.Instance.StatsUpdated_action += CommunicationStatisticsUpdate;
                     //Telnet/SSH
                     display.ConnectTelnet_action += ConnectTelnet;
                     display.EthernetStatus_action += EthernetStatus;
@@ -48,35 +40,25 @@ namespace HAL062app.moduly.komunikacja
                 }
             }
         }
+        private void CommunicationStatisticsUpdate(int SentMessages_Count, int ReceivedMessages_Count, int BufforFillLevel_Count)
+        {
+            display.UpdateStatistics(SentMessages_Count,ReceivedMessages_Count, BufforFillLevel_Count);
+
+        }
 
         private void ReceiveTerminalMsg(Message msg)
         {
-            
-           
+
+
             model.SendPrivateMessage(msg);
 
         }
-        private void UpdateTerminal(List<Message> logs) {
+        private void UpdateTerminal(List<Message> logs)
+        {
             display.UpdateTerminal(logs);
 
         }
-        //UART
-        private void UpdateUARTComboBox(string[] ports)
-        {
-            display.UpdatePorts(ports);
-
-        }
-        private void RequestUARTports()
-        {
-            model.RefreshPortsUART();
-        }
-        private void ConnectUart(string portName, int baudRate)
-        {
-            model.ConnectUART(portName, baudRate);
-        }
-        private void DisconnectUart() {
-            model.DisconnectUART();
-        }
+       
         //Telnet/SSH
         private void ConnectTelnet(string ip, int port)
         {
@@ -86,7 +68,7 @@ namespace HAL062app.moduly.komunikacja
         private void EthernetStatus(bool status)
         {
             display.EthernetStatus(status);
-            if (status == false&&model.isTelnetConnected())
+            if (status == false && model.isTelnetConnected())
             {
                 model.TelnetDisconnect();
             }
@@ -112,7 +94,7 @@ namespace HAL062app.moduly.komunikacja
         }
         private void ConnectBluetooth(string deviceName)
         {
-           model.ConnectBluetooth(deviceName);
+            model.ConnectBluetooth(deviceName);
 
         }
         private void BluetoothConnected(bool connected)
@@ -140,13 +122,13 @@ namespace HAL062app.moduly.komunikacja
                 else
                     model.SendTerminalMessage("Bluetooth nie został włączony");
                 display.BluetoothStatus(false);
-               
+
             }
-            
-           
+
+
         }
 
-       
+
     }
 
 

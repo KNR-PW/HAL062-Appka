@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Windows.Forms;
 
 namespace HAL062app.moduly
 {
@@ -17,11 +13,12 @@ namespace HAL062app.moduly
         public int author { get; set; }
         public int ID { get; set; }
         public byte[] buffer { get; set; } = new byte[10];
-        
+
         public DateTime time { get; set; }
 
-        public Message() { 
-        time = TimeProvider.GetCurrentTime();
+        public Message()
+        {
+            time = TimeProvider.GetCurrentTime();
         }
 
         public void terminalMessage(int author, int receiver, string text)
@@ -41,7 +38,7 @@ namespace HAL062app.moduly
 
         public char[] encodeMessage()
         {
-            char[] data  = new char[19];
+            char[] data = new char[19];
             int k = 0;
             for (int i = 0; i < buffer.Length; i++)
             {
@@ -67,7 +64,8 @@ namespace HAL062app.moduly
                         k++;
                         data[k] = (char)bytes[1];
                         k++;
-                    }                }
+                    }
+                }
             }
             int x = 9 - buffer.Length;
             if (x > 0)
@@ -87,11 +85,11 @@ namespace HAL062app.moduly
         {
             byte[] ans = new byte[2];
             if (dataStrings.Length != 10)
-                {
-                    throw new ArgumentException("Tablica danych musi zawierać dokładnie 10 elementów.");
-                }
+            {
+                throw new ArgumentException("Tablica danych musi zawierać dokładnie 10 elementów.");
+            }
 
-             List<byte> frame = new List<byte>();
+            List<byte> frame = new List<byte>();
             frame.Add((byte)dataStrings[0].ToCharArray()[0]);
             return ans;
         }

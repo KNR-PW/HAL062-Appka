@@ -1,25 +1,12 @@
-﻿using HAL062app.moduly.komunikacja;
-using HAL062app.moduly.laboratorium;
-using HAL062app.moduly.manipulator;
-using HAL062app.moduly.podwozie;
-using HAL062app.moduly.sandbox;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net.Configuration;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static HAL062app.ControllerState;
 /*
  * Zgaduję, że skoro tu jesteś to szukasz jakichkolwiek rzeczy związanych z tym, jak poruszać się po plikach 
  * Zamysłem tego projektu jest wykorzystanie architektury MVC -> Model-View-Controller
  * Każda zakładka, to oddzielna aplikacja, którą łączy ten plik.
- * Jak działa poruszanie danych pomiędzy plikami? Zostało to opisane w podwozieController
+ * Jak działa poruszanie danych pomiędzy plikami? Zostało to opisane w PodwozieController
  * Ogólnie w tym pliku polecam nic nie zmieniać, bo popsucie czegokolwiek tu rozwali całą aplikację
  * W tym pliku powinny się znaleźć tylko inicjacje programu i aplikacji.
  * 
@@ -48,37 +35,37 @@ namespace HAL062app
             XboxControlBus.XboxControlMode += OnXboxControlModeChanged;
             OnXboxControlModeChanged(-1);
 
-            modules.Add("Komunikacja", new moduly.komunikacja.komunikacjaForm());
-            modules.Add("Laboratorium", new moduly.laboratorium.laboratoriumForm());
-            modules.Add("Podwozie", new moduly.podwozie.podwozieForm());
+            modules.Add("Komunikacja", new moduly.komunikacja.KomunikacjaForm());
+            modules.Add("Laboratorium", new moduly.laboratorium.LaboratoriumForm());
+            modules.Add("Podwozie", new moduly.podwozie.PodwozieForm());
             modules.Add("Manipulator", new moduly.manipulator.manipulatorForm());
-            modules.Add("Debug", new moduly.sandbox.sandboxForm());
-           // modules.Add("Wizualizacja", new moduly.wizualizacja.wizualizacjaForm());
+            modules.Add("Debug", new moduly.sandbox.SandboxForm());
+            // modules.Add("Wizualizacja", new moduly.wizualizacja.wizualizacjaForm());
 
             foreach (var module in modules)
                 isPinned.Add(module.Key, true);
 
 
-            moduly.komunikacja.komunikacjaModel komunikacjaM = new moduly.komunikacja.komunikacjaModel();
-            moduly.laboratorium.laboratoriumModel laboratoriumM = new moduly.laboratorium.laboratoriumModel(komunikacjaM);
-            moduly.podwozie.podwozieModel podwozieM = new moduly.podwozie.podwozieModel(komunikacjaM);
+            moduly.komunikacja.KomunikacjaModel komunikacjaM = new moduly.komunikacja.KomunikacjaModel();
+            moduly.laboratorium.LaboratoriumModel laboratoriumM = new moduly.laboratorium.LaboratoriumModel(komunikacjaM);
+            moduly.podwozie.PodwozieModel podwozieM = new moduly.podwozie.PodwozieModel(komunikacjaM);
             moduly.manipulator.manipulatorModel manipulatorM = new moduly.manipulator.manipulatorModel(komunikacjaM);
-            moduly.sandbox.sandboxModel sandboxM = new moduly.sandbox.sandboxModel(komunikacjaM);
+            moduly.sandbox.SandboxModel sandboxM = new moduly.sandbox.SandboxModel(komunikacjaM);
             //moduly.wizualizacja.wizualizacjaModel wizualizacjaM = new moduly.wizualizacja.wizualizacjaModel(komunikacjaM);
 
 
-            moduly.komunikacja.komunikacjaController komunikacjaC = new moduly.komunikacja.komunikacjaController(modules, komunikacjaM);
-            moduly.laboratorium.laboratoriumController laboratoriumC = new moduly.laboratorium.laboratoriumController(modules, laboratoriumM);
-            moduly.podwozie.podwozieController podwozieC = new moduly.podwozie.podwozieController(modules, podwozieM);
+            moduly.komunikacja.KomunikacjaPresenter komunikacjaC = new moduly.komunikacja.KomunikacjaPresenter(modules, komunikacjaM);
+            moduly.laboratorium.LaboratoriumPresenter laboratoriumC = new moduly.laboratorium.LaboratoriumPresenter(modules, laboratoriumM);
+            moduly.podwozie.PodwoziePresenter podwozieC = new moduly.podwozie.PodwoziePresenter(modules, podwozieM);
             moduly.manipulator.manipulatorController manipulatorC = new moduly.manipulator.manipulatorController(modules, manipulatorM);
-            moduly.sandbox.sandboxController sandboxC = new moduly.sandbox.sandboxController(modules, sandboxM);
-           // moduly.wizualizacja.wizualizacjaController wizualizacjaC = new moduly.wizualizacja.wizualizacjaController(modules, wizualizacjaM);
+            moduly.sandbox.SandboxPresenter sandboxC = new moduly.sandbox.SandboxPresenter(modules, sandboxM);
+            // moduly.wizualizacja.wizualizacjaController wizualizacjaC = new moduly.wizualizacja.wizualizacjaController(modules, wizualizacjaM);
 
             komunikacjaM.Subscribe(laboratoriumM);
             komunikacjaM.Subscribe(podwozieM);
             komunikacjaM.Subscribe(manipulatorM);
             komunikacjaM.Subscribe(sandboxM);
-          //  komunikacjaM.Subscribe(wizualizacjaM);
+            //  komunikacjaM.Subscribe(wizualizacjaM);
 
 
         }
@@ -111,7 +98,8 @@ namespace HAL062app
                     modules[moduleName].Dock = DockStyle.Fill;
                     modules[moduleName].TopLevel = false;
                     ContextPanel.Controls.Add(modules[moduleName]);
-                } else
+                }
+                else
                 {
                     ContextPanel.Controls.Clear();
                     currentModule = moduleName;
@@ -151,7 +139,7 @@ namespace HAL062app
         }
         private void wizualizacjaBtn_Click(object sender, EventArgs e)
         {
-          //  ShowModule("Wizualizacja");
+            //  ShowModule("Wizualizacja");
         }
 
         private void customButton6_Click(object sender, EventArgs e)
@@ -186,18 +174,18 @@ namespace HAL062app
 
         private void OnXboxControlModeChanged(int state)
         {
-            switch(state)
+            switch (state)
             {
-                    case -1:
+                case -1:
                     GamePadStatusLabel.Text = "Gamepad: off";
                     break;
-                    case 0:
+                case 0:
                     GamePadStatusLabel.Text = "Gamepad: \n Drive";
                     break;
-                    case 1:
+                case 1:
                     GamePadStatusLabel.Text = "Gamepad: \n Manipulator angle";
-                    break;  
-                    case 2:
+                    break;
+                case 2:
                     GamePadStatusLabel.Text = "Gamepad: \n Manipulator 3DOF";
                     break;
                 default:
@@ -207,7 +195,7 @@ namespace HAL062app
 
         }
 
-       
+
 
         /// 
         /// <param name="sender"></param>

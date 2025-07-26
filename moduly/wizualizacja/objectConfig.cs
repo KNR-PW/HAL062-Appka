@@ -1,14 +1,9 @@
-﻿using HAL062app.moduly.manipulator;
-using HelixToolkit.Wpf;
+﻿using HelixToolkit.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
-using System.Xml.Serialization;
 using Color = System.Windows.Media.Color;
 
 namespace HAL062app.moduly.wizualizacja
@@ -43,10 +38,10 @@ namespace HAL062app.moduly.wizualizacja
             return GetObjectsNames().Contains(ID);
         }
 
-       
+
         public void AddPart(SpatialObject spatialObject)
         {
-            Objects.Add(spatialObject);  
+            Objects.Add(spatialObject);
         }
 
         public string GetFilePath(string ID)
@@ -56,7 +51,7 @@ namespace HAL062app.moduly.wizualizacja
                 return basePath + model.ModelPath;
             throw new KeyNotFoundException($"Obiekt z '{ID}' nie posiada pliku.");
         }
-        
+
 
         // Klasa bazowa reprezentująca obiekt przestrzenny
         public class SpatialObject
@@ -66,7 +61,7 @@ namespace HAL062app.moduly.wizualizacja
             public float Y { get; private set; }
             public float Z { get; private set; }
 
-            public SpatialObject(string id, float x=0f, float y = 0f, float z = 0f)
+            public SpatialObject(string id, float x = 0f, float y = 0f, float z = 0f)
             {
                 if (string.IsNullOrWhiteSpace(id))
                 {
@@ -87,13 +82,13 @@ namespace HAL062app.moduly.wizualizacja
             }
 
 
-       
+
         }
 
         public interface iModel3D
         {
-             string ModelPath { get; }
-             Color color { get; set; }
+            string ModelPath { get; }
+            Color color { get; set; }
 
             GeometryModel3D geometryModel3D { get; }
 
@@ -109,7 +104,7 @@ namespace HAL062app.moduly.wizualizacja
             public float StartAngle { get; private set; }
 
             // Dane do macierzy DH
-            public float RotationAxisX { get; private set;}
+            public float RotationAxisX { get; private set; }
             public float RotationAxisY { get; private set; }
             public float RotationAxisZ { get; private set; }
             public float RotationPointX { get; private set; }

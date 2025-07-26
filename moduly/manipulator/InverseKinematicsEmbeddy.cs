@@ -1,13 +1,6 @@
-﻿ 
+﻿
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Numerics;
-using System.Windows.Media.Media3D;
-using System.Windows.Media;
 
 namespace HAL062app.moduly.manipulator
 {
@@ -76,14 +69,14 @@ namespace HAL062app.moduly.manipulator
         public Disconnect DisconnectDoF;
 
         public F2I angle, speed, meas_angle, read_value, kinematics_in;
-        
+
 
         public byte GripperState; // tryb chwytaka 0 - STOP, 1 - OTWORZ, 2 - ZAMKNIJ
         public double JointVelocity;
         public volatile byte newmode; // flaga oznaczajaca nowy tryb
 
 
-        private double [,] DHMatrix = new double[4, 4];
+        private double[,] DHMatrix = new double[4, 4];
 
         void CalculateInverseKinematics456DOF(bool XYZ_GLOBAL, double[] kinematics_in) // tylko dof1, dof2, dof3
         {
@@ -100,7 +93,7 @@ namespace HAL062app.moduly.manipulator
             double thetaDOF3Bottom, thetaDOF3Top;
             double temp1, temp2;
 
-            if(Math.Abs(WristPosition.x)< 0.001 && Math.Abs(WristPosition.y) <0.001)
+            if (Math.Abs(WristPosition.x) < 0.001 && Math.Abs(WristPosition.y) < 0.001)
             {
                 thetaDOF1fwd = angle.f[0];
                 thetaDOF1bwd = angle.f[0];
@@ -108,15 +101,16 @@ namespace HAL062app.moduly.manipulator
             else
             {
                 temp1 = Math.Atan2(WristPosition.y, WristPosition.x);
-                
+
                 if (temp1 > 0.0) temp2 = temp1 - Math.PI;
                 else temp2 = temp1 + Math.PI;
-                
-                if(WristPosition.x>0.0)
+
+                if (WristPosition.x > 0.0)
                 {
                     thetaDOF1fwd = temp1;
                     thetaDOF1bwd = temp2;
-                }else
+                }
+                else
                 {
                     thetaDOF1fwd = temp2;
                     thetaDOF1bwd = temp1;
@@ -132,7 +126,7 @@ namespace HAL062app.moduly.manipulator
         void CalculatePositionIncrement()
         {
 
-            if (ManipulatorMode ==  MMode.VEL_GLOB)
+            if (ManipulatorMode == MMode.VEL_GLOB)
             {
                 if (DisconnectDoF == Disconnect.DOF456)
                 {
@@ -156,9 +150,9 @@ namespace HAL062app.moduly.manipulator
                 if (DisconnectDoF == Disconnect.DOF456)
                 {
                     double[] tempVector = { Velocity.x, Velocity.y, Velocity.z }; ;
-                    
+
                     double[] VectorOut = new double[3];
-                  //  TransformToolWrist(tempVector, VectorOut);
+                    //  TransformToolWrist(tempVector, VectorOut);
                     WristPosition.x = WristPosition.x + VectorOut[0] * VELOCITY_DELTA_T;
                     WristPosition.y = WristPosition.y + VectorOut[1] * VELOCITY_DELTA_T;
                     WristPosition.z = WristPosition.z + VectorOut[2] * VELOCITY_DELTA_T;
@@ -189,9 +183,9 @@ namespace HAL062app.moduly.manipulator
             double roll = VectorIn[5];
 
             double[] DHMat = new double[16]; // Zmienne DHMat powinny być wcześniej zainicjowane
-            //CalculateForwardKinematics(meas_angle, temp, 0, ref DHMat);
+                                             //CalculateForwardKinematics(meas_angle, temp, 0, ref DHMat);
 
-           // double[] DHMatInv = InvertDHMatrix(DHMat);
+            // double[] DHMatInv = InvertDHMatrix(DHMat);
             double[,] DHTool = new double[4, 4];
 
             // Create DH Matrix for desired transformation
@@ -215,8 +209,8 @@ namespace HAL062app.moduly.manipulator
             double[,] DHOutput = new double[4, 4];
 
             // Multiply 2 matrices
-            
-           // DHOutput = MultiplyMatrices(DHMatInv, DHTool);
+
+            // DHOutput = MultiplyMatrices(DHMatInv, DHTool);
             VectorOut[0] = DHOutput[0, 3];
             VectorOut[1] = DHOutput[1, 3];
             VectorOut[2] = DHOutput[2, 3];
@@ -232,58 +226,58 @@ namespace HAL062app.moduly.manipulator
 
             return;
         }
-    /*    public double[] InvertDHMatrix(double[] In)
-        {
-            double[] RotMat = new double[9];
-            double[] RotMatT = new double[9];
-            double[] OutPosition = new double[3];
-            double[] InPosition = new double[3];
+        /*    public double[] InvertDHMatrix(double[] In)
+            {
+                double[] RotMat = new double[9];
+                double[] RotMatT = new double[9];
+                double[] OutPosition = new double[3];
+                double[] InPosition = new double[3];
 
-            // Copy Rotation Matrix from input
-            RotMat[0] = In[0];
-            RotMat[1] = In[1];
-            RotMat[2] = In[2];
-            RotMat[3] = In[4];
-            RotMat[4] = In[5];
-            RotMat[5] = In[6];
-            RotMat[6] = In[8];
-            RotMat[7] = In[9];
-            RotMat[8] = In[10];
+                // Copy Rotation Matrix from input
+                RotMat[0] = In[0];
+                RotMat[1] = In[1];
+                RotMat[2] = In[2];
+                RotMat[3] = In[4];
+                RotMat[4] = In[5];
+                RotMat[5] = In[6];
+                RotMat[6] = In[8];
+                RotMat[7] = In[9];
+                RotMat[8] = In[10];
 
-            // Invert Rotation Matrix <==> Transpose
-            RotMatT =TransposeMatrix(RotMat);
+                // Invert Rotation Matrix <==> Transpose
+                RotMatT =TransposeMatrix(RotMat);
 
-            // Calculate T-part of Inverted DH-Matrix
-            InPosition[0] = In[3];
-            InPosition[1] = In[7];
-            InPosition[2] = In[11];
-            OutPosition = MultiplyMatrixVector(RotMatT, InPosition);
+                // Calculate T-part of Inverted DH-Matrix
+                InPosition[0] = In[3];
+                InPosition[1] = In[7];
+                InPosition[2] = In[11];
+                OutPosition = MultiplyMatrixVector(RotMatT, InPosition);
 
-            // Copy everything
-            //Out[0] = RotMatT[0];
-            //Out[1] = RotMatT[1];
-            //Out[2] = RotMatT[2];
-            //Out[3] = -OutPosition[0];
-            //Out[4] = RotMatT[3];
-            //Out[5] = RotMatT[4];
-            //Out[6] = RotMatT[5];
-            //Out[7] = -OutPosition[1];
-            //Out[8] = RotMatT[6];
-            //Out[9] = RotMatT[7];
-            //Out[10] = RotMatT[8];
-            //Out[11] = -OutPosition[2];
-            //Out[12] = 0.0f;
-            //Out[13] = 0.0f;
-            //Out[14] = 0.0f;
-            //Out[15] = 1.0f;
-            //return Out;
-        }
-        public void TransformToolWrist(double[] VectorIn, ref double[] VectorOut, double[] meas_angle)
-        {
-            VectorOut[2] = VectorIn[2];
-            VectorOut[0] = VectorIn[0] * (double)Math.Cos(meas_angle[0]) - VectorIn[1] * (double)Math.Sin(meas_angle[0]);
-            VectorOut[1] = VectorIn[0] * (double)Math.Sin(meas_angle[0]) + VectorIn[1] * (double)Math.Cos(meas_angle[0]);
-        }*/
+                // Copy everything
+                //Out[0] = RotMatT[0];
+                //Out[1] = RotMatT[1];
+                //Out[2] = RotMatT[2];
+                //Out[3] = -OutPosition[0];
+                //Out[4] = RotMatT[3];
+                //Out[5] = RotMatT[4];
+                //Out[6] = RotMatT[5];
+                //Out[7] = -OutPosition[1];
+                //Out[8] = RotMatT[6];
+                //Out[9] = RotMatT[7];
+                //Out[10] = RotMatT[8];
+                //Out[11] = -OutPosition[2];
+                //Out[12] = 0.0f;
+                //Out[13] = 0.0f;
+                //Out[14] = 0.0f;
+                //Out[15] = 1.0f;
+                //return Out;
+            }
+            public void TransformToolWrist(double[] VectorIn, ref double[] VectorOut, double[] meas_angle)
+            {
+                VectorOut[2] = VectorIn[2];
+                VectorOut[0] = VectorIn[0] * (double)Math.Cos(meas_angle[0]) - VectorIn[1] * (double)Math.Sin(meas_angle[0]);
+                VectorOut[1] = VectorIn[0] * (double)Math.Sin(meas_angle[0]) + VectorIn[1] * (double)Math.Cos(meas_angle[0]);
+            }*/
         public static double[,] MultiplyMatrices(double[,] matrix1, double[,] matrix2)
         {
             if (matrix1.GetLength(1) != matrix2.GetLength(0))

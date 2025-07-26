@@ -1,6 +1,6 @@
 ﻿namespace HAL062app.moduly.laboratorium
 {
-    partial class laboratoriumForm
+    partial class LaboratoriumForm
     {
         /// <summary>
         /// Required designer variable.

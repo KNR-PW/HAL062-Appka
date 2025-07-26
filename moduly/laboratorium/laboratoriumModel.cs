@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
+﻿using HAL062app.moduly.komunikacja;
 using System.Collections.Concurrent;
-using System.Windows.Forms;
-using HAL062app.moduly.komunikacja;
-using System.Reflection;
-using System.Management.Instrumentation;
-using System.Drawing;
 
 namespace HAL062app.moduly.laboratorium
 {
-   
-   public class Tube
+
+    public class Tube
     {
 
         public int tubeID { get; }
@@ -38,20 +28,20 @@ namespace HAL062app.moduly.laboratorium
         {
             this.numberOfTubes = _numberOfTubes;
             this.tubesPosition = new int[numberOfTubes];
-            for(int i = 0; i < numberOfTubes; i++)
+            for (int i = 0; i < numberOfTubes; i++)
             {
-           //     tubes[i] = new Tube(i, i);
-             //   tubesPosition[i] = i;
+                //     tubes[i] = new Tube(i, i);
+                //   tubesPosition[i] = i;
             }
 
         }
 
-       
+
         public void RotateTube(bool clockwise = true)
         {
-            for(int i =0; i<numberOfTubes;i++)
+            for (int i = 0; i < numberOfTubes; i++)
             {
-                tubesPosition[i] = (tubesPosition[i]+(clockwise == true ? 1:-1))%numberOfTubes;
+                tubesPosition[i] = (tubesPosition[i] + (clockwise == true ? 1 : -1)) % numberOfTubes;
             }
         }
 
@@ -68,37 +58,38 @@ namespace HAL062app.moduly.laboratorium
     };
 
 
-    public class laboratoriumModel : MainChannelObserver
+    public class LaboratoriumModel : IMessageObserver
     {
-       
 
 
-        komunikacja.komunikacjaModel komunikacjaModel;
+
+        komunikacja.KomunikacjaModel komunikacjaModel;
         private ConcurrentQueue<Message> receivedQueue;
         Rewolwer rewolwer;
-        public laboratoriumModel(komunikacjaModel komunikacja)
+        public LaboratoriumModel(KomunikacjaModel komunikacja)
         {
             receivedQueue = new ConcurrentQueue<Message>();
             this.komunikacjaModel = komunikacja;
             rewolwer = new Rewolwer(9);
-            
+
         }
-        
-        public void MainChannel(Message message)
+
+        public void ReceiveMessage(Message message)
         {
             receivedQueue.Enqueue(message);
-            
+
         }
-       
+
         public void SendMessageToKomunikacja(Message message)
         {
             message.author = 3;
             komunikacjaModel.SendMMessageToHALService(message);
+           // ReceiveMessage(message);
 
         }
         public void sendFrame(Message frame)
         {
-            SendMessageToKomunikacja(frame);
+            //SendMessageToKomunikacja(frame);
         }
 
 
@@ -106,6 +97,6 @@ namespace HAL062app.moduly.laboratorium
 
 
 
-       
+
     }
 }

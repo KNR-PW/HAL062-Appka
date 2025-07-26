@@ -157,22 +157,22 @@
       <DependentUpon>mainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="moduly\IModelObserver.cs" />
-    <Compile Include="moduly\komunikacja\komunikacjaController.cs" />
-    <Compile Include="moduly\komunikacja\komunikacjaForm.cs">
+    <Compile Include="moduly\komunikacja\KomunikacjaPresenter.cs" />
+    <Compile Include="moduly\komunikacja\KomunikacjaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="moduly\komunikacja\komunikacjaForm.Designer.cs">
-      <DependentUpon>komunikacjaForm.cs</DependentUpon>
+    <Compile Include="moduly\komunikacja\KomunikacjaForm.Designer.cs">
+      <DependentUpon>KomunikacjaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="moduly\komunikacja\komunikacjaModel.cs" />
-    <Compile Include="moduly\laboratorium\laboratoriumController.cs" />
-    <Compile Include="moduly\laboratorium\laboratoriumForm.cs">
+    <Compile Include="moduly\komunikacja\KomunikacjaModel.cs" />
+    <Compile Include="moduly\laboratorium\LaboratoriumPresenter.cs" />
+    <Compile Include="moduly\laboratorium\LaboratoriumForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="moduly\laboratorium\laboratoriumForm.Designer.cs">
-      <DependentUpon>laboratoriumForm.cs</DependentUpon>
+    <Compile Include="moduly\laboratorium\LaboratoriumForm.Designer.cs">
+      <DependentUpon>LaboratoriumForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="moduly\laboratorium\laboratoriumModel.cs" />
+    <Compile Include="moduly\laboratorium\LaboratoriumModel.cs" />
     <Compile Include="moduly\manipulator\InverseKinematics.cs" />
     <Compile Include="moduly\manipulator\InverseKinematicsEmbeddy.cs" />
     <Compile Include="moduly\manipulator\manipulatorController.cs" />
@@ -194,22 +194,22 @@
     </Compile>
     <Compile Include="moduly\Message.cs" />
     <Compile Include="moduly\podwozie\motorData.cs" />
-    <Compile Include="moduly\podwozie\podwozieController.cs" />
-    <Compile Include="moduly\podwozie\podwozieForm.cs">
+    <Compile Include="moduly\podwozie\PodwoziePresenter.cs" />
+    <Compile Include="moduly\podwozie\PodwozieForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="moduly\podwozie\podwozieForm.Designer.cs">
-      <DependentUpon>podwozieForm.cs</DependentUpon>
+    <Compile Include="moduly\podwozie\PodwozieForm.Designer.cs">
+      <DependentUpon>PodwozieForm.cs</DependentUpon>
     </Compile>
     <Compile Include="moduly\podwozie\podwozieModel.cs" />
-    <Compile Include="moduly\sandbox\sandboxController.cs" />
-    <Compile Include="moduly\sandbox\sandboxForm.cs">
+    <Compile Include="moduly\sandbox\SandboxPresenter.cs" />
+    <Compile Include="moduly\sandbox\SandboxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="moduly\sandbox\sandboxForm.Designer.cs">
-      <DependentUpon>sandboxForm.cs</DependentUpon>
+    <Compile Include="moduly\sandbox\SandboxForm.Designer.cs">
+      <DependentUpon>SandboxForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="moduly\sandbox\sandboxModel.cs" />
+    <Compile Include="moduly\sandbox\SandboxModel.cs" />
     <Compile Include="moduly\TimeProvider.cs" />
     <Compile Include="moduly\wizualizacja\objectConfig.cs" />
     <Compile Include="moduly\wizualizacja\engine.cs" />
@@ -233,21 +233,21 @@
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="moduly\komunikacja\komunikacjaForm.resx">
-      <DependentUpon>komunikacjaForm.cs</DependentUpon>
+    <EmbeddedResource Include="moduly\komunikacja\KomunikacjaForm.resx">
+      <DependentUpon>KomunikacjaForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="moduly\laboratorium\laboratoriumForm.resx">
-      <DependentUpon>laboratoriumForm.cs</DependentUpon>
+    <EmbeddedResource Include="moduly\laboratorium\LaboratoriumForm.resx">
+      <DependentUpon>LaboratoriumForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="moduly\manipulator\manipulatorForm.resx">
       <DependentUpon>manipulatorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="moduly\podwozie\podwozieForm.resx">
-      <DependentUpon>podwozieForm.cs</DependentUpon>
+    <EmbeddedResource Include="moduly\podwozie\PodwozieForm.resx">
+      <DependentUpon>PodwozieForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="moduly\sandbox\sandboxForm.resx">
-      <DependentUpon>sandboxForm.cs</DependentUpon>
+    <EmbeddedResource Include="moduly\sandbox\SandboxForm.resx">
+      <DependentUpon>SandboxForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="moduly\wizualizacja\wizualizacjaForm.resx">
       <DependentUpon>wizualizacjaForm.cs</DependentUpon>

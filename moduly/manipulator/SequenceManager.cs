@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace HAL062app.moduly.manipulator
 {
@@ -12,7 +8,8 @@ namespace HAL062app.moduly.manipulator
     {
         public List<Sequence> Sequences { get; set; }
 
-        public SequenceManager() {
+        public SequenceManager()
+        {
             Sequences = new List<Sequence>();
         }
         public void SaveToFile(string path)
@@ -22,16 +19,16 @@ namespace HAL062app.moduly.manipulator
 
             foreach (var sequence in Sequences)
             {
-               
+
                 var existingSequence = updatedSequences.FirstOrDefault(seq => seq.name == sequence.name);
 
                 if (existingSequence != null)
                 {
-            
+
                     existingSequence.sequence = sequence.sequence;
                 }
                 else
-                { 
+                {
                     updatedSequences.Add(new Sequence(sequence.name, sequence.sequence));
                 }
             }

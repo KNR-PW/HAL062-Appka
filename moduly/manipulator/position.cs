@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HAL062app.moduly.manipulator
+﻿namespace HAL062app.moduly.manipulator
 {
     public class Position
     {
         public float[] joints { get; set; }
-        public float[] relative0 { get; set; } = new float[] { 0,50,-60,100,10,0};
+        public float[] relative0 { get; set; } = new float[] { 0, 50, -60, 100, 10, 0 };
         public int id { get; set; }
         public int Duration { get; set; }
         public Position(float[] angles)
@@ -24,7 +18,7 @@ namespace HAL062app.moduly.manipulator
                 }
             }
 
-            
+
         }
         public void addRelative0(float[] relative)
         {
@@ -57,10 +51,10 @@ namespace HAL062app.moduly.manipulator
         }
         public void addRelativeToJoints()
         {
-            for(int i = 0; i<6; i++)
+            for (int i = 0; i < 6; i++)
                 joints[i] += relative0[i];
 
-            
+
         }
 
     }

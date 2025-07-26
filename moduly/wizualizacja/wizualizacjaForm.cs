@@ -1,12 +1,5 @@
 ﻿using HelixToolkit.Wpf;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 
@@ -14,7 +7,7 @@ namespace HAL062app.moduly.wizualizacja
 {
 
 
- 
+
 
     public partial class wizualizacjaForm : Form
     {
@@ -61,7 +54,7 @@ namespace HAL062app.moduly.wizualizacja
             InitializeComponent();
             InitializeMainViewport();
             _viewportManager = new ViewportManager(_mainViewport);
-            
+
         }
 
 
@@ -76,7 +69,7 @@ namespace HAL062app.moduly.wizualizacja
             Controls.Add(elementHost);
         }
 
-        
+
         private void AddNewViewportWindow()
         {
             var newViewport = new HelixViewport3D();

@@ -1,26 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HAL062app.moduly.sandbox
 {
-    public partial class sandboxForm : Form
+    public partial class SandboxForm : Form
     {
 
         public event Action<Message> sendFrame_action;
-        public sandboxForm()
+        public SandboxForm()
         {
             InitializeComponent();
         }
-        
+
         private void SendFrameBtn_Click(object sender, EventArgs e)
         {
             Message frame = new Message();
@@ -35,22 +26,22 @@ namespace HAL062app.moduly.sandbox
         {
             byte[] frameByte = new byte[10];
             frameByte[0] = (byte)PrefixTextBox.Text[0];
-            frameByte[1]= (byte)numericID.Value;
+            frameByte[1] = (byte)numericID.Value;
 
             bool[] x = { dataCheckBox1.Checked, dataCheckBox2.Checked, dataCheckBox3.Checked, dataCheckBox4.Checked, dataCheckBox5.Checked, dataCheckBox6.Checked, dataCheckBox7.Checked, dataCheckBox8.Checked };
             int[] numeric = { (int)numericData1.Value, (int)numericData2.Value, (int)numericData3.Value, (int)numericData4.Value, (int)numericData5.Value, (int)numericData6.Value, (int)numericData7.Value, (int)numericData8.Value };
-            for(int i = 2; i<10;  i++)
+            for (int i = 2; i < 10; i++)
             {
-                if (x[i-2])
+                if (x[i - 2])
                     frameByte[i] = (byte)'x';
                 else
-                    frameByte[i] = (byte)numeric[i-2];
-                
+                    frameByte[i] = (byte)numeric[i - 2];
+
 
             }
             Message frame = new Message();
             frame.buffer = frameByte;
-            
+
             frameTextBox.Text = new string(frame.encodeMessage());
         }
 
@@ -85,7 +76,7 @@ namespace HAL062app.moduly.sandbox
 
         private void FPV_send_btn_Click(object sender, EventArgs e)
         {
-            
+
             Message frame = new Message();
             frame.buffer[0] = (byte)('#');
             frame.buffer[1] = (byte)(45);
@@ -107,7 +98,7 @@ namespace HAL062app.moduly.sandbox
             Message frame = new Message();
             frame.buffer[0] = (byte)('#');
             frame.buffer[1] = (byte)(50);
-            frame.buffer[2] = (byte)(lightRedTgl.Checked? 1:0);
+            frame.buffer[2] = (byte)(lightRedTgl.Checked ? 1 : 0);
             frame.buffer[3] = (byte)(lightGreenTgl.Checked ? 1 : 0);
             frame.buffer[4] = (byte)(lightBlueTgl.Checked ? 1 : 0);
             frame.buffer[5] = (byte)(lightBlinkTgl.Checked ? 1 : 0);

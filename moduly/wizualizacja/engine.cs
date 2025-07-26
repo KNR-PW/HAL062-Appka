@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HAL062app.moduly.wizualizacja
+﻿namespace HAL062app.moduly.wizualizacja
 {
     public class engine
     {
@@ -35,8 +29,8 @@ namespace HAL062app.moduly.wizualizacja
 
 
 
-        
-        
+
+
 
     }
 }

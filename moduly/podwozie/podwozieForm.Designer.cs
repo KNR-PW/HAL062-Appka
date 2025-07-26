@@ -1,6 +1,6 @@
 ﻿namespace HAL062app.moduly.podwozie
 {
-    partial class podwozieForm
+    partial class PodwozieForm
     {
         /// <summary>
         /// Required designer variable.
@@ -1305,19 +1305,19 @@
             this.Camera_track.Value = 50;
             this.Camera_track.Leave += new System.EventHandler(this.Camera_track_Leave);
             // 
-            // podwozieForm
+            // PodwozieForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "podwozieForm";
+            this.Name = "PodwozieForm";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Text = "podwozieForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.podwozieForm_FormClosing);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.podwozieForm_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.podwozieForm_KeyUp);
+            this.Text = "PodwozieForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PodwozieForm_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PodwozieForm_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PodwozieForm_KeyUp);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

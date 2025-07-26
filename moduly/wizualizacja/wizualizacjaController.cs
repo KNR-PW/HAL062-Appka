@@ -1,9 +1,4 @@
-﻿using HAL062app.moduly.podwozie;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace HAL062app.moduly.wizualizacja
@@ -53,8 +48,8 @@ namespace HAL062app.moduly.wizualizacja
                      * W drugą stronę analogicznie, ale na odwrót 
                      */
 
-                   // display.sendMotorDataToController_Action += sendMotorDataToModel_Action;
-                  //  display.sendMessage_Action += sendMessageToKomunikacja;
+                    // display.SendMotorDataToController_Action += SendMotorDataToModel_Action;
+                    //  display.SendMessage_Action += SendMessageToKomunikacja;
 
                 }
             }

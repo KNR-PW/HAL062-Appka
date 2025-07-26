@@ -1,16 +1,6 @@
 ﻿using HAL062app.moduly.komunikacja;
-using HAL062app.moduly.manipulator;
-using HAL062app.moduly;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
 
 
 /*
@@ -50,28 +40,41 @@ data = 0 - nic nie robi
 
 namespace HAL062app.moduly.podwozie
 {
-    public class podwozieModel : MainChannelObserver
+
+
+
+    public interface IPodwozieModel
     {
-        komunikacja.komunikacjaModel komunikacjaModel;
+        void SendSpeed(MotorData data);
+        void SendMessageToKomunikacja(Message message);
+    }
+
+
+
+
+    public class PodwozieModel : IMessageObserver, IPodwozieModel
+    {
+        private readonly komunikacja.KomunikacjaModel komunikacjaModel;
+
         private ConcurrentQueue<Message> receivedQueue;
 
-        public podwozieModel(komunikacjaModel komunikacja)
+        public PodwozieModel(KomunikacjaModel komunikacja)
         {
             receivedQueue = new ConcurrentQueue<Message>();
             this.komunikacjaModel = komunikacja;
         }
 
-         public void sendSpeed(motorData data)
+        public void SendSpeed(MotorData data)
         {
-            SendMessageToKomunikacja(speedFrame(data));
+            SendMessageToKomunikacja(SpeedFrame(data));
         }
 
-        Message speedFrame(motorData motorData)
+        Message SpeedFrame(MotorData MotorData)
         {
             Message frame = new Message();
             frame.author = 3;
             frame.ID = 20;
-            
+
             byte[] x1 = BitConverter.GetBytes(0);
             byte[] x2 = BitConverter.GetBytes(0);
             byte[] x3 = BitConverter.GetBytes(0);
@@ -81,29 +84,29 @@ namespace HAL062app.moduly.podwozie
             frame.buffer[0] = (byte)('#');
             frame.buffer[1] = (byte)(20);
 
-            frame.buffer[2] = (byte)motorData.RF;
-            frame.buffer[3] = (byte)motorData.RM;  
-            frame.buffer[4] = (byte)motorData.RB;  
-            frame.buffer[5] = (byte)motorData.LF; 
-            frame.buffer[6] = (byte)motorData.LM;
-            frame.buffer[7] = (byte)motorData.LB;
+            frame.buffer[2] = (byte)MotorData.RF;
+            frame.buffer[3] = (byte)MotorData.RM;
+            frame.buffer[4] = (byte)MotorData.RB;
+            frame.buffer[5] = (byte)MotorData.LF;
+            frame.buffer[6] = (byte)MotorData.LM;
+            frame.buffer[7] = (byte)MotorData.LB;
             frame.buffer[8] = (byte)('x');
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
-          
+
             return frame;
         }
 
 
 
-        public void MainChannel(Message message)
+        public void ReceiveMessage(Message message)
         {
             receivedQueue.Enqueue(message); // to powoduje, ze wiadomosc z komunikacji trafia do tej queue
 
         }
 
 
-        
+
 
         public void SendMessageToKomunikacja(Message message)
         {
@@ -111,8 +114,8 @@ namespace HAL062app.moduly.podwozie
             komunikacjaModel.SendMMessageToHALService(message);
 
         }
-        
-       
+
+
 
     }
 }

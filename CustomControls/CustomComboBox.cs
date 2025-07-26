@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HAL062app.CustomControls
 {
-     class CustomComboBox : UserControl
+    class CustomComboBox : UserControl
     {
         private Color backColor = Color.WhiteSmoke;
         private Color iconColor = Color.MediumSlateBlue;

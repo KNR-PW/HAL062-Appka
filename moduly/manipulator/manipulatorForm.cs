@@ -1,15 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
-using System.Windows.Forms.Integration;
-using HelixToolkit.Wpf;
 
 namespace HAL062app.moduly.manipulator
 {
@@ -20,20 +10,20 @@ namespace HAL062app.moduly.manipulator
 
         public Action<Position, bool> sendPositionToController_Action;
         public Action<Message> sendFrameToController_Action;
-        
+
         public manipulatorForm()
         {
-           
+
             InitializeComponent();
-            sterowanieWPF1.SendMessage_action += SendFrame;
+            sterowanieWPF1.SendMessage_Action += SendFrame;
             sterowanieWPF1.SendPosition_action += SendPosition;
             sterowanieWPF1.CreateVisualization_action += CreateVisualization;
             sterowanieWPF1.ChangeSpherePosition_action += ChangeSpherePosition;
             sterowanieWPF1.SendXYZPositon_action += SendXYZPositon;
             sterowanieWPF1.ChangeBoxPosition_action += ChangeBoxPosition;
         }
-       
-        
+
+
         private void SendXYZPositon(Position position)
         {
             sendPositionToController_Action(position, true);

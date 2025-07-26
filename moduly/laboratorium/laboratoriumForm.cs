@@ -1,37 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Xceed.Wpf.AvalonDock.Controls;
 
 namespace HAL062app.moduly.laboratorium
 {
-    public partial class laboratoriumForm : Form
+    public partial class LaboratoriumForm : Form
     {
         public event Action<Message> SendFrame_Action;
         private List<RichTextBox> TextBoxes = new List<RichTextBox>();
         private int probesCount = 11;
 
-        public laboratoriumForm()
+        public LaboratoriumForm()
         {
             InitializeComponent();
-           
+
             ProbesPanel.Paint += ProbesPanel_Paint;
 
-            for(int i = 0; i < probesCount; i++)
+            for (int i = 0; i < probesCount; i++)
             {
                 RichTextBox tb = new RichTextBox();
                 tb.Width = 120;
                 tb.Height = 50;
                 tb.BackColor = Color.Black;
                 tb.ForeColor = Color.Lime;
-                tb.Text = "Probe " + (i+1).ToString();
+                tb.Text = "Probe " + (i + 1).ToString();
                 ProbesPanel.Controls.Add(tb);
                 TextBoxes.Add(tb);
 
@@ -51,20 +44,20 @@ namespace HAL062app.moduly.laboratorium
             e.Cancel = true;
         }
 
-       
 
 
-        
 
-       
 
-        
+
+
+
+
 
 
         private void ProbesPanel_Paint(object sender, PaintEventArgs e)
         {
-        
-        
+
+
             /*
             Graphics g = e.Graphics;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
@@ -121,7 +114,7 @@ namespace HAL062app.moduly.laboratorium
                 RichTextBox tb = TextBoxes[i];
                 tb.Location = new Point(x - tb.Width / 2, y - tb.Height / 2);
 
-              
+
             }
         }
         private void ModulUpBtn_Click(object sender, EventArgs e)

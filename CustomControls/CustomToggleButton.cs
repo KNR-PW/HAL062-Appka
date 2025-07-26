@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.ComponentModel;
+using System.Windows.Forms;
 
 
 namespace HAL062app.CustomControls
@@ -27,8 +21,8 @@ namespace HAL062app.CustomControls
         private GraphicsPath GetFigurePath()
         {
             int arcSize = this.Height - 1;
-            Rectangle leftArc = new Rectangle(0,0,arcSize, arcSize);
-            Rectangle rightArc = new Rectangle(this.Width-arcSize-2,0,arcSize,arcSize);
+            Rectangle leftArc = new Rectangle(0, 0, arcSize, arcSize);
+            Rectangle rightArc = new Rectangle(this.Width - arcSize - 2, 0, arcSize, arcSize);
 
             GraphicsPath path = new GraphicsPath();
             path.StartFigure();
@@ -44,7 +38,7 @@ namespace HAL062app.CustomControls
             pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             pevent.Graphics.Clear(this.Parent.BackColor);
 
-            if(this.Checked)
+            if (this.Checked)
             {
                 pevent.Graphics.FillPath(new SolidBrush(onBackColor), GetFigurePath());
                 pevent.Graphics.FillEllipse(new SolidBrush(onToggleColor),
@@ -55,7 +49,7 @@ namespace HAL062app.CustomControls
             {
                 pevent.Graphics.FillPath(new SolidBrush(offBackColor), GetFigurePath());
                 pevent.Graphics.FillEllipse(new SolidBrush(offToggleColor),
-                new Rectangle(2,2, toggleSize, toggleSize));
+                new Rectangle(2, 2, toggleSize, toggleSize));
 
 
             }

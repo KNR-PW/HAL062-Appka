@@ -1,29 +1,22 @@
-﻿using HAL062app.moduly.podwozie;
-using HAL062app.moduly.sandbox;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 
 namespace HAL062app.moduly.sandbox
 {
-    public class sandboxController
+    public class SandboxPresenter
     {
-        private sandboxForm display;
-        private sandboxModel model;
+        private SandboxForm display;
+        private SandboxModel model;
         private Dictionary<string, Form> modules;
-        public sandboxController(Dictionary<string, Form> moduleForms, sandboxModel model)
+        public SandboxPresenter(Dictionary<string, Form> moduleForms, SandboxModel model)
         {
             modules = moduleForms;
             this.model = model;
 
             if (modules.TryGetValue("Debug", out Form form))
             {
-                display = form as sandboxForm;
+                display = form as SandboxForm;
 
                 if (display != null)
                 {
@@ -54,14 +47,14 @@ namespace HAL062app.moduly.sandbox
                      * 
                      * W drugą stronę analogicznie, ale na odwrót 
                      */
-                    display.sendFrame_action += sendMessageToKomunikacja;
+                    display.sendFrame_action += SendMessageToKomunikacja;
 
                 }
             }
 
         }
 
-        private void sendMessageToKomunikacja(Message msg)
+        private void SendMessageToKomunikacja(Message msg)
         {
             model.SendMessageToKomunikacja(msg);
 

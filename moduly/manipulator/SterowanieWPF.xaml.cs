@@ -1,27 +1,15 @@
-﻿using System;
+﻿using SharpDX.XInput;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml;
-using Newtonsoft.Json;
-using System.Timers;
-using SharpDX.XInput;
 using static HAL062app.ControllerState;
-using Newtonsoft.Json.Linq;
-using HAL062app.moduly.manipulator;
-using MathNet.Numerics.LinearAlgebra;
 //using System.Windows.Forms;
 
 namespace HAL062app.moduly.manipulator
@@ -58,7 +46,7 @@ namespace HAL062app.moduly.manipulator
         public Action<Position> SendPosition_action;
         public Action<Position> CreateVisualization_action;
         public Action<float[], int> ChangeSpherePosition_action;
-        public Action<Message> SendMessage_action;
+        public Action<Message> SendMessage_Action;
         public Action<Position> SendXYZPositon_action;
         public Action<float[]> ChangeBoxPosition_action;
 
@@ -356,7 +344,8 @@ namespace HAL062app.moduly.manipulator
             {
                 foreach (Joint joint in joints)
                     ans[id++] = joint.angle + joint.relative0;
-            } else
+            }
+            else
             {
                 foreach (Joint joint in joints)
                     ans[id++] = joint.angle;
@@ -386,7 +375,7 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
 
 
         }
@@ -433,7 +422,7 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
 
         }
 
@@ -453,7 +442,7 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
 
         }
 
@@ -474,7 +463,7 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
         }
 
         private void Control_idkGripperBtn_Click(object sender, RoutedEventArgs e)
@@ -494,7 +483,7 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
         }
 
         private void Control_OpenGripperBtn_Click(object sender, RoutedEventArgs e)
@@ -513,7 +502,7 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
         }
 
         private void Control_ZeroPosition(object sender, RoutedEventArgs e)
@@ -564,7 +553,8 @@ namespace HAL062app.moduly.manipulator
         private async void simulateSequence(Sequence sequence, bool simulateOnly)
         {
             simulatingSequence = !simulatingSequence;
-            if (simulatingSequence) {
+            if (simulatingSequence)
+            {
                 if (loadedSequence != null)
                 {
                     History_simulateSequence.Content = "Zatrzymaj sekwencję";
@@ -774,7 +764,8 @@ namespace HAL062app.moduly.manipulator
                 Control_turnOffManipulator(null, new RoutedEventArgs());
 
             }
-            if (GamePadState == 1) {
+            if (GamePadState == 1)
+            {
                 if ((GamepadButtonFlags.DPadUp & XboxPad.Instance.GetPressedButtons()) != 0)
                 {
                     isClosing = true;
@@ -791,7 +782,7 @@ namespace HAL062app.moduly.manipulator
                     frame.buffer[9] = (byte)('x');
                     frame.text = new string(frame.encodeMessage());
 
-                    SendMessage_action(frame);
+                    SendMessage_Action(frame);
                 }
                 if ((GamepadButtonFlags.DPadRight & XboxPad.Instance.GetPressedButtons()) != 0)
                 {
@@ -809,7 +800,7 @@ namespace HAL062app.moduly.manipulator
                     frame.buffer[8] = (byte)('x');
                     frame.buffer[9] = (byte)('x');
                     frame.text = new string(frame.encodeMessage());
-                    SendMessage_action(frame);
+                    SendMessage_Action(frame);
                 }
                 if ((GamepadButtonFlags.DPadDown & XboxPad.Instance.GetPressedButtons()) != 0)
                 {
@@ -827,7 +818,7 @@ namespace HAL062app.moduly.manipulator
                     frame.buffer[9] = (byte)('x');
                     frame.text = new string(frame.encodeMessage());
 
-                    SendMessage_action(frame);
+                    SendMessage_Action(frame);
                 }
                 if ((GamepadButtonFlags.A & XboxPad.Instance.GetPressedButtons()) != 0)
                 {
@@ -840,7 +831,8 @@ namespace HAL062app.moduly.manipulator
             if (value == 1)
             {
                 GamePadState = 1;
-            } if (value == 0)
+            }
+            if (value == 0)
             {
                 timer.Stop();
                 isTimerRunning = false;
@@ -948,9 +940,9 @@ namespace HAL062app.moduly.manipulator
             if (Math.Abs((int)_gamepad.LeftThumbY) > Gamepad.LeftThumbDeadZone)
                 await UpdateDofPositionXbox(4, 0.6f * mapXboxThumb(_gamepad.LeftThumbY));
             if (Math.Abs((int)_gamepad.RightThumbX) > Gamepad.RightThumbDeadZone)
-                await UpdateDofPositionToolInverseXbox(1, -4f*mapXboxThumb(_gamepad.RightThumbX));
+                await UpdateDofPositionToolInverseXbox(1, -4f * mapXboxThumb(_gamepad.RightThumbX));
             if (Math.Abs((int)_gamepad.RightThumbY) > Gamepad.RightThumbDeadZone)
-                await UpdateDofPositionToolInverseXbox(0, 4f*mapXboxThumb(_gamepad.RightThumbY));
+                await UpdateDofPositionToolInverseXbox(0, 4f * mapXboxThumb(_gamepad.RightThumbY));
             if (Math.Abs((int)_gamepad.RightTrigger) > Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.LeftTrigger) < Gamepad.TriggerThreshold)
                 await UpdateDofPositionToolInverseXbox(2, 300f * mapXboxThumb(_gamepad.RightTrigger));
             if (Math.Abs((int)_gamepad.LeftTrigger) > Gamepad.TriggerThreshold && Math.Abs((int)_gamepad.RightTrigger) < Gamepad.TriggerThreshold)
@@ -967,12 +959,12 @@ namespace HAL062app.moduly.manipulator
             });
 
         }
-        private  Task UpdateDofPositionToolInverseXbox(int coordinate, float delta)
+        private Task UpdateDofPositionToolInverseXbox(int coordinate, float delta)
         {
 
             if (!initialization)
             {
-                
+
                 float[] xyz = new float[3];
                 float[] actual = new float[6];
                 float[] xyza = new float[6];
@@ -983,23 +975,23 @@ namespace HAL062app.moduly.manipulator
                 xyza[2] = xyz[2];
                 xyza[3] = 0f;
                 xyza[4] = 0f;
-                xyza[5] = 0f; 
+                xyza[5] = 0f;
                 xyza[coordinate] += delta;
 
-                
-             
-                    XboxPad.Instance.StopVibration();
-                    Dispatcher.Invoke(() =>
-                    {
-                        ChangeSpherePosition_action(xyz, 1);
 
-                        Position InversePosition = UseInverseKinematicsForTool(actual, xyza);
 
-                        CreateVisualization_action(InversePosition);
-                        ChangeSlidersValue(InversePosition);
+                XboxPad.Instance.StopVibration();
+                Dispatcher.Invoke(() =>
+                {
+                    ChangeSpherePosition_action(xyz, 1);
 
-                    });
-                
+                    Position InversePosition = UseInverseKinematicsForTool(actual, xyza);
+
+                    CreateVisualization_action(InversePosition);
+                    ChangeSlidersValue(InversePosition);
+
+                });
+
             }
             return Task.CompletedTask;
         }
@@ -1016,35 +1008,35 @@ namespace HAL062app.moduly.manipulator
         }
         float CalculateDistance(float[] a, float[] b)
         {
-            return (float) Math.Sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) + (a[2] - b[2]) * (a[2] - b[2]));
+            return (float)Math.Sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) + (a[2] - b[2]) * (a[2] - b[2]));
 
         }
-        bool isInToolLimit(float[] destination )
+        bool isInToolLimit(float[] destination)
         {
 
             float[] xyz = inverseKinematics.ToolPosition(returnAnglesFromJoints(joints, false));
 
-            if (CalculateDistance(xyz,destination) < 1f)
+            if (CalculateDistance(xyz, destination) < 1f)
                 return true;
             return false;
 
         }
-        private Position UseInverseKinematicsForTool(float[] startAngle,float[] destination)
+        private Position UseInverseKinematicsForTool(float[] startAngle, float[] destination)
         {
-           // destination[0] = setXYZinBounds(destination[0], toolXYZlimits[0], toolXYZlimits[1]);
-           // destination[1] = setXYZinBounds(destination[1], toolXYZlimits[2], toolXYZlimits[3]);
-           // destination[2] = setXYZinBounds(destination[2], toolXYZlimits[4], toolXYZlimits[5]);
+            // destination[0] = setXYZinBounds(destination[0], toolXYZlimits[0], toolXYZlimits[1]);
+            // destination[1] = setXYZinBounds(destination[1], toolXYZlimits[2], toolXYZlimits[3]);
+            // destination[2] = setXYZinBounds(destination[2], toolXYZlimits[4], toolXYZlimits[5]);
 
 
-            Position InversePosition =actualPosition.deepCopy();
+            Position InversePosition = actualPosition.deepCopy();
             InversePosition.addRelative0(relativeZeros);
 
             float[] startPoint = inverseKinematics.ToolPosition(startAngle);
             float deltaX = destination[0] - startPoint[0];
             float deltaY = destination[1] - startPoint[1];
             float deltaZ = destination[2] - startPoint[2];
-            float[] midPoint = new float[6]; 
-            float numberOfPoints = (int)Math.Sqrt (deltaX* deltaX + deltaY * deltaY + deltaZ*deltaZ)/20;
+            float[] midPoint = new float[6];
+            float numberOfPoints = (int)Math.Sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) / 20;
             float[] InverseKinematicsResult = new float[6];
             for (int i = 0; i < 6; i++)
             {
@@ -1052,16 +1044,16 @@ namespace HAL062app.moduly.manipulator
                 InversePosition.joints[i] = startAngle[i];
             }
 
-           /* for (int i=1; i<= numberOfPoints; i++)
-            {
-                float t = (float)i / (float)(numberOfPoints - 1);
-                midPoint[0] = startPoint[0] + t * deltaX;
-                midPoint[1] = startPoint[1] + t * deltaY;
-                midPoint[2] = startPoint[2] + t * deltaZ;
-                midPoint[3] = 0f;
-                midPoint[4] = 0f;
-                midPoint[5] = 0f; 
-            }*/
+            /* for (int i=1; i<= numberOfPoints; i++)
+             {
+                 float t = (float)i / (float)(numberOfPoints - 1);
+                 midPoint[0] = startPoint[0] + t * deltaX;
+                 midPoint[1] = startPoint[1] + t * deltaY;
+                 midPoint[2] = startPoint[2] + t * deltaZ;
+                 midPoint[3] = 0f;
+                 midPoint[4] = 0f;
+                 midPoint[5] = 0f; 
+             }*/
             InverseKinematicsResult = inverseKinematics.inverseKinematicsTool(InverseKinematicsResult, destination);
             InversePosition.update(InverseKinematicsResult);
             return InversePosition;
@@ -1115,7 +1107,7 @@ namespace HAL062app.moduly.manipulator
             Inverse_XSlider.ValueChanged += Inverse_X_ValueChanged;
             Inverse_YSlider.ValueChanged += Inverse_Y_ValueChanged;
             Inverse_ZSlider.ValueChanged += Inverse_Z_ValueChanged;
-            
+
         }
 
         private async void Inverse_X_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -1191,7 +1183,7 @@ namespace HAL062app.moduly.manipulator
             ///Control_ZeroPosition(null, null);
             float[] destination = new float[6];
             float[] zero = new float[6];
-            zero= actualPosition.joints;
+            zero = actualPosition.joints;
             //actualPosition.addRelative0(relativeZeros);
             destination[0] = (float)Inverse_XSlider.Value;
             destination[1] = (float)Inverse_YSlider.Value;
@@ -1234,7 +1226,7 @@ namespace HAL062app.moduly.manipulator
 
         private void Probe1_Btn_Click(object sender, RoutedEventArgs e)
         {
-            
+
             float[] probeAngle = new float[6];
             probeAngle[0] = 69.91f;
             probeAngle[1] = 22.61f;
@@ -1243,10 +1235,10 @@ namespace HAL062app.moduly.manipulator
             probeAngle[4] = 22.52f;
             probeAngle[5] = -52.00f;
             Position probe1Positions = new Position(probeAngle);
-       
+
             ChangeSlidersValue(probe1Positions);
             simulateStep(actualPosition, probe1Positions, false);
-            
+
         }
 
         private void Probe2_Btn_Click(object sender, RoutedEventArgs e)
@@ -1281,7 +1273,7 @@ namespace HAL062app.moduly.manipulator
             simulateStep(actualPosition, probe1Positions, false);
         }
 
-     
+
 
         private void SendExperimentalInverse_Btn_Click(object sender, RoutedEventArgs e)
         {
@@ -1289,7 +1281,7 @@ namespace HAL062app.moduly.manipulator
             poss[0] = (float)X_inv_numeric.Value;
             poss[1] = (float)Y_inv_numeric.Value;
             poss[2] = (float)Z_inv_numeric.Value;
-            poss[3] = (float)Yaw_inv_numeric.Value * (float)Math.PI/180f;
+            poss[3] = (float)Yaw_inv_numeric.Value * (float)Math.PI / 180f;
             poss[4] = (float)Pitch_inv_numeric.Value * (float)Math.PI / 180f;
             poss[5] = (float)Roll_inv_numeric.Value * (float)Math.PI / 180f;
 
@@ -1314,7 +1306,7 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
         }
 
         private void SendModeAngle_Btn_Click(object sender, RoutedEventArgs e)
@@ -1332,26 +1324,27 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
         }
 
-       
+
 
         private void XYZABC_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (IsInitialized) { 
-            float[] poss = new float[6];
-            poss[0] = (float)X_inv_numeric.Value;
-            poss[1] = (float)Y_inv_numeric.Value;
-            poss[2] = (float)Z_inv_numeric.Value;
-            poss[3] = (float)Yaw_inv_numeric.Value * (float)Math.PI / 180f;
-            poss[4] = (float)Pitch_inv_numeric.Value * (float)Math.PI / 180f;
-            poss[5] = (float)Roll_inv_numeric.Value * (float)Math.PI / 180f;
+            if (IsInitialized)
+            {
+                float[] poss = new float[6];
+                poss[0] = (float)X_inv_numeric.Value;
+                poss[1] = (float)Y_inv_numeric.Value;
+                poss[2] = (float)Z_inv_numeric.Value;
+                poss[3] = (float)Yaw_inv_numeric.Value * (float)Math.PI / 180f;
+                poss[4] = (float)Pitch_inv_numeric.Value * (float)Math.PI / 180f;
+                poss[5] = (float)Roll_inv_numeric.Value * (float)Math.PI / 180f;
 
-            ChangeBoxPosition_action(poss);
-            
+                ChangeBoxPosition_action(poss);
 
-            //ChangeSpherePosition_action(poss, 0);
+
+                //ChangeSpherePosition_action(poss, 0);
             }
         }
 
@@ -1370,7 +1363,7 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
         }
 
         private void ManipTrajectory_Btn_Click(object sender, RoutedEventArgs e)
@@ -1388,7 +1381,7 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
         }
 
         private void ManipHold_Btn_Click(object sender, RoutedEventArgs e)
@@ -1406,7 +1399,7 @@ namespace HAL062app.moduly.manipulator
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
 
-            SendMessage_action(frame);
+            SendMessage_Action(frame);
         }
     }
 }
