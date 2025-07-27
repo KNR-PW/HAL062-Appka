@@ -47,17 +47,23 @@ namespace HAL062app.moduly.sandbox
                      * 
                      * W drugą stronę analogicznie, ale na odwrót 
                      */
-                    display.sendFrame_action += SendMessageToKomunikacja;
+                    display.sendFrame_action += SendMessageToRobot;
+                    model.updateTextBox_action += UpdateTestTextBox;
 
                 }
             }
 
         }
 
-        private void SendMessageToKomunikacja(Message msg)
+        private void SendMessageToRobot(Message msg)
         {
-            model.SendMessageToKomunikacja(msg);
+            model.SendMessageToRobot(msg);
 
+        }
+
+        private void UpdateTestTextBox(string text)
+        {
+            display.UpdateTestTextBox(text);
         }
 
 

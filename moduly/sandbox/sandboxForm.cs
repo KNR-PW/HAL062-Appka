@@ -10,6 +10,7 @@ namespace HAL062app.moduly.sandbox
         public SandboxForm()
         {
             InitializeComponent();
+
         }
 
         private void SendFrameBtn_Click(object sender, EventArgs e)
@@ -19,6 +20,13 @@ namespace HAL062app.moduly.sandbox
             frame.author = 6;
             frame.receiver = 0;
             sendFrame_action(frame);
+
+        }
+
+        public void UpdateTestTextBox(string text)
+        {
+            testTextBox.Text = text;
+
 
         }
 

@@ -29,10 +29,10 @@ namespace HAL062app.moduly.manipulator
 {
     public class manipulatorModel : IMessageObserver
     {
-        komunikacja.KomunikacjaModel komunikacjaModel;
+        komunikacja.CommunicationModel komunikacjaModel;
         private ConcurrentQueue<Message> receivedQueue;
 
-        public manipulatorModel(KomunikacjaModel komunikacja)
+        public manipulatorModel(CommunicationModel komunikacja)
         {
             receivedQueue = new ConcurrentQueue<Message>();
             this.komunikacjaModel = komunikacja;
@@ -43,10 +43,10 @@ namespace HAL062app.moduly.manipulator
 
         }
 
-        public void SendMessageToKomunikacja(Message message)
+        public void SendMessageToRobot(Message message)
         {
             message.author = 4;
-            komunikacjaModel.SendMMessageToHALService(message);
+            komunikacjaModel.SendMessageToRobot(message);
 
         }
 
@@ -55,11 +55,11 @@ namespace HAL062app.moduly.manipulator
             Message[] frames = new Message[3];
             frames = angleFrames(position, isXYZ);
 
-            SendMessageToKomunikacja(frames[0]);
+            SendMessageToRobot(frames[0]);
             await Task.Delay(50);
-            SendMessageToKomunikacja(frames[1]);
+            SendMessageToRobot(frames[1]);
             await Task.Delay(50);
-            SendMessageToKomunikacja(frames[2]);
+            SendMessageToRobot(frames[2]);
             await Task.Delay(50);
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hall062app;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using static HAL062app.ControllerState;
@@ -26,8 +27,9 @@ namespace HAL062app
         private Dictionary<string, Form> modules = new Dictionary<string, Form>();
         private Dictionary<string, bool> isPinned = new Dictionary<string, bool>();
 
+
+
         private String currentModule = "Komunikacja";
-        //   moduly.komunikacja.komunikacjaForm komun = new moduly.komunikacja.komunikacjaForm();
         public mainForm()
         {
             InitializeComponent();
@@ -35,37 +37,34 @@ namespace HAL062app
             XboxControlBus.XboxControlMode += OnXboxControlModeChanged;
             OnXboxControlModeChanged(-1);
 
-            modules.Add("Komunikacja", new moduly.komunikacja.KomunikacjaForm());
-            modules.Add("Laboratorium", new moduly.laboratorium.LaboratoriumForm());
-            modules.Add("Podwozie", new moduly.podwozie.PodwozieForm());
+            modules.Add("Komunikacja", new moduly.komunikacja.CommunicationForm());
+            modules.Add("Laboratorium", new moduly.laboratorium.LaboratoryForm());
+            modules.Add("Podwozie", new moduly.podwozie.DriveForm());
             modules.Add("Manipulator", new moduly.manipulator.manipulatorForm());
             modules.Add("Debug", new moduly.sandbox.SandboxForm());
-            // modules.Add("Wizualizacja", new moduly.wizualizacja.wizualizacjaForm());
+            
 
             foreach (var module in modules)
                 isPinned.Add(module.Key, true);
 
 
-            moduly.komunikacja.KomunikacjaModel komunikacjaM = new moduly.komunikacja.KomunikacjaModel();
-            moduly.laboratorium.LaboratoriumModel laboratoriumM = new moduly.laboratorium.LaboratoriumModel(komunikacjaM);
-            moduly.podwozie.PodwozieModel podwozieM = new moduly.podwozie.PodwozieModel(komunikacjaM);
-            moduly.manipulator.manipulatorModel manipulatorM = new moduly.manipulator.manipulatorModel(komunikacjaM);
-            moduly.sandbox.SandboxModel sandboxM = new moduly.sandbox.SandboxModel(komunikacjaM);
-            //moduly.wizualizacja.wizualizacjaModel wizualizacjaM = new moduly.wizualizacja.wizualizacjaModel(komunikacjaM);
+            moduly.komunikacja.CommunicationModel communicationModule = new moduly.komunikacja.CommunicationModel();
+            moduly.laboratorium.LaboratoryModel laboratoryModule = new moduly.laboratorium.LaboratoryModel(communicationModule);
+            moduly.podwozie.PodwozieModel driveModel = new moduly.podwozie.PodwozieModel(communicationModule);
+            moduly.manipulator.manipulatorModel manipulatorM = new moduly.manipulator.manipulatorModel(communicationModule);
+            moduly.sandbox.SandboxModel sandboxM = new moduly.sandbox.SandboxModel(communicationModule);
 
 
-            moduly.komunikacja.KomunikacjaPresenter komunikacjaC = new moduly.komunikacja.KomunikacjaPresenter(modules, komunikacjaM);
-            moduly.laboratorium.LaboratoriumPresenter laboratoriumC = new moduly.laboratorium.LaboratoriumPresenter(modules, laboratoriumM);
-            moduly.podwozie.PodwoziePresenter podwozieC = new moduly.podwozie.PodwoziePresenter(modules, podwozieM);
+            moduly.komunikacja.CommunicationPresenter komunikacjaC = new moduly.komunikacja.CommunicationPresenter(modules, communicationModule);
+            moduly.laboratorium.LaboratoryPresenter laboratoriumC = new moduly.laboratorium.LaboratoryPresenter(modules, laboratoryModule);
+            moduly.podwozie.DrivePresenter podwozieC = new moduly.podwozie.DrivePresenter(modules, driveModel);
             moduly.manipulator.manipulatorController manipulatorC = new moduly.manipulator.manipulatorController(modules, manipulatorM);
             moduly.sandbox.SandboxPresenter sandboxC = new moduly.sandbox.SandboxPresenter(modules, sandboxM);
-            // moduly.wizualizacja.wizualizacjaController wizualizacjaC = new moduly.wizualizacja.wizualizacjaController(modules, wizualizacjaM);
 
-            komunikacjaM.Subscribe(laboratoriumM);
-            komunikacjaM.Subscribe(podwozieM);
-            komunikacjaM.Subscribe(manipulatorM);
-            komunikacjaM.Subscribe(sandboxM);
-            //  komunikacjaM.Subscribe(wizualizacjaM);
+            communicationModule.Subscribe(laboratoryModule);
+            communicationModule.Subscribe(driveModel);
+            communicationModule.Subscribe(manipulatorM);
+           
 
 
         }
@@ -76,7 +75,6 @@ namespace HAL062app
             ShowModule("Debug");
             ShowModule("Laboratorium");
             ShowModule("Komunikacja");
-            //ShowModule("Wizualizacja");
 
         }
 
@@ -113,38 +111,41 @@ namespace HAL062app
 
         }
 
-        private void MainPageButton_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void CommunicationButton_Click(object sender, EventArgs e)
+        private void CommunicationBtn_Click(object sender, EventArgs e)
         {
             ShowModule("Komunikacja");
+            ResetBtnColor();
+            CommunicationBtn.BackgroundColor = System.Drawing.Color.FromArgb(255, 0, 120, 215);
+        
         }
 
-        private void ChassisButton_Click(object sender, EventArgs e)
+        private void DriveBtn_Click(object sender, EventArgs e)
         {
             ShowModule("Podwozie");
+            ResetBtnColor();
+            DriveBtn.BackColor = System.Drawing.Color.FromArgb(255, 0, 120, 215);
         }
 
-        private void ManipulatorButton_Click(object sender, EventArgs e)
+        private void ManipulatorBtn_Click(object sender, EventArgs e)
         {
             ShowModule("Manipulator");
+            ResetBtnColor();
+            ManipulatorBtn.BackgroundColor = System.Drawing.Color.FromArgb(255, 0, 120, 215);
         }
 
-        private void LaboButton_Click(object sender, EventArgs e)
+        private void LaboratoryBtn_Click(object sender, EventArgs e)
         {
             ShowModule("Laboratorium");
-        }
-        private void wizualizacjaBtn_Click(object sender, EventArgs e)
-        {
-            //  ShowModule("Wizualizacja");
+            ResetBtnColor();
+            LaboratoryBtn.BackgroundColor = System.Drawing.Color.FromArgb(255, 0, 120, 215);
         }
 
-        private void customButton6_Click(object sender, EventArgs e)
+        private void SandboxBtn_Click(object sender, EventArgs e)
         {
             ShowModule("Debug");
+            ResetBtnColor();
+            SandboxBtn.BackgroundColor = System.Drawing.Color.FromArgb(255, 0,120,215);
         }
 
         private void UnpinBtn_Click(object sender, EventArgs e)
@@ -152,6 +153,19 @@ namespace HAL062app
             isPinned[currentModule] = false;
             ShowModule(currentModule);
         }
+
+        private void ResetBtnColor()
+        {
+            var color = System.Drawing.Color.FromArgb(255, 128,128,128);
+            CommunicationBtn.BackColor = color;
+            DriveBtn.BackColor = color;
+            ManipulatorBtn.BackgroundColor = color;
+            LaboratoryBtn.BackgroundColor = color;
+            SandboxBtn.BackgroundColor = color;
+            
+
+        }
+
 
         private void ResetViewBtn_Click(object sender, EventArgs e)
         {
@@ -165,11 +179,7 @@ namespace HAL062app
 
         }
 
-        private void PinBtn_Click(object sender, EventArgs e)
-        {
-            isPinned[currentModule] = true;
-            ShowModule(currentModule);
-        }
+       
 
 
         private void OnXboxControlModeChanged(int state)
@@ -177,13 +187,13 @@ namespace HAL062app
             switch (state)
             {
                 case -1:
-                    GamePadStatusLabel.Text = "Gamepad: off";
+                    GamePadStatusLabel.Text = "Gamepad: \nwyłączony";
                     break;
                 case 0:
-                    GamePadStatusLabel.Text = "Gamepad: \n Drive";
+                    GamePadStatusLabel.Text = "Gamepad: \n tryb jazdy";
                     break;
                 case 1:
-                    GamePadStatusLabel.Text = "Gamepad: \n Manipulator angle";
+                    GamePadStatusLabel.Text = "Gamepad: \n tryb manipulatora";
                     break;
                 case 2:
                     GamePadStatusLabel.Text = "Gamepad: \n Manipulator 3DOF";
@@ -195,7 +205,7 @@ namespace HAL062app
 
         }
 
-
+     
 
         /// 
         /// <param name="sender"></param>

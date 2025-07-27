@@ -51,7 +51,7 @@ namespace HAL062app.moduly
                 {
                     string hex = String.Format("{0:x2}", buffer[i]);
                     byte[] bytes = Encoding.ASCII.GetBytes(hex);
-                    if (hex == "78")
+                    if (hex == "78") 
                     {
                         data[k] = 'x';
                         k++;

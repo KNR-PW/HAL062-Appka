@@ -28,293 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SidePanel = new System.Windows.Forms.Panel();
-            this.PinBtn = new HAL062app.CustomControls.CustomButton();
-            this.ResetViewBtn = new HAL062app.CustomControls.CustomButton();
-            this.UnpinBtn = new HAL062app.CustomControls.CustomButton();
-            this.FastOptionPanel = new System.Windows.Forms.Panel();
-            this.ButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.MainPageButton = new HAL062app.CustomControls.CustomButton();
-            this.CommunicationButton = new HAL062app.CustomControls.CustomButton();
-            this.ChassisButton = new HAL062app.CustomControls.CustomButton();
-            this.ManipulatorButton = new HAL062app.CustomControls.CustomButton();
-            this.LaboButton = new HAL062app.CustomControls.CustomButton();
-            this.sandboxBtn = new HAL062app.CustomControls.CustomButton();
-            this.StatusPanel = new System.Windows.Forms.Panel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
+            this.ContextPanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.GamePadStatusLabel = new System.Windows.Forms.Label();
-            this.ContextPanel = new System.Windows.Forms.Panel();
-            this.UpperPanel = new System.Windows.Forms.Panel();
-            this.wizualizacjaBtn = new HAL062app.CustomControls.CustomButton();
-            this.SidePanel.SuspendLayout();
-            this.ButtonPanel.SuspendLayout();
-            this.StatusPanel.SuspendLayout();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.SidePanel = new System.Windows.Forms.Panel();
+            this.SandboxBtn = new HAL062app.CustomControls.CustomButton();
+            this.LaboratoryBtn = new HAL062app.CustomControls.CustomButton();
+            this.ManipulatorBtn = new HAL062app.CustomControls.CustomButton();
+            this.DriveBtn = new HAL062app.CustomControls.CustomButton();
+            this.CommunicationBtn = new HAL062app.CustomControls.CustomButton();
+            this.UnpinBtn = new HAL062app.CustomControls.CustomButton();
+            this.ResetViewBtn = new HAL062app.CustomControls.CustomButton();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SidePanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // SidePanel
-            // 
-            this.SidePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.SidePanel.AutoSize = true;
-            this.SidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.SidePanel.Controls.Add(this.PinBtn);
-            this.SidePanel.Controls.Add(this.ResetViewBtn);
-            this.SidePanel.Controls.Add(this.UnpinBtn);
-            this.SidePanel.Controls.Add(this.FastOptionPanel);
-            this.SidePanel.Controls.Add(this.ButtonPanel);
-            this.SidePanel.Controls.Add(this.StatusPanel);
-            this.SidePanel.Location = new System.Drawing.Point(29, 29);
-            this.SidePanel.Margin = new System.Windows.Forms.Padding(20);
-            this.SidePanel.Name = "SidePanel";
-            this.SidePanel.Size = new System.Drawing.Size(286, 803);
-            this.SidePanel.TabIndex = 0;
-            // 
-            // PinBtn
-            // 
-            this.PinBtn.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.PinBtn.BackgroundColor = System.Drawing.Color.CornflowerBlue;
-            this.PinBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.PinBtn.BorderRadius = 10;
-            this.PinBtn.BorderSize = 0;
-            this.PinBtn.FlatAppearance.BorderSize = 0;
-            this.PinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PinBtn.ForeColor = System.Drawing.Color.White;
-            this.PinBtn.Location = new System.Drawing.Point(107, 569);
-            this.PinBtn.Margin = new System.Windows.Forms.Padding(10);
-            this.PinBtn.Name = "PinBtn";
-            this.PinBtn.Size = new System.Drawing.Size(72, 40);
-            this.PinBtn.TabIndex = 8;
-            this.PinBtn.Text = "Przypnij zakładkę";
-            this.PinBtn.TextColor = System.Drawing.Color.White;
-            this.PinBtn.UseVisualStyleBackColor = false;
-            this.PinBtn.Click += new System.EventHandler(this.PinBtn_Click);
-            // 
-            // ResetViewBtn
-            // 
-            this.ResetViewBtn.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.ResetViewBtn.BackgroundColor = System.Drawing.Color.CornflowerBlue;
-            this.ResetViewBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.ResetViewBtn.BorderRadius = 10;
-            this.ResetViewBtn.BorderSize = 0;
-            this.ResetViewBtn.FlatAppearance.BorderSize = 0;
-            this.ResetViewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ResetViewBtn.ForeColor = System.Drawing.Color.White;
-            this.ResetViewBtn.Location = new System.Drawing.Point(189, 569);
-            this.ResetViewBtn.Margin = new System.Windows.Forms.Padding(10);
-            this.ResetViewBtn.Name = "ResetViewBtn";
-            this.ResetViewBtn.Size = new System.Drawing.Size(72, 40);
-            this.ResetViewBtn.TabIndex = 7;
-            this.ResetViewBtn.Text = "Zresetuj widok";
-            this.ResetViewBtn.TextColor = System.Drawing.Color.White;
-            this.ResetViewBtn.UseVisualStyleBackColor = false;
-            this.ResetViewBtn.Click += new System.EventHandler(this.ResetViewBtn_Click);
-            // 
-            // UnpinBtn
-            // 
-            this.UnpinBtn.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.UnpinBtn.BackgroundColor = System.Drawing.Color.CornflowerBlue;
-            this.UnpinBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.UnpinBtn.BorderRadius = 10;
-            this.UnpinBtn.BorderSize = 0;
-            this.UnpinBtn.FlatAppearance.BorderSize = 0;
-            this.UnpinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UnpinBtn.ForeColor = System.Drawing.Color.White;
-            this.UnpinBtn.Location = new System.Drawing.Point(25, 569);
-            this.UnpinBtn.Margin = new System.Windows.Forms.Padding(10);
-            this.UnpinBtn.Name = "UnpinBtn";
-            this.UnpinBtn.Size = new System.Drawing.Size(72, 40);
-            this.UnpinBtn.TabIndex = 6;
-            this.UnpinBtn.Text = "Odepnij zakładkę";
-            this.UnpinBtn.TextColor = System.Drawing.Color.White;
-            this.UnpinBtn.UseVisualStyleBackColor = false;
-            this.UnpinBtn.Click += new System.EventHandler(this.UnpinBtn_Click);
-            // 
-            // FastOptionPanel
-            // 
-            this.FastOptionPanel.AutoSize = true;
-            this.FastOptionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.FastOptionPanel.Location = new System.Drawing.Point(15, 585);
-            this.FastOptionPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.FastOptionPanel.Name = "FastOptionPanel";
-            this.FastOptionPanel.Size = new System.Drawing.Size(256, 203);
-            this.FastOptionPanel.TabIndex = 2;
-            // 
-            // ButtonPanel
-            // 
-            this.ButtonPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.ButtonPanel.Controls.Add(this.MainPageButton);
-            this.ButtonPanel.Controls.Add(this.CommunicationButton);
-            this.ButtonPanel.Controls.Add(this.ChassisButton);
-            this.ButtonPanel.Controls.Add(this.ManipulatorButton);
-            this.ButtonPanel.Controls.Add(this.LaboButton);
-            this.ButtonPanel.Controls.Add(this.sandboxBtn);
-            this.ButtonPanel.Controls.Add(this.wizualizacjaBtn);
-            this.ButtonPanel.Location = new System.Drawing.Point(15, 115);
-            this.ButtonPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.ButtonPanel.Name = "ButtonPanel";
-            this.ButtonPanel.Size = new System.Drawing.Size(256, 429);
-            this.ButtonPanel.TabIndex = 1;
-            // 
-            // MainPageButton
-            // 
-            this.MainPageButton.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.MainPageButton.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.MainPageButton.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.MainPageButton.BorderRadius = 10;
-            this.MainPageButton.BorderSize = 0;
-            this.MainPageButton.FlatAppearance.BorderSize = 0;
-            this.MainPageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MainPageButton.ForeColor = System.Drawing.Color.White;
-            this.MainPageButton.Location = new System.Drawing.Point(10, 10);
-            this.MainPageButton.Margin = new System.Windows.Forms.Padding(10);
-            this.MainPageButton.Name = "MainPageButton";
-            this.MainPageButton.Size = new System.Drawing.Size(236, 40);
-            this.MainPageButton.TabIndex = 0;
-            this.MainPageButton.Text = "Strona startowa";
-            this.MainPageButton.TextColor = System.Drawing.Color.White;
-            this.MainPageButton.UseVisualStyleBackColor = false;
-            this.MainPageButton.Click += new System.EventHandler(this.MainPageButton_Click);
-            // 
-            // CommunicationButton
-            // 
-            this.CommunicationButton.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.CommunicationButton.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.CommunicationButton.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.CommunicationButton.BorderRadius = 10;
-            this.CommunicationButton.BorderSize = 0;
-            this.CommunicationButton.FlatAppearance.BorderSize = 0;
-            this.CommunicationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CommunicationButton.ForeColor = System.Drawing.Color.White;
-            this.CommunicationButton.Location = new System.Drawing.Point(10, 70);
-            this.CommunicationButton.Margin = new System.Windows.Forms.Padding(10);
-            this.CommunicationButton.Name = "CommunicationButton";
-            this.CommunicationButton.Size = new System.Drawing.Size(236, 40);
-            this.CommunicationButton.TabIndex = 1;
-            this.CommunicationButton.Text = "Komunikacja";
-            this.CommunicationButton.TextColor = System.Drawing.Color.White;
-            this.CommunicationButton.UseVisualStyleBackColor = false;
-            this.CommunicationButton.Click += new System.EventHandler(this.CommunicationButton_Click);
-            // 
-            // ChassisButton
-            // 
-            this.ChassisButton.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ChassisButton.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.ChassisButton.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.ChassisButton.BorderRadius = 10;
-            this.ChassisButton.BorderSize = 0;
-            this.ChassisButton.FlatAppearance.BorderSize = 0;
-            this.ChassisButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ChassisButton.ForeColor = System.Drawing.Color.White;
-            this.ChassisButton.Location = new System.Drawing.Point(10, 130);
-            this.ChassisButton.Margin = new System.Windows.Forms.Padding(10);
-            this.ChassisButton.Name = "ChassisButton";
-            this.ChassisButton.Size = new System.Drawing.Size(236, 40);
-            this.ChassisButton.TabIndex = 2;
-            this.ChassisButton.Text = "Podwozie";
-            this.ChassisButton.TextColor = System.Drawing.Color.White;
-            this.ChassisButton.UseVisualStyleBackColor = false;
-            this.ChassisButton.Click += new System.EventHandler(this.ChassisButton_Click);
-            // 
-            // ManipulatorButton
-            // 
-            this.ManipulatorButton.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ManipulatorButton.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.ManipulatorButton.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.ManipulatorButton.BorderRadius = 10;
-            this.ManipulatorButton.BorderSize = 0;
-            this.ManipulatorButton.FlatAppearance.BorderSize = 0;
-            this.ManipulatorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ManipulatorButton.ForeColor = System.Drawing.Color.White;
-            this.ManipulatorButton.Location = new System.Drawing.Point(10, 190);
-            this.ManipulatorButton.Margin = new System.Windows.Forms.Padding(10);
-            this.ManipulatorButton.Name = "ManipulatorButton";
-            this.ManipulatorButton.Size = new System.Drawing.Size(236, 40);
-            this.ManipulatorButton.TabIndex = 3;
-            this.ManipulatorButton.Text = "Manipulator";
-            this.ManipulatorButton.TextColor = System.Drawing.Color.White;
-            this.ManipulatorButton.UseVisualStyleBackColor = false;
-            this.ManipulatorButton.Click += new System.EventHandler(this.ManipulatorButton_Click);
-            // 
-            // LaboButton
-            // 
-            this.LaboButton.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.LaboButton.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.LaboButton.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.LaboButton.BorderRadius = 10;
-            this.LaboButton.BorderSize = 0;
-            this.LaboButton.FlatAppearance.BorderSize = 0;
-            this.LaboButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LaboButton.ForeColor = System.Drawing.Color.White;
-            this.LaboButton.Location = new System.Drawing.Point(10, 250);
-            this.LaboButton.Margin = new System.Windows.Forms.Padding(10);
-            this.LaboButton.Name = "LaboButton";
-            this.LaboButton.Size = new System.Drawing.Size(236, 40);
-            this.LaboButton.TabIndex = 4;
-            this.LaboButton.Text = "Laboratorium";
-            this.LaboButton.TextColor = System.Drawing.Color.White;
-            this.LaboButton.UseVisualStyleBackColor = false;
-            this.LaboButton.Click += new System.EventHandler(this.LaboButton_Click);
-            // 
-            // sandboxBtn
-            // 
-            this.sandboxBtn.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.sandboxBtn.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.sandboxBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.sandboxBtn.BorderRadius = 10;
-            this.sandboxBtn.BorderSize = 0;
-            this.sandboxBtn.FlatAppearance.BorderSize = 0;
-            this.sandboxBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.sandboxBtn.ForeColor = System.Drawing.Color.White;
-            this.sandboxBtn.Location = new System.Drawing.Point(10, 310);
-            this.sandboxBtn.Margin = new System.Windows.Forms.Padding(10);
-            this.sandboxBtn.Name = "sandboxBtn";
-            this.sandboxBtn.Size = new System.Drawing.Size(236, 40);
-            this.sandboxBtn.TabIndex = 5;
-            this.sandboxBtn.Text = "Debug";
-            this.sandboxBtn.TextColor = System.Drawing.Color.White;
-            this.sandboxBtn.UseVisualStyleBackColor = false;
-            this.sandboxBtn.Click += new System.EventHandler(this.customButton6_Click);
-            // 
-            // StatusPanel
-            // 
-            this.StatusPanel.AutoSize = true;
-            this.StatusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.StatusPanel.Controls.Add(this.tableLayoutPanel1);
-            this.StatusPanel.Location = new System.Drawing.Point(15, 15);
-            this.StatusPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.StatusPanel.Name = "StatusPanel";
-            this.StatusPanel.Size = new System.Drawing.Size(256, 70);
-            this.StatusPanel.TabIndex = 0;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.GamePadStatusLabel, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(256, 70);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // GamePadStatusLabel
-            // 
-            this.GamePadStatusLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.GamePadStatusLabel.AutoSize = true;
-            this.GamePadStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.GamePadStatusLabel.ForeColor = System.Drawing.Color.MediumSlateBlue;
-            this.GamePadStatusLabel.Location = new System.Drawing.Point(15, 8);
-            this.GamePadStatusLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.GamePadStatusLabel.Name = "GamePadStatusLabel";
-            this.GamePadStatusLabel.Size = new System.Drawing.Size(98, 18);
-            this.GamePadStatusLabel.TabIndex = 0;
-            this.GamePadStatusLabel.Text = "Gamepad: off";
             // 
             // ContextPanel
             // 
@@ -323,43 +61,292 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ContextPanel.AutoSize = true;
             this.ContextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.ContextPanel.Location = new System.Drawing.Point(355, 132);
+            this.ContextPanel.Location = new System.Drawing.Point(355, 29);
             this.ContextPanel.Margin = new System.Windows.Forms.Padding(0);
             this.ContextPanel.Name = "ContextPanel";
-            this.ContextPanel.Size = new System.Drawing.Size(1200, 700);
+            this.ContextPanel.Size = new System.Drawing.Size(1200, 803);
             this.ContextPanel.TabIndex = 1;
             // 
-            // UpperPanel
+            // tableLayoutPanel2
             // 
-            this.UpperPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpperPanel.AutoSize = true;
-            this.UpperPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.UpperPanel.Location = new System.Drawing.Point(358, 29);
-            this.UpperPanel.Margin = new System.Windows.Forms.Padding(15);
-            this.UpperPanel.Name = "UpperPanel";
-            this.UpperPanel.Size = new System.Drawing.Size(1197, 85);
-            this.UpperPanel.TabIndex = 2;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 59.36235F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.63765F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(310, 803);
+            this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // wizualizacjaBtn
+            // tableLayoutPanel4
             // 
-            this.wizualizacjaBtn.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.wizualizacjaBtn.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.wizualizacjaBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.wizualizacjaBtn.BorderRadius = 10;
-            this.wizualizacjaBtn.BorderSize = 0;
-            this.wizualizacjaBtn.FlatAppearance.BorderSize = 0;
-            this.wizualizacjaBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.wizualizacjaBtn.ForeColor = System.Drawing.Color.White;
-            this.wizualizacjaBtn.Location = new System.Drawing.Point(10, 370);
-            this.wizualizacjaBtn.Margin = new System.Windows.Forms.Padding(10);
-            this.wizualizacjaBtn.Name = "wizualizacjaBtn";
-            this.wizualizacjaBtn.Size = new System.Drawing.Size(236, 40);
-            this.wizualizacjaBtn.TabIndex = 6;
-            this.wizualizacjaBtn.Text = "Wizualizacja";
-            this.wizualizacjaBtn.TextColor = System.Drawing.Color.White;
-            this.wizualizacjaBtn.UseVisualStyleBackColor = false;
-            this.wizualizacjaBtn.Click += new System.EventHandler(this.wizualizacjaBtn_Click);
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.SandboxBtn, 0, 4);
+            this.tableLayoutPanel4.Controls.Add(this.LaboratoryBtn, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.ManipulatorBtn, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.DriveBtn, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.CommunicationBtn, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 103);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 5;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(304, 411);
+            this.tableLayoutPanel4.TabIndex = 1;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel1, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel3, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 517);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.91822F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.08178F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(310, 286);
+            this.tableLayoutPanel5.TabIndex = 2;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.GamePadStatusLabel, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 108);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(310, 178);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // GamePadStatusLabel
+            // 
+            this.GamePadStatusLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.GamePadStatusLabel.AutoSize = true;
+            this.GamePadStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.GamePadStatusLabel.ForeColor = System.Drawing.Color.White;
+            this.GamePadStatusLabel.Location = new System.Drawing.Point(12, 15);
+            this.GamePadStatusLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.GamePadStatusLabel.Name = "GamePadStatusLabel";
+            this.GamePadStatusLabel.Size = new System.Drawing.Size(131, 58);
+            this.GamePadStatusLabel.TabIndex = 0;
+            this.GamePadStatusLabel.Text = "Gamepad: off";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.99999F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.UnpinBtn, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.ResetViewBtn, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(304, 102);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(290, 80);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.WaitOnLoad = true;
+            // 
+            // SidePanel
+            // 
+            this.SidePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.SidePanel.AutoSize = true;
+            this.SidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
+            this.SidePanel.Controls.Add(this.tableLayoutPanel2);
+            this.SidePanel.Location = new System.Drawing.Point(29, 29);
+            this.SidePanel.Margin = new System.Windows.Forms.Padding(10, 20, 10, 20);
+            this.SidePanel.Name = "SidePanel";
+            this.SidePanel.Size = new System.Drawing.Size(310, 803);
+            this.SidePanel.TabIndex = 0;
+            // 
+            // SandboxBtn
+            // 
+            this.SandboxBtn.BackColor = System.Drawing.Color.Gray;
+            this.SandboxBtn.BackgroundColor = System.Drawing.Color.Gray;
+            this.SandboxBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.SandboxBtn.BorderRadius = 20;
+            this.SandboxBtn.BorderSize = 0;
+            this.SandboxBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SandboxBtn.FlatAppearance.BorderSize = 0;
+            this.SandboxBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SandboxBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SandboxBtn.ForeColor = System.Drawing.Color.White;
+            this.SandboxBtn.Location = new System.Drawing.Point(10, 338);
+            this.SandboxBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.SandboxBtn.Name = "SandboxBtn";
+            this.SandboxBtn.Size = new System.Drawing.Size(284, 63);
+            this.SandboxBtn.TabIndex = 4;
+            this.SandboxBtn.Text = "Tryb testowy";
+            this.SandboxBtn.TextColor = System.Drawing.Color.White;
+            this.SandboxBtn.UseVisualStyleBackColor = false;
+            this.SandboxBtn.Click += new System.EventHandler(this.SandboxBtn_Click);
+            // 
+            // LaboratoryBtn
+            // 
+            this.LaboratoryBtn.BackColor = System.Drawing.Color.Gray;
+            this.LaboratoryBtn.BackgroundColor = System.Drawing.Color.Gray;
+            this.LaboratoryBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.LaboratoryBtn.BorderRadius = 20;
+            this.LaboratoryBtn.BorderSize = 0;
+            this.LaboratoryBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LaboratoryBtn.FlatAppearance.BorderSize = 0;
+            this.LaboratoryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LaboratoryBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LaboratoryBtn.ForeColor = System.Drawing.Color.White;
+            this.LaboratoryBtn.Location = new System.Drawing.Point(10, 256);
+            this.LaboratoryBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.LaboratoryBtn.Name = "LaboratoryBtn";
+            this.LaboratoryBtn.Size = new System.Drawing.Size(284, 62);
+            this.LaboratoryBtn.TabIndex = 3;
+            this.LaboratoryBtn.Text = "Laboratorium";
+            this.LaboratoryBtn.TextColor = System.Drawing.Color.White;
+            this.LaboratoryBtn.UseVisualStyleBackColor = false;
+            this.LaboratoryBtn.Click += new System.EventHandler(this.LaboratoryBtn_Click);
+            // 
+            // ManipulatorBtn
+            // 
+            this.ManipulatorBtn.BackColor = System.Drawing.Color.Gray;
+            this.ManipulatorBtn.BackgroundColor = System.Drawing.Color.Gray;
+            this.ManipulatorBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.ManipulatorBtn.BorderRadius = 20;
+            this.ManipulatorBtn.BorderSize = 0;
+            this.ManipulatorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ManipulatorBtn.FlatAppearance.BorderSize = 0;
+            this.ManipulatorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ManipulatorBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ManipulatorBtn.ForeColor = System.Drawing.Color.White;
+            this.ManipulatorBtn.Location = new System.Drawing.Point(10, 174);
+            this.ManipulatorBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.ManipulatorBtn.Name = "ManipulatorBtn";
+            this.ManipulatorBtn.Size = new System.Drawing.Size(284, 62);
+            this.ManipulatorBtn.TabIndex = 2;
+            this.ManipulatorBtn.Text = "Manipulator";
+            this.ManipulatorBtn.TextColor = System.Drawing.Color.White;
+            this.ManipulatorBtn.UseVisualStyleBackColor = false;
+            this.ManipulatorBtn.Click += new System.EventHandler(this.ManipulatorBtn_Click);
+            // 
+            // DriveBtn
+            // 
+            this.DriveBtn.BackColor = System.Drawing.Color.Gray;
+            this.DriveBtn.BackgroundColor = System.Drawing.Color.Gray;
+            this.DriveBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.DriveBtn.BorderRadius = 20;
+            this.DriveBtn.BorderSize = 0;
+            this.DriveBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DriveBtn.FlatAppearance.BorderSize = 0;
+            this.DriveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DriveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DriveBtn.ForeColor = System.Drawing.Color.White;
+            this.DriveBtn.Location = new System.Drawing.Point(10, 92);
+            this.DriveBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.DriveBtn.Name = "DriveBtn";
+            this.DriveBtn.Size = new System.Drawing.Size(284, 62);
+            this.DriveBtn.TabIndex = 1;
+            this.DriveBtn.Text = "Platforma";
+            this.DriveBtn.TextColor = System.Drawing.Color.White;
+            this.DriveBtn.UseVisualStyleBackColor = false;
+            this.DriveBtn.Click += new System.EventHandler(this.DriveBtn_Click);
+            // 
+            // CommunicationBtn
+            // 
+            this.CommunicationBtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.CommunicationBtn.BackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.CommunicationBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.CommunicationBtn.BorderRadius = 20;
+            this.CommunicationBtn.BorderSize = 0;
+            this.CommunicationBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CommunicationBtn.FlatAppearance.BorderSize = 0;
+            this.CommunicationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CommunicationBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.CommunicationBtn.ForeColor = System.Drawing.Color.White;
+            this.CommunicationBtn.Location = new System.Drawing.Point(10, 10);
+            this.CommunicationBtn.Margin = new System.Windows.Forms.Padding(10);
+            this.CommunicationBtn.Name = "CommunicationBtn";
+            this.CommunicationBtn.Size = new System.Drawing.Size(284, 62);
+            this.CommunicationBtn.TabIndex = 0;
+            this.CommunicationBtn.Text = "Komunikacja";
+            this.CommunicationBtn.TextColor = System.Drawing.Color.White;
+            this.CommunicationBtn.UseVisualStyleBackColor = false;
+            this.CommunicationBtn.Click += new System.EventHandler(this.CommunicationBtn_Click);
+            // 
+            // UnpinBtn
+            // 
+            this.UnpinBtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.UnpinBtn.BackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.UnpinBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.UnpinBtn.BorderRadius = 10;
+            this.UnpinBtn.BorderSize = 0;
+            this.UnpinBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UnpinBtn.FlatAppearance.BorderSize = 0;
+            this.UnpinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UnpinBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.UnpinBtn.ForeColor = System.Drawing.Color.White;
+            this.UnpinBtn.Location = new System.Drawing.Point(161, 20);
+            this.UnpinBtn.Margin = new System.Windows.Forms.Padding(10, 20, 10, 20);
+            this.UnpinBtn.Name = "UnpinBtn";
+            this.UnpinBtn.Size = new System.Drawing.Size(133, 62);
+            this.UnpinBtn.TabIndex = 1;
+            this.UnpinBtn.Text = "Odepnij kartę";
+            this.UnpinBtn.TextColor = System.Drawing.Color.White;
+            this.UnpinBtn.UseVisualStyleBackColor = false;
+            this.UnpinBtn.Click += new System.EventHandler(this.UnpinBtn_Click);
+            // 
+            // ResetViewBtn
+            // 
+            this.ResetViewBtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.ResetViewBtn.BackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.ResetViewBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.ResetViewBtn.BorderRadius = 10;
+            this.ResetViewBtn.BorderSize = 0;
+            this.ResetViewBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ResetViewBtn.FlatAppearance.BorderSize = 0;
+            this.ResetViewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResetViewBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ResetViewBtn.ForeColor = System.Drawing.Color.White;
+            this.ResetViewBtn.Location = new System.Drawing.Point(10, 20);
+            this.ResetViewBtn.Margin = new System.Windows.Forms.Padding(10, 20, 10, 20);
+            this.ResetViewBtn.Name = "ResetViewBtn";
+            this.ResetViewBtn.Size = new System.Drawing.Size(131, 62);
+            this.ResetViewBtn.TabIndex = 0;
+            this.ResetViewBtn.Text = "Zresetuj widok";
+            this.ResetViewBtn.TextColor = System.Drawing.Color.White;
+            this.ResetViewBtn.UseVisualStyleBackColor = false;
+            this.ResetViewBtn.Click += new System.EventHandler(this.ResetViewBtn_Click);
             // 
             // mainForm
             // 
@@ -367,45 +354,50 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1584, 861);
-            this.Controls.Add(this.UpperPanel);
             this.Controls.Add(this.ContextPanel);
             this.Controls.Add(this.SidePanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1600, 900);
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KNR HAL-062";
             this.Load += new System.EventHandler(this.mainForm_Load);
-            this.SidePanel.ResumeLayout(false);
-            this.SidePanel.PerformLayout();
-            this.ButtonPanel.ResumeLayout(false);
-            this.StatusPanel.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.SidePanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel SidePanel;
-        private System.Windows.Forms.Panel StatusPanel;
         private System.Windows.Forms.Panel ContextPanel;
-        private System.Windows.Forms.Panel FastOptionPanel;
-        private System.Windows.Forms.FlowLayoutPanel ButtonPanel;
-        private System.Windows.Forms.Panel UpperPanel;
-        private CustomControls.CustomButton MainPageButton;
-        private CustomControls.CustomButton CommunicationButton;
-        private CustomControls.CustomButton ChassisButton;
-        private CustomControls.CustomButton ManipulatorButton;
-        private CustomControls.CustomButton LaboButton;
-        private CustomControls.CustomButton sandboxBtn;
-        private CustomControls.CustomButton ResetViewBtn;
-        private CustomControls.CustomButton UnpinBtn;
-        private CustomControls.CustomButton PinBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label GamePadStatusLabel;
-        private CustomControls.CustomButton wizualizacjaBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+      
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+
+        private CustomControls.CustomButton CommunicationButton;
+        private CustomControls.CustomButton LaboButton;
+        private CustomControls.CustomButton ChassisButton;
+        private CustomControls.CustomButton ManipulatorButton;
+        private System.Windows.Forms.Panel SidePanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private CustomControls.CustomButton CommunicationBtn;
+        private CustomControls.CustomButton SandboxBtn;
+        private CustomControls.CustomButton LaboratoryBtn;
+        private CustomControls.CustomButton ManipulatorBtn;
+        private CustomControls.CustomButton DriveBtn;
+        private CustomControls.CustomButton UnpinBtn;
+        private CustomControls.CustomButton ResetViewBtn;
     }
 }
 

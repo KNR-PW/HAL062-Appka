@@ -7,7 +7,7 @@
     <ProjectGuid>{54656C27-642F-4243-AE6D-DB9C432BA55C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>HAL062app</RootNamespace>
-    <AssemblyName>HAL062app</AssemblyName>
+    <AssemblyName>KNR HAL-062 Command Center</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -65,6 +65,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>KNR.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HelixToolkit.Wpf, Version=2.24.0.0, Culture=neutral, PublicKeyToken=52aa3500039caf0d, processorArchitecture=MSIL">
@@ -157,100 +160,85 @@
       <DependentUpon>mainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="moduly\IModelObserver.cs" />
-    <Compile Include="moduly\komunikacja\KomunikacjaPresenter.cs" />
-    <Compile Include="moduly\komunikacja\KomunikacjaForm.cs">
+    <Compile Include="moduly\Communication\CommunicationPresenter.cs" />
+    <Compile Include="moduly\Communication\CommunicationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="moduly\komunikacja\KomunikacjaForm.Designer.cs">
-      <DependentUpon>KomunikacjaForm.cs</DependentUpon>
+    <Compile Include="moduly\Communication\CommunicationForm.Designer.cs">
+      <DependentUpon>CommunicationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="moduly\komunikacja\KomunikacjaModel.cs" />
-    <Compile Include="moduly\laboratorium\LaboratoriumPresenter.cs" />
-    <Compile Include="moduly\laboratorium\LaboratoriumForm.cs">
+    <Compile Include="moduly\Communication\CommunicationModel.cs" />
+    <Compile Include="moduly\Laboratory\LaboratoryPresenter.cs" />
+    <Compile Include="moduly\Laboratory\LaboratoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="moduly\laboratorium\LaboratoriumForm.Designer.cs">
-      <DependentUpon>LaboratoriumForm.cs</DependentUpon>
+    <Compile Include="moduly\Laboratory\LaboratoryForm.Designer.cs">
+      <DependentUpon>LaboratoryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="moduly\laboratorium\LaboratoriumModel.cs" />
-    <Compile Include="moduly\manipulator\InverseKinematics.cs" />
-    <Compile Include="moduly\manipulator\InverseKinematicsEmbeddy.cs" />
-    <Compile Include="moduly\manipulator\manipulatorController.cs" />
-    <Compile Include="moduly\manipulator\manipulatorForm.cs">
+    <Compile Include="moduly\Laboratory\LaboratoryModel.cs" />
+    <Compile Include="moduly\Manipulator\InverseKinematics.cs" />
+    <Compile Include="moduly\Manipulator\InverseKinematicsEmbeddy.cs" />
+    <Compile Include="moduly\Manipulator\manipulatorController.cs" />
+    <Compile Include="moduly\Manipulator\manipulatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="moduly\manipulator\manipulatorForm.Designer.cs">
+    <Compile Include="moduly\Manipulator\manipulatorForm.Designer.cs">
       <DependentUpon>manipulatorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="moduly\manipulator\manipulatorModel.cs" />
-    <Compile Include="moduly\manipulator\manipulatorWPF.xaml.cs">
+    <Compile Include="moduly\Manipulator\manipulatorModel.cs" />
+    <Compile Include="moduly\Manipulator\manipulatorWPF.xaml.cs">
       <DependentUpon>manipulatorWPF.xaml</DependentUpon>
     </Compile>
-    <Compile Include="moduly\manipulator\position.cs" />
-    <Compile Include="moduly\manipulator\sequence.cs" />
-    <Compile Include="moduly\manipulator\SequenceManager.cs" />
-    <Compile Include="moduly\manipulator\SterowanieWPF.xaml.cs">
+    <Compile Include="moduly\Manipulator\position.cs" />
+    <Compile Include="moduly\Manipulator\sequence.cs" />
+    <Compile Include="moduly\Manipulator\SequenceManager.cs" />
+    <Compile Include="moduly\Manipulator\SterowanieWPF.xaml.cs">
       <DependentUpon>SterowanieWPF.xaml</DependentUpon>
     </Compile>
     <Compile Include="moduly\Message.cs" />
-    <Compile Include="moduly\podwozie\motorData.cs" />
-    <Compile Include="moduly\podwozie\PodwoziePresenter.cs" />
-    <Compile Include="moduly\podwozie\PodwozieForm.cs">
+    <Compile Include="moduly\Drive\motorData.cs" />
+    <Compile Include="moduly\Drive\DrivePresenter.cs" />
+    <Compile Include="moduly\Drive\DriveForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="moduly\podwozie\PodwozieForm.Designer.cs">
-      <DependentUpon>PodwozieForm.cs</DependentUpon>
+    <Compile Include="moduly\Drive\DriveForm.Designer.cs">
+      <DependentUpon>DriveForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="moduly\podwozie\podwozieModel.cs" />
-    <Compile Include="moduly\sandbox\SandboxPresenter.cs" />
-    <Compile Include="moduly\sandbox\SandboxForm.cs">
+    <Compile Include="moduly\Drive\DriveModel.cs" />
+    <Compile Include="moduly\Sandbox\SandboxPresenter.cs" />
+    <Compile Include="moduly\Sandbox\SandboxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="moduly\sandbox\SandboxForm.Designer.cs">
+    <Compile Include="moduly\Sandbox\SandboxForm.Designer.cs">
       <DependentUpon>SandboxForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="moduly\sandbox\SandboxModel.cs" />
+    <Compile Include="moduly\Sandbox\SandboxModel.cs" />
     <Compile Include="moduly\TimeProvider.cs" />
-    <Compile Include="moduly\wizualizacja\objectConfig.cs" />
-    <Compile Include="moduly\wizualizacja\engine.cs" />
-    <Compile Include="moduly\wizualizacja\positionData.cs" />
-    <Compile Include="moduly\wizualizacja\wizualizacjaController.cs" />
-    <Compile Include="moduly\wizualizacja\wizualizacjaForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="moduly\wizualizacja\wizualizacjaForm.Designer.cs">
-      <DependentUpon>wizualizacjaForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="moduly\wizualizacja\wizualizacjaModel.cs" />
-    <Compile Include="moduly\wizualizacja\wizualizacjaWPF.xaml.cs">
-      <DependentUpon>wizualizacjaWPF.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties.cs" />
     <Compile Include="TimerManager.cs" />
     <Compile Include="moduly\XboxPad.cs" />
+    <Content Include="KNR.ico" />
     <Content Include="_JakWlaczycApke.txt" />
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="moduly\komunikacja\KomunikacjaForm.resx">
-      <DependentUpon>KomunikacjaForm.cs</DependentUpon>
+    <EmbeddedResource Include="moduly\Communication\CommunicationForm.resx">
+      <DependentUpon>CommunicationForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="moduly\laboratorium\LaboratoriumForm.resx">
-      <DependentUpon>LaboratoriumForm.cs</DependentUpon>
+    <EmbeddedResource Include="moduly\Laboratory\LaboratoryForm.resx">
+      <DependentUpon>LaboratoryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="moduly\manipulator\manipulatorForm.resx">
+    <EmbeddedResource Include="moduly\Manipulator\manipulatorForm.resx">
       <DependentUpon>manipulatorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="moduly\podwozie\PodwozieForm.resx">
-      <DependentUpon>PodwozieForm.cs</DependentUpon>
+    <EmbeddedResource Include="moduly\Drive\DriveForm.resx">
+      <DependentUpon>DriveForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="moduly\sandbox\SandboxForm.resx">
+    <EmbeddedResource Include="moduly\Sandbox\SandboxForm.resx">
       <DependentUpon>SandboxForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="moduly\wizualizacja\wizualizacjaForm.resx">
-      <DependentUpon>wizualizacjaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -262,56 +250,32 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Content Include="moduly\manipulator\models\base.STL">
+    <Content Include="moduly\Manipulator\models\base.STL">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="moduly\manipulator\models\dof1.STL">
+    <Content Include="moduly\Manipulator\models\dof1.STL">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="moduly\manipulator\models\dof2.STL">
+    <Content Include="moduly\Manipulator\models\dof2.STL">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="moduly\manipulator\models\dof3.STL">
+    <Content Include="moduly\Manipulator\models\dof3.STL">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="moduly\manipulator\models\dof4.STL">
+    <Content Include="moduly\Manipulator\models\dof4.STL">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="moduly\manipulator\models\dof5.STL">
+    <Content Include="moduly\Manipulator\models\dof5.STL">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="moduly\manipulator\models\gripper.STL">
+    <Content Include="moduly\Manipulator\models\gripper.STL">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="HAL062app_TemporaryKey.pfx" />
-    <Content Include="moduly\manipulator\models\rover.stl">
+    <Content Include="moduly\Manipulator\models\rover.stl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="moduly\manipulator\sequenceList.json" />
-    <Content Include="moduly\wizualizacja\models\base.STL">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="moduly\wizualizacja\models\dof1.STL">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="moduly\wizualizacja\models\dof2.STL">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="moduly\wizualizacja\models\dof3.STL">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="moduly\wizualizacja\models\dof4.STL">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="moduly\wizualizacja\models\dof5.STL">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="moduly\wizualizacja\models\gripper.STL">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="moduly\wizualizacja\models\rover.stl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="moduly\Manipulator\sequenceList.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -327,22 +291,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="moduly\manipulator\manipulatorWPF.xaml">
+    <Page Include="moduly\Manipulator\manipulatorWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="moduly\manipulator\SterowanieWPF.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="moduly\wizualizacja\wizualizacjaWPF.xaml">
+    <Page Include="moduly\Manipulator\SterowanieWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="moduly\manipulator\dokumentacjaManipulator.txt" />
-    <None Include="moduly\podwozie\rover.png" />
+    <Content Include="moduly\Manipulator\dokumentacjaManipulator.txt" />
+    <None Include="moduly\Drive\rover.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

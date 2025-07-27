@@ -24,7 +24,7 @@ namespace HAL062app.moduly.manipulator
 
                     //  model.wywolaj += UpdateTextBox1;
                     //    display.DequeueAction += dequeue;
-                    display.sendFrameToController_Action += SendMessageToKomunikacja;
+                    display.sendFrameToController_Action += SendMessageToRobot;
                     display.sendPositionToController_Action += sendAnglesToManipulator;
                 }
             }
@@ -37,9 +37,9 @@ namespace HAL062app.moduly.manipulator
             model.SendAnglesToManipulator(position, isXYZ);
 
         }
-        private void SendMessageToKomunikacja(Message msg)
+        private void SendMessageToRobot(Message msg)
         {
-            model.SendMessageToKomunikacja(msg);
+            model.SendMessageToRobot(msg);
 
         }
 
