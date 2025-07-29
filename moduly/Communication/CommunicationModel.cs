@@ -1,4 +1,5 @@
-﻿using InTheHand.Net;
+﻿using HAL062app.moduly.podwozie;
+using InTheHand.Net;
 using InTheHand.Net.Bluetooth;
 using InTheHand.Net.Sockets;
 using System;
@@ -39,6 +40,26 @@ using System.Windows.Forms;
 namespace HAL062app.moduly.komunikacja
 {
 
+    public interface ICommunicationModel
+    {
+        void SendMessageToObservers(Message message); 
+        void SendTerminalMessage(string text);
+        Task ConnectTelnet(string ipAddress, int port);
+        void TelnetDisconnect();
+
+        void ConnectBluetooth(string deviceName);
+        void DisconnectBluetooth();
+        
+        Task RefreshBluetoothDevices();
+        bool IsTelnetConnected();
+        bool IsBluetoothOn();
+
+        event Action<List<Message>> UpdateLogTerminal;
+        event Action<bool> isEthernetConnected_action;
+        event Action<List<string>> OnBluetoothDevicesFound;
+        event Action<bool> IsBluetoothConnected_action;
+    }
+
     public class CommunicationStatistics
     {
         private static readonly CommunicationStatistics _instance = new CommunicationStatistics();
@@ -51,6 +72,8 @@ namespace HAL062app.moduly.komunikacja
 
         public event Action<int, int, int> StatsUpdated_action;
 
+
+      
 
         private CommunicationStatistics() { }
 
@@ -66,9 +89,9 @@ namespace HAL062app.moduly.komunikacja
             RaiseStatsUpdated();
         }
 
-        public void RegisterDropped()
+        public void RegisterDropped(int queueCount)
         {
-            BufforFillLevelCount++;
+            BufforFillLevelCount = queueCount;
             RaiseStatsUpdated();
         }
 
@@ -78,7 +101,7 @@ namespace HAL062app.moduly.komunikacja
         }
     }
 
-    public class CommunicationModel 
+    public class CommunicationModel : ICommunicationModel
     {
         private List<IMessageObserver> observers = new List<IMessageObserver>();    //lista obserwujących modułów
         private List<Message> logMessages = new List<Message>();
@@ -119,7 +142,8 @@ namespace HAL062app.moduly.komunikacja
         private BluetoothDeviceInfo[] bluetoothDeviceInfos = new BluetoothDeviceInfo[0];
         private bool BluetoothOn = false;
 
-
+        private CancellationTokenSource workerTokenSource;
+        private Task messageWorkerTask;
 
         public CommunicationModel()
         {
@@ -129,6 +153,9 @@ namespace HAL062app.moduly.komunikacja
             if (IsBluetoothOn())
             { bluetoothClient = new BluetoothClient(); }
             AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
+
+            workerTokenSource = new CancellationTokenSource();
+            messageWorkerTask = Task.Run(() => MessageSenderWorker(workerTokenSource.Token));
         }
 
         private void OnProcessExit(object sender, EventArgs e)
@@ -163,23 +190,56 @@ namespace HAL062app.moduly.komunikacja
 
         public void SendMessageToRobot(Message message)
         {
+
+            messageQueue.Enqueue(message);
+            CommunicationStatistics.Instance.RegisterDropped(messageQueue.Count);
+            logMessages.Add(message);
+            UpdateLogTerminal(logMessages);
+        }
+
+      /*  public void SendMessageToRobot(Message message)
+        {
            messageQueue.Enqueue(message);
+            CommunicationStatistics.Instance.RegisterDropped(messageQueue.Count);
             logMessages.Add(message);
             UpdateLogTerminal(logMessages);
 
             if (IsBluetoothOn())
                 if (bluetoothClient.Connected)
                 {
-                    Task.Run(async () => await SendBluetoothMessage(message));
+                //    Task.Run(async () => await SendBluetoothMessage(message));
 
                 }
             if (IsTelnetConnected())
             {
-                Task.Run(async () => await SendTelnetMessage(message));
+              //  Task.Run(async () => await SendTelnetMessage(message));
 
             }
         }
+      */
 
+        private async Task MessageSenderWorker(CancellationToken token)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                if (messageQueue.TryDequeue(out Message message))
+                {
+                    if (IsBluetoothOn() && bluetoothClient?.Connected == true)
+                    {
+                        await SendBluetoothMessage(message);
+                    }
+
+                    if (IsTelnetConnected())
+                    {
+                        await SendTelnetMessage(message);
+                    }
+
+                    CommunicationStatistics.Instance.RegisterDropped(messageQueue.Count);
+                }
+
+                await Task.Delay(50); 
+            }
+        }
 
 
         public void ReceiveMessage(Message message)
@@ -226,6 +286,7 @@ namespace HAL062app.moduly.komunikacja
            
             try
             {
+                SendTerminalMessage("Rozpoczęto próbę połączenia z "+ipAddress +":"+port.ToString());
                 tcpClient = new TcpClient();
                 await tcpClient.ConnectAsync(ipAddress, port);
                 telnetStream = tcpClient.GetStream();

@@ -53,14 +53,14 @@ namespace HAL062app.moduly.podwozie
 
                     _view.SendMotorDataToController_Action += SendMotorDataToModel_Action;
                     _view.SendMessage_Action += SendMessageToRobot;
-
                 }
             }
 
         }
+      
         private void SendMotorDataToModel_Action(MotorData data)
         {
-            _model.SendSpeed(data);
+            _model.SendVelocityToRobot(data);
         }
 
         private void SendMessageToRobot(Message msg)

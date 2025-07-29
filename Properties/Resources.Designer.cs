@@ -63,6 +63,26 @@ namespace HAL062app.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap HALCC {
+            get {
+                object obj = ResourceManager.GetObject("HALCC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap HALCCW {
+            get {
+                object obj = ResourceManager.GetObject("HALCCW", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap rover {
             get {
                 object obj = ResourceManager.GetObject("rover", resourceCulture);

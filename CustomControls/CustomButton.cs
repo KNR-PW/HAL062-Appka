@@ -14,6 +14,20 @@ namespace HAL062app.CustomControls
         private int borderSize = 0;
         private int borderRadius = 20;
         private Color borderColor = Color.FromArgb(0, 155, 154, 159);
+        private ButtonStyles buttonStyle = ButtonStyles.Default;
+
+        public enum ButtonStyles
+        {
+            Default, //Niebieski
+            Primary, //szary
+            Green,
+            Red,
+            Off, //ciemny szary
+            Functional_blue,
+            Functional_orange,
+            Functional_purple,
+
+        }
 
 
         public CustomButton()
@@ -21,9 +35,9 @@ namespace HAL062app.CustomControls
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 0;
             this.Size = new Size(150, 40);
-            this.BackColor = Color.FromArgb(0, 155, 154, 159);
-            this.ForeColor = Color.White;
+            this.ApplyStyle();
             this.Resize += new EventHandler(Button_Resize);
+
         }
         private void Button_Resize(object sender, EventArgs e)
         {
@@ -70,6 +84,15 @@ namespace HAL062app.CustomControls
         {
             get { return this.ForeColor; }
             set { this.ForeColor = value; }
+        }
+        public ButtonStyles ButtonStyle
+        {
+            get => buttonStyle;
+            set
+            {
+                buttonStyle = value;
+                ApplyStyle();
+            }
         }
 
         private GraphicsPath GetFigurePath(Rectangle rect, float radius)
@@ -135,6 +158,39 @@ namespace HAL062app.CustomControls
         private void Container_BackColorChanged(object sender, EventArgs e)
         {
             this.Invalidate();
+        }
+
+
+        private void ApplyStyle()
+        {
+            switch (buttonStyle)
+            {
+                case ButtonStyles.Primary:
+                    this.BackColor = Color.FromArgb(0, 120, 215); // niebieski
+                    this.ForeColor = Color.White;
+                    break;
+                case ButtonStyles.Green:
+                    this.BackColor = Color.FromArgb(40, 167, 69); // zielony
+                    this.ForeColor = Color.White;
+                    break;
+                case ButtonStyles.Red:
+                    this.BackColor = Color.FromArgb(220, 53, 69); // czerwony
+                    this.ForeColor = Color.White;
+                    break;
+                case ButtonStyles.Off:
+                    this.BackColor = Color.FromArgb(100, 100, 100); 
+                    this.ForeColor = Color.Black;
+                    break;
+                default:
+                    this.BackColor = Color.FromArgb(120, 120, 120); // szary
+                    this.ForeColor = Color.White;
+                    break;
+            }
+
+            Color mouseColor = this.BackColor;
+            mouseColor = Color.FromArgb(255, (int)(mouseColor.R * 0.8), (int)(mouseColor.G * 0.8), (int)(mouseColor.B * 0.8));
+            this.FlatAppearance.MouseDownBackColor = mouseColor;
+            this.FlatAppearance.MouseOverBackColor = mouseColor;
         }
     }
 

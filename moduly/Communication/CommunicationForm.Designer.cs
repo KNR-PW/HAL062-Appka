@@ -64,17 +64,22 @@
             this.IPtextbox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.SentMsg_label = new System.Windows.Forms.Label();
+            this.ReceivedMsg_label = new System.Windows.Forms.Label();
+            this.Buffor_Label = new System.Windows.Forms.Label();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.watchdogBtn = new HAL062app.CustomControls.CustomButton();
+            this.clearQueueBtn = new HAL062app.CustomControls.CustomButton();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.watchdogNumeric = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.ClearNotebookBtn = new HAL062app.CustomControls.CustomButton();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.Buffor_Label = new System.Windows.Forms.Label();
-            this.ReceivedMsg_label = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SentMsg_label = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -93,10 +98,13 @@
             this.panel14.SuspendLayout();
             this.panel9.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.watchdogNumeric)).BeginInit();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -108,14 +116,14 @@
             this.tableLayoutPanel1.Controls.Add(this.TerminalBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel9, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(620, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(710, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(544, 641);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(454, 641);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // TerminalBox
@@ -132,7 +140,7 @@
             this.TerminalBox.Margin = new System.Windows.Forms.Padding(0);
             this.TerminalBox.MinimumSize = new System.Drawing.Size(200, 200);
             this.TerminalBox.Name = "TerminalBox";
-            this.TerminalBox.Size = new System.Drawing.Size(522, 548);
+            this.TerminalBox.Size = new System.Drawing.Size(432, 548);
             this.TerminalBox.TabIndex = 5;
             this.TerminalBox.SelectedIndexChanged += new System.EventHandler(this.TerminalBox_SelectedIndexChanged);
             // 
@@ -148,24 +156,27 @@
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(516, 64);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(426, 64);
             this.tableLayoutPanel9.TabIndex = 8;
             // 
             // SendBtn
             // 
-            this.SendBtn.BackColor = System.Drawing.Color.Purple;
-            this.SendBtn.BackgroundColor = System.Drawing.Color.Purple;
+            this.SendBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.SendBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.SendBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.SendBtn.BorderRadius = 10;
             this.SendBtn.BorderSize = 0;
+            this.SendBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.SendBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SendBtn.FlatAppearance.BorderSize = 0;
+            this.SendBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.SendBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.SendBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SendBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SendBtn.ForeColor = System.Drawing.Color.White;
-            this.SendBtn.Location = new System.Drawing.Point(415, 3);
+            this.SendBtn.Location = new System.Drawing.Point(343, 3);
             this.SendBtn.Name = "SendBtn";
-            this.SendBtn.Size = new System.Drawing.Size(98, 58);
+            this.SendBtn.Size = new System.Drawing.Size(80, 58);
             this.SendBtn.TabIndex = 7;
             this.SendBtn.Text = "Wyślij";
             this.SendBtn.TextColor = System.Drawing.Color.White;
@@ -185,14 +196,14 @@
             this.sendTextBox.Location = new System.Drawing.Point(3, 17);
             this.sendTextBox.MinimumSize = new System.Drawing.Size(200, 29);
             this.sendTextBox.Name = "sendTextBox";
-            this.sendTextBox.Size = new System.Drawing.Size(406, 29);
+            this.sendTextBox.Size = new System.Drawing.Size(334, 29);
             this.sendTextBox.TabIndex = 6;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 310F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 310F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
@@ -381,46 +392,52 @@
             // 
             // BluetoothRefreshBtn
             // 
-            this.BluetoothRefreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BluetoothRefreshBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BluetoothRefreshBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.BluetoothRefreshBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.BluetoothRefreshBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.BluetoothRefreshBtn.BorderRadius = 10;
             this.BluetoothRefreshBtn.BorderSize = 0;
+            this.BluetoothRefreshBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Off;
             this.BluetoothRefreshBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BluetoothRefreshBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BluetoothRefreshBtn.FlatAppearance.BorderSize = 0;
+            this.BluetoothRefreshBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BluetoothRefreshBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.BluetoothRefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BluetoothRefreshBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
-            this.BluetoothRefreshBtn.ForeColor = System.Drawing.Color.AliceBlue;
+            this.BluetoothRefreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.BluetoothRefreshBtn.ForeColor = System.Drawing.Color.Black;
             this.BluetoothRefreshBtn.Location = new System.Drawing.Point(4, 10);
             this.BluetoothRefreshBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.BluetoothRefreshBtn.Name = "BluetoothRefreshBtn";
             this.BluetoothRefreshBtn.Size = new System.Drawing.Size(124, 121);
             this.BluetoothRefreshBtn.TabIndex = 5;
             this.BluetoothRefreshBtn.Text = "Odśwież";
-            this.BluetoothRefreshBtn.TextColor = System.Drawing.Color.AliceBlue;
+            this.BluetoothRefreshBtn.TextColor = System.Drawing.Color.Black;
             this.BluetoothRefreshBtn.UseVisualStyleBackColor = false;
             this.BluetoothRefreshBtn.Click += new System.EventHandler(this.BluetoothRefreshBtn_Click);
             // 
             // ConnectBluetoothBtn
             // 
-            this.ConnectBluetoothBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ConnectBluetoothBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.ConnectBluetoothBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.ConnectBluetoothBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.ConnectBluetoothBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ConnectBluetoothBtn.BorderRadius = 10;
             this.ConnectBluetoothBtn.BorderSize = 0;
+            this.ConnectBluetoothBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Off;
             this.ConnectBluetoothBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ConnectBluetoothBtn.FlatAppearance.BorderSize = 0;
+            this.ConnectBluetoothBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.ConnectBluetoothBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ConnectBluetoothBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ConnectBluetoothBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
-            this.ConnectBluetoothBtn.ForeColor = System.Drawing.Color.AliceBlue;
+            this.ConnectBluetoothBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConnectBluetoothBtn.ForeColor = System.Drawing.Color.Black;
             this.ConnectBluetoothBtn.Location = new System.Drawing.Point(136, 10);
             this.ConnectBluetoothBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.ConnectBluetoothBtn.Name = "ConnectBluetoothBtn";
             this.ConnectBluetoothBtn.Size = new System.Drawing.Size(124, 121);
             this.ConnectBluetoothBtn.TabIndex = 4;
             this.ConnectBluetoothBtn.Text = "Połącz";
-            this.ConnectBluetoothBtn.TextColor = System.Drawing.Color.AliceBlue;
+            this.ConnectBluetoothBtn.TextColor = System.Drawing.Color.Black;
             this.ConnectBluetoothBtn.UseVisualStyleBackColor = false;
             this.ConnectBluetoothBtn.Click += new System.EventHandler(this.ConnectBluetoothBtn_Click);
             // 
@@ -458,23 +475,26 @@
             // 
             // EthernetConnectBtn
             // 
-            this.EthernetConnectBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.EthernetConnectBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.EthernetConnectBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.EthernetConnectBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.EthernetConnectBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.EthernetConnectBtn.BorderRadius = 10;
             this.EthernetConnectBtn.BorderSize = 0;
+            this.EthernetConnectBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
             this.EthernetConnectBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EthernetConnectBtn.FlatAppearance.BorderSize = 0;
+            this.EthernetConnectBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.EthernetConnectBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.EthernetConnectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EthernetConnectBtn.Font = new System.Drawing.Font("Radikal WUT", 10F, System.Drawing.FontStyle.Bold);
-            this.EthernetConnectBtn.ForeColor = System.Drawing.Color.AliceBlue;
+            this.EthernetConnectBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.EthernetConnectBtn.ForeColor = System.Drawing.Color.White;
             this.EthernetConnectBtn.Location = new System.Drawing.Point(5, 210);
             this.EthernetConnectBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
             this.EthernetConnectBtn.Name = "EthernetConnectBtn";
             this.EthernetConnectBtn.Size = new System.Drawing.Size(256, 84);
             this.EthernetConnectBtn.TabIndex = 5;
             this.EthernetConnectBtn.Text = "Połącz";
-            this.EthernetConnectBtn.TextColor = System.Drawing.Color.AliceBlue;
+            this.EthernetConnectBtn.TextColor = System.Drawing.Color.White;
             this.EthernetConnectBtn.UseVisualStyleBackColor = false;
             this.EthernetConnectBtn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EthernetConnectBtn_Click);
             // 
@@ -627,28 +647,210 @@
             this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.panel2, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel2, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(320, 10);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(10);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.3871F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61.6129F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(290, 621);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(380, 621);
             this.tableLayoutPanel4.TabIndex = 6;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.SentMsg_label, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.ReceivedMsg_label, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.Buffor_Label, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel12, 0, 3);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel13, 0, 4);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(11, 11);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(10);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 5;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.87248F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.46309F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(358, 350);
+            this.tableLayoutPanel5.TabIndex = 5;
+            // 
+            // SentMsg_label
+            // 
+            this.SentMsg_label.AutoSize = true;
+            this.SentMsg_label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SentMsg_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.SentMsg_label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SentMsg_label.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SentMsg_label.Location = new System.Drawing.Point(4, 1);
+            this.SentMsg_label.Name = "SentMsg_label";
+            this.SentMsg_label.Size = new System.Drawing.Size(350, 50);
+            this.SentMsg_label.TabIndex = 2;
+            this.SentMsg_label.Text = "Wysłano: 0 ramek";
+            this.SentMsg_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ReceivedMsg_label
+            // 
+            this.ReceivedMsg_label.AutoSize = true;
+            this.ReceivedMsg_label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ReceivedMsg_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.ReceivedMsg_label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ReceivedMsg_label.Location = new System.Drawing.Point(4, 52);
+            this.ReceivedMsg_label.Name = "ReceivedMsg_label";
+            this.ReceivedMsg_label.Size = new System.Drawing.Size(350, 73);
+            this.ReceivedMsg_label.TabIndex = 3;
+            this.ReceivedMsg_label.Text = "Odebrano: 0 ramek";
+            this.ReceivedMsg_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Buffor_Label
+            // 
+            this.Buffor_Label.AutoSize = true;
+            this.Buffor_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Buffor_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.Buffor_Label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Buffor_Label.Location = new System.Drawing.Point(4, 126);
+            this.Buffor_Label.Name = "Buffor_Label";
+            this.Buffor_Label.Size = new System.Drawing.Size(350, 73);
+            this.Buffor_Label.TabIndex = 4;
+            this.Buffor_Label.Text = "Zapełnienie kolejki: 0";
+            this.Buffor_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.ColumnCount = 2;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.Controls.Add(this.watchdogBtn, 1, 0);
+            this.tableLayoutPanel12.Controls.Add(this.clearQueueBtn, 0, 0);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(4, 203);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 1;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(350, 84);
+            this.tableLayoutPanel12.TabIndex = 5;
+            // 
+            // watchdogBtn
+            // 
+            this.watchdogBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.watchdogBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.watchdogBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.watchdogBtn.BorderRadius = 10;
+            this.watchdogBtn.BorderSize = 0;
+            this.watchdogBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
+            this.watchdogBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.watchdogBtn.FlatAppearance.BorderSize = 0;
+            this.watchdogBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.watchdogBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.watchdogBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.watchdogBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.watchdogBtn.ForeColor = System.Drawing.Color.White;
+            this.watchdogBtn.Location = new System.Drawing.Point(179, 10);
+            this.watchdogBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
+            this.watchdogBtn.Name = "watchdogBtn";
+            this.watchdogBtn.Size = new System.Drawing.Size(167, 64);
+            this.watchdogBtn.TabIndex = 7;
+            this.watchdogBtn.Text = "Włącz cykliczne ramki";
+            this.watchdogBtn.TextColor = System.Drawing.Color.White;
+            this.watchdogBtn.UseVisualStyleBackColor = false;
+            this.watchdogBtn.Click += new System.EventHandler(this.watchdogBtn_Click);
+            // 
+            // clearQueueBtn
+            // 
+            this.clearQueueBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.clearQueueBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.clearQueueBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.clearQueueBtn.BorderRadius = 10;
+            this.clearQueueBtn.BorderSize = 0;
+            this.clearQueueBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.clearQueueBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clearQueueBtn.FlatAppearance.BorderSize = 0;
+            this.clearQueueBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.clearQueueBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.clearQueueBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.clearQueueBtn.ForeColor = System.Drawing.Color.White;
+            this.clearQueueBtn.Location = new System.Drawing.Point(4, 10);
+            this.clearQueueBtn.Margin = new System.Windows.Forms.Padding(4, 10, 4, 10);
+            this.clearQueueBtn.Name = "clearQueueBtn";
+            this.clearQueueBtn.Size = new System.Drawing.Size(167, 64);
+            this.clearQueueBtn.TabIndex = 6;
+            this.clearQueueBtn.Text = "Wyczyść kolejkę";
+            this.clearQueueBtn.TextColor = System.Drawing.Color.White;
+            this.clearQueueBtn.UseVisualStyleBackColor = false;
+            this.clearQueueBtn.Click += new System.EventHandler(this.clearQueueBtn_Click);
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.ColumnCount = 2;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel13.Controls.Add(this.watchdogNumeric, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(4, 294);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 1;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(350, 52);
+            this.tableLayoutPanel13.TabIndex = 6;
+            // 
+            // watchdogNumeric
+            // 
+            this.watchdogNumeric.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.watchdogNumeric.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.watchdogNumeric.Location = new System.Drawing.Point(175, 11);
+            this.watchdogNumeric.Margin = new System.Windows.Forms.Padding(0);
+            this.watchdogNumeric.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.watchdogNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.watchdogNumeric.Name = "watchdogNumeric";
+            this.watchdogNumeric.Size = new System.Drawing.Size(130, 29);
+            this.watchdogNumeric.TabIndex = 6;
+            this.watchdogNumeric.Value = new decimal(new int[] {
+            800,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(145, 44);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Cykliczna ramka [ms]:";
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.tableLayoutPanel14);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(11, 249);
+            this.panel2.Location = new System.Drawing.Point(11, 382);
             this.panel2.Margin = new System.Windows.Forms.Padding(10);
             this.panel2.MinimumSize = new System.Drawing.Size(200, 100);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(268, 361);
+            this.panel2.Size = new System.Drawing.Size(358, 228);
             this.panel2.TabIndex = 4;
             // 
             // tableLayoutPanel14
@@ -664,7 +866,7 @@
             this.tableLayoutPanel14.RowCount = 2;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(266, 359);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(356, 226);
             this.tableLayoutPanel14.TabIndex = 0;
             // 
             // richTextBox1
@@ -676,7 +878,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(1, 44);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(264, 314);
+            this.richTextBox1.Size = new System.Drawing.Size(354, 181);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
@@ -695,7 +897,7 @@
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 1;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(264, 42);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(354, 42);
             this.tableLayoutPanel15.TabIndex = 3;
             // 
             // label4
@@ -707,108 +909,36 @@
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 42);
+            this.label4.Size = new System.Drawing.Size(177, 42);
             this.label4.TabIndex = 1;
             this.label4.Text = "Notatnik";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ClearNotebookBtn
             // 
-            this.ClearNotebookBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(94)))), ((int)(((byte)(254)))));
-            this.ClearNotebookBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(94)))), ((int)(((byte)(254)))));
+            this.ClearNotebookBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.ClearNotebookBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ClearNotebookBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ClearNotebookBtn.BorderRadius = 5;
             this.ClearNotebookBtn.BorderSize = 0;
+            this.ClearNotebookBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ClearNotebookBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ClearNotebookBtn.FlatAppearance.BorderSize = 0;
+            this.ClearNotebookBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.ClearNotebookBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ClearNotebookBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClearNotebookBtn.Font = new System.Drawing.Font("Radikal WUT", 11F, System.Drawing.FontStyle.Bold);
+            this.ClearNotebookBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.ClearNotebookBtn.ForeColor = System.Drawing.Color.White;
-            this.ClearNotebookBtn.Location = new System.Drawing.Point(132, 0);
+            this.ClearNotebookBtn.Location = new System.Drawing.Point(177, 0);
             this.ClearNotebookBtn.Margin = new System.Windows.Forms.Padding(0);
             this.ClearNotebookBtn.Name = "ClearNotebookBtn";
-            this.ClearNotebookBtn.Size = new System.Drawing.Size(132, 42);
+            this.ClearNotebookBtn.Size = new System.Drawing.Size(177, 42);
             this.ClearNotebookBtn.TabIndex = 2;
             this.ClearNotebookBtn.Text = "Clear";
             this.ClearNotebookBtn.TextColor = System.Drawing.Color.White;
             this.ClearNotebookBtn.UseVisualStyleBackColor = false;
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.Buffor_Label, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.ReceivedMsg_label, 0, 2);
-            this.tableLayoutPanel5.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.SentMsg_label, 0, 1);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(11, 11);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(10);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 4;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(268, 217);
-            this.tableLayoutPanel5.TabIndex = 5;
-            // 
-            // Buffor_Label
-            // 
-            this.Buffor_Label.AutoSize = true;
-            this.Buffor_Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Buffor_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.Buffor_Label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Buffor_Label.Location = new System.Drawing.Point(4, 162);
-            this.Buffor_Label.Name = "Buffor_Label";
-            this.Buffor_Label.Size = new System.Drawing.Size(260, 54);
-            this.Buffor_Label.TabIndex = 4;
-            this.Buffor_Label.Text = "Zapełnienie buffora: 0";
-            this.Buffor_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ReceivedMsg_label
-            // 
-            this.ReceivedMsg_label.AutoSize = true;
-            this.ReceivedMsg_label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ReceivedMsg_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.ReceivedMsg_label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ReceivedMsg_label.Location = new System.Drawing.Point(4, 107);
-            this.ReceivedMsg_label.Name = "ReceivedMsg_label";
-            this.ReceivedMsg_label.Size = new System.Drawing.Size(260, 54);
-            this.ReceivedMsg_label.TabIndex = 3;
-            this.ReceivedMsg_label.Text = "Odebrano: 0 ramek";
-            this.ReceivedMsg_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Radikal WUT", 15F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(3, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 10, 2, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(262, 30);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Statystyki";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // SentMsg_label
-            // 
-            this.SentMsg_label.AutoSize = true;
-            this.SentMsg_label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SentMsg_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.SentMsg_label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.SentMsg_label.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SentMsg_label.Location = new System.Drawing.Point(4, 52);
-            this.SentMsg_label.Name = "SentMsg_label";
-            this.SentMsg_label.Size = new System.Drawing.Size(260, 54);
-            this.SentMsg_label.TabIndex = 2;
-            this.SentMsg_label.Text = "Wysłano: 0 ramek";
-            this.SentMsg_label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // KomunikacjaForm
+            // CommunicationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -817,7 +947,7 @@
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.tableLayoutPanel2);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Name = "KomunikacjaForm";
+            this.Name = "CommunicationForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "komunikacjaForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.komunikacjaForm_FormClosing);
@@ -849,12 +979,16 @@
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.watchdogNumeric)).EndInit();
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel15.ResumeLayout(false);
             this.tableLayoutPanel15.PerformLayout();
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -898,7 +1032,6 @@
         private CustomControls.CustomButton ClearNotebookBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Buffor_Label;
         private System.Windows.Forms.Label ReceivedMsg_label;
         private System.Windows.Forms.Label SentMsg_label;
@@ -906,5 +1039,11 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private CustomControls.CustomButton SendBtn;
         private System.Windows.Forms.TextBox sendTextBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private CustomControls.CustomButton watchdogBtn;
+        private CustomControls.CustomButton clearQueueBtn;
+        private System.Windows.Forms.NumericUpDown watchdogNumeric;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -27,7 +27,9 @@ namespace HAL062app
         private Dictionary<string, Form> modules = new Dictionary<string, Form>();
         private Dictionary<string, bool> isPinned = new Dictionary<string, bool>();
 
-
+        
+        public static AppTheme currentTheme { get; set; } = AppTheme.Dark;
+        public static PropertiesManager properties = new PropertiesManager();
 
         private String currentModule = "Komunikacja";
         public mainForm()
@@ -65,6 +67,9 @@ namespace HAL062app
             communicationModule.Subscribe(driveModel);
             communicationModule.Subscribe(manipulatorM);
            
+
+
+          //  properties.ApplyTheme(this, AppTheme.Light);
 
 
         }
@@ -116,36 +121,36 @@ namespace HAL062app
         {
             ShowModule("Komunikacja");
             ResetBtnColor();
-            CommunicationBtn.BackgroundColor = System.Drawing.Color.FromArgb(255, 0, 120, 215);
-        
+            CommunicationBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Primary;
+
         }
 
         private void DriveBtn_Click(object sender, EventArgs e)
         {
             ShowModule("Podwozie");
             ResetBtnColor();
-            DriveBtn.BackColor = System.Drawing.Color.FromArgb(255, 0, 120, 215);
+            DriveBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Primary;
         }
 
         private void ManipulatorBtn_Click(object sender, EventArgs e)
         {
             ShowModule("Manipulator");
             ResetBtnColor();
-            ManipulatorBtn.BackgroundColor = System.Drawing.Color.FromArgb(255, 0, 120, 215);
+            ManipulatorBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Primary;
         }
 
         private void LaboratoryBtn_Click(object sender, EventArgs e)
         {
             ShowModule("Laboratorium");
             ResetBtnColor();
-            LaboratoryBtn.BackgroundColor = System.Drawing.Color.FromArgb(255, 0, 120, 215);
+            LaboratoryBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Primary;
         }
 
         private void SandboxBtn_Click(object sender, EventArgs e)
         {
             ShowModule("Debug");
             ResetBtnColor();
-            SandboxBtn.BackgroundColor = System.Drawing.Color.FromArgb(255, 0,120,215);
+            SandboxBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Primary;
         }
 
         private void UnpinBtn_Click(object sender, EventArgs e)
@@ -156,13 +161,12 @@ namespace HAL062app
 
         private void ResetBtnColor()
         {
-            var color = System.Drawing.Color.FromArgb(255, 128,128,128);
-            CommunicationBtn.BackColor = color;
-            DriveBtn.BackColor = color;
-            ManipulatorBtn.BackgroundColor = color;
-            LaboratoryBtn.BackgroundColor = color;
-            SandboxBtn.BackgroundColor = color;
-            
+            CustomControls.CustomButton.ButtonStyles buttonStyle = CustomControls.CustomButton.ButtonStyles.Default;
+            CommunicationBtn.ButtonStyle = buttonStyle;
+            DriveBtn.ButtonStyle = buttonStyle;
+            ManipulatorBtn.ButtonStyle = buttonStyle;
+            LaboratoryBtn.ButtonStyle = buttonStyle;
+            SandboxBtn.ButtonStyle = buttonStyle;
 
         }
 
@@ -205,10 +209,22 @@ namespace HAL062app
 
         }
 
-     
+        private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
 
-        /// 
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+            try
+            {
+                XboxPad.Instance.StopMonitoring();
+
+                Application.Exit(); 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas zamykania aplikacji: " + ex.Message);
+            }
+
+        }
+
+        
     }
 }

@@ -1,18 +1,34 @@
-﻿using SharpDX.XInput;
+﻿using SharpDX;
+using SharpDX.XInput;
 using System;
 using System.Threading;
 
 namespace HAL062app
 {
+
+    public static class XboxControlBus
+    {
+        public static Action<int> XboxControlMode;
+
+        public static void SendXboxModeChanged(int value)
+        {
+            XboxControlMode?.Invoke(value);
+        }
+    }
+
+
     public class XboxPad
     {
         private static readonly Lazy<XboxPad> instance = new Lazy<XboxPad>(() => new XboxPad());
 
         public static XboxPad Instance => instance.Value;
         public event EventHandler<State> ControllerStateChanged;
-        public bool IsXboxPadOn = false;
+        public bool IsXboxPadOn => controller.IsConnected;
         private Controller controller;
         private ControllerState prevState;
+        int disconnectedCounter = 0;
+        private CancellationTokenSource tokenSource = new CancellationTokenSource();
+
         private XboxPad()
         {
             controller = new Controller(UserIndex.One);
@@ -20,12 +36,8 @@ namespace HAL062app
             {
                 prevState = new ControllerState(controller.GetState());
                 StartMonitoring();
-                IsXboxPadOn = true;
             }
-            else
-            {
-                IsXboxPadOn = false;
-            }
+           
         }
 
         private void StartMonitoring()
@@ -37,23 +49,43 @@ namespace HAL062app
 
         private void MonitorController()
         {
-            while (true)
-            {
-                if (controller.IsConnected)
-                {
-                    var state = controller.GetState();
+            var token = tokenSource.Token;
 
-                    if (prevState.HasChanged(state))
+            while (!token.IsCancellationRequested)
+            {
+                try
+                {
+                    if (controller.IsConnected)
                     {
-                        ControllerStateChanged?.Invoke(this, state);
-                        prevState = new ControllerState(state);
+                        var state = controller.GetState();
+
+                        if (prevState.HasChanged(state))
+                        {
+                            Volatile.Read(ref ControllerStateChanged)?.Invoke(this, state);
+
+                            prevState = new ControllerState(state);
+                        }
+                        disconnectedCounter = 0;
                     }
-                }
-                else
-                    IsXboxPadOn = false;
+                    else
+                    {
+                        disconnectedCounter++;
+                        if (disconnectedCounter > 50)
+                        {
+                            controller = new Controller(UserIndex.One); // próbuj połączyć na nowo
+                            disconnectedCounter = 0;
+                        }
+                    }
+
+                } catch (SharpDXException) {}
                 Thread.Sleep(100);
             }
         }
+        public void StopMonitoring()
+        {
+            tokenSource.Cancel();
+        }
+
         public void VibrateGamepad(float leftMotor, float rightMotor)
         {
             if (controller.IsConnected)
@@ -131,15 +163,7 @@ namespace HAL062app
         }
 
 
-        public static class XboxControlBus
-        {
-            public static Action<int> XboxControlMode;
-
-            public static void SendXboxModeChanged(int value)
-            {
-                XboxControlMode?.Invoke(value);
-            }
-        }
+        
 
     }
 }

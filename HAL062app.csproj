@@ -220,6 +220,8 @@
     <Compile Include="TimerManager.cs" />
     <Compile Include="moduly\XboxPad.cs" />
     <Content Include="KNR.ico" />
+    <None Include="Resources\HALCC.png" />
+    <None Include="Resources\HALCCW.png" />
     <Content Include="_JakWlaczycApke.txt" />
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
@@ -388,9 +390,7 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

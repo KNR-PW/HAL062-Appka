@@ -21,10 +21,10 @@ namespace HAL062app.moduly.podwozie
         bool isDragging = false;
         private System.Drawing.Point lastMousePosition = System.Drawing.Point.Empty;
         private int joystickRadius = 30;
-        private float forwardSpeed = 0;
-        private float turningSpeed = 0;
-        private float forwardSpeedMaxLimit = 9;
-        private float turningSpeedMaxLimit = 3;
+        private float velocity = 0;
+        private float angularVelocity = 0;
+        private float velocityMaxLimit = 9;
+        private float angularVelocityMaxLimit = 3;
         int limitRadius = 160;
 
         private bool isMoving = false;
@@ -59,8 +59,8 @@ namespace HAL062app.moduly.podwozie
             joystickPosition.X = joystickPictureBox.ClientSize.Width / 2;
             joystickPosition.Y = joystickPictureBox.ClientSize.Height / 2;
 
-            ForwardSpeedTrack.Maximum = (int)forwardSpeedMaxLimit;
-            ForwardSpeedTrack.Minimum = (int)-forwardSpeedMaxLimit;
+            ForwardVelocityTrack.Maximum = (int)velocityMaxLimit;
+            ForwardVelocityTrack.Minimum = (int)-velocityMaxLimit;
 
             joystickPictureBox.Refresh();
 
@@ -89,7 +89,6 @@ namespace HAL062app.moduly.podwozie
                 // Wywołaj funkcję aktualizacji joysticka i odczytu prędkości
                 UpdateJoystick();
                 elapsedTime = 0; // Zresetuj licznik czasu
-                                 // if(isMoving) MoveJoystick(LastKeys);
 
             }
             if (!isDragging)
@@ -121,15 +120,13 @@ namespace HAL062app.moduly.podwozie
             if (e.Button == MouseButtons.Left)
             {
                 isDragging = false;
-                // joystickPosition.X = joystickPictureBox.ClientSize.Width / 2 ;
-                // joystickPosition.Y = joystickPictureBox.ClientSize.Height / 2 ;
                 joystickPictureBox.Refresh();
                 lastMousePosition = e.Location;
 
             }
         }
 
-        private int DistanceFromPoint(int c, int b)
+        private int GetDistanceFromCenterPoint(int c, int b)
         {
             return (int)Math.Sqrt(Math.Abs(c * c - b * b));
         }
@@ -151,14 +148,14 @@ namespace HAL062app.moduly.podwozie
 
 
                 if (joystickPosition.X - width / 2 >= 0)
-                    joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + DistanceFromPoint(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
+                    joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + GetDistanceFromCenterPoint(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
                 else
-                    joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - DistanceFromPoint(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
+                    joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - GetDistanceFromCenterPoint(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
 
                 if (joystickPosition.Y - height / 2 >= 0)
-                    joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + DistanceFromPoint(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
+                    joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + GetDistanceFromCenterPoint(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
                 else
-                    joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - DistanceFromPoint(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
+                    joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - GetDistanceFromCenterPoint(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
 
                 joystickPictureBox.Refresh();
 
@@ -172,29 +169,32 @@ namespace HAL062app.moduly.podwozie
         private void UpdateJoystick()
         {
 
-            ForwardSpeedTrack.Maximum = (int)forwardSpeedMaxLimit;
-            ForwardSpeedTrack.Minimum = (int)-forwardSpeedMaxLimit;
+            ForwardVelocityTrack.Maximum = (int)velocityMaxLimit;
+            ForwardVelocityTrack.Minimum = (int)-velocityMaxLimit;
 
 
-            forwardSpeed = -((float)joystickPosition.Y - (float)joystickPictureBox.ClientSize.Height / 2.0f) / (float)(limitRadius - joystickRadius);
-            turningSpeed = ((float)joystickPosition.X - (float)joystickPictureBox.ClientSize.Width / 2.0f) / (float)(limitRadius - joystickRadius);
-            ForwardSpeedTrack.Value = (int)forwardSpeed;
+            velocity = -((float)joystickPosition.Y - (float)joystickPictureBox.ClientSize.Height / 2.0f) / (float)(limitRadius - joystickRadius);
+            angularVelocity = ((float)joystickPosition.X - (float)joystickPictureBox.ClientSize.Width / 2.0f) / (float)(limitRadius - joystickRadius);
+            ForwardVelocityTrack.Value = (int)velocity;
 
 
-            SendSpeeds(forwardSpeed, turningSpeed);
+            CalculateVelocity(velocity, angularVelocity);
 
         }
-        private void SendSpeeds(float fspeed, float tspeed)
+        private void CalculateVelocity(float velocity, float angularVelocity)
         {
+            // rozstaw kół = 0.92 = 2 * 2.97 / 6.45
+            // Funkcja oblicza prędkości kół na podstawie prędkości liniowej i kątowej
+            // predkosc skalowana jest w zakresie 0-100
             float coeff = 100.0f / 6.45f;
 
-            int rightSpeed = (int)(coeff * (6.45f * fspeed + 2.97f * tspeed));
-            int leftSpeed = (int)(coeff * (6.45f * fspeed - 2.97f * tspeed));
-            LFStextbox.Text = leftSpeed.ToString();
-            LBStextbox.Text = leftSpeed.ToString();
-            RFStextbox.Text = rightSpeed.ToString();
-            RBStextbox.Text = rightSpeed.ToString();
-            MotorData data = new MotorData(rightSpeed, leftSpeed, 0, 0, 0, 0);
+            int rightVelocity = (int)(coeff * (6.45f * velocity + 2.97f * angularVelocity));
+            int leftVelocity = (int)(coeff * (6.45f * velocity - 2.97f * angularVelocity));
+            LFStextbox.Text = leftVelocity.ToString();
+            LBStextbox.Text = leftVelocity.ToString();
+            RFStextbox.Text = rightVelocity.ToString();
+            RBStextbox.Text = rightVelocity.ToString();
+            MotorData data = new MotorData(rightVelocity, leftVelocity, 0, 0, 0, 0);
             if (isRunning)
                 SendMotorDataToController_Action(data);
 
@@ -236,14 +236,14 @@ namespace HAL062app.moduly.podwozie
             }
 
             if (joystickPosition.X - width / 2 >= 0)
-                joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + DistanceFromPoint(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
+                joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + GetDistanceFromCenterPoint(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
             else
-                joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - DistanceFromPoint(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
+                joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - GetDistanceFromCenterPoint(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
 
             if (joystickPosition.Y - height / 2 >= 0)
-                joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + DistanceFromPoint(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
+                joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + GetDistanceFromCenterPoint(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
             else
-                joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - DistanceFromPoint(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
+                joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - GetDistanceFromCenterPoint(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
             joystickPictureBox.Refresh();
 
 
@@ -276,13 +276,13 @@ namespace HAL062app.moduly.podwozie
             {
                 isRunning = true;
                 startJoystickButton.Text = "Stop";
-                startJoystickButton.BackColor = Color.FromArgb(192, 0, 0);
+                startJoystickButton.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Red;
             }
             else
             {
                 isRunning = false;
                 startJoystickButton.Text = "Start";
-                startJoystickButton.BackColor = Color.FromArgb(0, 192, 0);
+                startJoystickButton.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
 
             }
         }
@@ -311,7 +311,7 @@ namespace HAL062app.moduly.podwozie
                     readInterval = sendValue;
                     isRunning = false;
                     startJoystickButton.Text = "Start";
-                    startJoystickButton.BackColor = Color.FromArgb(0, 192, 0);
+                    startJoystickButton.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
                     InitializeTimer();
 
 
@@ -361,69 +361,6 @@ namespace HAL062app.moduly.podwozie
                 joystickPictureBox.Refresh();
             }
         }
-        /*
-                private void ConnectWithXboxPadBtn_Click(object sender, EventArgs e)
-                {
-
-                    if (!XboxPad.IsConnected)
-                    {
-                        XboxPad = new Controller(UserIndex.One);
-                        CheckXboxPadBattery();
-
-                        errorTextbox.Text = (XboxPad.IsConnected ? "Połączono z padem" : "Nie można połączyć się z padem");
-
-                    }
-                    else
-                    {
-                        errorTextbox.Text = "Pad został już podłączony";
-                        CheckXboxPadBattery();
-                    }    
-
-                    if(XboxPad.IsConnected)
-                    {
-                        XboxPadStateChanged += OnXboxPadStateChanged;
-                    }
-
-
-                }
-                /*
-                private void CheckXboxPadBattery()
-                {
-                    if (XboxPad.IsConnected)
-                    {
-                        string batteryText = "";
-                        if (XboxPad.GetBatteryInformation(BatteryDeviceType.Gamepad).BatteryType == BatteryType.Alkaline)
-                            XboxBatteryLabel.Text = "Bateria: alkaiczne - brak informacji";
-                        else if (XboxPad.GetBatteryInformation(BatteryDeviceType.Gamepad).BatteryType == BatteryType.Unknown)
-                            XboxBatteryLabel.Text = "Bateria: nieznany typ";
-                        else
-                        {
-
-
-                            switch (XboxPad.GetBatteryInformation(BatteryDeviceType.Gamepad).BatteryLevel)
-                            {
-                                case BatteryLevel.Empty: batteryText = "pusta"; break;
-                                case BatteryLevel.Low: batteryText = "niski stan"; break;
-                                case BatteryLevel.Medium: batteryText = "średni stan"; break;
-                                case BatteryLevel.Full: batteryText = "naładowana"; break;
-                                default: batteryText = "brak"; break;
-
-
-                            }
-                            XboxBatteryLabel.Text = "Bateria: " + batteryText;
-                        }
-                    }
-                    else
-                    {
-                        XboxBatteryLabel.Text = "Bateria: brak";
-                    }
-                }
-                static void OnXboxPadStateChanged(object sender, State state)
-                {
-                    RightThumbX = state.Gamepad.RightThumbX;
-
-                }
-        */
 
         private void OnXboxControlModeChanged(int value)
         {
@@ -431,14 +368,14 @@ namespace HAL062app.moduly.podwozie
             {
                 isRunning = true;
                 startJoystickButton.Text = "Stop";
-                startJoystickButton.BackColor = Color.FromArgb(192, 0, 0);
+                startJoystickButton.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Red;
                 usingXboxPad = true;
             }
             if (value == 1)
             {
                 isRunning = false;
                 startJoystickButton.Text = "Start";
-                startJoystickButton.BackColor = Color.FromArgb(0, 192, 0);
+                startJoystickButton.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
                 usingXboxPad = false;
             }
 
@@ -460,21 +397,7 @@ namespace HAL062app.moduly.podwozie
 
         private void UpdateJoystick_Xbox(State state)
         {
-
-            /*
-            if(state.Gamepad.RightThumbY > Gamepad.RightThumbDeadZone ||state.Gamepad.RightThumbY < -Gamepad.RightThumbDeadZone)
-            forwardSpeed =forwardSpeedMaxLimit* state.Gamepad.RightThumbY / 32768;
-            if (state.Gamepad.RightThumbX > Gamepad.RightThumbDeadZone || state.Gamepad.LeftThumbX < -Gamepad.LeftThumbDeadZone)
-                turningSpeed = turningSpeedMaxLimit * state.Gamepad.RightThumbX / 32768;
-            ForwardSpeedTrack.Value = (int)forwardSpeed;
-            TurningSpeedTrack.Value = (int)turningSpeed;
-            */
             joystickPictureBox_XboxPadStateChange(state);
-
-            // errorTextbox.Text = $"RightThumb x{state.Gamepad.RightThumbX} y{state.Gamepad.RightThumbY} " + $"forward : {forwardSpeed}, turning {turningSpeed} ";
-
-
-            //  joystickPictureBox.Refresh();
         }
 
         private void ConnectWithXboxPadBtn_Click(object sender, EventArgs e)
@@ -503,13 +426,7 @@ namespace HAL062app.moduly.podwozie
 
                 int gamePadX = 0;
                 int gamePadY = 0;
-                /* int pt =(int)Math.Sqrt( (int)state.Gamepad.RightThumbX* (int)state.Gamepad.RightThumbX + (int)state.Gamepad.RightThumbY * (int)state.Gamepad.RightThumbY);
-                errorTextbox.Text = $"X = {state.Gamepad.RightThumbX / 32768f} Y = {state.Gamepad.RightThumbY / 32768f} + {pt}";
-                if (pt > 8689)
-                     gamePadX =(int)((float)30 * (float)state.Gamepad.RightThumbX / 32768f);
-                if (pt > 8689)
-                     gamePadY = -(int)((float)30 * (float)state.Gamepad.RightThumbY / 32768f);
-                */
+            
                 if (Math.Abs((int)state.Gamepad.LeftThumbX) > 8689)
                     gamePadX = (int)((float)100 * (float)state.Gamepad.LeftThumbX / 32768f);
                 if ((int)state.Gamepad.RightTrigger > Gamepad.TriggerThreshold && (int)state.Gamepad.LeftTrigger < Gamepad.TriggerThreshold)
@@ -521,17 +438,16 @@ namespace HAL062app.moduly.podwozie
                 gamePadY = gamePadY * limitRadius / 120;
                 joystickPosition.X = gamePadX + width / 2;
                 joystickPosition.Y = gamePadY + height / 2;
-                //errorTextbox.Text = $"X = {joystickPosition.X} Y = {joystickPosition.Y}";
 
                 if (joystickPosition.X - width / 2 >= 0)
-                    joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + DistanceFromPoint(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
+                    joystickPosition.X = Math.Min(joystickPosition.X, width / 2 + GetDistanceFromCenterPoint(limitRadius, joystickPosition.Y - height / 2) - joystickRadius);
                 else
-                    joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - DistanceFromPoint(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
+                    joystickPosition.X = Math.Max(joystickPosition.X, width / 2 - GetDistanceFromCenterPoint(limitRadius, (height / 2) - joystickPosition.Y) + joystickRadius);
 
                 if (joystickPosition.Y - height / 2 >= 0)
-                    joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + DistanceFromPoint(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
+                    joystickPosition.Y = Math.Min(joystickPosition.Y, height / 2 + GetDistanceFromCenterPoint(limitRadius, joystickPosition.X - width / 2) - joystickRadius);
                 else
-                    joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - DistanceFromPoint(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
+                    joystickPosition.Y = Math.Max(joystickPosition.Y, height / 2 - GetDistanceFromCenterPoint(limitRadius, (width / 2) - joystickPosition.X) + joystickRadius);
 
                 joystickPictureBox.Refresh();
 
@@ -604,6 +520,22 @@ namespace HAL062app.moduly.podwozie
             frame.buffer[9] = (byte)('x');
             frame.text = new string(frame.encodeMessage());
             SendMessage_Action(frame);
+        }
+
+        private void DriveForm_VisibleChanged(object sender, EventArgs e)
+        {
+            isRunning = false;
+            startJoystickButton.Text = "Start";
+            startJoystickButton.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
+
+        }
+
+        private void DriveForm_Resize(object sender, EventArgs e)
+        {
+            isRunning = false;
+            startJoystickButton.Text = "Start";
+            startJoystickButton.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
+
         }
     }
 }

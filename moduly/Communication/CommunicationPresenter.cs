@@ -5,44 +5,47 @@ namespace HAL062app.moduly.komunikacja
 {
     public class CommunicationPresenter
     {
-        private CommunicationForm display;
-        private CommunicationModel model;
+       
         private Dictionary<string, Form> modules;
 
-        public CommunicationPresenter(Dictionary<string, Form> moduleForms, CommunicationModel model)
+
+        private readonly ICommunicationModel _model;
+        private readonly ICommunicationView _view;
+        public CommunicationPresenter(Dictionary<string, Form> moduleForms, ICommunicationModel model)
         {
             modules = moduleForms;
-            this.model = model;
-
+            this._model = model;
             if (modules.TryGetValue("Komunikacja", out Form form))
             {
-                display = form as CommunicationForm;
-
-                if (display != null)
+                _view = form as ICommunicationView;
+               
+                if (_view != null)
                 {
 
-                    display.SendTerminalMsg += ReceiveTerminalMsg;
-                    model.UpdateLogTerminal += UpdateTerminal;
+                    _view.SendTerminalMsg += ReceiveTerminalMsg;
+                    _model.UpdateLogTerminal += UpdateTerminal;
 
                     CommunicationStatistics.Instance.StatsUpdated_action += CommunicationStatisticsUpdate;
-                    //Telnet/SSH
-                    display.ConnectTelnet_action += ConnectTelnet;
-                    display.EthernetStatus_action += EthernetStatus;
-                    display.disconnectTelnet_action += DisconnectTelnet;
-                    model.isEthernetConnected_action += EthernetConnected;
-                    //Bluetooth
-                    model.OnBluetoothDevicesFound += UpdateBluetoothDevicesComboBox;
-                    display.RefreshBluetoothDevices_action += RequestBluetoothDevices;
-                    display.ConnectBluetooth_action += ConnectBluetooth;
-                    model.IsBluetoothConnected_action += BluetoothConnected;
-                    display.DisconnectBluetooth_action += DisconnectBluetooth;
-                    display.BluetoothStatusRequest += BluetoothStatus;
+                   
+                    _view.ConnectTelnet_action += ConnectTelnet;
+                    _view.EthernetStatus_action += EthernetStatus;
+                    _view.disconnectTelnet_action += DisconnectTelnet;
+                    
+                    _view.RefreshBluetoothDevices_action += RequestBluetoothDevices;
+                    _view.ConnectBluetooth_action += ConnectBluetooth;
+                    
+                    _view.DisconnectBluetooth_action += DisconnectBluetooth;
+                    _view.BluetoothStatusRequest += BluetoothStatus;
+
+                    _model.isEthernetConnected_action += EthernetConnected;
+                    _model.OnBluetoothDevicesFound += UpdateBluetoothDevicesComboBox;
+                    _model.IsBluetoothConnected_action += BluetoothConnected;
                 }
             }
         }
         private void CommunicationStatisticsUpdate(int SentMessages_Count, int ReceivedMessages_Count, int BufforFillLevel_Count)
         {
-            display.UpdateStatistics(SentMessages_Count,ReceivedMessages_Count, BufforFillLevel_Count);
+            _view.UpdateStatistics(SentMessages_Count,ReceivedMessages_Count, BufforFillLevel_Count);
 
         }
 
@@ -50,78 +53,78 @@ namespace HAL062app.moduly.komunikacja
         {
 
 
-            model.SendMessageToObservers(msg);
+            _model.SendMessageToObservers(msg);
 
         }
         private void UpdateTerminal(List<Message> logs)
         {
-            display.UpdateTerminal(logs);
+            _view.UpdateTerminal(logs);
 
         }
        
         //Telnet/SSH
         private void ConnectTelnet(string ip, int port)
         {
-            Task task = model.ConnectTelnet(ip, port);
+            Task task = _model.ConnectTelnet(ip, port);
 
         }
         private void EthernetStatus(bool status)
         {
-            display.EthernetStatus(status);
-            if (status == false && model.IsTelnetConnected())
+            _view.EthernetStatus(status);
+            if (status == false && _model.IsTelnetConnected())
             {
-                model.TelnetDisconnect();
+                _model.TelnetDisconnect();
             }
         }
         private void DisconnectTelnet()
         {
-            model.TelnetDisconnect();
+            _model.TelnetDisconnect();
 
         }
         private void EthernetConnected(bool status)
         {
-            display.EthernetConnected(status);
+            _view.EthernetConnected(status);
         }
 
         //Bluetooth
         private void UpdateBluetoothDevicesComboBox(List<string> devices)
         {
-            display.RefreshBluetoothDevices(devices);
+            _view.RefreshBluetoothDevices(devices);
         }
         private void RequestBluetoothDevices()
         {
-            Task task = model.RefreshBluetoothDevices();
+            Task task = _model.RefreshBluetoothDevices();
         }
         private void ConnectBluetooth(string deviceName)
         {
-            model.ConnectBluetooth(deviceName);
+            _model.ConnectBluetooth(deviceName);
 
         }
         private void BluetoothConnected(bool connected)
         {
-            display.BluetoothConnected(connected);
+            _view.BluetoothConnected(connected);
         }
         private void DisconnectBluetooth()
         {
-            model.DisconnectBluetooth();
+            _model.DisconnectBluetooth();
         }
         private void BluetoothStatus(bool bluetoothSwitch)
         {
-            if (bluetoothSwitch && model.IsBluetoothOn())
+            if (bluetoothSwitch && _model.IsBluetoothOn())
             {
-                display.BluetoothStatus(model.IsBluetoothOn());
+                _view.BluetoothStatus(_model.IsBluetoothOn());
 
             }
             else
             {
-                if (model.IsBluetoothOn())
+                if (_model.IsBluetoothOn())
                 {
 
-                    model.DisconnectBluetooth();
+                    _model.DisconnectBluetooth();
                 }
                 else
-                    model.SendTerminalMessage("Bluetooth nie został włączony");
-                display.BluetoothStatus(false);
+                    _model.SendTerminalMessage("Bluetooth nie został włączony");
+                _view.BluetoothStatus(false);
 
             }
 

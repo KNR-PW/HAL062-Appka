@@ -7,7 +7,31 @@ using System.Windows.Forms;
 
 namespace HAL062app.moduly.komunikacja
 {
-    public partial class CommunicationForm : Form
+
+    interface ICommunicationView
+    {
+        void UpdateTerminal(List<Message> logs);
+        void UpdateStatistics(int SentMessages_Count, int ReceivedMessages_Count, int BufforFillLevel_Count);
+        void EthernetStatus(bool status);
+        void EthernetConnected(bool status);
+        void RefreshBluetoothDevices(List<string> devices);
+        void BluetoothConnected(bool connected);
+        void BluetoothStatus(bool status);
+
+        event Action<Message> SendTerminalMsg;
+        event Action<string, int> ConnectTelnet_action;
+        event Action disconnectTelnet_action;
+        event Action<bool> EthernetStatus_action;
+        event Action RefreshBluetoothDevices_action;
+        event Action<string> ConnectBluetooth_action;
+        event Action DisconnectBluetooth_action;
+        event Action<bool> BluetoothStatusRequest;
+
+
+    }
+
+
+    public partial class CommunicationForm : Form, ICommunicationView
     {
 
         
@@ -36,8 +60,8 @@ namespace HAL062app.moduly.komunikacja
 
         private void komunikacjaForm_Load(object sender, EventArgs e)
         {
-            ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 192, 192);
-            BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 192, 192);
+            ConnectBluetoothBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Off;
+            BluetoothRefreshBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Off;
             EthernetStatus(false);
         }
 
@@ -116,7 +140,7 @@ namespace HAL062app.moduly.komunikacja
                     if (IPtextbox.TextLength > 0)
                     {
 
-                        EthernetConnectBtn.BackColor = Color.FromArgb(192, 0, 0);
+                        EthernetConnectBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Red;
                         EthernetConnectBtn.Text = "Rozłącz";
                         ConnectTelnet_action(IPtextbox.Text, (int)EthernetPort.Value);
 
@@ -127,7 +151,7 @@ namespace HAL062app.moduly.komunikacja
                 }
                 else
                 {
-                    EthernetConnectBtn.BackColor = Color.FromArgb(0, 192, 0);
+                    EthernetConnectBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
                     EthernetConnectBtn.Text = "Połącz";
                     disconnectTelnet_action();
 
@@ -144,22 +168,22 @@ namespace HAL062app.moduly.komunikacja
             EthernetStatusBoolean = status;
             EthernetSwitch.Checked = status;
             if (!status)
-                EthernetConnectBtn.BackColor = Color.FromArgb(192, 192, 192);
+                EthernetConnectBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Off;
             else
-                EthernetConnectBtn.BackColor = Color.FromArgb(0, 192, 0);
+                EthernetConnectBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
         }
 
         public void EthernetConnected(bool status)
         {
             if (status)
             {
-                EthernetConnectBtn.BackColor = Color.FromArgb(192, 0, 0);
+                EthernetConnectBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Red;
                 EthernetConnectBtn.Text = "Rozłącz";
 
             }
             else
             {
-                EthernetConnectBtn.BackColor = Color.FromArgb(0, 192, 0);
+                EthernetConnectBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
                 EthernetConnectBtn.Text = "Połącz";
             }
 
@@ -214,7 +238,7 @@ namespace HAL062app.moduly.komunikacja
                 }
                 else
                 {
-                    ConnectBluetoothBtn.BackColor = Color.FromArgb(0, 192, 0);
+                    ConnectBluetoothBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
                     ConnectBluetoothBtn.Text = "Połącz";
                     DisconnectBluetooth_action();
 
@@ -225,12 +249,12 @@ namespace HAL062app.moduly.komunikacja
         {
             if (connected)
             {
-                ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 0, 0);
+                ConnectBluetoothBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Red;
                 ConnectBluetoothBtn.Text = "Rozłącz";
             }
             else
             {
-                ConnectBluetoothBtn.BackColor = Color.FromArgb(0, 192, 0);
+                ConnectBluetoothBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
                 ConnectBluetoothBtn.Text = "Połącz";
             }
 
@@ -246,8 +270,8 @@ namespace HAL062app.moduly.komunikacja
             BluetoothSwitch.Checked = status;
             if (!status)
             {
-                ConnectBluetoothBtn.BackColor = Color.FromArgb(192, 192, 192);
-                BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 192, 192);
+                BluetoothRefreshBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Off;
+                ConnectBluetoothBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Off;
                 BluetoothRefreshBtn.Text = "Odśwież";
                 BluetoothDevicesComboBox.Items.Clear();
                 BluetoothDevicesComboBox.SelectedIndex = -1;
@@ -256,8 +280,9 @@ namespace HAL062app.moduly.komunikacja
             }
             else
             {
-                ConnectBluetoothBtn.BackColor = Color.FromArgb(0, 192, 0);
-                BluetoothRefreshBtn.BackColor = Color.FromArgb(192, 0, 0);
+          
+                BluetoothRefreshBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Red;
+                ConnectBluetoothBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
             }
 
         }
@@ -267,7 +292,24 @@ namespace HAL062app.moduly.komunikacja
             e.Cancel = true;
         }
 
-        
+      
+
+     
+       
+
+        private void watchdogBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clearQueueBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+      
     }
 
 }

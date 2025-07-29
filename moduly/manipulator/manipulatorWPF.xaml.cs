@@ -25,6 +25,7 @@ namespace HAL062app.moduly.manipulator
         {
             model = pModel;
         }
+        
     }
 
 
@@ -79,9 +80,7 @@ namespace HAL062app.moduly.manipulator
         {
 
             InitializeComponent();
-            //basePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\moduly\\manipulator\\models\\";
             basePath = AppDomain.CurrentDomain.BaseDirectory + @"\\moduly\\manipulator\\models\\";
-            //sePath = "\\moduly\\manipulator\\models\\"; Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "dof1.STL", SearchOption.AllDirectories)[0]
             List<string> modelsNames = new List<string>();
 
 
@@ -163,11 +162,6 @@ namespace HAL062app.moduly.manipulator
 
 
 
-
-
-
-
-
         private Model3DGroup Initialize_Environment(List<string> modelsNames)
         {
 
@@ -209,6 +203,8 @@ namespace HAL062app.moduly.manipulator
                 changeModelColor(joints[5], Colors.LightSlateGray);
                 RA.Children.Add(joints[5].model);
                 RA.Children.Add(joints[6].model);
+
+
 
                 //base-dof1
                 joints[0].angleMin = -180;
@@ -374,9 +370,7 @@ namespace HAL062app.moduly.manipulator
             return result;
         }
 
-
-
-
+    
 
         public bool checkAngles(float[] oldAngles, float[] angles)
         {
@@ -442,9 +436,6 @@ namespace HAL062app.moduly.manipulator
 
             return gradient;
         }
-
-
-
 
         public void UpdateSphere(float[] xyz, int ID)
         {

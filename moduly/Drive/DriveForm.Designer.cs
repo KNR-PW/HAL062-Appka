@@ -30,7 +30,7 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.ForwardSpeedTrack = new System.Windows.Forms.TrackBar();
+            this.ForwardVelocityTrack = new System.Windows.Forms.TrackBar();
             this.joystickPictureBox = new System.Windows.Forms.PictureBox();
             this.startJoystickButton = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
@@ -112,7 +112,7 @@
             this.Camera_track = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ForwardSpeedTrack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ForwardVelocityTrack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.joystickPictureBox)).BeginInit();
             this.tableLayoutPanel16.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -160,7 +160,7 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.ForwardSpeedTrack, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ForwardVelocityTrack, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.joystickPictureBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.startJoystickButton, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel16, 0, 1);
@@ -174,18 +174,18 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(460, 442);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // ForwardSpeedTrack
+            // ForwardVelocityTrack
             // 
-            this.ForwardSpeedTrack.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ForwardSpeedTrack.LargeChange = 1;
-            this.ForwardSpeedTrack.Location = new System.Drawing.Point(370, 4);
-            this.ForwardSpeedTrack.Minimum = -10;
-            this.ForwardSpeedTrack.Name = "ForwardSpeedTrack";
-            this.ForwardSpeedTrack.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.ForwardSpeedTrack.Size = new System.Drawing.Size(86, 345);
-            this.ForwardSpeedTrack.TabIndex = 1;
-            this.ForwardSpeedTrack.TabStop = false;
-            this.ForwardSpeedTrack.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.ForwardVelocityTrack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ForwardVelocityTrack.LargeChange = 1;
+            this.ForwardVelocityTrack.Location = new System.Drawing.Point(370, 4);
+            this.ForwardVelocityTrack.Minimum = -10;
+            this.ForwardVelocityTrack.Name = "ForwardVelocityTrack";
+            this.ForwardVelocityTrack.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.ForwardVelocityTrack.Size = new System.Drawing.Size(86, 345);
+            this.ForwardVelocityTrack.TabIndex = 1;
+            this.ForwardVelocityTrack.TabStop = false;
+            this.ForwardVelocityTrack.TickStyle = System.Windows.Forms.TickStyle.Both;
             // 
             // joystickPictureBox
             // 
@@ -205,13 +205,16 @@
             // 
             // startJoystickButton
             // 
-            this.startJoystickButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.startJoystickButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.startJoystickButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.startJoystickButton.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.startJoystickButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.startJoystickButton.BorderRadius = 12;
             this.startJoystickButton.BorderSize = 0;
+            this.startJoystickButton.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
             this.startJoystickButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startJoystickButton.FlatAppearance.BorderSize = 0;
+            this.startJoystickButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.startJoystickButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.startJoystickButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startJoystickButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.startJoystickButton.ForeColor = System.Drawing.Color.White;
@@ -241,12 +244,15 @@
             // ArmRoverBtn
             // 
             this.ArmRoverBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ArmRoverBtn.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ArmRoverBtn.BackgroundColor = System.Drawing.Color.DarkSlateGray;
+            this.ArmRoverBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.ArmRoverBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ArmRoverBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ArmRoverBtn.BorderRadius = 12;
             this.ArmRoverBtn.BorderSize = 0;
+            this.ArmRoverBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ArmRoverBtn.FlatAppearance.BorderSize = 0;
+            this.ArmRoverBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.ArmRoverBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ArmRoverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ArmRoverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ArmRoverBtn.ForeColor = System.Drawing.Color.White;
@@ -360,7 +366,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(63, 46);
             this.label11.TabIndex = 3;
-            this.label11.Text = "Prędkość\r\n[RPM]";
+            this.label11.Text = "Prędkość [cm/s]";
             this.label11.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // LBtext
@@ -455,7 +461,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(63, 45);
             this.label14.TabIndex = 3;
-            this.label14.Text = "Prędkość\r\n[RPM]";
+            this.label14.Text = "Prędkość [cm/s]";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // LFtext
@@ -550,7 +556,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(63, 45);
             this.label17.TabIndex = 3;
-            this.label17.Text = "Prędkość\r\n[RPM]";
+            this.label17.Text = "Prędkość [cm/s]";
             this.label17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // LMtext
@@ -672,7 +678,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 46);
             this.label8.TabIndex = 3;
-            this.label8.Text = "Prędkość\r\n[RPM]";
+            this.label8.Text = "Prędkość [cm/s]";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // RBtext
@@ -767,7 +773,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 45);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Prędkość\r\n[RPM]";
+            this.label4.Text = "Prędkość\r\n[cm/s]";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // RFtext
@@ -862,7 +868,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 45);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Prędkość\r\n[RPM]";
+            this.label5.Text = "Prędkość [cm/s]";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // RMtext
@@ -1159,12 +1165,12 @@
             // tableLayoutPanel17
             // 
             this.tableLayoutPanel17.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel17.ColumnCount = 2;
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel17.Controls.Add(this.label20, 1, 0);
-            this.tableLayoutPanel17.Controls.Add(this.tableLayoutPanel18, 1, 1);
-            this.tableLayoutPanel17.Controls.Add(this.Camera_track, 1, 2);
+            this.tableLayoutPanel17.ColumnCount = 1;
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel17.Controls.Add(this.label20, 0, 0);
+            this.tableLayoutPanel17.Controls.Add(this.tableLayoutPanel18, 0, 1);
+            this.tableLayoutPanel17.Controls.Add(this.Camera_track, 0, 2);
             this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel17.Location = new System.Drawing.Point(3, 451);
             this.tableLayoutPanel17.Name = "tableLayoutPanel17";
@@ -1181,10 +1187,10 @@
             this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label20.Location = new System.Drawing.Point(208, 1);
+            this.label20.Location = new System.Drawing.Point(1, 1);
             this.label20.Margin = new System.Windows.Forms.Padding(0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(483, 18);
+            this.label20.Size = new System.Drawing.Size(690, 18);
             this.label20.TabIndex = 24;
             this.label20.Text = "Obrót kamery panoramicznej";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1201,26 +1207,29 @@
             this.tableLayoutPanel18.Controls.Add(this.camera_rotate_L_btn, 0, 0);
             this.tableLayoutPanel18.Controls.Add(this.camera_rotate_R_btn, 1, 0);
             this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel18.Location = new System.Drawing.Point(211, 23);
+            this.tableLayoutPanel18.Location = new System.Drawing.Point(4, 23);
             this.tableLayoutPanel18.Name = "tableLayoutPanel18";
             this.tableLayoutPanel18.RowCount = 1;
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(477, 67);
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(684, 67);
             this.tableLayoutPanel18.TabIndex = 25;
             // 
             // camera_rotate_B_btn
             // 
             this.camera_rotate_B_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.camera_rotate_B_btn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.camera_rotate_B_btn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_B_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_B_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.camera_rotate_B_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.camera_rotate_B_btn.BorderRadius = 1;
             this.camera_rotate_B_btn.BorderSize = 0;
+            this.camera_rotate_B_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.camera_rotate_B_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_B_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_B_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.camera_rotate_B_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.camera_rotate_B_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.camera_rotate_B_btn.ForeColor = System.Drawing.Color.White;
-            this.camera_rotate_B_btn.Location = new System.Drawing.Point(253, 4);
+            this.camera_rotate_B_btn.Location = new System.Drawing.Point(383, 4);
             this.camera_rotate_B_btn.Name = "camera_rotate_B_btn";
             this.camera_rotate_B_btn.Size = new System.Drawing.Size(88, 58);
             this.camera_rotate_B_btn.TabIndex = 20;
@@ -1232,16 +1241,19 @@
             // camera_rotate_F_btn
             // 
             this.camera_rotate_F_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.camera_rotate_F_btn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.camera_rotate_F_btn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_F_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_F_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.camera_rotate_F_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.camera_rotate_F_btn.BorderRadius = 1;
             this.camera_rotate_F_btn.BorderSize = 0;
+            this.camera_rotate_F_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.camera_rotate_F_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_F_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_F_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.camera_rotate_F_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.camera_rotate_F_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.camera_rotate_F_btn.ForeColor = System.Drawing.Color.White;
-            this.camera_rotate_F_btn.Location = new System.Drawing.Point(134, 4);
+            this.camera_rotate_F_btn.Location = new System.Drawing.Point(212, 4);
             this.camera_rotate_F_btn.Name = "camera_rotate_F_btn";
             this.camera_rotate_F_btn.Size = new System.Drawing.Size(88, 58);
             this.camera_rotate_F_btn.TabIndex = 19;
@@ -1253,16 +1265,19 @@
             // camera_rotate_L_btn
             // 
             this.camera_rotate_L_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.camera_rotate_L_btn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.camera_rotate_L_btn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_L_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_L_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.camera_rotate_L_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.camera_rotate_L_btn.BorderRadius = 1;
             this.camera_rotate_L_btn.BorderSize = 0;
+            this.camera_rotate_L_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.camera_rotate_L_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_L_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_L_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.camera_rotate_L_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.camera_rotate_L_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.camera_rotate_L_btn.ForeColor = System.Drawing.Color.White;
-            this.camera_rotate_L_btn.Location = new System.Drawing.Point(15, 4);
+            this.camera_rotate_L_btn.Location = new System.Drawing.Point(41, 4);
             this.camera_rotate_L_btn.Name = "camera_rotate_L_btn";
             this.camera_rotate_L_btn.Size = new System.Drawing.Size(88, 58);
             this.camera_rotate_L_btn.TabIndex = 17;
@@ -1274,16 +1289,19 @@
             // camera_rotate_R_btn
             // 
             this.camera_rotate_R_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.camera_rotate_R_btn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.camera_rotate_R_btn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.camera_rotate_R_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_R_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.camera_rotate_R_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.camera_rotate_R_btn.BorderRadius = 1;
             this.camera_rotate_R_btn.BorderSize = 0;
+            this.camera_rotate_R_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.camera_rotate_R_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_R_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_R_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.camera_rotate_R_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.camera_rotate_R_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.camera_rotate_R_btn.ForeColor = System.Drawing.Color.White;
-            this.camera_rotate_R_btn.Location = new System.Drawing.Point(373, 4);
+            this.camera_rotate_R_btn.Location = new System.Drawing.Point(554, 4);
             this.camera_rotate_R_btn.Name = "camera_rotate_R_btn";
             this.camera_rotate_R_btn.Size = new System.Drawing.Size(88, 58);
             this.camera_rotate_R_btn.TabIndex = 18;
@@ -1296,32 +1314,34 @@
             // 
             this.Camera_track.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Camera_track.LargeChange = 10;
-            this.Camera_track.Location = new System.Drawing.Point(211, 97);
+            this.Camera_track.Location = new System.Drawing.Point(4, 97);
             this.Camera_track.Maximum = 100;
             this.Camera_track.Name = "Camera_track";
-            this.Camera_track.Size = new System.Drawing.Size(477, 86);
+            this.Camera_track.Size = new System.Drawing.Size(684, 86);
             this.Camera_track.TabIndex = 26;
             this.Camera_track.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.Camera_track.Value = 50;
             this.Camera_track.Leave += new System.EventHandler(this.Camera_track_Leave);
             // 
-            // PodwozieForm
+            // DriveForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "PodwozieForm";
+            this.Name = "DriveForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "PodwozieForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PodwozieForm_FormClosing);
+            this.VisibleChanged += new System.EventHandler(this.DriveForm_VisibleChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PodwozieForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PodwozieForm_KeyUp);
+            this.Resize += new System.EventHandler(this.DriveForm_Resize);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ForwardSpeedTrack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ForwardVelocityTrack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.joystickPictureBox)).EndInit();
             this.tableLayoutPanel16.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -1361,7 +1381,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TrackBar ForwardSpeedTrack;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.PictureBox joystickPictureBox;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -1442,5 +1461,6 @@
         private CustomControls.CustomButton camera_rotate_B_btn;
         private CustomControls.CustomButton camera_rotate_F_btn;
         private System.Windows.Forms.TrackBar Camera_track;
+        private System.Windows.Forms.TrackBar ForwardVelocityTrack;
     }
 }

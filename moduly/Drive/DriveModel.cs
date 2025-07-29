@@ -45,7 +45,7 @@ namespace HAL062app.moduly.podwozie
 
     public interface IPodwozieModel
     {
-        void SendSpeed(MotorData data);
+        void SendVelocityToRobot(MotorData data);
         void SendMessageToRobot(Message message);
     }
 
@@ -63,13 +63,13 @@ namespace HAL062app.moduly.podwozie
             receivedQueue = new ConcurrentQueue<Message>();
             this.komunikacjaModel = komunikacja;
         }
-
-        public void SendSpeed(MotorData data)
+       
+        public void SendVelocityToRobot(MotorData data)
         {
-            SendMessageToRobot(SpeedFrame(data));
+            SendMessageToRobot(VelocityFrame(data));
         }
 
-        Message SpeedFrame(MotorData MotorData)
+        Message VelocityFrame(MotorData MotorData)
         {
             Message frame = new Message();
             frame.author = 3;
