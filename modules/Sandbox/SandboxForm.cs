@@ -25,9 +25,7 @@ namespace HAL062app.moduly.sandbox
 
         public void UpdateTestTextBox(string text)
         {
-            testTextBox.Text = text;
-
-
+        
         }
 
         private void CreateFrameBtn_Click(object sender, EventArgs e)
@@ -82,24 +80,7 @@ namespace HAL062app.moduly.sandbox
             e.Cancel = true;
         }
 
-        private void FPV_send_btn_Click(object sender, EventArgs e)
-        {
-
-            Message frame = new Message();
-            frame.buffer[0] = (byte)('#');
-            frame.buffer[1] = (byte)(45);
-            frame.buffer[2] = (byte)(FPV1_updown.Value);
-            frame.buffer[3] = (byte)(FPV2_updown.Value);
-            frame.buffer[4] = (byte)(FPV3_updown.Value);
-            frame.buffer[5] = (byte)('x');
-            frame.buffer[6] = (byte)('x');
-            frame.buffer[7] = (byte)('x');
-            frame.buffer[8] = (byte)('x');
-            frame.buffer[9] = (byte)('x');
-            frame.text = new string(frame.encodeMessage());
-
-            sendFrame_action(frame);
-        }
+       
 
         private void LightChanged(object sender, EventArgs e)
         {
@@ -117,6 +98,83 @@ namespace HAL062app.moduly.sandbox
             frame.text = new string(frame.encodeMessage());
 
             sendFrame_action(frame);
+        }
+
+        private void copyTo1FrameBtn_Click(object sender, EventArgs e)
+        {
+            frame1Textbox.Text = frameTextBox.Text;
+        }
+
+        private void copyTo2FrameBtn_Click(object sender, EventArgs e)
+        {
+            frame2Textbox.Text = frameTextBox.Text;
+        }
+
+        private void copyTo3FrameBtn_Click(object sender, EventArgs e)
+        {
+            frame3Textbox.Text = frameTextBox.Text;
+        }
+
+        private void copyTo4FrameBtn_Click(object sender, EventArgs e)
+        {
+            frame4Textbox.Text = frameTextBox.Text;
+        }
+
+        private void send1FrameBtn_Click(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.text = frame1Textbox.Text;
+            frame.author = 6;
+            frame.receiver = 0;
+            sendFrame_action(frame);
+        }
+
+        private void send2FrameBtn_Click(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.text = frame2Textbox.Text;
+            frame.author = 6;
+            frame.receiver = 0;
+            sendFrame_action(frame);
+        }
+
+        private void send3FrameBtn_Click(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.text = frame3Textbox.Text;
+            frame.author = 6;
+            frame.receiver = 0;
+            sendFrame_action(frame);
+        }
+
+        private void send4FrameBtn_Click(object sender, EventArgs e)
+        {
+            Message frame = new Message();
+            frame.text = frame4Textbox.Text;
+            frame.author = 6;
+            frame.receiver = 0;
+            sendFrame_action(frame);
+        }
+
+        private void reset1FrameBtn_Click(object sender, EventArgs e)
+        {
+
+            frame1Textbox.Text = "#XXXXXXXXXXXXXXXXXX";
+        }
+
+        private void reset2FrameBtn_Click(object sender, EventArgs e)
+        {
+            frame2Textbox.Text = "#XXXXXXXXXXXXXXXXXX";
+        }
+
+        private void reset3FrameBtn_Click(object sender, EventArgs e)
+        {
+            frame3Textbox.Text = "#XXXXXXXXXXXXXXXXXX";
+        }
+
+        private void reset4FrameBtn_Click(object sender, EventArgs e)
+        {
+            frame4Textbox.Text = "#XXXXXXXXXXXXXXXXXX";
         }
     }
 }

@@ -35,6 +35,29 @@
             this.startJoystickButton = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.ArmRoverBtn = new HAL062app.CustomControls.CustomButton();
+            this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
+            this.camera_rotate_B_btn = new HAL062app.CustomControls.CustomButton();
+            this.camera_rotate_F_btn = new HAL062app.CustomControls.CustomButton();
+            this.camera_rotate_L_btn = new HAL062app.CustomControls.CustomButton();
+            this.camera_rotate_R_btn = new HAL062app.CustomControls.CustomButton();
+            this.Camera_track = new System.Windows.Forms.TrackBar();
+            this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cameraFPV33btn = new HAL062app.CustomControls.CustomButton();
+            this.cameraFPV23btn = new HAL062app.CustomControls.CustomButton();
+            this.cameraFPV13btn = new HAL062app.CustomControls.CustomButton();
+            this.cameraFPV32btn = new HAL062app.CustomControls.CustomButton();
+            this.cameraFPV22btn = new HAL062app.CustomControls.CustomButton();
+            this.cameraFPV31btn = new HAL062app.CustomControls.CustomButton();
+            this.cameraFPV21btn = new HAL062app.CustomControls.CustomButton();
+            this.cameraFPV11btn = new HAL062app.CustomControls.CustomButton();
+            this.cameraFPV12btn = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -102,19 +125,16 @@
             this.XboxBatteryLabel = new System.Windows.Forms.Label();
             this.ConnectWithXboxPadBtn = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
-            this.label20 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
-            this.camera_rotate_B_btn = new HAL062app.CustomControls.CustomButton();
-            this.camera_rotate_F_btn = new HAL062app.CustomControls.CustomButton();
-            this.camera_rotate_L_btn = new HAL062app.CustomControls.CustomButton();
-            this.camera_rotate_R_btn = new HAL062app.CustomControls.CustomButton();
-            this.Camera_track = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ForwardVelocityTrack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.joystickPictureBox)).BeginInit();
             this.tableLayoutPanel16.SuspendLayout();
+            this.tableLayoutPanel19.SuspendLayout();
+            this.tableLayoutPanel17.SuspendLayout();
+            this.tableLayoutPanel18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Camera_track)).BeginInit();
+            this.tableLayoutPanel20.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -130,9 +150,6 @@
             this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
-            this.tableLayoutPanel17.SuspendLayout();
-            this.tableLayoutPanel18.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Camera_track)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -141,9 +158,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel19, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel12, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel17, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -151,7 +168,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1164, 641);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1164, 741);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -171,7 +188,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(460, 442);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(460, 512);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // ForwardVelocityTrack
@@ -182,7 +199,7 @@
             this.ForwardVelocityTrack.Minimum = -10;
             this.ForwardVelocityTrack.Name = "ForwardVelocityTrack";
             this.ForwardVelocityTrack.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.ForwardVelocityTrack.Size = new System.Drawing.Size(86, 345);
+            this.ForwardVelocityTrack.Size = new System.Drawing.Size(86, 401);
             this.ForwardVelocityTrack.TabIndex = 1;
             this.ForwardVelocityTrack.TabStop = false;
             this.ForwardVelocityTrack.TickStyle = System.Windows.Forms.TickStyle.Both;
@@ -195,7 +212,7 @@
             this.joystickPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.joystickPictureBox.Location = new System.Drawing.Point(4, 4);
             this.joystickPictureBox.Name = "joystickPictureBox";
-            this.joystickPictureBox.Size = new System.Drawing.Size(359, 345);
+            this.joystickPictureBox.Size = new System.Drawing.Size(359, 401);
             this.joystickPictureBox.TabIndex = 2;
             this.joystickPictureBox.TabStop = false;
             this.joystickPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.joystickPictureBox_Paint);
@@ -218,9 +235,9 @@
             this.startJoystickButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startJoystickButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.startJoystickButton.ForeColor = System.Drawing.Color.White;
-            this.startJoystickButton.Location = new System.Drawing.Point(370, 356);
+            this.startJoystickButton.Location = new System.Drawing.Point(370, 412);
             this.startJoystickButton.Name = "startJoystickButton";
-            this.startJoystickButton.Size = new System.Drawing.Size(86, 82);
+            this.startJoystickButton.Size = new System.Drawing.Size(86, 96);
             this.startJoystickButton.TabIndex = 3;
             this.startJoystickButton.Text = "Start";
             this.startJoystickButton.TextColor = System.Drawing.Color.White;
@@ -229,41 +246,504 @@
             // 
             // tableLayoutPanel16
             // 
-            this.tableLayoutPanel16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel16.ColumnCount = 2;
-            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.34541F));
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.65459F));
             this.tableLayoutPanel16.Controls.Add(this.ArmRoverBtn, 1, 0);
-            this.tableLayoutPanel16.Location = new System.Drawing.Point(4, 356);
+            this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(4, 412);
             this.tableLayoutPanel16.Name = "tableLayoutPanel16";
             this.tableLayoutPanel16.RowCount = 1;
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(359, 82);
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(359, 96);
             this.tableLayoutPanel16.TabIndex = 4;
             // 
             // ArmRoverBtn
             // 
-            this.ArmRoverBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ArmRoverBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ArmRoverBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ArmRoverBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ArmRoverBtn.BorderRadius = 12;
             this.ArmRoverBtn.BorderSize = 0;
             this.ArmRoverBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.ArmRoverBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ArmRoverBtn.FlatAppearance.BorderSize = 0;
             this.ArmRoverBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ArmRoverBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ArmRoverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ArmRoverBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ArmRoverBtn.ForeColor = System.Drawing.Color.White;
-            this.ArmRoverBtn.Location = new System.Drawing.Point(194, 3);
+            this.ArmRoverBtn.Location = new System.Drawing.Point(234, 3);
             this.ArmRoverBtn.Name = "ArmRoverBtn";
-            this.ArmRoverBtn.Size = new System.Drawing.Size(150, 76);
+            this.ArmRoverBtn.Size = new System.Drawing.Size(122, 90);
             this.ArmRoverBtn.TabIndex = 0;
             this.ArmRoverBtn.Text = "Uzbrojenie";
             this.ArmRoverBtn.TextColor = System.Drawing.Color.White;
             this.ArmRoverBtn.UseVisualStyleBackColor = false;
             this.ArmRoverBtn.Click += new System.EventHandler(this.ArmRoverBtn_Click);
+            // 
+            // tableLayoutPanel19
+            // 
+            this.tableLayoutPanel19.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel19.ColumnCount = 2;
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel19.Controls.Add(this.label21, 1, 0);
+            this.tableLayoutPanel19.Controls.Add(this.label20, 0, 0);
+            this.tableLayoutPanel19.Controls.Add(this.tableLayoutPanel17, 0, 1);
+            this.tableLayoutPanel19.Controls.Add(this.tableLayoutPanel20, 1, 1);
+            this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(3, 521);
+            this.tableLayoutPanel19.Name = "tableLayoutPanel19";
+            this.tableLayoutPanel19.RowCount = 2;
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.90374F));
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.09626F));
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(692, 217);
+            this.tableLayoutPanel19.TabIndex = 1;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label21.Location = new System.Drawing.Point(346, 1);
+            this.label21.Margin = new System.Windows.Forms.Padding(0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(345, 29);
+            this.label21.TabIndex = 25;
+            this.label21.Text = "Kamery FPV";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label20.Location = new System.Drawing.Point(1, 1);
+            this.label20.Margin = new System.Windows.Forms.Padding(0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(344, 29);
+            this.label20.TabIndex = 24;
+            this.label20.Text = "Obrót kamery panoramicznej";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel17
+            // 
+            this.tableLayoutPanel17.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel17.ColumnCount = 1;
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel17.Controls.Add(this.tableLayoutPanel18, 0, 0);
+            this.tableLayoutPanel17.Controls.Add(this.Camera_track, 0, 1);
+            this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel17.Location = new System.Drawing.Point(4, 34);
+            this.tableLayoutPanel17.Name = "tableLayoutPanel17";
+            this.tableLayoutPanel17.RowCount = 2;
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(338, 179);
+            this.tableLayoutPanel17.TabIndex = 3;
+            // 
+            // tableLayoutPanel18
+            // 
+            this.tableLayoutPanel18.ColumnCount = 4;
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_B_btn, 0, 0);
+            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_F_btn, 0, 0);
+            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_L_btn, 0, 0);
+            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_R_btn, 3, 0);
+            this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel18.Location = new System.Drawing.Point(4, 4);
+            this.tableLayoutPanel18.Name = "tableLayoutPanel18";
+            this.tableLayoutPanel18.RowCount = 1;
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(330, 117);
+            this.tableLayoutPanel18.TabIndex = 25;
+            // 
+            // camera_rotate_B_btn
+            // 
+            this.camera_rotate_B_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_B_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_B_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.camera_rotate_B_btn.BorderRadius = 20;
+            this.camera_rotate_B_btn.BorderSize = 0;
+            this.camera_rotate_B_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.camera_rotate_B_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.camera_rotate_B_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_B_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_B_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_B_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.camera_rotate_B_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.camera_rotate_B_btn.ForeColor = System.Drawing.Color.White;
+            this.camera_rotate_B_btn.Location = new System.Drawing.Point(167, 3);
+            this.camera_rotate_B_btn.Name = "camera_rotate_B_btn";
+            this.camera_rotate_B_btn.Size = new System.Drawing.Size(76, 111);
+            this.camera_rotate_B_btn.TabIndex = 20;
+            this.camera_rotate_B_btn.Text = "Do tyłu";
+            this.camera_rotate_B_btn.TextColor = System.Drawing.Color.White;
+            this.camera_rotate_B_btn.UseVisualStyleBackColor = false;
+            this.camera_rotate_B_btn.Click += new System.EventHandler(this.camera_rotate_B_btn_Click);
+            // 
+            // camera_rotate_F_btn
+            // 
+            this.camera_rotate_F_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_F_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_F_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.camera_rotate_F_btn.BorderRadius = 20;
+            this.camera_rotate_F_btn.BorderSize = 0;
+            this.camera_rotate_F_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.camera_rotate_F_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.camera_rotate_F_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_F_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_F_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_F_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.camera_rotate_F_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.camera_rotate_F_btn.ForeColor = System.Drawing.Color.White;
+            this.camera_rotate_F_btn.Location = new System.Drawing.Point(85, 3);
+            this.camera_rotate_F_btn.Name = "camera_rotate_F_btn";
+            this.camera_rotate_F_btn.Size = new System.Drawing.Size(76, 111);
+            this.camera_rotate_F_btn.TabIndex = 19;
+            this.camera_rotate_F_btn.Text = "Do przodu";
+            this.camera_rotate_F_btn.TextColor = System.Drawing.Color.White;
+            this.camera_rotate_F_btn.UseVisualStyleBackColor = false;
+            this.camera_rotate_F_btn.Click += new System.EventHandler(this.camera_rotate_F_btn_Click);
+            // 
+            // camera_rotate_L_btn
+            // 
+            this.camera_rotate_L_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_L_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_L_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.camera_rotate_L_btn.BorderRadius = 20;
+            this.camera_rotate_L_btn.BorderSize = 0;
+            this.camera_rotate_L_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.camera_rotate_L_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.camera_rotate_L_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_L_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_L_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_L_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.camera_rotate_L_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.camera_rotate_L_btn.ForeColor = System.Drawing.Color.White;
+            this.camera_rotate_L_btn.Location = new System.Drawing.Point(3, 3);
+            this.camera_rotate_L_btn.Name = "camera_rotate_L_btn";
+            this.camera_rotate_L_btn.Size = new System.Drawing.Size(76, 111);
+            this.camera_rotate_L_btn.TabIndex = 17;
+            this.camera_rotate_L_btn.Text = "Obrót w lewo";
+            this.camera_rotate_L_btn.TextColor = System.Drawing.Color.White;
+            this.camera_rotate_L_btn.UseVisualStyleBackColor = false;
+            this.camera_rotate_L_btn.Click += new System.EventHandler(this.camera_rotate_L_btn_Click);
+            // 
+            // camera_rotate_R_btn
+            // 
+            this.camera_rotate_R_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_R_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.camera_rotate_R_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.camera_rotate_R_btn.BorderRadius = 20;
+            this.camera_rotate_R_btn.BorderSize = 0;
+            this.camera_rotate_R_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.camera_rotate_R_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.camera_rotate_R_btn.FlatAppearance.BorderSize = 0;
+            this.camera_rotate_R_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_R_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.camera_rotate_R_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.camera_rotate_R_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.camera_rotate_R_btn.ForeColor = System.Drawing.Color.White;
+            this.camera_rotate_R_btn.Location = new System.Drawing.Point(249, 3);
+            this.camera_rotate_R_btn.Name = "camera_rotate_R_btn";
+            this.camera_rotate_R_btn.Size = new System.Drawing.Size(78, 111);
+            this.camera_rotate_R_btn.TabIndex = 18;
+            this.camera_rotate_R_btn.Text = "Obrót w prawo";
+            this.camera_rotate_R_btn.TextColor = System.Drawing.Color.White;
+            this.camera_rotate_R_btn.UseVisualStyleBackColor = false;
+            this.camera_rotate_R_btn.Click += new System.EventHandler(this.camera_rotate_R_btn_Click);
+            // 
+            // Camera_track
+            // 
+            this.Camera_track.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Camera_track.LargeChange = 10;
+            this.Camera_track.Location = new System.Drawing.Point(4, 128);
+            this.Camera_track.Maximum = 100;
+            this.Camera_track.Name = "Camera_track";
+            this.Camera_track.Size = new System.Drawing.Size(330, 47);
+            this.Camera_track.TabIndex = 26;
+            this.Camera_track.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.Camera_track.Value = 50;
+            this.Camera_track.Leave += new System.EventHandler(this.Camera_track_Leave);
+            // 
+            // tableLayoutPanel20
+            // 
+            this.tableLayoutPanel20.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel20.ColumnCount = 3;
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel20.Controls.Add(this.label24, 2, 0);
+            this.tableLayoutPanel20.Controls.Add(this.label23, 1, 0);
+            this.tableLayoutPanel20.Controls.Add(this.label22, 0, 0);
+            this.tableLayoutPanel20.Controls.Add(this.cameraFPV33btn, 2, 3);
+            this.tableLayoutPanel20.Controls.Add(this.cameraFPV23btn, 1, 3);
+            this.tableLayoutPanel20.Controls.Add(this.cameraFPV13btn, 0, 3);
+            this.tableLayoutPanel20.Controls.Add(this.cameraFPV32btn, 2, 2);
+            this.tableLayoutPanel20.Controls.Add(this.cameraFPV22btn, 1, 2);
+            this.tableLayoutPanel20.Controls.Add(this.cameraFPV31btn, 2, 1);
+            this.tableLayoutPanel20.Controls.Add(this.cameraFPV21btn, 1, 1);
+            this.tableLayoutPanel20.Controls.Add(this.cameraFPV11btn, 0, 1);
+            this.tableLayoutPanel20.Controls.Add(this.cameraFPV12btn, 0, 2);
+            this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(349, 34);
+            this.tableLayoutPanel20.Name = "tableLayoutPanel20";
+            this.tableLayoutPanel20.RowCount = 4;
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(339, 179);
+            this.tableLayoutPanel20.TabIndex = 26;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label24.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label24.Location = new System.Drawing.Point(225, 1);
+            this.label24.Margin = new System.Windows.Forms.Padding(0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(113, 40);
+            this.label24.TabIndex = 28;
+            this.label24.Text = "Kanał 3";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label23.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label23.Location = new System.Drawing.Point(113, 1);
+            this.label23.Margin = new System.Windows.Forms.Padding(0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(111, 40);
+            this.label23.TabIndex = 27;
+            this.label23.Text = "Kanał 2";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label22.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label22.Location = new System.Drawing.Point(1, 1);
+            this.label22.Margin = new System.Windows.Forms.Padding(0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(111, 40);
+            this.label22.TabIndex = 26;
+            this.label22.Text = "Kanał 1";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cameraFPV33btn
+            // 
+            this.cameraFPV33btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV33btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV33btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.cameraFPV33btn.BorderRadius = 10;
+            this.cameraFPV33btn.BorderSize = 0;
+            this.cameraFPV33btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Off;
+            this.cameraFPV33btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cameraFPV33btn.FlatAppearance.BorderSize = 0;
+            this.cameraFPV33btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV33btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV33btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraFPV33btn.ForeColor = System.Drawing.Color.Black;
+            this.cameraFPV33btn.Location = new System.Drawing.Point(228, 135);
+            this.cameraFPV33btn.Name = "cameraFPV33btn";
+            this.cameraFPV33btn.Size = new System.Drawing.Size(107, 40);
+            this.cameraFPV33btn.TabIndex = 11;
+            this.cameraFPV33btn.Text = "Kamera 3";
+            this.cameraFPV33btn.TextColor = System.Drawing.Color.Black;
+            this.cameraFPV33btn.UseVisualStyleBackColor = false;
+            // 
+            // cameraFPV23btn
+            // 
+            this.cameraFPV23btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV23btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV23btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.cameraFPV23btn.BorderRadius = 10;
+            this.cameraFPV23btn.BorderSize = 0;
+            this.cameraFPV23btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Off;
+            this.cameraFPV23btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cameraFPV23btn.FlatAppearance.BorderSize = 0;
+            this.cameraFPV23btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV23btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV23btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraFPV23btn.ForeColor = System.Drawing.Color.Black;
+            this.cameraFPV23btn.Location = new System.Drawing.Point(116, 135);
+            this.cameraFPV23btn.Name = "cameraFPV23btn";
+            this.cameraFPV23btn.Size = new System.Drawing.Size(105, 40);
+            this.cameraFPV23btn.TabIndex = 10;
+            this.cameraFPV23btn.Text = "Kamera 3";
+            this.cameraFPV23btn.TextColor = System.Drawing.Color.Black;
+            this.cameraFPV23btn.UseVisualStyleBackColor = false;
+            // 
+            // cameraFPV13btn
+            // 
+            this.cameraFPV13btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV13btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV13btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.cameraFPV13btn.BorderRadius = 10;
+            this.cameraFPV13btn.BorderSize = 0;
+            this.cameraFPV13btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Off;
+            this.cameraFPV13btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cameraFPV13btn.FlatAppearance.BorderSize = 0;
+            this.cameraFPV13btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV13btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV13btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraFPV13btn.ForeColor = System.Drawing.Color.Black;
+            this.cameraFPV13btn.Location = new System.Drawing.Point(4, 135);
+            this.cameraFPV13btn.Name = "cameraFPV13btn";
+            this.cameraFPV13btn.Size = new System.Drawing.Size(105, 40);
+            this.cameraFPV13btn.TabIndex = 9;
+            this.cameraFPV13btn.Text = "Kamera 3";
+            this.cameraFPV13btn.TextColor = System.Drawing.Color.Black;
+            this.cameraFPV13btn.UseVisualStyleBackColor = false;
+            // 
+            // cameraFPV32btn
+            // 
+            this.cameraFPV32btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV32btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV32btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.cameraFPV32btn.BorderRadius = 10;
+            this.cameraFPV32btn.BorderSize = 0;
+            this.cameraFPV32btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Off;
+            this.cameraFPV32btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cameraFPV32btn.FlatAppearance.BorderSize = 0;
+            this.cameraFPV32btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV32btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV32btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraFPV32btn.ForeColor = System.Drawing.Color.Black;
+            this.cameraFPV32btn.Location = new System.Drawing.Point(228, 90);
+            this.cameraFPV32btn.Name = "cameraFPV32btn";
+            this.cameraFPV32btn.Size = new System.Drawing.Size(107, 38);
+            this.cameraFPV32btn.TabIndex = 8;
+            this.cameraFPV32btn.Text = "Kamera 2";
+            this.cameraFPV32btn.TextColor = System.Drawing.Color.Black;
+            this.cameraFPV32btn.UseVisualStyleBackColor = false;
+            // 
+            // cameraFPV22btn
+            // 
+            this.cameraFPV22btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV22btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV22btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.cameraFPV22btn.BorderRadius = 10;
+            this.cameraFPV22btn.BorderSize = 0;
+            this.cameraFPV22btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Off;
+            this.cameraFPV22btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cameraFPV22btn.FlatAppearance.BorderSize = 0;
+            this.cameraFPV22btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV22btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV22btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraFPV22btn.ForeColor = System.Drawing.Color.Black;
+            this.cameraFPV22btn.Location = new System.Drawing.Point(116, 90);
+            this.cameraFPV22btn.Name = "cameraFPV22btn";
+            this.cameraFPV22btn.Size = new System.Drawing.Size(105, 38);
+            this.cameraFPV22btn.TabIndex = 7;
+            this.cameraFPV22btn.Text = "Kamera 2";
+            this.cameraFPV22btn.TextColor = System.Drawing.Color.Black;
+            this.cameraFPV22btn.UseVisualStyleBackColor = false;
+            // 
+            // cameraFPV31btn
+            // 
+            this.cameraFPV31btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.cameraFPV31btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.cameraFPV31btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.cameraFPV31btn.BorderRadius = 10;
+            this.cameraFPV31btn.BorderSize = 0;
+            this.cameraFPV31btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
+            this.cameraFPV31btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cameraFPV31btn.FlatAppearance.BorderSize = 0;
+            this.cameraFPV31btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.cameraFPV31btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.cameraFPV31btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraFPV31btn.ForeColor = System.Drawing.Color.White;
+            this.cameraFPV31btn.Location = new System.Drawing.Point(228, 45);
+            this.cameraFPV31btn.Name = "cameraFPV31btn";
+            this.cameraFPV31btn.Size = new System.Drawing.Size(107, 38);
+            this.cameraFPV31btn.TabIndex = 6;
+            this.cameraFPV31btn.Text = "Kamera 1";
+            this.cameraFPV31btn.TextColor = System.Drawing.Color.White;
+            this.cameraFPV31btn.UseVisualStyleBackColor = false;
+            // 
+            // cameraFPV21btn
+            // 
+            this.cameraFPV21btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.cameraFPV21btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.cameraFPV21btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.cameraFPV21btn.BorderRadius = 10;
+            this.cameraFPV21btn.BorderSize = 0;
+            this.cameraFPV21btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
+            this.cameraFPV21btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cameraFPV21btn.FlatAppearance.BorderSize = 0;
+            this.cameraFPV21btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.cameraFPV21btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.cameraFPV21btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraFPV21btn.ForeColor = System.Drawing.Color.White;
+            this.cameraFPV21btn.Location = new System.Drawing.Point(116, 45);
+            this.cameraFPV21btn.Name = "cameraFPV21btn";
+            this.cameraFPV21btn.Size = new System.Drawing.Size(105, 38);
+            this.cameraFPV21btn.TabIndex = 5;
+            this.cameraFPV21btn.Text = "Kamera 1";
+            this.cameraFPV21btn.TextColor = System.Drawing.Color.White;
+            this.cameraFPV21btn.UseVisualStyleBackColor = false;
+            // 
+            // cameraFPV11btn
+            // 
+            this.cameraFPV11btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.cameraFPV11btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.cameraFPV11btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.cameraFPV11btn.BorderRadius = 10;
+            this.cameraFPV11btn.BorderSize = 0;
+            this.cameraFPV11btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
+            this.cameraFPV11btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cameraFPV11btn.FlatAppearance.BorderSize = 0;
+            this.cameraFPV11btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.cameraFPV11btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.cameraFPV11btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraFPV11btn.ForeColor = System.Drawing.Color.White;
+            this.cameraFPV11btn.Location = new System.Drawing.Point(4, 45);
+            this.cameraFPV11btn.Name = "cameraFPV11btn";
+            this.cameraFPV11btn.Size = new System.Drawing.Size(105, 38);
+            this.cameraFPV11btn.TabIndex = 0;
+            this.cameraFPV11btn.Text = "Kamera 1";
+            this.cameraFPV11btn.TextColor = System.Drawing.Color.White;
+            this.cameraFPV11btn.UseVisualStyleBackColor = false;
+            this.cameraFPV11btn.Click += new System.EventHandler(this.cameraFPV11btn_Click);
+            // 
+            // cameraFPV12btn
+            // 
+            this.cameraFPV12btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV12btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.cameraFPV12btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.cameraFPV12btn.BorderRadius = 10;
+            this.cameraFPV12btn.BorderSize = 0;
+            this.cameraFPV12btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Off;
+            this.cameraFPV12btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cameraFPV12btn.FlatAppearance.BorderSize = 0;
+            this.cameraFPV12btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV12btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cameraFPV12btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cameraFPV12btn.ForeColor = System.Drawing.Color.Black;
+            this.cameraFPV12btn.Location = new System.Drawing.Point(4, 90);
+            this.cameraFPV12btn.Name = "cameraFPV12btn";
+            this.cameraFPV12btn.Size = new System.Drawing.Size(105, 38);
+            this.cameraFPV12btn.TabIndex = 1;
+            this.cameraFPV12btn.Text = "Kamera 2";
+            this.cameraFPV12btn.TextColor = System.Drawing.Color.Black;
+            this.cameraFPV12btn.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel3
             // 
@@ -280,8 +760,8 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 441F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(692, 442);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 511F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(692, 512);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // tableLayoutPanel8
@@ -299,7 +779,7 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(166, 434);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(166, 504);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
             // tableLayoutPanel9
@@ -314,20 +794,20 @@
             this.tableLayoutPanel9.Controls.Add(this.LBtext, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.LBbutton, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(4, 292);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(4, 338);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 3;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(158, 138);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(158, 162);
             this.tableLayoutPanel9.TabIndex = 3;
             // 
             // textBox7
             // 
             this.textBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.textBox7.Location = new System.Drawing.Point(66, 94);
+            this.textBox7.Location = new System.Drawing.Point(66, 110);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(89, 21);
             this.textBox7.TabIndex = 6;
@@ -338,10 +818,10 @@
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label10.Location = new System.Drawing.Point(0, 91);
+            this.label10.Location = new System.Drawing.Point(0, 107);
             this.label10.Margin = new System.Windows.Forms.Padding(0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(63, 47);
+            this.label10.Size = new System.Drawing.Size(63, 55);
             this.label10.TabIndex = 5;
             this.label10.Text = "Pobór prądu\r\n[A]";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -350,7 +830,7 @@
             // 
             this.LBStextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LBStextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.LBStextbox.Location = new System.Drawing.Point(66, 48);
+            this.LBStextbox.Location = new System.Drawing.Point(66, 56);
             this.LBStextbox.Name = "LBStextbox";
             this.LBStextbox.Size = new System.Drawing.Size(89, 21);
             this.LBStextbox.TabIndex = 0;
@@ -361,10 +841,10 @@
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label11.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label11.Location = new System.Drawing.Point(0, 45);
+            this.label11.Location = new System.Drawing.Point(0, 53);
             this.label11.Margin = new System.Windows.Forms.Padding(0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 46);
+            this.label11.Size = new System.Drawing.Size(63, 54);
             this.label11.TabIndex = 3;
             this.label11.Text = "Prędkość [cm/s]";
             this.label11.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -378,7 +858,7 @@
             this.LBtext.Location = new System.Drawing.Point(0, 0);
             this.LBtext.Margin = new System.Windows.Forms.Padding(0);
             this.LBtext.Name = "LBtext";
-            this.LBtext.Size = new System.Drawing.Size(63, 45);
+            this.LBtext.Size = new System.Drawing.Size(63, 53);
             this.LBtext.TabIndex = 4;
             this.LBtext.Text = "Napęd\r\nwłączony";
             this.LBtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -415,14 +895,14 @@
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(158, 137);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(158, 160);
             this.tableLayoutPanel10.TabIndex = 2;
             // 
             // textBox9
             // 
             this.textBox9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.textBox9.Location = new System.Drawing.Point(66, 93);
+            this.textBox9.Location = new System.Drawing.Point(66, 109);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(89, 21);
             this.textBox9.TabIndex = 6;
@@ -433,10 +913,10 @@
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label13.Location = new System.Drawing.Point(0, 90);
+            this.label13.Location = new System.Drawing.Point(0, 106);
             this.label13.Margin = new System.Windows.Forms.Padding(0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(63, 47);
+            this.label13.Size = new System.Drawing.Size(63, 54);
             this.label13.TabIndex = 5;
             this.label13.Text = "Pobór prądu\r\n[A]";
             this.label13.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -445,7 +925,7 @@
             // 
             this.LFStextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LFStextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.LFStextbox.Location = new System.Drawing.Point(66, 48);
+            this.LFStextbox.Location = new System.Drawing.Point(66, 56);
             this.LFStextbox.Name = "LFStextbox";
             this.LFStextbox.Size = new System.Drawing.Size(89, 21);
             this.LFStextbox.TabIndex = 0;
@@ -456,10 +936,10 @@
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label14.Location = new System.Drawing.Point(0, 45);
+            this.label14.Location = new System.Drawing.Point(0, 53);
             this.label14.Margin = new System.Windows.Forms.Padding(0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(63, 45);
+            this.label14.Size = new System.Drawing.Size(63, 53);
             this.label14.TabIndex = 3;
             this.label14.Text = "Prędkość [cm/s]";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -473,7 +953,7 @@
             this.LFtext.Location = new System.Drawing.Point(0, 0);
             this.LFtext.Margin = new System.Windows.Forms.Padding(0);
             this.LFtext.Name = "LFtext";
-            this.LFtext.Size = new System.Drawing.Size(63, 45);
+            this.LFtext.Size = new System.Drawing.Size(63, 53);
             this.LFtext.TabIndex = 4;
             this.LFtext.Text = "Napęd\r\nwłączony";
             this.LFtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -504,20 +984,20 @@
             this.tableLayoutPanel11.Controls.Add(this.LMtext, 0, 0);
             this.tableLayoutPanel11.Controls.Add(this.LMbutton, 1, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(4, 148);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(4, 171);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 3;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(158, 137);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(158, 160);
             this.tableLayoutPanel11.TabIndex = 1;
             // 
             // textBox11
             // 
             this.textBox11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.textBox11.Location = new System.Drawing.Point(66, 93);
+            this.textBox11.Location = new System.Drawing.Point(66, 109);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(89, 21);
             this.textBox11.TabIndex = 6;
@@ -528,10 +1008,10 @@
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label16.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label16.Location = new System.Drawing.Point(0, 90);
+            this.label16.Location = new System.Drawing.Point(0, 106);
             this.label16.Margin = new System.Windows.Forms.Padding(0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(63, 47);
+            this.label16.Size = new System.Drawing.Size(63, 54);
             this.label16.TabIndex = 5;
             this.label16.Text = "Pobór prądu\r\n[A]";
             this.label16.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -540,7 +1020,7 @@
             // 
             this.LMStextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LMStextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.LMStextbox.Location = new System.Drawing.Point(66, 48);
+            this.LMStextbox.Location = new System.Drawing.Point(66, 56);
             this.LMStextbox.Name = "LMStextbox";
             this.LMStextbox.Size = new System.Drawing.Size(89, 21);
             this.LMStextbox.TabIndex = 0;
@@ -551,10 +1031,10 @@
             this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label17.Location = new System.Drawing.Point(0, 45);
+            this.label17.Location = new System.Drawing.Point(0, 53);
             this.label17.Margin = new System.Windows.Forms.Padding(0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(63, 45);
+            this.label17.Size = new System.Drawing.Size(63, 53);
             this.label17.TabIndex = 3;
             this.label17.Text = "Prędkość [cm/s]";
             this.label17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -568,7 +1048,7 @@
             this.LMtext.Location = new System.Drawing.Point(0, 0);
             this.LMtext.Margin = new System.Windows.Forms.Padding(0);
             this.LMtext.Name = "LMtext";
-            this.LMtext.Size = new System.Drawing.Size(63, 45);
+            this.LMtext.Size = new System.Drawing.Size(63, 53);
             this.LMtext.TabIndex = 4;
             this.LMtext.Text = "Napęd\r\nwłączony";
             this.LMtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -591,7 +1071,7 @@
             this.pictureBox2.Image = global::HAL062app.Properties.Resources.rover;
             this.pictureBox2.Location = new System.Drawing.Point(177, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(338, 434);
+            this.pictureBox2.Size = new System.Drawing.Size(338, 504);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
@@ -611,7 +1091,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(166, 434);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(166, 504);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // tableLayoutPanel7
@@ -626,20 +1106,20 @@
             this.tableLayoutPanel7.Controls.Add(this.RBtext, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.RBbutton, 1, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(4, 292);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(4, 338);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 3;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(158, 138);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(158, 162);
             this.tableLayoutPanel7.TabIndex = 3;
             // 
             // textBox5
             // 
             this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.textBox5.Location = new System.Drawing.Point(66, 94);
+            this.textBox5.Location = new System.Drawing.Point(66, 110);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(89, 21);
             this.textBox5.TabIndex = 6;
@@ -650,10 +1130,10 @@
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(0, 91);
+            this.label7.Location = new System.Drawing.Point(0, 107);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 47);
+            this.label7.Size = new System.Drawing.Size(63, 55);
             this.label7.TabIndex = 5;
             this.label7.Text = "Pobór prądu\r\n[A]";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -662,7 +1142,7 @@
             // 
             this.RBStextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RBStextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.RBStextbox.Location = new System.Drawing.Point(66, 48);
+            this.RBStextbox.Location = new System.Drawing.Point(66, 56);
             this.RBStextbox.Name = "RBStextbox";
             this.RBStextbox.Size = new System.Drawing.Size(89, 21);
             this.RBStextbox.TabIndex = 0;
@@ -673,10 +1153,10 @@
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label8.Location = new System.Drawing.Point(0, 45);
+            this.label8.Location = new System.Drawing.Point(0, 53);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 46);
+            this.label8.Size = new System.Drawing.Size(63, 54);
             this.label8.TabIndex = 3;
             this.label8.Text = "Prędkość [cm/s]";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -690,7 +1170,7 @@
             this.RBtext.Location = new System.Drawing.Point(0, 0);
             this.RBtext.Margin = new System.Windows.Forms.Padding(0);
             this.RBtext.Name = "RBtext";
-            this.RBtext.Size = new System.Drawing.Size(63, 45);
+            this.RBtext.Size = new System.Drawing.Size(63, 53);
             this.RBtext.TabIndex = 4;
             this.RBtext.Text = "Napęd\r\nwłączony";
             this.RBtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -727,14 +1207,14 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(158, 137);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(158, 160);
             this.tableLayoutPanel6.TabIndex = 2;
             // 
             // textBox3
             // 
             this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.textBox3.Location = new System.Drawing.Point(66, 93);
+            this.textBox3.Location = new System.Drawing.Point(66, 109);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(89, 21);
             this.textBox3.TabIndex = 6;
@@ -745,10 +1225,10 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(0, 90);
+            this.label3.Location = new System.Drawing.Point(0, 106);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 47);
+            this.label3.Size = new System.Drawing.Size(63, 54);
             this.label3.TabIndex = 5;
             this.label3.Text = "Pobór prądu\r\n[A]";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -757,7 +1237,7 @@
             // 
             this.RFStextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RFStextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.RFStextbox.Location = new System.Drawing.Point(66, 48);
+            this.RFStextbox.Location = new System.Drawing.Point(66, 56);
             this.RFStextbox.Name = "RFStextbox";
             this.RFStextbox.Size = new System.Drawing.Size(89, 21);
             this.RFStextbox.TabIndex = 0;
@@ -768,10 +1248,10 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(0, 45);
+            this.label4.Location = new System.Drawing.Point(0, 53);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 45);
+            this.label4.Size = new System.Drawing.Size(63, 53);
             this.label4.TabIndex = 3;
             this.label4.Text = "Prędkość\r\n[cm/s]";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -785,7 +1265,7 @@
             this.RFtext.Location = new System.Drawing.Point(0, 0);
             this.RFtext.Margin = new System.Windows.Forms.Padding(0);
             this.RFtext.Name = "RFtext";
-            this.RFtext.Size = new System.Drawing.Size(63, 45);
+            this.RFtext.Size = new System.Drawing.Size(63, 53);
             this.RFtext.TabIndex = 4;
             this.RFtext.Text = "Napęd\r\nwłączony";
             this.RFtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -816,20 +1296,20 @@
             this.tableLayoutPanel5.Controls.Add(this.RMtext, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.RMbutton, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 148);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 171);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 3;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(158, 137);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(158, 160);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.textBox2.Location = new System.Drawing.Point(66, 93);
+            this.textBox2.Location = new System.Drawing.Point(66, 109);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(89, 21);
             this.textBox2.TabIndex = 6;
@@ -840,10 +1320,10 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(0, 90);
+            this.label2.Location = new System.Drawing.Point(0, 106);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 47);
+            this.label2.Size = new System.Drawing.Size(63, 54);
             this.label2.TabIndex = 5;
             this.label2.Text = "Pobór prądu\r\n[A]";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -852,7 +1332,7 @@
             // 
             this.RMStextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RMStextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.RMStextbox.Location = new System.Drawing.Point(66, 48);
+            this.RMStextbox.Location = new System.Drawing.Point(66, 56);
             this.RMStextbox.Name = "RMStextbox";
             this.RMStextbox.Size = new System.Drawing.Size(89, 21);
             this.RMStextbox.TabIndex = 0;
@@ -863,10 +1343,10 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label5.Location = new System.Drawing.Point(0, 45);
+            this.label5.Location = new System.Drawing.Point(0, 53);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 45);
+            this.label5.Size = new System.Drawing.Size(63, 53);
             this.label5.TabIndex = 3;
             this.label5.Text = "Prędkość [cm/s]";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -880,7 +1360,7 @@
             this.RMtext.Location = new System.Drawing.Point(0, 0);
             this.RMtext.Margin = new System.Windows.Forms.Padding(0);
             this.RMtext.Name = "RMtext";
-            this.RMtext.Size = new System.Drawing.Size(63, 45);
+            this.RMtext.Size = new System.Drawing.Size(63, 53);
             this.RMtext.TabIndex = 4;
             this.RMtext.Text = "Napęd\r\nwłączony";
             this.RMtext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -908,13 +1388,13 @@
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel14, 0, 0);
             this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel15, 0, 1);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(701, 451);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(701, 521);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 2;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.75269F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.24731F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(460, 187);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(460, 217);
             this.tableLayoutPanel12.TabIndex = 2;
             // 
             // panel1
@@ -923,7 +1403,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(233, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(223, 105);
+            this.panel1.Size = new System.Drawing.Size(223, 124);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel13
@@ -944,7 +1424,7 @@
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(223, 105);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(223, 124);
             this.tableLayoutPanel13.TabIndex = 0;
             // 
             // label1
@@ -956,7 +1436,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 30);
+            this.label1.Size = new System.Drawing.Size(133, 39);
             this.label1.TabIndex = 5;
             this.label1.Text = "Okres wysyłania [ms]";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -975,10 +1455,10 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label6.Location = new System.Drawing.Point(0, 60);
+            this.label6.Location = new System.Drawing.Point(0, 78);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 45);
+            this.label6.Size = new System.Drawing.Size(133, 46);
             this.label6.TabIndex = 9;
             this.label6.Text = "Zapisz ustawienia";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -986,10 +1466,10 @@
             // SetFrequencyButton
             // 
             this.SetFrequencyButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SetFrequencyButton.Location = new System.Drawing.Point(138, 65);
+            this.SetFrequencyButton.Location = new System.Drawing.Point(138, 83);
             this.SetFrequencyButton.Margin = new System.Windows.Forms.Padding(5);
             this.SetFrequencyButton.Name = "SetFrequencyButton";
-            this.SetFrequencyButton.Size = new System.Drawing.Size(80, 35);
+            this.SetFrequencyButton.Size = new System.Drawing.Size(80, 36);
             this.SetFrequencyButton.TabIndex = 8;
             this.SetFrequencyButton.Text = "Ustaw";
             this.SetFrequencyButton.UseVisualStyleBackColor = true;
@@ -998,7 +1478,7 @@
             // TimerTickTextbox
             // 
             this.TimerTickTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TimerTickTextbox.Location = new System.Drawing.Point(136, 33);
+            this.TimerTickTextbox.Location = new System.Drawing.Point(136, 42);
             this.TimerTickTextbox.Name = "TimerTickTextbox";
             this.TimerTickTextbox.Size = new System.Drawing.Size(84, 20);
             this.TimerTickTextbox.TabIndex = 10;
@@ -1009,9 +1489,9 @@
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label9.Location = new System.Drawing.Point(3, 30);
+            this.label9.Location = new System.Drawing.Point(3, 39);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(127, 30);
+            this.label9.Size = new System.Drawing.Size(127, 39);
             this.label9.TabIndex = 11;
             this.label9.Text = "Okres próbkowania zegara [ms]";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1022,9 +1502,9 @@
             this.errorTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.errorTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.errorTextbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.errorTextbox.Location = new System.Drawing.Point(233, 113);
+            this.errorTextbox.Location = new System.Drawing.Point(233, 132);
             this.errorTextbox.Name = "errorTextbox";
-            this.errorTextbox.Size = new System.Drawing.Size(223, 73);
+            this.errorTextbox.Size = new System.Drawing.Size(223, 84);
             this.errorTextbox.TabIndex = 1;
             this.errorTextbox.Text = "Komunikaty";
             // 
@@ -1046,7 +1526,7 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(222, 105);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(222, 124);
             this.tableLayoutPanel14.TabIndex = 2;
             // 
             // label18
@@ -1054,9 +1534,9 @@
             this.label18.AutoSize = true;
             this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label18.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label18.Location = new System.Drawing.Point(3, 70);
+            this.label18.Location = new System.Drawing.Point(3, 82);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(105, 35);
+            this.label18.Size = new System.Drawing.Size(105, 42);
             this.label18.TabIndex = 5;
             this.label18.Text = "Prędkość powrotu do środka joysticka";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1066,9 +1546,9 @@
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label15.Location = new System.Drawing.Point(3, 35);
+            this.label15.Location = new System.Drawing.Point(3, 41);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(105, 35);
+            this.label15.Size = new System.Drawing.Size(105, 41);
             this.label15.TabIndex = 4;
             this.label15.Text = "Czułość pionowa klawiatury";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1080,7 +1560,7 @@
             this.label12.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label12.Location = new System.Drawing.Point(3, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 35);
+            this.label12.Size = new System.Drawing.Size(105, 41);
             this.label12.TabIndex = 3;
             this.label12.Text = "Czułość pozioma klawiatury";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1096,7 +1576,7 @@
             // verticalKeyboardTextbox
             // 
             this.verticalKeyboardTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.verticalKeyboardTextbox.Location = new System.Drawing.Point(114, 38);
+            this.verticalKeyboardTextbox.Location = new System.Drawing.Point(114, 44);
             this.verticalKeyboardTextbox.Name = "verticalKeyboardTextbox";
             this.verticalKeyboardTextbox.Size = new System.Drawing.Size(105, 20);
             this.verticalKeyboardTextbox.TabIndex = 7;
@@ -1104,7 +1584,7 @@
             // returnKeyboardTextbox
             // 
             this.returnKeyboardTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.returnKeyboardTextbox.Location = new System.Drawing.Point(114, 73);
+            this.returnKeyboardTextbox.Location = new System.Drawing.Point(114, 85);
             this.returnKeyboardTextbox.Name = "returnKeyboardTextbox";
             this.returnKeyboardTextbox.Size = new System.Drawing.Size(105, 20);
             this.returnKeyboardTextbox.TabIndex = 8;
@@ -1118,12 +1598,12 @@
             this.tableLayoutPanel15.Controls.Add(this.ConnectWithXboxPadBtn, 1, 0);
             this.tableLayoutPanel15.Controls.Add(this.label19, 0, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(4, 116);
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(4, 135);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 2;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.13433F));
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.86567F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(222, 67);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(222, 78);
             this.tableLayoutPanel15.TabIndex = 3;
             // 
             // XboxBatteryLabel
@@ -1131,9 +1611,9 @@
             this.XboxBatteryLabel.AutoSize = true;
             this.XboxBatteryLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.XboxBatteryLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.XboxBatteryLabel.Location = new System.Drawing.Point(3, 49);
+            this.XboxBatteryLabel.Location = new System.Drawing.Point(3, 57);
             this.XboxBatteryLabel.Name = "XboxBatteryLabel";
-            this.XboxBatteryLabel.Size = new System.Drawing.Size(105, 18);
+            this.XboxBatteryLabel.Size = new System.Drawing.Size(105, 21);
             this.XboxBatteryLabel.TabIndex = 14;
             this.XboxBatteryLabel.Text = "Bateria: -%";
             this.XboxBatteryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1144,7 +1624,7 @@
             this.ConnectWithXboxPadBtn.Location = new System.Drawing.Point(116, 5);
             this.ConnectWithXboxPadBtn.Margin = new System.Windows.Forms.Padding(5);
             this.ConnectWithXboxPadBtn.Name = "ConnectWithXboxPadBtn";
-            this.ConnectWithXboxPadBtn.Size = new System.Drawing.Size(101, 39);
+            this.ConnectWithXboxPadBtn.Size = new System.Drawing.Size(101, 47);
             this.ConnectWithXboxPadBtn.TabIndex = 9;
             this.ConnectWithXboxPadBtn.Text = "Włącz";
             this.ConnectWithXboxPadBtn.UseVisualStyleBackColor = true;
@@ -1157,178 +1637,17 @@
             this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label19.Location = new System.Drawing.Point(3, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(105, 49);
+            this.label19.Size = new System.Drawing.Size(105, 57);
             this.label19.TabIndex = 5;
             this.label19.Text = "Włącz sterowanie gamepadem";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel17
-            // 
-            this.tableLayoutPanel17.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel17.ColumnCount = 1;
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel17.Controls.Add(this.label20, 0, 0);
-            this.tableLayoutPanel17.Controls.Add(this.tableLayoutPanel18, 0, 1);
-            this.tableLayoutPanel17.Controls.Add(this.Camera_track, 0, 2);
-            this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel17.Location = new System.Drawing.Point(3, 451);
-            this.tableLayoutPanel17.Name = "tableLayoutPanel17";
-            this.tableLayoutPanel17.RowCount = 3;
-            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel17.Size = new System.Drawing.Size(692, 187);
-            this.tableLayoutPanel17.TabIndex = 3;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label20.Location = new System.Drawing.Point(1, 1);
-            this.label20.Margin = new System.Windows.Forms.Padding(0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(690, 18);
-            this.label20.TabIndex = 24;
-            this.label20.Text = "Obrót kamery panoramicznej";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel18
-            // 
-            this.tableLayoutPanel18.ColumnCount = 4;
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_B_btn, 0, 0);
-            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_F_btn, 0, 0);
-            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_L_btn, 0, 0);
-            this.tableLayoutPanel18.Controls.Add(this.camera_rotate_R_btn, 1, 0);
-            this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel18.Location = new System.Drawing.Point(4, 23);
-            this.tableLayoutPanel18.Name = "tableLayoutPanel18";
-            this.tableLayoutPanel18.RowCount = 1;
-            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(684, 67);
-            this.tableLayoutPanel18.TabIndex = 25;
-            // 
-            // camera_rotate_B_btn
-            // 
-            this.camera_rotate_B_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.camera_rotate_B_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.camera_rotate_B_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.camera_rotate_B_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.camera_rotate_B_btn.BorderRadius = 1;
-            this.camera_rotate_B_btn.BorderSize = 0;
-            this.camera_rotate_B_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
-            this.camera_rotate_B_btn.FlatAppearance.BorderSize = 0;
-            this.camera_rotate_B_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
-            this.camera_rotate_B_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
-            this.camera_rotate_B_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.camera_rotate_B_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.camera_rotate_B_btn.ForeColor = System.Drawing.Color.White;
-            this.camera_rotate_B_btn.Location = new System.Drawing.Point(383, 4);
-            this.camera_rotate_B_btn.Name = "camera_rotate_B_btn";
-            this.camera_rotate_B_btn.Size = new System.Drawing.Size(88, 58);
-            this.camera_rotate_B_btn.TabIndex = 20;
-            this.camera_rotate_B_btn.Text = "Do tyłu";
-            this.camera_rotate_B_btn.TextColor = System.Drawing.Color.White;
-            this.camera_rotate_B_btn.UseVisualStyleBackColor = false;
-            this.camera_rotate_B_btn.Click += new System.EventHandler(this.camera_rotate_B_btn_Click);
-            // 
-            // camera_rotate_F_btn
-            // 
-            this.camera_rotate_F_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.camera_rotate_F_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.camera_rotate_F_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.camera_rotate_F_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.camera_rotate_F_btn.BorderRadius = 1;
-            this.camera_rotate_F_btn.BorderSize = 0;
-            this.camera_rotate_F_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
-            this.camera_rotate_F_btn.FlatAppearance.BorderSize = 0;
-            this.camera_rotate_F_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
-            this.camera_rotate_F_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
-            this.camera_rotate_F_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.camera_rotate_F_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.camera_rotate_F_btn.ForeColor = System.Drawing.Color.White;
-            this.camera_rotate_F_btn.Location = new System.Drawing.Point(212, 4);
-            this.camera_rotate_F_btn.Name = "camera_rotate_F_btn";
-            this.camera_rotate_F_btn.Size = new System.Drawing.Size(88, 58);
-            this.camera_rotate_F_btn.TabIndex = 19;
-            this.camera_rotate_F_btn.Text = "Do przodu";
-            this.camera_rotate_F_btn.TextColor = System.Drawing.Color.White;
-            this.camera_rotate_F_btn.UseVisualStyleBackColor = false;
-            this.camera_rotate_F_btn.Click += new System.EventHandler(this.camera_rotate_F_btn_Click);
-            // 
-            // camera_rotate_L_btn
-            // 
-            this.camera_rotate_L_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.camera_rotate_L_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.camera_rotate_L_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.camera_rotate_L_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.camera_rotate_L_btn.BorderRadius = 1;
-            this.camera_rotate_L_btn.BorderSize = 0;
-            this.camera_rotate_L_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
-            this.camera_rotate_L_btn.FlatAppearance.BorderSize = 0;
-            this.camera_rotate_L_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
-            this.camera_rotate_L_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
-            this.camera_rotate_L_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.camera_rotate_L_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.camera_rotate_L_btn.ForeColor = System.Drawing.Color.White;
-            this.camera_rotate_L_btn.Location = new System.Drawing.Point(41, 4);
-            this.camera_rotate_L_btn.Name = "camera_rotate_L_btn";
-            this.camera_rotate_L_btn.Size = new System.Drawing.Size(88, 58);
-            this.camera_rotate_L_btn.TabIndex = 17;
-            this.camera_rotate_L_btn.Text = "Obrót w lewo";
-            this.camera_rotate_L_btn.TextColor = System.Drawing.Color.White;
-            this.camera_rotate_L_btn.UseVisualStyleBackColor = false;
-            this.camera_rotate_L_btn.Click += new System.EventHandler(this.camera_rotate_L_btn_Click);
-            // 
-            // camera_rotate_R_btn
-            // 
-            this.camera_rotate_R_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.camera_rotate_R_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.camera_rotate_R_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.camera_rotate_R_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.camera_rotate_R_btn.BorderRadius = 1;
-            this.camera_rotate_R_btn.BorderSize = 0;
-            this.camera_rotate_R_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
-            this.camera_rotate_R_btn.FlatAppearance.BorderSize = 0;
-            this.camera_rotate_R_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
-            this.camera_rotate_R_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
-            this.camera_rotate_R_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.camera_rotate_R_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.camera_rotate_R_btn.ForeColor = System.Drawing.Color.White;
-            this.camera_rotate_R_btn.Location = new System.Drawing.Point(554, 4);
-            this.camera_rotate_R_btn.Name = "camera_rotate_R_btn";
-            this.camera_rotate_R_btn.Size = new System.Drawing.Size(88, 58);
-            this.camera_rotate_R_btn.TabIndex = 18;
-            this.camera_rotate_R_btn.Text = "Obrót w prawo";
-            this.camera_rotate_R_btn.TextColor = System.Drawing.Color.White;
-            this.camera_rotate_R_btn.UseVisualStyleBackColor = false;
-            this.camera_rotate_R_btn.Click += new System.EventHandler(this.camera_rotate_R_btn_Click);
-            // 
-            // Camera_track
-            // 
-            this.Camera_track.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Camera_track.LargeChange = 10;
-            this.Camera_track.Location = new System.Drawing.Point(4, 97);
-            this.Camera_track.Maximum = 100;
-            this.Camera_track.Name = "Camera_track";
-            this.Camera_track.Size = new System.Drawing.Size(684, 86);
-            this.Camera_track.TabIndex = 26;
-            this.Camera_track.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.Camera_track.Value = 50;
-            this.Camera_track.Leave += new System.EventHandler(this.Camera_track_Leave);
             // 
             // DriveForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
-            this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.ClientSize = new System.Drawing.Size(1184, 761);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DriveForm";
             this.Padding = new System.Windows.Forms.Padding(10);
@@ -1344,6 +1663,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.ForwardVelocityTrack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.joystickPictureBox)).EndInit();
             this.tableLayoutPanel16.ResumeLayout(false);
+            this.tableLayoutPanel19.ResumeLayout(false);
+            this.tableLayoutPanel19.PerformLayout();
+            this.tableLayoutPanel17.ResumeLayout(false);
+            this.tableLayoutPanel17.PerformLayout();
+            this.tableLayoutPanel18.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Camera_track)).EndInit();
+            this.tableLayoutPanel20.ResumeLayout(false);
+            this.tableLayoutPanel20.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
@@ -1369,10 +1696,6 @@
             this.tableLayoutPanel14.PerformLayout();
             this.tableLayoutPanel15.ResumeLayout(false);
             this.tableLayoutPanel15.PerformLayout();
-            this.tableLayoutPanel17.ResumeLayout(false);
-            this.tableLayoutPanel17.PerformLayout();
-            this.tableLayoutPanel18.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Camera_track)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1462,5 +1785,20 @@
         private CustomControls.CustomButton camera_rotate_F_btn;
         private System.Windows.Forms.TrackBar Camera_track;
         private System.Windows.Forms.TrackBar ForwardVelocityTrack;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel19;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
+        private CustomControls.CustomButton cameraFPV11btn;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private CustomControls.CustomButton cameraFPV33btn;
+        private CustomControls.CustomButton cameraFPV23btn;
+        private CustomControls.CustomButton cameraFPV13btn;
+        private CustomControls.CustomButton cameraFPV32btn;
+        private CustomControls.CustomButton cameraFPV22btn;
+        private CustomControls.CustomButton cameraFPV31btn;
+        private CustomControls.CustomButton cameraFPV21btn;
+        private CustomControls.CustomButton cameraFPV12btn;
     }
 }

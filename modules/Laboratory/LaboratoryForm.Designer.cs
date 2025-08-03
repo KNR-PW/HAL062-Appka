@@ -79,6 +79,8 @@
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
             this.ProbeUpFullBtn = new HAL062app.CustomControls.CustomButton();
             this.ProbeDownFullBtn = new HAL062app.CustomControls.CustomButton();
+            this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -105,6 +107,9 @@
             this.InfProbeRightBtn = new HAL062app.CustomControls.CustomButton();
             this.InfProbeLeftBtn = new HAL062app.CustomControls.CustomButton();
             this.ProbesPanel = new System.Windows.Forms.Panel();
+            this.LoadJSONbtn = new HAL062app.CustomControls.CustomButton();
+            this.ResetJSONbtn = new HAL062app.CustomControls.CustomButton();
+            this.ResetHistoryBtn = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DrillPWM_numeric)).BeginInit();
@@ -121,6 +126,8 @@
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
+            this.tableLayoutPanel20.SuspendLayout();
+            this.tableLayoutPanel21.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -278,12 +285,15 @@
             // DrillUpBtn
             // 
             this.DrillUpBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DrillUpBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.DrillUpBtn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.DrillUpBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.DrillUpBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.DrillUpBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.DrillUpBtn.BorderRadius = 1;
             this.DrillUpBtn.BorderSize = 0;
+            this.DrillUpBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.DrillUpBtn.FlatAppearance.BorderSize = 0;
+            this.DrillUpBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.DrillUpBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.DrillUpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillUpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillUpBtn.ForeColor = System.Drawing.Color.White;
@@ -299,12 +309,15 @@
             // DrillStopBtn
             // 
             this.DrillStopBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DrillStopBtn.BackColor = System.Drawing.Color.Red;
-            this.DrillStopBtn.BackgroundColor = System.Drawing.Color.Red;
+            this.DrillStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.DrillStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.DrillStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.DrillStopBtn.BorderRadius = 1;
             this.DrillStopBtn.BorderSize = 0;
+            this.DrillStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.DrillStopBtn.FlatAppearance.BorderSize = 0;
+            this.DrillStopBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.DrillStopBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.DrillStopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillStopBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillStopBtn.ForeColor = System.Drawing.Color.White;
@@ -320,12 +333,15 @@
             // DrillDownBtn
             // 
             this.DrillDownBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DrillDownBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.DrillDownBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.DrillDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
+            this.DrillDownBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.DrillDownBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.DrillDownBtn.BorderRadius = 1;
             this.DrillDownBtn.BorderSize = 0;
+            this.DrillDownBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_orange;
             this.DrillDownBtn.FlatAppearance.BorderSize = 0;
+            this.DrillDownBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
+            this.DrillDownBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.DrillDownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillDownBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillDownBtn.ForeColor = System.Drawing.Color.White;
@@ -355,12 +371,15 @@
             // DrillMoveDownBtn
             // 
             this.DrillMoveDownBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DrillMoveDownBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.DrillMoveDownBtn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.DrillMoveDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.DrillMoveDownBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.DrillMoveDownBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.DrillMoveDownBtn.BorderRadius = 1;
             this.DrillMoveDownBtn.BorderSize = 0;
+            this.DrillMoveDownBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.DrillMoveDownBtn.FlatAppearance.BorderSize = 0;
+            this.DrillMoveDownBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.DrillMoveDownBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.DrillMoveDownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillMoveDownBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillMoveDownBtn.ForeColor = System.Drawing.Color.White;
@@ -376,12 +395,15 @@
             // DrillMoveStopBtn
             // 
             this.DrillMoveStopBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DrillMoveStopBtn.BackColor = System.Drawing.Color.Red;
-            this.DrillMoveStopBtn.BackgroundColor = System.Drawing.Color.Red;
+            this.DrillMoveStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.DrillMoveStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.DrillMoveStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.DrillMoveStopBtn.BorderRadius = 1;
             this.DrillMoveStopBtn.BorderSize = 0;
+            this.DrillMoveStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.DrillMoveStopBtn.FlatAppearance.BorderSize = 0;
+            this.DrillMoveStopBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.DrillMoveStopBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.DrillMoveStopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillMoveStopBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillMoveStopBtn.ForeColor = System.Drawing.Color.White;
@@ -397,12 +419,15 @@
             // DrillMoveUpBtn
             // 
             this.DrillMoveUpBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DrillMoveUpBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.DrillMoveUpBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.DrillMoveUpBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
+            this.DrillMoveUpBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.DrillMoveUpBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.DrillMoveUpBtn.BorderRadius = 1;
             this.DrillMoveUpBtn.BorderSize = 0;
+            this.DrillMoveUpBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_orange;
             this.DrillMoveUpBtn.FlatAppearance.BorderSize = 0;
+            this.DrillMoveUpBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
+            this.DrillMoveUpBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.DrillMoveUpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillMoveUpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillMoveUpBtn.ForeColor = System.Drawing.Color.White;
@@ -432,12 +457,15 @@
             // ModulDownBtn
             // 
             this.ModulDownBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ModulDownBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.ModulDownBtn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.ModulDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.ModulDownBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ModulDownBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ModulDownBtn.BorderRadius = 1;
             this.ModulDownBtn.BorderSize = 0;
+            this.ModulDownBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ModulDownBtn.FlatAppearance.BorderSize = 0;
+            this.ModulDownBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.ModulDownBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ModulDownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModulDownBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.ModulDownBtn.ForeColor = System.Drawing.Color.White;
@@ -453,12 +481,15 @@
             // ModulStopBtn
             // 
             this.ModulStopBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ModulStopBtn.BackColor = System.Drawing.Color.Red;
-            this.ModulStopBtn.BackgroundColor = System.Drawing.Color.Red;
+            this.ModulStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.ModulStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.ModulStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ModulStopBtn.BorderRadius = 1;
             this.ModulStopBtn.BorderSize = 0;
+            this.ModulStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.ModulStopBtn.FlatAppearance.BorderSize = 0;
+            this.ModulStopBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.ModulStopBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.ModulStopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModulStopBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.ModulStopBtn.ForeColor = System.Drawing.Color.White;
@@ -474,12 +505,15 @@
             // ModulUpBtn
             // 
             this.ModulUpBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ModulUpBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ModulUpBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.ModulUpBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
+            this.ModulUpBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.ModulUpBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ModulUpBtn.BorderRadius = 1;
             this.ModulUpBtn.BorderSize = 0;
+            this.ModulUpBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_orange;
             this.ModulUpBtn.FlatAppearance.BorderSize = 0;
+            this.ModulUpBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
+            this.ModulUpBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.ModulUpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModulUpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.ModulUpBtn.ForeColor = System.Drawing.Color.White;
@@ -547,6 +581,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel10, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel20, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -603,12 +638,15 @@
             // Lab_preparat_E_btn
             // 
             this.Lab_preparat_E_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Lab_preparat_E_btn.BackColor = System.Drawing.Color.Purple;
-            this.Lab_preparat_E_btn.BackgroundColor = System.Drawing.Color.Purple;
+            this.Lab_preparat_E_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.Lab_preparat_E_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_E_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.Lab_preparat_E_btn.BorderRadius = 1;
             this.Lab_preparat_E_btn.BorderSize = 0;
+            this.Lab_preparat_E_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.Lab_preparat_E_btn.FlatAppearance.BorderSize = 0;
+            this.Lab_preparat_E_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.Lab_preparat_E_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_E_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_E_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Lab_preparat_E_btn.ForeColor = System.Drawing.Color.White;
@@ -654,12 +692,15 @@
             // Lab_preparat_D_btn
             // 
             this.Lab_preparat_D_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Lab_preparat_D_btn.BackColor = System.Drawing.Color.Purple;
-            this.Lab_preparat_D_btn.BackgroundColor = System.Drawing.Color.Purple;
+            this.Lab_preparat_D_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.Lab_preparat_D_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_D_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.Lab_preparat_D_btn.BorderRadius = 1;
             this.Lab_preparat_D_btn.BorderSize = 0;
+            this.Lab_preparat_D_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.Lab_preparat_D_btn.FlatAppearance.BorderSize = 0;
+            this.Lab_preparat_D_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.Lab_preparat_D_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_D_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_D_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Lab_preparat_D_btn.ForeColor = System.Drawing.Color.White;
@@ -705,12 +746,15 @@
             // Lab_preparat_C_btn
             // 
             this.Lab_preparat_C_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Lab_preparat_C_btn.BackColor = System.Drawing.Color.Purple;
-            this.Lab_preparat_C_btn.BackgroundColor = System.Drawing.Color.Purple;
+            this.Lab_preparat_C_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.Lab_preparat_C_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_C_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.Lab_preparat_C_btn.BorderRadius = 1;
             this.Lab_preparat_C_btn.BorderSize = 0;
+            this.Lab_preparat_C_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.Lab_preparat_C_btn.FlatAppearance.BorderSize = 0;
+            this.Lab_preparat_C_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.Lab_preparat_C_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_C_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_C_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Lab_preparat_C_btn.ForeColor = System.Drawing.Color.White;
@@ -757,12 +801,15 @@
             // Lab_preparat_B_btn
             // 
             this.Lab_preparat_B_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Lab_preparat_B_btn.BackColor = System.Drawing.Color.Purple;
-            this.Lab_preparat_B_btn.BackgroundColor = System.Drawing.Color.Purple;
+            this.Lab_preparat_B_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.Lab_preparat_B_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_B_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.Lab_preparat_B_btn.BorderRadius = 1;
             this.Lab_preparat_B_btn.BorderSize = 0;
+            this.Lab_preparat_B_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.Lab_preparat_B_btn.FlatAppearance.BorderSize = 0;
+            this.Lab_preparat_B_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.Lab_preparat_B_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_B_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_B_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Lab_preparat_B_btn.ForeColor = System.Drawing.Color.White;
@@ -806,12 +853,15 @@
             // Lab_preparat_stop_btn
             // 
             this.Lab_preparat_stop_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Lab_preparat_stop_btn.BackColor = System.Drawing.Color.Red;
-            this.Lab_preparat_stop_btn.BackgroundColor = System.Drawing.Color.Red;
+            this.Lab_preparat_stop_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.Lab_preparat_stop_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.Lab_preparat_stop_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.Lab_preparat_stop_btn.BorderRadius = 1;
             this.Lab_preparat_stop_btn.BorderSize = 0;
+            this.Lab_preparat_stop_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.Lab_preparat_stop_btn.FlatAppearance.BorderSize = 0;
+            this.Lab_preparat_stop_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.Lab_preparat_stop_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.Lab_preparat_stop_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_stop_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.Lab_preparat_stop_btn.ForeColor = System.Drawing.Color.White;
@@ -843,12 +893,15 @@
             // Lab_preparat_A_btn
             // 
             this.Lab_preparat_A_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Lab_preparat_A_btn.BackColor = System.Drawing.Color.Purple;
-            this.Lab_preparat_A_btn.BackgroundColor = System.Drawing.Color.Purple;
+            this.Lab_preparat_A_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.Lab_preparat_A_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_A_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.Lab_preparat_A_btn.BorderRadius = 1;
             this.Lab_preparat_A_btn.BorderSize = 0;
+            this.Lab_preparat_A_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.Lab_preparat_A_btn.FlatAppearance.BorderSize = 0;
+            this.Lab_preparat_A_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.Lab_preparat_A_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_A_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_A_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Lab_preparat_A_btn.ForeColor = System.Drawing.Color.White;
@@ -903,13 +956,16 @@
             // 
             // ProbeDown1stepBtn
             // 
-            this.ProbeDown1stepBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.ProbeDown1stepBtn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.ProbeDown1stepBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.ProbeDown1stepBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeDown1stepBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ProbeDown1stepBtn.BorderRadius = 1;
             this.ProbeDown1stepBtn.BorderSize = 0;
+            this.ProbeDown1stepBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ProbeDown1stepBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProbeDown1stepBtn.FlatAppearance.BorderSize = 0;
+            this.ProbeDown1stepBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.ProbeDown1stepBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ProbeDown1stepBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProbeDown1stepBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.ProbeDown1stepBtn.ForeColor = System.Drawing.Color.White;
@@ -924,13 +980,16 @@
             // 
             // ProbeUp1stepBtn
             // 
-            this.ProbeUp1stepBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.ProbeUp1stepBtn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.ProbeUp1stepBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.ProbeUp1stepBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeUp1stepBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ProbeUp1stepBtn.BorderRadius = 1;
             this.ProbeUp1stepBtn.BorderSize = 0;
+            this.ProbeUp1stepBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ProbeUp1stepBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProbeUp1stepBtn.FlatAppearance.BorderSize = 0;
+            this.ProbeUp1stepBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.ProbeUp1stepBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ProbeUp1stepBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProbeUp1stepBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.ProbeUp1stepBtn.ForeColor = System.Drawing.Color.White;
@@ -945,13 +1004,16 @@
             // 
             // ProbeUp10stepsBtn
             // 
-            this.ProbeUp10stepsBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ProbeUp10stepsBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.ProbeUp10stepsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.ProbeUp10stepsBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeUp10stepsBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ProbeUp10stepsBtn.BorderRadius = 1;
             this.ProbeUp10stepsBtn.BorderSize = 0;
+            this.ProbeUp10stepsBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ProbeUp10stepsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProbeUp10stepsBtn.FlatAppearance.BorderSize = 0;
+            this.ProbeUp10stepsBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.ProbeUp10stepsBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ProbeUp10stepsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProbeUp10stepsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ProbeUp10stepsBtn.ForeColor = System.Drawing.Color.White;
@@ -980,13 +1042,16 @@
             // 
             // ProbeClosingStopBtn
             // 
-            this.ProbeClosingStopBtn.BackColor = System.Drawing.Color.Red;
-            this.ProbeClosingStopBtn.BackgroundColor = System.Drawing.Color.Red;
+            this.ProbeClosingStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.ProbeClosingStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.ProbeClosingStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ProbeClosingStopBtn.BorderRadius = 1;
             this.ProbeClosingStopBtn.BorderSize = 0;
+            this.ProbeClosingStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.ProbeClosingStopBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProbeClosingStopBtn.FlatAppearance.BorderSize = 0;
+            this.ProbeClosingStopBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.ProbeClosingStopBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.ProbeClosingStopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProbeClosingStopBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.ProbeClosingStopBtn.ForeColor = System.Drawing.Color.White;
@@ -1001,13 +1066,16 @@
             // 
             // ProbeDown10stepsBtn
             // 
-            this.ProbeDown10stepsBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ProbeDown10stepsBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.ProbeDown10stepsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.ProbeDown10stepsBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeDown10stepsBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ProbeDown10stepsBtn.BorderRadius = 1;
             this.ProbeDown10stepsBtn.BorderSize = 0;
+            this.ProbeDown10stepsBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ProbeDown10stepsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProbeDown10stepsBtn.FlatAppearance.BorderSize = 0;
+            this.ProbeDown10stepsBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.ProbeDown10stepsBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ProbeDown10stepsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProbeDown10stepsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ProbeDown10stepsBtn.ForeColor = System.Drawing.Color.White;
@@ -1039,13 +1107,16 @@
             // 
             // ProbeUpFullBtn
             // 
-            this.ProbeUpFullBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ProbeUpFullBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.ProbeUpFullBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.ProbeUpFullBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.ProbeUpFullBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ProbeUpFullBtn.BorderRadius = 1;
             this.ProbeUpFullBtn.BorderSize = 0;
+            this.ProbeUpFullBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
             this.ProbeUpFullBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProbeUpFullBtn.FlatAppearance.BorderSize = 0;
+            this.ProbeUpFullBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.ProbeUpFullBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.ProbeUpFullBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProbeUpFullBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ProbeUpFullBtn.ForeColor = System.Drawing.Color.White;
@@ -1060,13 +1131,16 @@
             // 
             // ProbeDownFullBtn
             // 
-            this.ProbeDownFullBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ProbeDownFullBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.ProbeDownFullBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.ProbeDownFullBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.ProbeDownFullBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ProbeDownFullBtn.BorderRadius = 1;
             this.ProbeDownFullBtn.BorderSize = 0;
+            this.ProbeDownFullBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
             this.ProbeDownFullBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProbeDownFullBtn.FlatAppearance.BorderSize = 0;
+            this.ProbeDownFullBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.ProbeDownFullBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.ProbeDownFullBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProbeDownFullBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ProbeDownFullBtn.ForeColor = System.Drawing.Color.White;
@@ -1078,6 +1152,38 @@
             this.ProbeDownFullBtn.TextColor = System.Drawing.Color.White;
             this.ProbeDownFullBtn.UseVisualStyleBackColor = false;
             this.ProbeDownFullBtn.Click += new System.EventHandler(this.ProbeDownFullBtn_Click);
+            // 
+            // tableLayoutPanel20
+            // 
+            this.tableLayoutPanel20.ColumnCount = 1;
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.Controls.Add(this.tableLayoutPanel21, 0, 1);
+            this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(4, 4);
+            this.tableLayoutPanel20.Name = "tableLayoutPanel20";
+            this.tableLayoutPanel20.RowCount = 2;
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(281, 239);
+            this.tableLayoutPanel20.TabIndex = 3;
+            // 
+            // tableLayoutPanel21
+            // 
+            this.tableLayoutPanel21.ColumnCount = 3;
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel21.Controls.Add(this.ResetHistoryBtn, 2, 0);
+            this.tableLayoutPanel21.Controls.Add(this.ResetJSONbtn, 1, 0);
+            this.tableLayoutPanel21.Controls.Add(this.LoadJSONbtn, 0, 0);
+            this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(3, 122);
+            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
+            this.tableLayoutPanel21.RowCount = 1;
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(275, 114);
+            this.tableLayoutPanel21.TabIndex = 0;
             // 
             // tableLayoutPanel4
             // 
@@ -1189,12 +1295,15 @@
             // LightOnBtn
             // 
             this.LightOnBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.LightOnBtn.BackColor = System.Drawing.Color.Purple;
-            this.LightOnBtn.BackgroundColor = System.Drawing.Color.Purple;
+            this.LightOnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.LightOnBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.LightOnBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.LightOnBtn.BorderRadius = 1;
             this.LightOnBtn.BorderSize = 0;
+            this.LightOnBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
             this.LightOnBtn.FlatAppearance.BorderSize = 0;
+            this.LightOnBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.LightOnBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.LightOnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LightOnBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.LightOnBtn.ForeColor = System.Drawing.Color.White;
@@ -1223,12 +1332,15 @@
             // LightOffBtn
             // 
             this.LightOffBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.LightOffBtn.BackColor = System.Drawing.Color.Red;
-            this.LightOffBtn.BackgroundColor = System.Drawing.Color.Red;
+            this.LightOffBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.LightOffBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.LightOffBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.LightOffBtn.BorderRadius = 1;
             this.LightOffBtn.BorderSize = 0;
+            this.LightOffBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.LightOffBtn.FlatAppearance.BorderSize = 0;
+            this.LightOffBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.LightOffBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.LightOffBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LightOffBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.LightOffBtn.ForeColor = System.Drawing.Color.White;
@@ -1243,12 +1355,15 @@
             // LedOffBtn
             // 
             this.LedOffBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.LedOffBtn.BackColor = System.Drawing.Color.Red;
-            this.LedOffBtn.BackgroundColor = System.Drawing.Color.Red;
+            this.LedOffBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.LedOffBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.LedOffBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.LedOffBtn.BorderRadius = 1;
             this.LedOffBtn.BorderSize = 0;
+            this.LedOffBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.LedOffBtn.FlatAppearance.BorderSize = 0;
+            this.LedOffBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.LedOffBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.LedOffBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LedOffBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.LedOffBtn.ForeColor = System.Drawing.Color.White;
@@ -1263,12 +1378,15 @@
             // LedOnBtn
             // 
             this.LedOnBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.LedOnBtn.BackColor = System.Drawing.Color.Purple;
-            this.LedOnBtn.BackgroundColor = System.Drawing.Color.Purple;
+            this.LedOnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.LedOnBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.LedOnBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.LedOnBtn.BorderRadius = 1;
             this.LedOnBtn.BorderSize = 0;
+            this.LedOnBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
             this.LedOnBtn.FlatAppearance.BorderSize = 0;
+            this.LedOnBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.LedOnBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.LedOnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LedOnBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.LedOnBtn.ForeColor = System.Drawing.Color.White;
@@ -1297,12 +1415,15 @@
             // MixerOnBtn
             // 
             this.MixerOnBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.MixerOnBtn.BackColor = System.Drawing.Color.Purple;
-            this.MixerOnBtn.BackgroundColor = System.Drawing.Color.Purple;
+            this.MixerOnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.MixerOnBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.MixerOnBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.MixerOnBtn.BorderRadius = 1;
             this.MixerOnBtn.BorderSize = 0;
+            this.MixerOnBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
             this.MixerOnBtn.FlatAppearance.BorderSize = 0;
+            this.MixerOnBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
+            this.MixerOnBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.MixerOnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MixerOnBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.MixerOnBtn.ForeColor = System.Drawing.Color.White;
@@ -1318,12 +1439,15 @@
             // MixerStopBtn
             // 
             this.MixerStopBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.MixerStopBtn.BackColor = System.Drawing.Color.Red;
-            this.MixerStopBtn.BackgroundColor = System.Drawing.Color.Red;
+            this.MixerStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.MixerStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.MixerStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.MixerStopBtn.BorderRadius = 1;
             this.MixerStopBtn.BorderSize = 0;
+            this.MixerStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.MixerStopBtn.FlatAppearance.BorderSize = 0;
+            this.MixerStopBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.MixerStopBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.MixerStopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MixerStopBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.MixerStopBtn.ForeColor = System.Drawing.Color.White;
@@ -1364,13 +1488,16 @@
             // 
             // OneStepsProbeLeftBtn
             // 
-            this.OneStepsProbeLeftBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.OneStepsProbeLeftBtn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.OneStepsProbeLeftBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.OneStepsProbeLeftBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.OneStepsProbeLeftBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.OneStepsProbeLeftBtn.BorderRadius = 1;
             this.OneStepsProbeLeftBtn.BorderSize = 0;
+            this.OneStepsProbeLeftBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.OneStepsProbeLeftBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OneStepsProbeLeftBtn.FlatAppearance.BorderSize = 0;
+            this.OneStepsProbeLeftBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.OneStepsProbeLeftBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.OneStepsProbeLeftBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OneStepsProbeLeftBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.OneStepsProbeLeftBtn.ForeColor = System.Drawing.Color.White;
@@ -1385,13 +1512,16 @@
             // 
             // TenStepsProbeLeftBtn
             // 
-            this.TenStepsProbeLeftBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.TenStepsProbeLeftBtn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.TenStepsProbeLeftBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.TenStepsProbeLeftBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.TenStepsProbeLeftBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.TenStepsProbeLeftBtn.BorderRadius = 1;
             this.TenStepsProbeLeftBtn.BorderSize = 0;
+            this.TenStepsProbeLeftBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.TenStepsProbeLeftBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TenStepsProbeLeftBtn.FlatAppearance.BorderSize = 0;
+            this.TenStepsProbeLeftBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.TenStepsProbeLeftBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.TenStepsProbeLeftBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TenStepsProbeLeftBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.TenStepsProbeLeftBtn.ForeColor = System.Drawing.Color.White;
@@ -1406,13 +1536,16 @@
             // 
             // TenStepsProbeRightBtn
             // 
-            this.TenStepsProbeRightBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.TenStepsProbeRightBtn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.TenStepsProbeRightBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.TenStepsProbeRightBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.TenStepsProbeRightBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.TenStepsProbeRightBtn.BorderRadius = 1;
             this.TenStepsProbeRightBtn.BorderSize = 0;
+            this.TenStepsProbeRightBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.TenStepsProbeRightBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TenStepsProbeRightBtn.FlatAppearance.BorderSize = 0;
+            this.TenStepsProbeRightBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.TenStepsProbeRightBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.TenStepsProbeRightBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TenStepsProbeRightBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.TenStepsProbeRightBtn.ForeColor = System.Drawing.Color.White;
@@ -1427,13 +1560,16 @@
             // 
             // FullProbeLeftBtn
             // 
-            this.FullProbeLeftBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.FullProbeLeftBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.FullProbeLeftBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(61)))), ((int)(((byte)(217)))));
+            this.FullProbeLeftBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(61)))), ((int)(((byte)(217)))));
             this.FullProbeLeftBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.FullProbeLeftBtn.BorderRadius = 1;
             this.FullProbeLeftBtn.BorderSize = 0;
+            this.FullProbeLeftBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_purple;
             this.FullProbeLeftBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FullProbeLeftBtn.FlatAppearance.BorderSize = 0;
+            this.FullProbeLeftBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(48)))), ((int)(((byte)(173)))));
+            this.FullProbeLeftBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(48)))), ((int)(((byte)(173)))));
             this.FullProbeLeftBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FullProbeLeftBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FullProbeLeftBtn.ForeColor = System.Drawing.Color.White;
@@ -1448,13 +1584,16 @@
             // 
             // FullProbeRightBtn
             // 
-            this.FullProbeRightBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.FullProbeRightBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.FullProbeRightBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(61)))), ((int)(((byte)(217)))));
+            this.FullProbeRightBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(61)))), ((int)(((byte)(217)))));
             this.FullProbeRightBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.FullProbeRightBtn.BorderRadius = 1;
             this.FullProbeRightBtn.BorderSize = 0;
+            this.FullProbeRightBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_purple;
             this.FullProbeRightBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FullProbeRightBtn.FlatAppearance.BorderSize = 0;
+            this.FullProbeRightBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(48)))), ((int)(((byte)(173)))));
+            this.FullProbeRightBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(48)))), ((int)(((byte)(173)))));
             this.FullProbeRightBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FullProbeRightBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FullProbeRightBtn.ForeColor = System.Drawing.Color.White;
@@ -1469,13 +1608,16 @@
             // 
             // ProbeStopBtn
             // 
-            this.ProbeStopBtn.BackColor = System.Drawing.Color.Red;
-            this.ProbeStopBtn.BackgroundColor = System.Drawing.Color.Red;
+            this.ProbeStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.ProbeStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.ProbeStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.ProbeStopBtn.BorderRadius = 1;
             this.ProbeStopBtn.BorderSize = 0;
+            this.ProbeStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.ProbeStopBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ProbeStopBtn.FlatAppearance.BorderSize = 0;
+            this.ProbeStopBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.ProbeStopBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.ProbeStopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProbeStopBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.ProbeStopBtn.ForeColor = System.Drawing.Color.White;
@@ -1490,13 +1632,16 @@
             // 
             // OneStepsProbeRightBtn
             // 
-            this.OneStepsProbeRightBtn.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.OneStepsProbeRightBtn.BackgroundColor = System.Drawing.Color.DarkGoldenrod;
+            this.OneStepsProbeRightBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.OneStepsProbeRightBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.OneStepsProbeRightBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.OneStepsProbeRightBtn.BorderRadius = 1;
             this.OneStepsProbeRightBtn.BorderSize = 0;
+            this.OneStepsProbeRightBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.OneStepsProbeRightBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OneStepsProbeRightBtn.FlatAppearance.BorderSize = 0;
+            this.OneStepsProbeRightBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.OneStepsProbeRightBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.OneStepsProbeRightBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OneStepsProbeRightBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.OneStepsProbeRightBtn.ForeColor = System.Drawing.Color.White;
@@ -1527,13 +1672,16 @@
             // 
             // InfProbeRightBtn
             // 
-            this.InfProbeRightBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.InfProbeRightBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.InfProbeRightBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
+            this.InfProbeRightBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.InfProbeRightBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.InfProbeRightBtn.BorderRadius = 1;
             this.InfProbeRightBtn.BorderSize = 0;
+            this.InfProbeRightBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_orange;
             this.InfProbeRightBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InfProbeRightBtn.FlatAppearance.BorderSize = 0;
+            this.InfProbeRightBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
+            this.InfProbeRightBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.InfProbeRightBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InfProbeRightBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.InfProbeRightBtn.ForeColor = System.Drawing.Color.White;
@@ -1548,13 +1696,16 @@
             // 
             // InfProbeLeftBtn
             // 
-            this.InfProbeLeftBtn.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.InfProbeLeftBtn.BackgroundColor = System.Drawing.Color.LightSeaGreen;
+            this.InfProbeLeftBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
+            this.InfProbeLeftBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.InfProbeLeftBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.InfProbeLeftBtn.BorderRadius = 1;
             this.InfProbeLeftBtn.BorderSize = 0;
+            this.InfProbeLeftBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_orange;
             this.InfProbeLeftBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InfProbeLeftBtn.FlatAppearance.BorderSize = 0;
+            this.InfProbeLeftBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
+            this.InfProbeLeftBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.InfProbeLeftBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InfProbeLeftBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.InfProbeLeftBtn.ForeColor = System.Drawing.Color.White;
@@ -1577,7 +1728,79 @@
             this.ProbesPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ProbesPanel_Paint);
             this.ProbesPanel.Resize += new System.EventHandler(this.ProbesPanel_Resize);
             // 
-            // laboratoriumForm
+            // LoadJSONbtn
+            // 
+            this.LoadJSONbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.LoadJSONbtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.LoadJSONbtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.LoadJSONbtn.BorderRadius = 10;
+            this.LoadJSONbtn.BorderSize = 0;
+            this.LoadJSONbtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.LoadJSONbtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadJSONbtn.FlatAppearance.BorderSize = 0;
+            this.LoadJSONbtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.LoadJSONbtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.LoadJSONbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LoadJSONbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LoadJSONbtn.ForeColor = System.Drawing.Color.White;
+            this.LoadJSONbtn.Location = new System.Drawing.Point(3, 3);
+            this.LoadJSONbtn.Name = "LoadJSONbtn";
+            this.LoadJSONbtn.Size = new System.Drawing.Size(85, 108);
+            this.LoadJSONbtn.TabIndex = 0;
+            this.LoadJSONbtn.Text = "Załaduj plik labo.json";
+            this.LoadJSONbtn.TextColor = System.Drawing.Color.White;
+            this.LoadJSONbtn.UseVisualStyleBackColor = false;
+            this.LoadJSONbtn.Click += new System.EventHandler(this.LoadJSONbtn_Click);
+            // 
+            // ResetJSONbtn
+            // 
+            this.ResetJSONbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.ResetJSONbtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.ResetJSONbtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.ResetJSONbtn.BorderRadius = 10;
+            this.ResetJSONbtn.BorderSize = 0;
+            this.ResetJSONbtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
+            this.ResetJSONbtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ResetJSONbtn.FlatAppearance.BorderSize = 0;
+            this.ResetJSONbtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.ResetJSONbtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.ResetJSONbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResetJSONbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ResetJSONbtn.ForeColor = System.Drawing.Color.White;
+            this.ResetJSONbtn.Location = new System.Drawing.Point(94, 3);
+            this.ResetJSONbtn.Name = "ResetJSONbtn";
+            this.ResetJSONbtn.Size = new System.Drawing.Size(85, 108);
+            this.ResetJSONbtn.TabIndex = 1;
+            this.ResetJSONbtn.Text = "Zresetuj plik labo.json";
+            this.ResetJSONbtn.TextColor = System.Drawing.Color.White;
+            this.ResetJSONbtn.UseVisualStyleBackColor = false;
+            this.ResetJSONbtn.Click += new System.EventHandler(this.ResetJSONbtn_Click);
+            // 
+            // ResetHistoryBtn
+            // 
+            this.ResetHistoryBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.ResetHistoryBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.ResetHistoryBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.ResetHistoryBtn.BorderRadius = 10;
+            this.ResetHistoryBtn.BorderSize = 0;
+            this.ResetHistoryBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
+            this.ResetHistoryBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ResetHistoryBtn.FlatAppearance.BorderSize = 0;
+            this.ResetHistoryBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.ResetHistoryBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
+            this.ResetHistoryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResetHistoryBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ResetHistoryBtn.ForeColor = System.Drawing.Color.White;
+            this.ResetHistoryBtn.Location = new System.Drawing.Point(185, 3);
+            this.ResetHistoryBtn.Name = "ResetHistoryBtn";
+            this.ResetHistoryBtn.Size = new System.Drawing.Size(87, 108);
+            this.ResetHistoryBtn.TabIndex = 2;
+            this.ResetHistoryBtn.Text = "Zresetuj historię";
+            this.ResetHistoryBtn.TextColor = System.Drawing.Color.White;
+            this.ResetHistoryBtn.UseVisualStyleBackColor = false;
+            this.ResetHistoryBtn.Click += new System.EventHandler(this.ResetHistoryBtn_Click);
+            // 
+            // LaboratoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1585,7 +1808,7 @@
             this.ClientSize = new System.Drawing.Size(1168, 622);
             this.Controls.Add(this.tableLayoutPanel4);
             this.ForeColor = System.Drawing.SystemColors.Control;
-            this.Name = "laboratoriumForm";
+            this.Name = "LaboratoryForm";
             this.Text = "laboratoriumForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.laboratoriumForm_FormClosing);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -1615,6 +1838,8 @@
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel17.ResumeLayout(false);
+            this.tableLayoutPanel20.ResumeLayout(false);
+            this.tableLayoutPanel21.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
@@ -1705,5 +1930,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
         private CustomControls.CustomButton ProbeUpFullBtn;
         private CustomControls.CustomButton ProbeDownFullBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
+        private CustomControls.CustomButton ResetHistoryBtn;
+        private CustomControls.CustomButton ResetJSONbtn;
+        private CustomControls.CustomButton LoadJSONbtn;
     }
 }

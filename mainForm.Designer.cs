@@ -113,7 +113,7 @@
             this.SandboxBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.SandboxBtn.BorderRadius = 20;
             this.SandboxBtn.BorderSize = 0;
-            this.SandboxBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_purple;
+            this.SandboxBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Default;
             this.SandboxBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SandboxBtn.FlatAppearance.BorderSize = 0;
             this.SandboxBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
@@ -188,7 +188,7 @@
             this.DriveBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.DriveBtn.BorderRadius = 20;
             this.DriveBtn.BorderSize = 0;
-            this.DriveBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_blue;
+            this.DriveBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Default;
             this.DriveBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DriveBtn.FlatAppearance.BorderSize = 0;
             this.DriveBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
@@ -208,16 +208,16 @@
             // 
             // CommunicationBtn
             // 
-            this.CommunicationBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
-            this.CommunicationBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
+            this.CommunicationBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.CommunicationBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.CommunicationBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
             this.CommunicationBtn.BorderRadius = 20;
             this.CommunicationBtn.BorderSize = 0;
-            this.CommunicationBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Default;
+            this.CommunicationBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.CommunicationBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CommunicationBtn.FlatAppearance.BorderSize = 0;
-            this.CommunicationBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
-            this.CommunicationBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(96)))), ((int)(((byte)(96)))));
+            this.CommunicationBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
+            this.CommunicationBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.CommunicationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CommunicationBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.CommunicationBtn.ForeColor = System.Drawing.Color.White;

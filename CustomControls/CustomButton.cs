@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace HAL062app.CustomControls
 {
 
-
+    
     public class CustomButton : Button
     {
         private int borderSize = 0;
@@ -28,6 +28,8 @@ namespace HAL062app.CustomControls
             Functional_purple,
 
         }
+
+
 
 
         public CustomButton()
@@ -166,20 +168,33 @@ namespace HAL062app.CustomControls
             switch (buttonStyle)
             {
                 case ButtonStyles.Primary:
-                    this.BackColor = Color.FromArgb(0, 120, 215); // niebieski
+                    this.BackColor = ColorTranslator.FromHtml("#0078d7"); // niebieski
                     this.ForeColor = Color.White;
                     break;
                 case ButtonStyles.Green:
-                    this.BackColor = Color.FromArgb(40, 167, 69); // zielony
+                    this.BackColor = ColorTranslator.FromHtml("#28a745"); 
                     this.ForeColor = Color.White;
                     break;
                 case ButtonStyles.Red:
-                    this.BackColor = Color.FromArgb(220, 53, 69); // czerwony
+                    this.BackColor = ColorTranslator.FromHtml("#dc3545");
                     this.ForeColor = Color.White;
                     break;
                 case ButtonStyles.Off:
                     this.BackColor = Color.FromArgb(100, 100, 100); 
                     this.ForeColor = Color.Black;
+                    break;
+                case ButtonStyles.Functional_orange:
+                    this.BackColor = ColorTranslator.FromHtml("#FFAE00");
+                    this.ForeColor = Color.Black;
+                    break;
+                case ButtonStyles.Functional_purple:
+                    this.BackColor = ColorTranslator.FromHtml("#693dd9");
+                    this.ForeColor = Color.White;
+                    break;
+                case ButtonStyles.Functional_blue:
+                    this.BackColor = ColorTranslator.FromHtml("#00b6c7");
+                    this.ForeColor = Color.Black;
+                    this.TextColor = Color.Black;
                     break;
                 default:
                     this.BackColor = Color.FromArgb(120, 120, 120); // szary

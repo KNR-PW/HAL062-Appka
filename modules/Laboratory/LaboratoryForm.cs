@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
+
 
 namespace HAL062app.moduly.laboratorium
 {
@@ -649,6 +651,21 @@ namespace HAL062app.moduly.laboratorium
         }
 
         private void ProbeDown1stepBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadJSONbtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ResetJSONbtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ResetHistoryBtn_Click(object sender, EventArgs e)
         {
 
         }

@@ -1,4 +1,5 @@
-﻿using SharpDX.XInput;
+﻿using HAL062app.CustomControls;
+using SharpDX.XInput;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,6 +14,8 @@ namespace HAL062app.moduly.podwozie
         event Action<MotorData> SendMotorDataToController_Action;
         event Action<Message> SendMessage_Action;
     }
+
+
 
 
     public partial class DriveForm : Form, IPodwozieView
@@ -46,6 +49,8 @@ namespace HAL062app.moduly.podwozie
         private XboxPad _XboxPad;
         private System.Drawing.Point lastMouseXbox = System.Drawing.Point.Empty;
 
+        private FPVCamera fpvCamera;
+
         public DriveForm()
         {
             InitializeComponent();
@@ -69,6 +74,11 @@ namespace HAL062app.moduly.podwozie
             returnKeyboardTextbox.Text = returnKeyboardDelta.ToString();
 
 
+            fpvCamera = new FPVCamera(3,frame=> SendMessage_Action.Invoke(frame));
+            fpvCamera.AddButtons(0, cameraFPV11btn, cameraFPV12btn, cameraFPV13btn);
+            fpvCamera.AddButtons(1, cameraFPV21btn, cameraFPV22btn, cameraFPV23btn);
+            fpvCamera.AddButtons(2, cameraFPV31btn, cameraFPV32btn, cameraFPV33btn);
+
         }
 
         private void InitializeTimer()
@@ -86,9 +96,8 @@ namespace HAL062app.moduly.podwozie
 
             if (elapsedTime >= readInterval)
             {
-                // Wywołaj funkcję aktualizacji joysticka i odczytu prędkości
                 UpdateJoystick();
-                elapsedTime = 0; // Zresetuj licznik czasu
+                elapsedTime = 0;
 
             }
             if (!isDragging)
@@ -537,5 +546,84 @@ namespace HAL062app.moduly.podwozie
             startJoystickButton.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
 
         }
+
+        private void cameraFPV11btn_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+
+    public class FPVCamera
+    {
+        private int[] channels;
+        private CustomButton[][] buttons;
+        private readonly Action<Message> sendFrameAction;
+
+        public FPVCamera(int _channels, Action<Message> sendFrameAction)
+        {
+            this.channels = new int[_channels];
+            this.buttons = new CustomButton[_channels][];
+            for (int i = 0; i < _channels; i++)
+            {
+                channels[i] = 0;
+                buttons[i] = new CustomButton[3];
+            }
+
+            this.sendFrameAction = sendFrameAction;
+        }
+
+
+        public void AddButtons(int channel, CustomButton btn1, CustomButton btn2, CustomButton btn3)
+        {
+            if (channel < 0 || channel >= channels.Length)
+                throw new ArgumentOutOfRangeException(nameof(channel), "Kanał poza zakresem");
+            buttons[channel][0] = btn1;
+            buttons[channel][1] = btn2;
+            buttons[channel][2] = btn3;
+            btn1.Click += (sender, e) => SetChannel(channel, 0);
+            btn2.Click += (sender, e) => SetChannel(channel, 1);
+            btn3.Click += (sender, e) => SetChannel(channel, 2);
+        }
+
+        public void SetChannel(int channel, int value)
+        {
+            if (channel < 0 || channel >= channels.Length)
+                throw new ArgumentOutOfRangeException(nameof(channel), "Kanał poza zakresem");
+
+            channels[channel] = value;
+            UpdateButtons(channel);
+            Message frame = new Message();
+            frame.buffer[0] = (byte)('#');
+            frame.buffer[1] = (byte)(45);
+            frame.buffer[2] = (byte)(channels[0]+1);
+            frame.buffer[3] = (byte)(channels[1]+1);
+            frame.buffer[4] = (byte)(channels[2]+1);
+            frame.buffer[5] = (byte)('x');
+            frame.buffer[6] = (byte)('x');
+            frame.buffer[7] = (byte)('x');
+            frame.buffer[8] = (byte)('x');
+            frame.buffer[9] = (byte)('x');
+            frame.text = new string(frame.encodeMessage());
+
+            sendFrameAction(frame);
+        }
+
+        private void UpdateButtons(int channel)
+        {
+            for (int i = 0; i < buttons[channel].Length; i++)
+            {
+                if (buttons[channel][i] != null)
+                {
+                    if (channels[channel] == i)
+                        buttons[channel][i].ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
+                    else
+                        buttons[channel][i].ButtonStyle = CustomControls.CustomButton.ButtonStyles.Off;
+                }
+            }
+        }
+
+
+
+
     }
 }

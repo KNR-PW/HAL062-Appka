@@ -4,6 +4,14 @@ using System.Collections.Concurrent;
 namespace HAL062app.moduly.laboratorium
 {
 
+
+    public interface ILaboratoryModel
+    {
+        void SendMessageToRobot(Message message);
+        void sendFrame(Message frame);
+    }
+
+
     public class Tube
     {
 
@@ -15,6 +23,8 @@ namespace HAL062app.moduly.laboratorium
             this.tubeID = _tubeID;
             this.position = _position;
         }
+
+
 
     };
 
@@ -33,6 +43,7 @@ namespace HAL062app.moduly.laboratorium
                 //     tubes[i] = new Tube(i, i);
                 //   tubesPosition[i] = i;
             }
+
 
         }
 
@@ -58,7 +69,7 @@ namespace HAL062app.moduly.laboratorium
     };
 
 
-    public class LaboratoryModel : IMessageObserver
+    public class LaboratoryModel : IMessageObserver, ILaboratoryModel
     {
 
 

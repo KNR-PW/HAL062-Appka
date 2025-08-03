@@ -35,7 +35,7 @@ namespace HAL062app.moduly.manipulator
 
     public partial class manipulatorWPF : UserControl
     {
-        Model3DGroup RA = new Model3DGroup();
+        Model3DGroup _RobotModelGroup = new Model3DGroup();
         Model3D geometry = null;
         List<Joint> joints = null;
 
@@ -48,6 +48,7 @@ namespace HAL062app.moduly.manipulator
         Transform3DGroup F4;
         Transform3DGroup F5;
         Transform3DGroup F6;
+        private Transform3DGroup[] _jointTransforms = new Transform3DGroup[6];
         RotateTransform3D R;
         TranslateTransform3D T;
 
@@ -80,7 +81,7 @@ namespace HAL062app.moduly.manipulator
         {
 
             InitializeComponent();
-            basePath = AppDomain.CurrentDomain.BaseDirectory + @"\\moduly\\manipulator\\models\\";
+            basePath = AppDomain.CurrentDomain.BaseDirectory + @"\\modules\\manipulator\\models\\";
             List<string> modelsNames = new List<string>();
 
 
@@ -91,6 +92,8 @@ namespace HAL062app.moduly.manipulator
             modelsNames.Add(MODEL_PATH5);
             modelsNames.Add(MODEL_PATH6);
             modelsNames.Add(MODEL_PATH7);
+            
+           
 
             RoboticArm.Content = Initialize_Environment(modelsNames);
             isInitialized = true;
@@ -122,7 +125,7 @@ namespace HAL062app.moduly.manipulator
 
             timer1 = new System.Windows.Forms.Timer();
             timer1.Interval = 5;
-            timer1.Tick += new System.EventHandler(timer1_Tick);
+          //  timer1.Tick += new System.EventHandler(timer1_Tick);
 
             sphere[0] = new SphereVisual3D
             {
@@ -191,18 +194,18 @@ namespace HAL062app.moduly.manipulator
 
 
                 changeModelColor(joints[0], Colors.LightBlue);
-                RA.Children.Add(joints[0].model);
+                _RobotModelGroup.Children.Add(joints[0].model);
                 changeModelColor(joints[1], Colors.Red);
-                RA.Children.Add(joints[1].model);
+                _RobotModelGroup.Children.Add(joints[1].model);
                 changeModelColor(joints[2], Colors.LightGreen);
-                RA.Children.Add(joints[2].model);
+                _RobotModelGroup.Children.Add(joints[2].model);
                 changeModelColor(joints[3], Colors.LightPink);
-                RA.Children.Add(joints[3].model);
+                _RobotModelGroup.Children.Add(joints[3].model);
                 changeModelColor(joints[4], Colors.LightYellow);
-                RA.Children.Add(joints[4].model);
+                _RobotModelGroup.Children.Add(joints[4].model);
                 changeModelColor(joints[5], Colors.LightSlateGray);
-                RA.Children.Add(joints[5].model);
-                RA.Children.Add(joints[6].model);
+                _RobotModelGroup.Children.Add(joints[5].model);
+                _RobotModelGroup.Children.Add(joints[6].model);
 
 
 
@@ -275,7 +278,7 @@ namespace HAL062app.moduly.manipulator
             {
                 Console.WriteLine("Exception Error:" + e.StackTrace);
             }
-            return RA;
+            return _RobotModelGroup;
         }
 
         public Vector3D ForwardKinematics(float[] anglesFloat)
@@ -283,54 +286,24 @@ namespace HAL062app.moduly.manipulator
             float[] angles = new float[6];
             for (int i = 0; i < anglesFloat.Length; i++)
                 angles[i] = (float)anglesFloat[i];
-            F1 = new Transform3DGroup();
-            R = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(joints[0].rotAxisX, joints[0].rotAxisY, joints[0].rotAxisZ), angles[0]), new Point3D(joints[0].rotPointX, joints[0].rotPointY, joints[0].rotPointZ));
-            F1.Children.Add(R);
-
-            F2 = new Transform3DGroup();
-            T = new TranslateTransform3D(0, 0, 0);
-            R = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(joints[1].rotAxisX, joints[1].rotAxisY, joints[1].rotAxisZ), angles[1]), new Point3D(joints[1].rotPointX, joints[1].rotPointY, joints[1].rotPointZ));
-            F2.Children.Add(T);
-            F2.Children.Add(R);
-            F2.Children.Add(F1);
 
 
-            F3 = new Transform3DGroup();
-            T = new TranslateTransform3D(0, 0, 0);
-            R = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(joints[2].rotAxisX, joints[2].rotAxisY, joints[2].rotAxisZ), angles[2]), new Point3D(joints[2].rotPointX, joints[2].rotPointY, joints[2].rotPointZ));
-            F3.Children.Add(T);
-            F3.Children.Add(R);
-            F3.Children.Add(F2);
+            for (int i = 0; i < _jointTransforms.Length; i++)
+            {
+                var group = new Transform3DGroup();
+                var axis = new AxisAngleRotation3D(new Vector3D(joints[i].rotAxisX, joints[i].rotAxisY, joints[i].rotAxisZ), angles[i]);
+                var rotationPoint = new Point3D(joints[i].rotPointX, joints[i].rotPointY, joints[i].rotPointZ);
+                var rotation = new RotateTransform3D(axis, rotationPoint);
+                group.Children.Add(rotation);
 
-            //as before
-            F4 = new Transform3DGroup();
-            T = new TranslateTransform3D(0, 0, 0); //1500, 650, 1650
-            R = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(joints[3].rotAxisX, joints[3].rotAxisY, joints[3].rotAxisZ), angles[3]), new Point3D(joints[3].rotPointX, joints[3].rotPointY, joints[3].rotPointZ));
-            F4.Children.Add(T);
-            F4.Children.Add(R);
-            F4.Children.Add(F3);
-
-            F5 = new Transform3DGroup();
-            T = new TranslateTransform3D(0, 0, 0);
-            R = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(joints[4].rotAxisX, joints[4].rotAxisY, joints[4].rotAxisZ), angles[4]), new Point3D(joints[4].rotPointX, joints[4].rotPointY, joints[4].rotPointZ));
-            F5.Children.Add(T);
-            F5.Children.Add(R);
-            F5.Children.Add(F4);
-
-            F6 = new Transform3DGroup();
-            T = new TranslateTransform3D(0, 0, 0);
-            R = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(joints[5].rotAxisX, joints[5].rotAxisY, joints[5].rotAxisZ), angles[5]), new Point3D(joints[5].rotPointX, joints[5].rotPointY, joints[5].rotPointZ));
-            F6.Children.Add(T);
-            F6.Children.Add(R);
-            F6.Children.Add(F5);
-
-            joints[0].model.Transform = F1;
-            joints[1].model.Transform = F2;
-            joints[2].model.Transform = F3;
-            joints[3].model.Transform = F4;
-            joints[4].model.Transform = F5;
-            joints[5].model.Transform = F6;
-
+                if(i > 0)
+                {
+                    group.Children.Add(new TranslateTransform3D(0, 0, 0));
+                    group.Children.Add(_jointTransforms[i - 1]);
+                }
+                _jointTransforms[i] = group;
+                joints[i].model.Transform = group;
+            }
 
 
             return new Vector3D(joints[5].model.Bounds.Location.X, joints[5].model.Bounds.Location.Y, joints[5].model.Bounds.Location.Z);
@@ -376,8 +349,9 @@ namespace HAL062app.moduly.manipulator
         {
             for (int i = 0; i <= 5; i++)
             {
-                if (oldAngles[i] != angles[i])
-                    return false;
+                    if( Math.Abs(oldAngles[i] - angles[i]) > 0.01)
+                        return false;
+              
             }
 
             return true;
@@ -456,7 +430,7 @@ namespace HAL062app.moduly.manipulator
 
 
             Transform3DGroup transformGroup = new Transform3DGroup();
-
+            
 
             // TranslateTransform3D moveToCenter = new TranslateTransform3D(-x, -y, -z);
             box.Center = new Point3D(0, 0, 0);

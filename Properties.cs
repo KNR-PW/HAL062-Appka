@@ -42,7 +42,7 @@ namespace Hall062app
     {
         private Theme lightTheme = new Theme(
             
-            background: "#A4B8C4",
+            background: "#F4E7E1",
             foreground: "#FFFFFF",
             frame: "#393D3F",
             accent: "#8D9F87",
