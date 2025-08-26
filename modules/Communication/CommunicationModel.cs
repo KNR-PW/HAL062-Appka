@@ -5,6 +5,7 @@ using InTheHand.Net.Sockets;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
@@ -49,10 +50,11 @@ namespace HAL062app.moduly.komunikacja
 
         void ConnectBluetooth(string deviceName);
         void DisconnectBluetooth();
-        
+        void ChangeWatchdogState(bool enable, int interval);
         Task RefreshBluetoothDevices();
         bool IsTelnetConnected();
         bool IsBluetoothOn();
+        void ClearQueue();
 
         event Action<List<Message>> UpdateLogTerminal;
         event Action<bool> isEthernetConnected_action;
@@ -108,10 +110,8 @@ namespace HAL062app.moduly.komunikacja
 
 
         private ConcurrentQueue<Message> messageQueue;
-        private CancellationTokenSource tokenSource;
-        private Task receivedTask;
+ 
 
-      
 
         public event Action<List<Message>> UpdateLogTerminal;
       
@@ -145,6 +145,11 @@ namespace HAL062app.moduly.komunikacja
         private CancellationTokenSource workerTokenSource;
         private Task messageWorkerTask;
 
+        private CancellationTokenSource _watchdogCts;
+        private Task _watchdogTask;
+        private readonly object _sync = new object();
+
+
         public CommunicationModel()
         {
 
@@ -156,6 +161,7 @@ namespace HAL062app.moduly.komunikacja
 
             workerTokenSource = new CancellationTokenSource();
             messageWorkerTask = Task.Run(() => MessageSenderWorker(workerTokenSource.Token));
+
         }
 
         private void OnProcessExit(object sender, EventArgs e)
@@ -190,33 +196,40 @@ namespace HAL062app.moduly.komunikacja
 
         public void SendMessageToRobot(Message message)
         {
-
-            messageQueue.Enqueue(message);
-            CommunicationStatistics.Instance.RegisterDropped(messageQueue.Count);
-            logMessages.Add(message);
-            UpdateLogTerminal(logMessages);
-        }
-
-      /*  public void SendMessageToRobot(Message message)
-        {
-           messageQueue.Enqueue(message);
-            CommunicationStatistics.Instance.RegisterDropped(messageQueue.Count);
-            logMessages.Add(message);
-            UpdateLogTerminal(logMessages);
-
-            if (IsBluetoothOn())
-                if (bluetoothClient.Connected)
-                {
-                //    Task.Run(async () => await SendBluetoothMessage(message));
-
-                }
-            if (IsTelnetConnected())
-            {
-              //  Task.Run(async () => await SendTelnetMessage(message));
+            
+                messageQueue.Enqueue(message);
+                CommunicationStatistics.Instance.RegisterDropped(messageQueue.Count);
+                logMessages.Add(message);
+                UpdateLogTerminal(logMessages);
 
             }
+
+        public void ClearQueue()
+        {
+            Interlocked.Exchange(ref messageQueue, new ConcurrentQueue<Message>());
+
+            CommunicationStatistics.Instance.RegisterDropped(messageQueue.Count);
         }
-      */
+        /*  public void SendMessageToRobot(Message message)
+          {
+             messageQueue.Enqueue(message);
+              CommunicationStatistics.Instance.RegisterDropped(messageQueue.Count);
+              logMessages.Add(message);
+              UpdateLogTerminal(logMessages);
+
+              if (IsBluetoothOn())
+                  if (bluetoothClient.Connected)
+                  {
+                  //    Task.Run(async () => await SendBluetoothMessage(message));
+
+                  }
+              if (IsTelnetConnected())
+              {
+                //  Task.Run(async () => await SendTelnetMessage(message));
+
+              }
+          }
+        */
 
         private async Task MessageSenderWorker(CancellationToken token)
         {
@@ -241,6 +254,42 @@ namespace HAL062app.moduly.komunikacja
             }
         }
 
+        private async Task WatchdogMessageSender(CancellationToken token, int interval)
+        {
+            
+                Message msg = new Message();
+                msg.CreateFrame(id: 0);
+                while (!token.IsCancellationRequested)
+                {
+                   
+                    SendMessageToRobot(msg);
+                    await Task.Delay(interval, token);
+                }
+        }
+        public void ChangeWatchdogState(bool enable, int interval)
+        {
+            if (enable)
+            {
+                lock (_sync)
+                {
+                    _watchdogCts?.Cancel();
+                    _watchdogCts?.Dispose();
+
+                    _watchdogCts = new CancellationTokenSource();
+                    var cts = _watchdogCts; 
+                    _watchdogTask = Task.Run(() => WatchdogMessageSender(cts.Token, interval));
+                }
+            }
+            else
+            {
+                lock (_sync)
+                {
+                    _watchdogCts?.Cancel();
+                    _watchdogCts?.Dispose();
+                    _watchdogCts = null;
+                }
+            }
+        }
 
         public void ReceiveMessage(Message message)
         {

@@ -26,7 +26,8 @@ namespace HAL062app.moduly.komunikacja
         event Action<string> ConnectBluetooth_action;
         event Action DisconnectBluetooth_action;
         event Action<bool> BluetoothStatusRequest;
-
+        event Action<bool, int> WatchdogEnable_action;
+        event Action ClearQueue_action; 
 
     }
 
@@ -51,7 +52,9 @@ namespace HAL062app.moduly.komunikacja
         public event Action DisconnectBluetooth_action;
         public event Action<bool> BluetoothStatusRequest;
         private bool BluetoothStatusBoolean = false;
-
+    
+        public event Action<bool, int> WatchdogEnable_action;
+        public event Action ClearQueue_action;
         public CommunicationForm()
         {
             InitializeComponent();
@@ -96,13 +99,7 @@ namespace HAL062app.moduly.komunikacja
                 Clipboard.SetDataObject(this.TerminalBox.SelectedItem.ToString());
 
         }
-        private void SendBtn_Click(object sender, EventArgs e)
-        {
-            Message msg = new Message();
-            msg.author = 1;
-            msg.text = sendTextBox.Text;
-            SendTerminalMsg?.Invoke(msg);
-        }
+     
 
         private void sendTextBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -133,30 +130,7 @@ namespace HAL062app.moduly.komunikacja
 
         private void EthernetConnectBtn_Click(object sender, EventArgs e)
         {
-            if (EthernetStatusBoolean)
-            {
-                if (EthernetConnectBtn.Text == "Połącz")
-                {
-                    if (IPtextbox.TextLength > 0)
-                    {
-
-                        EthernetConnectBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Red;
-                        EthernetConnectBtn.Text = "Rozłącz";
-                        ConnectTelnet_action(IPtextbox.Text, (int)EthernetPort.Value);
-
-                    }
-                    else
-                        ConnectTelnet_action("", 0);
-
-                }
-                else
-                {
-                    EthernetConnectBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
-                    EthernetConnectBtn.Text = "Połącz";
-                    disconnectTelnet_action();
-
-                }
-            }
+         
         }
         private void EthernetSwitch_CheckedChanged(object sender, EventArgs e)
         {
@@ -299,17 +273,60 @@ namespace HAL062app.moduly.komunikacja
 
         private void watchdogBtn_Click(object sender, EventArgs e)
         {
-
+            if(watchdogBtn.Text == "Włącz cykliczne ramki")
+            {
+                WatchdogEnable_action(true, (int)watchdogNumeric.Value);
+                watchdogBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Red;
+                watchdogBtn.Text = "Wyłącz cykliczne ramki";
+            }
+            else
+            {
+                WatchdogEnable_action(false, (int)watchdogNumeric.Value);
+                watchdogBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
+                watchdogBtn.Text = "Włącz cykliczne ramki";
+            }
         }
 
         private void clearQueueBtn_Click(object sender, EventArgs e)
         {
-
+            ClearQueue_action();
         }
 
-       
+        private void SendBtn_Click(object sender, MouseEventArgs e)
+        {
+            Message msg = new Message();
+            msg.author = 1;
+            msg.text = sendTextBox.Text;
+            SendTerminalMsg?.Invoke(msg);
+        }
 
-      
+        private void EthernetConnectBtn_Click(object sender, MouseEventArgs e)
+        {
+            if (EthernetStatusBoolean)
+            {
+                if (EthernetConnectBtn.Text == "Połącz")
+                {
+                    if (IPtextbox.TextLength > 0)
+                    {
+
+                        EthernetConnectBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Red;
+                        EthernetConnectBtn.Text = "Rozłącz";
+                        ConnectTelnet_action(IPtextbox.Text, (int)EthernetPort.Value);
+
+                    }
+                    else
+                        ConnectTelnet_action("", 0);
+
+                }
+                else
+                {
+                    EthernetConnectBtn.ButtonStyle = CustomControls.CustomButton.ButtonStyles.Green;
+                    EthernetConnectBtn.Text = "Połącz";
+                    disconnectTelnet_action();
+
+                }
+            }
+        }
     }
 
 }

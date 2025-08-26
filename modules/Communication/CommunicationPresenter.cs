@@ -40,6 +40,8 @@ namespace HAL062app.moduly.komunikacja
                     _model.isEthernetConnected_action += EthernetConnected;
                     _model.OnBluetoothDevicesFound += UpdateBluetoothDevicesComboBox;
                     _model.IsBluetoothConnected_action += BluetoothConnected;
+                    _view.WatchdogEnable_action += EnableWatchdog;
+                    _view.ClearQueue_action += ClearQueue;
                 }
             }
         }
@@ -130,8 +132,14 @@ namespace HAL062app.moduly.komunikacja
 
 
         }
-
-
+        private void EnableWatchdog(bool enable, int interval)
+        {
+                _model.ChangeWatchdogState(enable, interval);
+        }
+        private void ClearQueue()
+        {
+            _model.ClearQueue();
+        }
     }
 
 

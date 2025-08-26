@@ -27,10 +27,8 @@ namespace HAL062app.moduly.podwozie
         private float velocity = 0;
         private float angularVelocity = 0;
         private float velocityMaxLimit = 9;
-        private float angularVelocityMaxLimit = 3;
         int limitRadius = 160;
 
-        private bool isMoving = false;
         private Timer timer;
         private int readInterval = 100;
         private int timerInterval = 25;

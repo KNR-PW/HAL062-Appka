@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static HAL062app.moduly.laboratorium.LaboratoryForm;
 
 namespace HAL062app.moduly
 {
@@ -35,6 +36,23 @@ namespace HAL062app.moduly
             text = msg;
         }
 
+        public void CreateFrame(ID id, byte param1 = 0, byte param2 = 0, byte param3 = 0, byte param4 = 0,
+                        byte param5 = 0, byte param6 = 0, byte param7 = 0, byte param8 = 0, byte param9 = 0)
+        {
+           
+            this.buffer[0] = (byte)('#');
+            this.buffer[1] = (byte)id;
+            this.buffer[2] = param1;
+            this.buffer[3] = param2;
+            this.buffer[4] = param3;
+            this.buffer[5] = param4;
+            this.buffer[6] = param5;
+            this.buffer[7] = param6;
+            this.buffer[8] = param7;
+            this.buffer[9] = param9; // jeśli 9 ma znaczenie, inaczej dopasuj
+            this.text = new string(this.encodeMessage());
+            
+        }
 
         public char[] encodeMessage()
         {

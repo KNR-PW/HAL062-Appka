@@ -20,14 +20,15 @@ namespace Hall062app
 
     public class Theme
     {
-     
+        public Color SidePanel { get; set; }
         public Color Background { get; set; }
         public Color Foreground { get; set; }
         public Color Accent { get; set; }
         public Color Frame { get; set; }
         public Color Text { get; set; }
-        public Theme(String background, String foreground, String frame, String accent, String text)
+        public Theme(String background, String foreground, String frame, String accent, String text, String sidePanel)
         {
+            SidePanel = ColorTranslator.FromHtml(sidePanel);
             Background = ColorTranslator.FromHtml(background);
             Foreground = ColorTranslator.FromHtml(foreground);
             Frame = ColorTranslator.FromHtml(frame);
@@ -41,8 +42,9 @@ namespace Hall062app
     public class PropertiesManager
     {
         private Theme lightTheme = new Theme(
-            
-            background: "#F4E7E1",
+
+            sidePanel: "#F1DEDE",
+            background: "#EBEBEB",
             foreground: "#FFFFFF",
             frame: "#393D3F",
             accent: "#8D9F87",
@@ -54,10 +56,11 @@ namespace Hall062app
 
         private Theme Dark = new Theme(
 
-            background: "#6F9283",
-            foreground: "#FFFFFF",
-            frame: "#393D3F",
-            accent: "#8D9F87",
+            sidePanel: "#11151C",
+            background: "#212D40",
+            foreground: "#212D40",
+            frame: "#364156",
+            accent: "#7D4E57",
             text: "#FFFFFF"
 
             );
@@ -66,9 +69,7 @@ namespace Hall062app
         {
             Theme theme = ThemeName == AppTheme.Light ? lightTheme : Dark;
 
-            ctrl.BackColor = theme.Background;
-            ctrl.ForeColor = theme.Foreground;
-
+         
             if (ctrl is PictureBox pictureBox && pictureBox.Name == "LogoPictureBox")
             {
                 pictureBox.Image = ThemeName == AppTheme.Light 
@@ -83,13 +84,29 @@ namespace Hall062app
             }
             if(ctrl is Panel)
             {
-                ctrl.BackColor = theme.Background;
+                if (ctrl.Name == "SidePanel")
+                {
+                    ctrl.BackColor = theme.SidePanel;
+                }
+                else if(ctrl.BackColor != Color.Transparent)
+                {
+                    ctrl.BackColor = theme.Background;
+                }
             }
             if(ctrl is FlowLayoutPanel)
             {
-                ctrl.BackColor = theme.Background;
+            
+                if (ctrl.BackColor != Color.Transparent)
+                    ctrl.BackColor = theme.Background;
+                
             }
-
+            if(ctrl is TableLayoutPanel)
+            {
+             
+                if (ctrl.BackColor != Color.Transparent)
+                    ctrl.BackColor = theme.Background;
+                
+            }
             if(ctrl is Label)
                 {
                 ctrl.ForeColor = theme.Text;
@@ -98,8 +115,13 @@ namespace Hall062app
 
             if(ctrl is CustomButton btn)
             {
-                ctrl.ForeColor = theme.Text;
-                btn.UseVisualStyleBackColor = false;
+                if (ThemeName == AppTheme.Light)
+                btn.BorderModeSelect = CustomButton.BorderMode.On;
+                else
+                btn.BorderModeSelect = CustomButton.BorderMode.Off;
+
+
+
             }
 
             foreach (Control child in ctrl.Controls)

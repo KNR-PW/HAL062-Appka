@@ -1,5 +1,7 @@
 ﻿using HAL062app.moduly.komunikacja;
 using System.Collections.Concurrent;
+using System.Windows.Documents;
+using System.Collections.Generic;
 
 namespace HAL062app.moduly.laboratorium
 {
@@ -9,6 +11,8 @@ namespace HAL062app.moduly.laboratorium
     {
         void SendMessageToRobot(Message message);
         void sendFrame(Message frame);
+        string GetTubeInfo(int pos);
+        void RotateRevolver(bool clockwise = true);
     }
 
 
@@ -16,32 +20,60 @@ namespace HAL062app.moduly.laboratorium
     {
 
         public int tubeID { get; }
-        private int position; //pozycja na rewolwerze zgodnie z ruchem wskazówek zegara, 0 - na dole
+        private int globalPosition; //pozycja względem kamery, 0 - na dole, 1 - nad, 2 - nad itd.
+        bool isEmpty = true;
+        bool isLocked = false;
+        public string description { get; set; }
+        public List<Reagent> reagents { get; set; }
         public string[] modifications { get; set; }
-        public Tube(int _tubeID, int _position)
+        public Tube(int _tubeID)
         {
             this.tubeID = _tubeID;
-            this.position = _position;
+            this.reagents = new List<Reagent>();
         }
 
+        public void AddReagent(Reagent reagent)
+        {       
+           reagents.Add(reagent);
+           isEmpty = false;
+          // CreateDescription();
+        }
 
-
+        public void CreateDescription(int globalPositon)
+        {
+            description = $"ID: {tubeID},\n" +
+                $"{(isLocked?"Zamknięte":"Otwarte")}\n" +
+                $"Zawartość: Puste";
+        }
     };
 
+    public class Reagent
+        {
+        public string name { get; set; }
+        public string description { get; set; }
+        public Reagent(string _name, string _description, string[] _properties)
+        {
+            this.name = _name;
+            this.description = _description;
+        }
+       
+    };
 
+  
     public class Rewolwer
     {
-        private int numberOfTubes = 0;
+        private int numberOfTubes = 11;
         private Tube[] tubes;
         private int[] tubesPosition;
         public Rewolwer(int _numberOfTubes)
         {
             this.numberOfTubes = _numberOfTubes;
             this.tubesPosition = new int[numberOfTubes];
+            this.tubes = new Tube[_numberOfTubes];
             for (int i = 0; i < numberOfTubes; i++)
             {
-                //     tubes[i] = new Tube(i, i);
-                //   tubesPosition[i] = i;
+                     tubes[i] = new Tube(i);
+                     tubesPosition[i] = i;
             }
 
 
@@ -52,19 +84,15 @@ namespace HAL062app.moduly.laboratorium
         {
             for (int i = 0; i < numberOfTubes; i++)
             {
-                tubesPosition[i] = (tubesPosition[i] + (clockwise == true ? 1 : -1)) % numberOfTubes;
+                tubesPosition[i] = (tubesPosition[i] + (clockwise == false ? 1 : -1) + numberOfTubes) % numberOfTubes;
             }
         }
 
         public string GetTubeInfo(int pos)
         {
             Tube t = tubes[tubesPosition[pos]];
-
-            string description = $"ID: {t.tubeID},\n" +
-                $"Zawartość: {t.modifications}";
-
-
-            return description;
+            t.CreateDescription(pos);
+            return t.description;
         }
     };
 
@@ -81,7 +109,7 @@ namespace HAL062app.moduly.laboratorium
         {
             receivedQueue = new ConcurrentQueue<Message>();
             this.communicationModel = komunikacja;
-            rewolwer = new Rewolwer(9);
+            rewolwer = new Rewolwer(11);
 
         }
 
@@ -104,9 +132,15 @@ namespace HAL062app.moduly.laboratorium
         }
 
 
+        public string GetTubeInfo(int pos)
+        {
+            return rewolwer.GetTubeInfo(pos);
+        }
 
-
-
+        public void RotateRevolver(bool clockwise = true)
+        {
+            rewolwer.RotateTube(clockwise);
+        }
 
 
     }

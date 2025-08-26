@@ -1,5 +1,5 @@
 ﻿
-
+/*
 using System;
 
 namespace HAL062app.moduly.manipulator
@@ -277,7 +277,7 @@ namespace HAL062app.moduly.manipulator
                 VectorOut[2] = VectorIn[2];
                 VectorOut[0] = VectorIn[0] * (double)Math.Cos(meas_angle[0]) - VectorIn[1] * (double)Math.Sin(meas_angle[0]);
                 VectorOut[1] = VectorIn[0] * (double)Math.Sin(meas_angle[0]) + VectorIn[1] * (double)Math.Cos(meas_angle[0]);
-            }*/
+            }
         public static double[,] MultiplyMatrices(double[,] matrix1, double[,] matrix2)
         {
             if (matrix1.GetLength(1) != matrix2.GetLength(0))
@@ -336,4 +336,4 @@ namespace HAL062app.moduly.manipulator
         }
     }
 
-}
+}*/

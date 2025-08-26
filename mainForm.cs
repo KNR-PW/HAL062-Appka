@@ -225,6 +225,9 @@ namespace HAL062app
 
         }
 
-        
+        private void NightModeToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            properties.ApplyTheme(this, NightModeToggle.Checked ? AppTheme.Dark : AppTheme.Light);
+        }
     }
 }

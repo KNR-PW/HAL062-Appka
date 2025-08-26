@@ -5,23 +5,29 @@ namespace HAL062app.moduly.laboratorium
 {
     public class LaboratoryPresenter
     {
-        private LaboratoryForm display;
-        private LaboratoryModel model;
+        private ILaboratoryModel _model;
+        private ILaboratoryView _view;
+  
         private Dictionary<string, Form> modules;
 
-        public LaboratoryPresenter(Dictionary<string, Form> moduleForms, LaboratoryModel model)
+        public LaboratoryPresenter(Dictionary<string, Form> moduleForms, ILaboratoryModel model)
         {
             modules = moduleForms;
-            this.model = model;
+            this._model = model;
 
             if (modules.TryGetValue("Laboratorium", out Form form))
             {
-                display = form as LaboratoryForm;
+                _view = form as LaboratoryForm;
 
-                if (display != null)
+                if (_view != null)
                 {
 
-                    display.SendFrame_Action += SendMessageToRobot;
+                    _view.SendFrame_Action += SendMessageToRobot;
+                    _view.GetTubeDescription_Func += GetTubeInfo;
+                    //_view.GetTubeInfo_Action += GetTubeInfo;
+                    _view.RotateRevolver_Action += RotateRevolver;
+                    _view.GetTubeDescription_Func += GetTubeInfo;
+                  
 
                 }
             }
@@ -29,15 +35,19 @@ namespace HAL062app.moduly.laboratorium
 
         private void SendMessageToRobot(Message msg)
         {
-            model.SendMessageToRobot(msg);
+            _model.SendMessageToRobot(msg);
 
         }
 
-        private string GetDescription(int pos)
+        private string GetTubeInfo(int pos)
         {
-            return "a";
+            //return "aaaaa";
+            return _model.GetTubeInfo(pos);
         }
-
+        private void RotateRevolver(bool cw)
+        {
+            _model.RotateRevolver(cw);
+        }
 
     }
 }

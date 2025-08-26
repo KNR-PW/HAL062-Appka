@@ -15,6 +15,7 @@ namespace HAL062app.CustomControls
         private int borderRadius = 20;
         private Color borderColor = Color.FromArgb(0, 155, 154, 159);
         private ButtonStyles buttonStyle = ButtonStyles.Default;
+        private BorderMode borderMode = BorderMode.Off;
 
         public enum ButtonStyles
         {
@@ -28,7 +29,11 @@ namespace HAL062app.CustomControls
             Functional_purple,
 
         }
-
+        public enum BorderMode
+        {
+            On,
+            Off
+        }
 
 
 
@@ -96,7 +101,15 @@ namespace HAL062app.CustomControls
                 ApplyStyle();
             }
         }
-
+        public BorderMode BorderModeSelect
+        {
+            get => borderMode;
+            set
+            {
+                borderMode = value;
+                ApplyStyle();
+            }
+        }
         private GraphicsPath GetFigurePath(Rectangle rect, float radius)
         {
             GraphicsPath path = new GraphicsPath();
@@ -163,6 +176,27 @@ namespace HAL062app.CustomControls
         }
 
 
+        private void ApplyBorderMode(BorderMode borderMode, Color backColor, Color foreColor)
+        {
+            if (this.buttonStyle != ButtonStyles.Red && this.buttonStyle != ButtonStyles.Green)
+            {
+                if (borderMode == BorderMode.On)
+                {
+                    this.BackColor = Color.Transparent;
+                    this.borderSize = 5;
+                    this.borderColor = backColor;
+                    this.ForeColor = backColor;
+                }
+            }
+            else
+            {
+                this.borderSize = 0;
+                this.ForeColor = ForeColor;
+                this.BackColor = backColor;
+            }
+            
+            
+        }
         private void ApplyStyle()
         {
             switch (buttonStyle)
@@ -200,7 +234,10 @@ namespace HAL062app.CustomControls
                     this.BackColor = Color.FromArgb(120, 120, 120); // szary
                     this.ForeColor = Color.White;
                     break;
+
+
             }
+            ApplyBorderMode(borderMode, this.BackColor, this.ForeColor);
 
             Color mouseColor = this.BackColor;
             mouseColor = Color.FromArgb(255, (int)(mouseColor.R * 0.8), (int)(mouseColor.G * 0.8), (int)(mouseColor.B * 0.8));

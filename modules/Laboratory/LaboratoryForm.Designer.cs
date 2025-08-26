@@ -80,7 +80,12 @@
             this.ProbeUpFullBtn = new HAL062app.CustomControls.CustomButton();
             this.ProbeDownFullBtn = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.customButton2 = new HAL062app.CustomControls.CustomButton();
+            this.customButton1 = new HAL062app.CustomControls.CustomButton();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.TempSensorBtn = new HAL062app.CustomControls.CustomButton();
+            this.label19 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -107,9 +112,6 @@
             this.InfProbeRightBtn = new HAL062app.CustomControls.CustomButton();
             this.InfProbeLeftBtn = new HAL062app.CustomControls.CustomButton();
             this.ProbesPanel = new System.Windows.Forms.Panel();
-            this.LoadJSONbtn = new HAL062app.CustomControls.CustomButton();
-            this.ResetJSONbtn = new HAL062app.CustomControls.CustomButton();
-            this.ResetHistoryBtn = new HAL062app.CustomControls.CustomButton();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DrillPWM_numeric)).BeginInit();
@@ -127,7 +129,6 @@
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
             this.tableLayoutPanel20.SuspendLayout();
-            this.tableLayoutPanel21.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -217,6 +218,7 @@
             // 
             // DrillPWM_numeric
             // 
+            this.DrillPWM_numeric.AutoSize = true;
             this.DrillPWM_numeric.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
             this.DrillPWM_numeric.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DrillPWM_numeric.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -268,6 +270,7 @@
             // 
             // ModulePWM_numeric
             // 
+            this.ModulePWM_numeric.AutoSize = true;
             this.ModulePWM_numeric.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
             this.ModulePWM_numeric.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ModulePWM_numeric.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -284,22 +287,24 @@
             // 
             // DrillUpBtn
             // 
-            this.DrillUpBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DrillUpBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.DrillUpBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.DrillUpBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.DrillUpBtn.BorderRadius = 1;
+            this.DrillUpBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.DrillUpBtn.BorderRadius = 10;
             this.DrillUpBtn.BorderSize = 0;
             this.DrillUpBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.DrillUpBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DrillUpBtn.FlatAppearance.BorderSize = 0;
             this.DrillUpBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.DrillUpBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.DrillUpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillUpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillUpBtn.ForeColor = System.Drawing.Color.White;
-            this.DrillUpBtn.Location = new System.Drawing.Point(191, 187);
+            this.DrillUpBtn.Location = new System.Drawing.Point(193, 186);
+            this.DrillUpBtn.Margin = new System.Windows.Forms.Padding(5);
             this.DrillUpBtn.Name = "DrillUpBtn";
-            this.DrillUpBtn.Size = new System.Drawing.Size(85, 58);
+            this.DrillUpBtn.Size = new System.Drawing.Size(82, 61);
             this.DrillUpBtn.TabIndex = 24;
             this.DrillUpBtn.Text = "Wycofaj wiertło";
             this.DrillUpBtn.TextColor = System.Drawing.Color.White;
@@ -308,22 +313,24 @@
             // 
             // DrillStopBtn
             // 
-            this.DrillStopBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DrillStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.DrillStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.DrillStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.DrillStopBtn.BorderRadius = 1;
+            this.DrillStopBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.DrillStopBtn.BorderRadius = 10;
             this.DrillStopBtn.BorderSize = 0;
             this.DrillStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
+            this.DrillStopBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DrillStopBtn.FlatAppearance.BorderSize = 0;
             this.DrillStopBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.DrillStopBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.DrillStopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillStopBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillStopBtn.ForeColor = System.Drawing.Color.White;
-            this.DrillStopBtn.Location = new System.Drawing.Point(191, 115);
+            this.DrillStopBtn.Location = new System.Drawing.Point(193, 114);
+            this.DrillStopBtn.Margin = new System.Windows.Forms.Padding(5);
             this.DrillStopBtn.Name = "DrillStopBtn";
-            this.DrillStopBtn.Size = new System.Drawing.Size(85, 58);
+            this.DrillStopBtn.Size = new System.Drawing.Size(82, 61);
             this.DrillStopBtn.TabIndex = 23;
             this.DrillStopBtn.Text = "Stop";
             this.DrillStopBtn.TextColor = System.Drawing.Color.White;
@@ -332,22 +339,24 @@
             // 
             // DrillDownBtn
             // 
-            this.DrillDownBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DrillDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.DrillDownBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.DrillDownBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.DrillDownBtn.BorderRadius = 1;
+            this.DrillDownBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.DrillDownBtn.BorderRadius = 10;
             this.DrillDownBtn.BorderSize = 0;
             this.DrillDownBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_orange;
+            this.DrillDownBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DrillDownBtn.FlatAppearance.BorderSize = 0;
             this.DrillDownBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.DrillDownBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.DrillDownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillDownBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillDownBtn.ForeColor = System.Drawing.Color.White;
-            this.DrillDownBtn.Location = new System.Drawing.Point(191, 43);
+            this.DrillDownBtn.Location = new System.Drawing.Point(193, 42);
+            this.DrillDownBtn.Margin = new System.Windows.Forms.Padding(5);
             this.DrillDownBtn.Name = "DrillDownBtn";
-            this.DrillDownBtn.Size = new System.Drawing.Size(85, 58);
+            this.DrillDownBtn.Size = new System.Drawing.Size(82, 61);
             this.DrillDownBtn.TabIndex = 22;
             this.DrillDownBtn.Text = "Wierć w dół";
             this.DrillDownBtn.TextColor = System.Drawing.Color.White;
@@ -370,22 +379,24 @@
             // 
             // DrillMoveDownBtn
             // 
-            this.DrillMoveDownBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DrillMoveDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.DrillMoveDownBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.DrillMoveDownBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.DrillMoveDownBtn.BorderRadius = 1;
+            this.DrillMoveDownBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.DrillMoveDownBtn.BorderRadius = 10;
             this.DrillMoveDownBtn.BorderSize = 0;
             this.DrillMoveDownBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.DrillMoveDownBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DrillMoveDownBtn.FlatAppearance.BorderSize = 0;
             this.DrillMoveDownBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.DrillMoveDownBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.DrillMoveDownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillMoveDownBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillMoveDownBtn.ForeColor = System.Drawing.Color.White;
-            this.DrillMoveDownBtn.Location = new System.Drawing.Point(99, 187);
+            this.DrillMoveDownBtn.Location = new System.Drawing.Point(101, 186);
+            this.DrillMoveDownBtn.Margin = new System.Windows.Forms.Padding(5);
             this.DrillMoveDownBtn.Name = "DrillMoveDownBtn";
-            this.DrillMoveDownBtn.Size = new System.Drawing.Size(85, 58);
+            this.DrillMoveDownBtn.Size = new System.Drawing.Size(81, 61);
             this.DrillMoveDownBtn.TabIndex = 20;
             this.DrillMoveDownBtn.Text = "W dół";
             this.DrillMoveDownBtn.TextColor = System.Drawing.Color.White;
@@ -394,22 +405,24 @@
             // 
             // DrillMoveStopBtn
             // 
-            this.DrillMoveStopBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DrillMoveStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.DrillMoveStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.DrillMoveStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.DrillMoveStopBtn.BorderRadius = 1;
+            this.DrillMoveStopBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.DrillMoveStopBtn.BorderRadius = 10;
             this.DrillMoveStopBtn.BorderSize = 0;
             this.DrillMoveStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
+            this.DrillMoveStopBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DrillMoveStopBtn.FlatAppearance.BorderSize = 0;
             this.DrillMoveStopBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.DrillMoveStopBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.DrillMoveStopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillMoveStopBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillMoveStopBtn.ForeColor = System.Drawing.Color.White;
-            this.DrillMoveStopBtn.Location = new System.Drawing.Point(99, 115);
+            this.DrillMoveStopBtn.Location = new System.Drawing.Point(101, 114);
+            this.DrillMoveStopBtn.Margin = new System.Windows.Forms.Padding(5);
             this.DrillMoveStopBtn.Name = "DrillMoveStopBtn";
-            this.DrillMoveStopBtn.Size = new System.Drawing.Size(85, 58);
+            this.DrillMoveStopBtn.Size = new System.Drawing.Size(81, 61);
             this.DrillMoveStopBtn.TabIndex = 19;
             this.DrillMoveStopBtn.Text = "Stop";
             this.DrillMoveStopBtn.TextColor = System.Drawing.Color.White;
@@ -418,22 +431,24 @@
             // 
             // DrillMoveUpBtn
             // 
-            this.DrillMoveUpBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DrillMoveUpBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.DrillMoveUpBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.DrillMoveUpBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.DrillMoveUpBtn.BorderRadius = 1;
+            this.DrillMoveUpBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.DrillMoveUpBtn.BorderRadius = 10;
             this.DrillMoveUpBtn.BorderSize = 0;
             this.DrillMoveUpBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_orange;
+            this.DrillMoveUpBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DrillMoveUpBtn.FlatAppearance.BorderSize = 0;
             this.DrillMoveUpBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.DrillMoveUpBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.DrillMoveUpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DrillMoveUpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.DrillMoveUpBtn.ForeColor = System.Drawing.Color.White;
-            this.DrillMoveUpBtn.Location = new System.Drawing.Point(99, 43);
+            this.DrillMoveUpBtn.Location = new System.Drawing.Point(101, 42);
+            this.DrillMoveUpBtn.Margin = new System.Windows.Forms.Padding(5);
             this.DrillMoveUpBtn.Name = "DrillMoveUpBtn";
-            this.DrillMoveUpBtn.Size = new System.Drawing.Size(85, 58);
+            this.DrillMoveUpBtn.Size = new System.Drawing.Size(81, 61);
             this.DrillMoveUpBtn.TabIndex = 18;
             this.DrillMoveUpBtn.Text = "W górę";
             this.DrillMoveUpBtn.TextColor = System.Drawing.Color.White;
@@ -456,22 +471,24 @@
             // 
             // ModulDownBtn
             // 
-            this.ModulDownBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ModulDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ModulDownBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ModulDownBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ModulDownBtn.BorderRadius = 1;
+            this.ModulDownBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ModulDownBtn.BorderRadius = 10;
             this.ModulDownBtn.BorderSize = 0;
             this.ModulDownBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.ModulDownBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ModulDownBtn.FlatAppearance.BorderSize = 0;
             this.ModulDownBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ModulDownBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.ModulDownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModulDownBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.ModulDownBtn.ForeColor = System.Drawing.Color.White;
-            this.ModulDownBtn.Location = new System.Drawing.Point(4, 187);
+            this.ModulDownBtn.Location = new System.Drawing.Point(6, 186);
+            this.ModulDownBtn.Margin = new System.Windows.Forms.Padding(5);
             this.ModulDownBtn.Name = "ModulDownBtn";
-            this.ModulDownBtn.Size = new System.Drawing.Size(88, 58);
+            this.ModulDownBtn.Size = new System.Drawing.Size(84, 61);
             this.ModulDownBtn.TabIndex = 15;
             this.ModulDownBtn.Text = "W dół";
             this.ModulDownBtn.TextColor = System.Drawing.Color.White;
@@ -480,22 +497,24 @@
             // 
             // ModulStopBtn
             // 
-            this.ModulStopBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ModulStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.ModulStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.ModulStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ModulStopBtn.BorderRadius = 1;
+            this.ModulStopBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ModulStopBtn.BorderRadius = 10;
             this.ModulStopBtn.BorderSize = 0;
             this.ModulStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
+            this.ModulStopBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ModulStopBtn.FlatAppearance.BorderSize = 0;
             this.ModulStopBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.ModulStopBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.ModulStopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModulStopBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.ModulStopBtn.ForeColor = System.Drawing.Color.White;
-            this.ModulStopBtn.Location = new System.Drawing.Point(4, 115);
+            this.ModulStopBtn.Location = new System.Drawing.Point(6, 114);
+            this.ModulStopBtn.Margin = new System.Windows.Forms.Padding(5);
             this.ModulStopBtn.Name = "ModulStopBtn";
-            this.ModulStopBtn.Size = new System.Drawing.Size(88, 58);
+            this.ModulStopBtn.Size = new System.Drawing.Size(84, 61);
             this.ModulStopBtn.TabIndex = 11;
             this.ModulStopBtn.Text = "Stop";
             this.ModulStopBtn.TextColor = System.Drawing.Color.White;
@@ -504,22 +523,24 @@
             // 
             // ModulUpBtn
             // 
-            this.ModulUpBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ModulUpBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.ModulUpBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.ModulUpBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ModulUpBtn.BorderRadius = 1;
+            this.ModulUpBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ModulUpBtn.BorderRadius = 10;
             this.ModulUpBtn.BorderSize = 0;
             this.ModulUpBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_orange;
+            this.ModulUpBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ModulUpBtn.FlatAppearance.BorderSize = 0;
             this.ModulUpBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.ModulUpBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(139)))), ((int)(((byte)(0)))));
             this.ModulUpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModulUpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.ModulUpBtn.ForeColor = System.Drawing.Color.White;
-            this.ModulUpBtn.Location = new System.Drawing.Point(4, 43);
+            this.ModulUpBtn.Location = new System.Drawing.Point(6, 42);
+            this.ModulUpBtn.Margin = new System.Windows.Forms.Padding(5);
             this.ModulUpBtn.Name = "ModulUpBtn";
-            this.ModulUpBtn.Size = new System.Drawing.Size(88, 58);
+            this.ModulUpBtn.Size = new System.Drawing.Size(84, 61);
             this.ModulUpBtn.TabIndex = 8;
             this.ModulUpBtn.Text = "W górę";
             this.ModulUpBtn.TextColor = System.Drawing.Color.White;
@@ -558,6 +579,7 @@
             // 
             // DrillMovePWM_numeric
             // 
+            this.DrillMovePWM_numeric.AutoSize = true;
             this.DrillMovePWM_numeric.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(46)))));
             this.DrillMovePWM_numeric.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DrillMovePWM_numeric.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -637,22 +659,23 @@
             // 
             // Lab_preparat_E_btn
             // 
-            this.Lab_preparat_E_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Lab_preparat_E_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_E_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_E_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.Lab_preparat_E_btn.BorderRadius = 1;
+            this.Lab_preparat_E_btn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.Lab_preparat_E_btn.BorderRadius = 10;
             this.Lab_preparat_E_btn.BorderSize = 0;
             this.Lab_preparat_E_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.Lab_preparat_E_btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Lab_preparat_E_btn.FlatAppearance.BorderSize = 0;
             this.Lab_preparat_E_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_E_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_E_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_E_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Lab_preparat_E_btn.ForeColor = System.Drawing.Color.White;
-            this.Lab_preparat_E_btn.Location = new System.Drawing.Point(150, 3);
+            this.Lab_preparat_E_btn.Location = new System.Drawing.Point(140, 3);
             this.Lab_preparat_E_btn.Name = "Lab_preparat_E_btn";
-            this.Lab_preparat_E_btn.Size = new System.Drawing.Size(111, 41);
+            this.Lab_preparat_E_btn.Size = new System.Drawing.Size(131, 41);
             this.Lab_preparat_E_btn.TabIndex = 23;
             this.Lab_preparat_E_btn.Text = "Włącz";
             this.Lab_preparat_E_btn.TextColor = System.Drawing.Color.White;
@@ -691,22 +714,23 @@
             // 
             // Lab_preparat_D_btn
             // 
-            this.Lab_preparat_D_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Lab_preparat_D_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_D_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_D_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.Lab_preparat_D_btn.BorderRadius = 1;
+            this.Lab_preparat_D_btn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.Lab_preparat_D_btn.BorderRadius = 10;
             this.Lab_preparat_D_btn.BorderSize = 0;
             this.Lab_preparat_D_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.Lab_preparat_D_btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Lab_preparat_D_btn.FlatAppearance.BorderSize = 0;
             this.Lab_preparat_D_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_D_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_D_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_D_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Lab_preparat_D_btn.ForeColor = System.Drawing.Color.White;
-            this.Lab_preparat_D_btn.Location = new System.Drawing.Point(150, 3);
+            this.Lab_preparat_D_btn.Location = new System.Drawing.Point(140, 3);
             this.Lab_preparat_D_btn.Name = "Lab_preparat_D_btn";
-            this.Lab_preparat_D_btn.Size = new System.Drawing.Size(111, 41);
+            this.Lab_preparat_D_btn.Size = new System.Drawing.Size(131, 41);
             this.Lab_preparat_D_btn.TabIndex = 23;
             this.Lab_preparat_D_btn.Text = "Włącz";
             this.Lab_preparat_D_btn.TextColor = System.Drawing.Color.White;
@@ -745,22 +769,23 @@
             // 
             // Lab_preparat_C_btn
             // 
-            this.Lab_preparat_C_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Lab_preparat_C_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_C_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_C_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.Lab_preparat_C_btn.BorderRadius = 1;
+            this.Lab_preparat_C_btn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.Lab_preparat_C_btn.BorderRadius = 10;
             this.Lab_preparat_C_btn.BorderSize = 0;
             this.Lab_preparat_C_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.Lab_preparat_C_btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Lab_preparat_C_btn.FlatAppearance.BorderSize = 0;
             this.Lab_preparat_C_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_C_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_C_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_C_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Lab_preparat_C_btn.ForeColor = System.Drawing.Color.White;
-            this.Lab_preparat_C_btn.Location = new System.Drawing.Point(150, 3);
+            this.Lab_preparat_C_btn.Location = new System.Drawing.Point(140, 3);
             this.Lab_preparat_C_btn.Name = "Lab_preparat_C_btn";
-            this.Lab_preparat_C_btn.Size = new System.Drawing.Size(111, 41);
+            this.Lab_preparat_C_btn.Size = new System.Drawing.Size(131, 41);
             this.Lab_preparat_C_btn.TabIndex = 23;
             this.Lab_preparat_C_btn.Text = "Włącz";
             this.Lab_preparat_C_btn.TextColor = System.Drawing.Color.White;
@@ -800,22 +825,23 @@
             // 
             // Lab_preparat_B_btn
             // 
-            this.Lab_preparat_B_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Lab_preparat_B_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_B_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_B_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.Lab_preparat_B_btn.BorderRadius = 1;
+            this.Lab_preparat_B_btn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.Lab_preparat_B_btn.BorderRadius = 10;
             this.Lab_preparat_B_btn.BorderSize = 0;
             this.Lab_preparat_B_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.Lab_preparat_B_btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Lab_preparat_B_btn.FlatAppearance.BorderSize = 0;
             this.Lab_preparat_B_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_B_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_B_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_B_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Lab_preparat_B_btn.ForeColor = System.Drawing.Color.White;
-            this.Lab_preparat_B_btn.Location = new System.Drawing.Point(150, 3);
+            this.Lab_preparat_B_btn.Location = new System.Drawing.Point(140, 3);
             this.Lab_preparat_B_btn.Name = "Lab_preparat_B_btn";
-            this.Lab_preparat_B_btn.Size = new System.Drawing.Size(111, 41);
+            this.Lab_preparat_B_btn.Size = new System.Drawing.Size(131, 41);
             this.Lab_preparat_B_btn.TabIndex = 23;
             this.Lab_preparat_B_btn.Text = "Włącz";
             this.Lab_preparat_B_btn.TextColor = System.Drawing.Color.White;
@@ -840,7 +866,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Location = new System.Drawing.Point(1, 1);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
@@ -856,7 +882,8 @@
             this.Lab_preparat_stop_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.Lab_preparat_stop_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.Lab_preparat_stop_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.Lab_preparat_stop_btn.BorderRadius = 1;
+            this.Lab_preparat_stop_btn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.Lab_preparat_stop_btn.BorderRadius = 10;
             this.Lab_preparat_stop_btn.BorderSize = 0;
             this.Lab_preparat_stop_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.Lab_preparat_stop_btn.FlatAppearance.BorderSize = 0;
@@ -892,22 +919,23 @@
             // 
             // Lab_preparat_A_btn
             // 
-            this.Lab_preparat_A_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Lab_preparat_A_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_A_btn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.Lab_preparat_A_btn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.Lab_preparat_A_btn.BorderRadius = 1;
+            this.Lab_preparat_A_btn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.Lab_preparat_A_btn.BorderRadius = 10;
             this.Lab_preparat_A_btn.BorderSize = 0;
             this.Lab_preparat_A_btn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
+            this.Lab_preparat_A_btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Lab_preparat_A_btn.FlatAppearance.BorderSize = 0;
             this.Lab_preparat_A_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_A_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
             this.Lab_preparat_A_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Lab_preparat_A_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Lab_preparat_A_btn.ForeColor = System.Drawing.Color.White;
-            this.Lab_preparat_A_btn.Location = new System.Drawing.Point(150, 3);
+            this.Lab_preparat_A_btn.Location = new System.Drawing.Point(140, 3);
             this.Lab_preparat_A_btn.Name = "Lab_preparat_A_btn";
-            this.Lab_preparat_A_btn.Size = new System.Drawing.Size(111, 41);
+            this.Lab_preparat_A_btn.Size = new System.Drawing.Size(131, 41);
             this.Lab_preparat_A_btn.TabIndex = 23;
             this.Lab_preparat_A_btn.Text = "Włącz";
             this.Lab_preparat_A_btn.TextColor = System.Drawing.Color.White;
@@ -952,14 +980,14 @@
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel10.Size = new System.Drawing.Size(282, 239);
             this.tableLayoutPanel10.TabIndex = 2;
-            this.tableLayoutPanel10.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel10_Paint);
             // 
             // ProbeDown1stepBtn
             // 
             this.ProbeDown1stepBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeDown1stepBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeDown1stepBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ProbeDown1stepBtn.BorderRadius = 1;
+            this.ProbeDown1stepBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ProbeDown1stepBtn.BorderRadius = 10;
             this.ProbeDown1stepBtn.BorderSize = 0;
             this.ProbeDown1stepBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ProbeDown1stepBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -983,7 +1011,8 @@
             this.ProbeUp1stepBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeUp1stepBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeUp1stepBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ProbeUp1stepBtn.BorderRadius = 1;
+            this.ProbeUp1stepBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ProbeUp1stepBtn.BorderRadius = 10;
             this.ProbeUp1stepBtn.BorderSize = 0;
             this.ProbeUp1stepBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ProbeUp1stepBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1007,7 +1036,8 @@
             this.ProbeUp10stepsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeUp10stepsBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeUp10stepsBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ProbeUp10stepsBtn.BorderRadius = 1;
+            this.ProbeUp10stepsBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ProbeUp10stepsBtn.BorderRadius = 10;
             this.ProbeUp10stepsBtn.BorderSize = 0;
             this.ProbeUp10stepsBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ProbeUp10stepsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1030,7 +1060,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label17.Location = new System.Drawing.Point(0, 0);
             this.label17.Margin = new System.Windows.Forms.Padding(0);
@@ -1045,7 +1075,8 @@
             this.ProbeClosingStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.ProbeClosingStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.ProbeClosingStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ProbeClosingStopBtn.BorderRadius = 1;
+            this.ProbeClosingStopBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ProbeClosingStopBtn.BorderRadius = 10;
             this.ProbeClosingStopBtn.BorderSize = 0;
             this.ProbeClosingStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.ProbeClosingStopBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1069,7 +1100,8 @@
             this.ProbeDown10stepsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeDown10stepsBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.ProbeDown10stepsBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ProbeDown10stepsBtn.BorderRadius = 1;
+            this.ProbeDown10stepsBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ProbeDown10stepsBtn.BorderRadius = 10;
             this.ProbeDown10stepsBtn.BorderSize = 0;
             this.ProbeDown10stepsBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.ProbeDown10stepsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1110,7 +1142,8 @@
             this.ProbeUpFullBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.ProbeUpFullBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.ProbeUpFullBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ProbeUpFullBtn.BorderRadius = 1;
+            this.ProbeUpFullBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ProbeUpFullBtn.BorderRadius = 10;
             this.ProbeUpFullBtn.BorderSize = 0;
             this.ProbeUpFullBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
             this.ProbeUpFullBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1134,7 +1167,8 @@
             this.ProbeDownFullBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.ProbeDownFullBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.ProbeDownFullBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ProbeDownFullBtn.BorderRadius = 1;
+            this.ProbeDownFullBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ProbeDownFullBtn.BorderRadius = 10;
             this.ProbeDownFullBtn.BorderSize = 0;
             this.ProbeDownFullBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
             this.ProbeDownFullBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1155,35 +1189,142 @@
             // 
             // tableLayoutPanel20
             // 
-            this.tableLayoutPanel20.ColumnCount = 1;
-            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel20.Controls.Add(this.tableLayoutPanel21, 0, 1);
+            this.tableLayoutPanel20.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel20.ColumnCount = 2;
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.88968F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.11032F));
+            this.tableLayoutPanel20.Controls.Add(this.customButton2, 1, 2);
+            this.tableLayoutPanel20.Controls.Add(this.customButton1, 1, 1);
+            this.tableLayoutPanel20.Controls.Add(this.label18, 0, 0);
+            this.tableLayoutPanel20.Controls.Add(this.label20, 0, 2);
+            this.tableLayoutPanel20.Controls.Add(this.TempSensorBtn, 1, 0);
+            this.tableLayoutPanel20.Controls.Add(this.label19, 0, 1);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel20.Location = new System.Drawing.Point(4, 4);
             this.tableLayoutPanel20.Name = "tableLayoutPanel20";
-            this.tableLayoutPanel20.RowCount = 2;
-            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.RowCount = 3;
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel20.Size = new System.Drawing.Size(281, 239);
             this.tableLayoutPanel20.TabIndex = 3;
             // 
-            // tableLayoutPanel21
+            // customButton2
             // 
-            this.tableLayoutPanel21.ColumnCount = 3;
-            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel21.Controls.Add(this.ResetHistoryBtn, 2, 0);
-            this.tableLayoutPanel21.Controls.Add(this.ResetJSONbtn, 1, 0);
-            this.tableLayoutPanel21.Controls.Add(this.LoadJSONbtn, 0, 0);
-            this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel21.Location = new System.Drawing.Point(3, 122);
-            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
-            this.tableLayoutPanel21.RowCount = 1;
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(275, 114);
-            this.tableLayoutPanel21.TabIndex = 0;
+            this.customButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(182)))), ((int)(((byte)(199)))));
+            this.customButton2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(182)))), ((int)(((byte)(199)))));
+            this.customButton2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.customButton2.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.customButton2.BorderRadius = 10;
+            this.customButton2.BorderSize = 0;
+            this.customButton2.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_blue;
+            this.customButton2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customButton2.FlatAppearance.BorderSize = 0;
+            this.customButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(159)))));
+            this.customButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(159)))));
+            this.customButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.customButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.customButton2.ForeColor = System.Drawing.Color.Transparent;
+            this.customButton2.Location = new System.Drawing.Point(150, 166);
+            this.customButton2.Margin = new System.Windows.Forms.Padding(7);
+            this.customButton2.Name = "customButton2";
+            this.customButton2.Size = new System.Drawing.Size(123, 65);
+            this.customButton2.TabIndex = 28;
+            this.customButton2.Text = "Pomiar wagi";
+            this.customButton2.TextColor = System.Drawing.Color.Transparent;
+            this.customButton2.UseVisualStyleBackColor = false;
+            // 
+            // customButton1
+            // 
+            this.customButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(182)))), ((int)(((byte)(199)))));
+            this.customButton1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(182)))), ((int)(((byte)(199)))));
+            this.customButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.customButton1.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.customButton1.BorderRadius = 10;
+            this.customButton1.BorderSize = 0;
+            this.customButton1.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_blue;
+            this.customButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customButton1.FlatAppearance.BorderSize = 0;
+            this.customButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(159)))));
+            this.customButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(159)))));
+            this.customButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.customButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.customButton1.ForeColor = System.Drawing.Color.Transparent;
+            this.customButton1.Location = new System.Drawing.Point(150, 87);
+            this.customButton1.Margin = new System.Windows.Forms.Padding(7);
+            this.customButton1.Name = "customButton1";
+            this.customButton1.Size = new System.Drawing.Size(123, 64);
+            this.customButton1.TabIndex = 27;
+            this.customButton1.Text = "Pomiar kwasowości";
+            this.customButton1.TextColor = System.Drawing.Color.Transparent;
+            this.customButton1.UseVisualStyleBackColor = false;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label18.Location = new System.Drawing.Point(1, 1);
+            this.label18.Margin = new System.Windows.Forms.Padding(0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(141, 78);
+            this.label18.TabIndex = 23;
+            this.label18.Text = "Czujnik temperatury:\r\n 0*C";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label20.Location = new System.Drawing.Point(1, 159);
+            this.label20.Margin = new System.Windows.Forms.Padding(0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(141, 79);
+            this.label20.TabIndex = 25;
+            this.label20.Text = "Waga:\r\n 0 g";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TempSensorBtn
+            // 
+            this.TempSensorBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(182)))), ((int)(((byte)(199)))));
+            this.TempSensorBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(182)))), ((int)(((byte)(199)))));
+            this.TempSensorBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
+            this.TempSensorBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.TempSensorBtn.BorderRadius = 10;
+            this.TempSensorBtn.BorderSize = 0;
+            this.TempSensorBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_blue;
+            this.TempSensorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TempSensorBtn.FlatAppearance.BorderSize = 0;
+            this.TempSensorBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(159)))));
+            this.TempSensorBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(145)))), ((int)(((byte)(159)))));
+            this.TempSensorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TempSensorBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TempSensorBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.TempSensorBtn.Location = new System.Drawing.Point(150, 8);
+            this.TempSensorBtn.Margin = new System.Windows.Forms.Padding(7);
+            this.TempSensorBtn.Name = "TempSensorBtn";
+            this.TempSensorBtn.Size = new System.Drawing.Size(123, 64);
+            this.TempSensorBtn.TabIndex = 26;
+            this.TempSensorBtn.Text = "Pomiar temperatury";
+            this.TempSensorBtn.TextColor = System.Drawing.Color.Transparent;
+            this.TempSensorBtn.UseVisualStyleBackColor = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label19.Location = new System.Drawing.Point(1, 80);
+            this.label19.Margin = new System.Windows.Forms.Padding(0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(141, 78);
+            this.label19.TabIndex = 24;
+            this.label19.Text = "Czujnik pH: 7";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel4
             // 
@@ -1242,7 +1383,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label15.Location = new System.Drawing.Point(1, 1);
             this.label15.Margin = new System.Windows.Forms.Padding(0);
@@ -1294,22 +1435,24 @@
             // 
             // LightOnBtn
             // 
-            this.LightOnBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LightOnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.LightOnBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.LightOnBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.LightOnBtn.BorderRadius = 1;
+            this.LightOnBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.LightOnBtn.BorderRadius = 10;
             this.LightOnBtn.BorderSize = 0;
             this.LightOnBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
+            this.LightOnBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LightOnBtn.FlatAppearance.BorderSize = 0;
             this.LightOnBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.LightOnBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.LightOnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LightOnBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.LightOnBtn.ForeColor = System.Drawing.Color.White;
-            this.LightOnBtn.Location = new System.Drawing.Point(284, 26);
+            this.LightOnBtn.Location = new System.Drawing.Point(286, 28);
+            this.LightOnBtn.Margin = new System.Windows.Forms.Padding(5);
             this.LightOnBtn.Name = "LightOnBtn";
-            this.LightOnBtn.Size = new System.Drawing.Size(133, 37);
+            this.LightOnBtn.Size = new System.Drawing.Size(129, 33);
             this.LightOnBtn.TabIndex = 26;
             this.LightOnBtn.Text = "Włącz";
             this.LightOnBtn.TextColor = System.Drawing.Color.White;
@@ -1331,22 +1474,24 @@
             // 
             // LightOffBtn
             // 
-            this.LightOffBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LightOffBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.LightOffBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.LightOffBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.LightOffBtn.BorderRadius = 1;
+            this.LightOffBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.LightOffBtn.BorderRadius = 10;
             this.LightOffBtn.BorderSize = 0;
             this.LightOffBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
+            this.LightOffBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LightOffBtn.FlatAppearance.BorderSize = 0;
             this.LightOffBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.LightOffBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.LightOffBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LightOffBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.LightOffBtn.ForeColor = System.Drawing.Color.White;
-            this.LightOffBtn.Location = new System.Drawing.Point(284, 70);
+            this.LightOffBtn.Location = new System.Drawing.Point(286, 72);
+            this.LightOffBtn.Margin = new System.Windows.Forms.Padding(5);
             this.LightOffBtn.Name = "LightOffBtn";
-            this.LightOffBtn.Size = new System.Drawing.Size(133, 39);
+            this.LightOffBtn.Size = new System.Drawing.Size(129, 35);
             this.LightOffBtn.TabIndex = 28;
             this.LightOffBtn.Text = "Wyłącz";
             this.LightOffBtn.TextColor = System.Drawing.Color.White;
@@ -1354,22 +1499,24 @@
             // 
             // LedOffBtn
             // 
-            this.LedOffBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LedOffBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.LedOffBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.LedOffBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.LedOffBtn.BorderRadius = 1;
+            this.LedOffBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.LedOffBtn.BorderRadius = 10;
             this.LedOffBtn.BorderSize = 0;
             this.LedOffBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
+            this.LedOffBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LedOffBtn.FlatAppearance.BorderSize = 0;
             this.LedOffBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.LedOffBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.LedOffBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LedOffBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.LedOffBtn.ForeColor = System.Drawing.Color.White;
-            this.LedOffBtn.Location = new System.Drawing.Point(425, 70);
+            this.LedOffBtn.Location = new System.Drawing.Point(426, 72);
+            this.LedOffBtn.Margin = new System.Windows.Forms.Padding(5);
             this.LedOffBtn.Name = "LedOffBtn";
-            this.LedOffBtn.Size = new System.Drawing.Size(132, 39);
+            this.LedOffBtn.Size = new System.Drawing.Size(130, 35);
             this.LedOffBtn.TabIndex = 29;
             this.LedOffBtn.Text = "Wyłącz";
             this.LedOffBtn.TextColor = System.Drawing.Color.White;
@@ -1377,22 +1524,24 @@
             // 
             // LedOnBtn
             // 
-            this.LedOnBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LedOnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.LedOnBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.LedOnBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.LedOnBtn.BorderRadius = 1;
+            this.LedOnBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.LedOnBtn.BorderRadius = 10;
             this.LedOnBtn.BorderSize = 0;
             this.LedOnBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
+            this.LedOnBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LedOnBtn.FlatAppearance.BorderSize = 0;
             this.LedOnBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.LedOnBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.LedOnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LedOnBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.LedOnBtn.ForeColor = System.Drawing.Color.White;
-            this.LedOnBtn.Location = new System.Drawing.Point(425, 26);
+            this.LedOnBtn.Location = new System.Drawing.Point(426, 28);
+            this.LedOnBtn.Margin = new System.Windows.Forms.Padding(5);
             this.LedOnBtn.Name = "LedOnBtn";
-            this.LedOnBtn.Size = new System.Drawing.Size(132, 37);
+            this.LedOnBtn.Size = new System.Drawing.Size(130, 33);
             this.LedOnBtn.TabIndex = 27;
             this.LedOnBtn.Text = "Włącz";
             this.LedOnBtn.TextColor = System.Drawing.Color.White;
@@ -1414,22 +1563,24 @@
             // 
             // MixerOnBtn
             // 
-            this.MixerOnBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.MixerOnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.MixerOnBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.MixerOnBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.MixerOnBtn.BorderRadius = 1;
+            this.MixerOnBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.MixerOnBtn.BorderRadius = 10;
             this.MixerOnBtn.BorderSize = 0;
             this.MixerOnBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Green;
+            this.MixerOnBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MixerOnBtn.FlatAppearance.BorderSize = 0;
             this.MixerOnBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.MixerOnBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(133)))), ((int)(((byte)(55)))));
             this.MixerOnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MixerOnBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.MixerOnBtn.ForeColor = System.Drawing.Color.White;
-            this.MixerOnBtn.Location = new System.Drawing.Point(5, 26);
+            this.MixerOnBtn.Location = new System.Drawing.Point(6, 28);
+            this.MixerOnBtn.Margin = new System.Windows.Forms.Padding(5);
             this.MixerOnBtn.Name = "MixerOnBtn";
-            this.MixerOnBtn.Size = new System.Drawing.Size(271, 37);
+            this.MixerOnBtn.Size = new System.Drawing.Size(269, 33);
             this.MixerOnBtn.TabIndex = 24;
             this.MixerOnBtn.Text = "Włącz";
             this.MixerOnBtn.TextColor = System.Drawing.Color.White;
@@ -1438,22 +1589,24 @@
             // 
             // MixerStopBtn
             // 
-            this.MixerStopBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.MixerStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.MixerStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.MixerStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.MixerStopBtn.BorderRadius = 1;
+            this.MixerStopBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.MixerStopBtn.BorderRadius = 10;
             this.MixerStopBtn.BorderSize = 0;
             this.MixerStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
+            this.MixerStopBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MixerStopBtn.FlatAppearance.BorderSize = 0;
             this.MixerStopBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.MixerStopBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
             this.MixerStopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MixerStopBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.MixerStopBtn.ForeColor = System.Drawing.Color.White;
-            this.MixerStopBtn.Location = new System.Drawing.Point(5, 70);
+            this.MixerStopBtn.Location = new System.Drawing.Point(6, 72);
+            this.MixerStopBtn.Margin = new System.Windows.Forms.Padding(5);
             this.MixerStopBtn.Name = "MixerStopBtn";
-            this.MixerStopBtn.Size = new System.Drawing.Size(271, 39);
+            this.MixerStopBtn.Size = new System.Drawing.Size(269, 35);
             this.MixerStopBtn.TabIndex = 25;
             this.MixerStopBtn.Text = "Stop";
             this.MixerStopBtn.TextColor = System.Drawing.Color.White;
@@ -1491,7 +1644,8 @@
             this.OneStepsProbeLeftBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.OneStepsProbeLeftBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.OneStepsProbeLeftBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.OneStepsProbeLeftBtn.BorderRadius = 1;
+            this.OneStepsProbeLeftBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.OneStepsProbeLeftBtn.BorderRadius = 10;
             this.OneStepsProbeLeftBtn.BorderSize = 0;
             this.OneStepsProbeLeftBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.OneStepsProbeLeftBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1515,7 +1669,8 @@
             this.TenStepsProbeLeftBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.TenStepsProbeLeftBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.TenStepsProbeLeftBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.TenStepsProbeLeftBtn.BorderRadius = 1;
+            this.TenStepsProbeLeftBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.TenStepsProbeLeftBtn.BorderRadius = 10;
             this.TenStepsProbeLeftBtn.BorderSize = 0;
             this.TenStepsProbeLeftBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.TenStepsProbeLeftBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1539,7 +1694,8 @@
             this.TenStepsProbeRightBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.TenStepsProbeRightBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.TenStepsProbeRightBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.TenStepsProbeRightBtn.BorderRadius = 1;
+            this.TenStepsProbeRightBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.TenStepsProbeRightBtn.BorderRadius = 10;
             this.TenStepsProbeRightBtn.BorderSize = 0;
             this.TenStepsProbeRightBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.TenStepsProbeRightBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1563,7 +1719,8 @@
             this.FullProbeLeftBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(61)))), ((int)(((byte)(217)))));
             this.FullProbeLeftBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(61)))), ((int)(((byte)(217)))));
             this.FullProbeLeftBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.FullProbeLeftBtn.BorderRadius = 1;
+            this.FullProbeLeftBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.FullProbeLeftBtn.BorderRadius = 10;
             this.FullProbeLeftBtn.BorderSize = 0;
             this.FullProbeLeftBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_purple;
             this.FullProbeLeftBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1587,7 +1744,8 @@
             this.FullProbeRightBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(61)))), ((int)(((byte)(217)))));
             this.FullProbeRightBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(61)))), ((int)(((byte)(217)))));
             this.FullProbeRightBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.FullProbeRightBtn.BorderRadius = 1;
+            this.FullProbeRightBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.FullProbeRightBtn.BorderRadius = 10;
             this.FullProbeRightBtn.BorderSize = 0;
             this.FullProbeRightBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_purple;
             this.FullProbeRightBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1611,7 +1769,8 @@
             this.ProbeStopBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.ProbeStopBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.ProbeStopBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ProbeStopBtn.BorderRadius = 1;
+            this.ProbeStopBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.ProbeStopBtn.BorderRadius = 10;
             this.ProbeStopBtn.BorderSize = 0;
             this.ProbeStopBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
             this.ProbeStopBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1635,7 +1794,8 @@
             this.OneStepsProbeRightBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.OneStepsProbeRightBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.OneStepsProbeRightBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.OneStepsProbeRightBtn.BorderRadius = 1;
+            this.OneStepsProbeRightBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.OneStepsProbeRightBtn.BorderRadius = 10;
             this.OneStepsProbeRightBtn.BorderSize = 0;
             this.OneStepsProbeRightBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
             this.OneStepsProbeRightBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1662,12 +1822,13 @@
             this.tableLayoutPanel16.Controls.Add(this.InfProbeRightBtn, 0, 1);
             this.tableLayoutPanel16.Controls.Add(this.InfProbeLeftBtn, 0, 0);
             this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel16.Location = new System.Drawing.Point(507, 3);
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(504, 0);
+            this.tableLayoutPanel16.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel16.Name = "tableLayoutPanel16";
             this.tableLayoutPanel16.RowCount = 2;
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(52, 82);
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(58, 88);
             this.tableLayoutPanel16.TabIndex = 24;
             // 
             // InfProbeRightBtn
@@ -1675,7 +1836,8 @@
             this.InfProbeRightBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.InfProbeRightBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.InfProbeRightBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.InfProbeRightBtn.BorderRadius = 1;
+            this.InfProbeRightBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.InfProbeRightBtn.BorderRadius = 10;
             this.InfProbeRightBtn.BorderSize = 0;
             this.InfProbeRightBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_orange;
             this.InfProbeRightBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1685,9 +1847,9 @@
             this.InfProbeRightBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InfProbeRightBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.InfProbeRightBtn.ForeColor = System.Drawing.Color.White;
-            this.InfProbeRightBtn.Location = new System.Drawing.Point(3, 44);
+            this.InfProbeRightBtn.Location = new System.Drawing.Point(3, 47);
             this.InfProbeRightBtn.Name = "InfProbeRightBtn";
-            this.InfProbeRightBtn.Size = new System.Drawing.Size(46, 35);
+            this.InfProbeRightBtn.Size = new System.Drawing.Size(52, 38);
             this.InfProbeRightBtn.TabIndex = 11;
             this.InfProbeRightBtn.Text = "P";
             this.InfProbeRightBtn.TextColor = System.Drawing.Color.White;
@@ -1699,7 +1861,8 @@
             this.InfProbeLeftBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.InfProbeLeftBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(174)))), ((int)(((byte)(0)))));
             this.InfProbeLeftBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.InfProbeLeftBtn.BorderRadius = 1;
+            this.InfProbeLeftBtn.BorderModeSelect = HAL062app.CustomControls.CustomButton.BorderMode.Off;
+            this.InfProbeLeftBtn.BorderRadius = 10;
             this.InfProbeLeftBtn.BorderSize = 0;
             this.InfProbeLeftBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Functional_orange;
             this.InfProbeLeftBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1711,7 +1874,7 @@
             this.InfProbeLeftBtn.ForeColor = System.Drawing.Color.White;
             this.InfProbeLeftBtn.Location = new System.Drawing.Point(3, 3);
             this.InfProbeLeftBtn.Name = "InfProbeLeftBtn";
-            this.InfProbeLeftBtn.Size = new System.Drawing.Size(46, 35);
+            this.InfProbeLeftBtn.Size = new System.Drawing.Size(52, 38);
             this.InfProbeLeftBtn.TabIndex = 10;
             this.InfProbeLeftBtn.Text = "L";
             this.InfProbeLeftBtn.TextColor = System.Drawing.Color.White;
@@ -1727,78 +1890,6 @@
             this.ProbesPanel.TabIndex = 2;
             this.ProbesPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ProbesPanel_Paint);
             this.ProbesPanel.Resize += new System.EventHandler(this.ProbesPanel_Resize);
-            // 
-            // LoadJSONbtn
-            // 
-            this.LoadJSONbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.LoadJSONbtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.LoadJSONbtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.LoadJSONbtn.BorderRadius = 10;
-            this.LoadJSONbtn.BorderSize = 0;
-            this.LoadJSONbtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Primary;
-            this.LoadJSONbtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadJSONbtn.FlatAppearance.BorderSize = 0;
-            this.LoadJSONbtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
-            this.LoadJSONbtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(172)))));
-            this.LoadJSONbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LoadJSONbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LoadJSONbtn.ForeColor = System.Drawing.Color.White;
-            this.LoadJSONbtn.Location = new System.Drawing.Point(3, 3);
-            this.LoadJSONbtn.Name = "LoadJSONbtn";
-            this.LoadJSONbtn.Size = new System.Drawing.Size(85, 108);
-            this.LoadJSONbtn.TabIndex = 0;
-            this.LoadJSONbtn.Text = "Załaduj plik labo.json";
-            this.LoadJSONbtn.TextColor = System.Drawing.Color.White;
-            this.LoadJSONbtn.UseVisualStyleBackColor = false;
-            this.LoadJSONbtn.Click += new System.EventHandler(this.LoadJSONbtn_Click);
-            // 
-            // ResetJSONbtn
-            // 
-            this.ResetJSONbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
-            this.ResetJSONbtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
-            this.ResetJSONbtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ResetJSONbtn.BorderRadius = 10;
-            this.ResetJSONbtn.BorderSize = 0;
-            this.ResetJSONbtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
-            this.ResetJSONbtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ResetJSONbtn.FlatAppearance.BorderSize = 0;
-            this.ResetJSONbtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
-            this.ResetJSONbtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
-            this.ResetJSONbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ResetJSONbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ResetJSONbtn.ForeColor = System.Drawing.Color.White;
-            this.ResetJSONbtn.Location = new System.Drawing.Point(94, 3);
-            this.ResetJSONbtn.Name = "ResetJSONbtn";
-            this.ResetJSONbtn.Size = new System.Drawing.Size(85, 108);
-            this.ResetJSONbtn.TabIndex = 1;
-            this.ResetJSONbtn.Text = "Zresetuj plik labo.json";
-            this.ResetJSONbtn.TextColor = System.Drawing.Color.White;
-            this.ResetJSONbtn.UseVisualStyleBackColor = false;
-            this.ResetJSONbtn.Click += new System.EventHandler(this.ResetJSONbtn_Click);
-            // 
-            // ResetHistoryBtn
-            // 
-            this.ResetHistoryBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
-            this.ResetHistoryBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
-            this.ResetHistoryBtn.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(155)))), ((int)(((byte)(154)))), ((int)(((byte)(159)))));
-            this.ResetHistoryBtn.BorderRadius = 10;
-            this.ResetHistoryBtn.BorderSize = 0;
-            this.ResetHistoryBtn.ButtonStyle = HAL062app.CustomControls.CustomButton.ButtonStyles.Red;
-            this.ResetHistoryBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ResetHistoryBtn.FlatAppearance.BorderSize = 0;
-            this.ResetHistoryBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
-            this.ResetHistoryBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(42)))), ((int)(((byte)(55)))));
-            this.ResetHistoryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ResetHistoryBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ResetHistoryBtn.ForeColor = System.Drawing.Color.White;
-            this.ResetHistoryBtn.Location = new System.Drawing.Point(185, 3);
-            this.ResetHistoryBtn.Name = "ResetHistoryBtn";
-            this.ResetHistoryBtn.Size = new System.Drawing.Size(87, 108);
-            this.ResetHistoryBtn.TabIndex = 2;
-            this.ResetHistoryBtn.Text = "Zresetuj historię";
-            this.ResetHistoryBtn.TextColor = System.Drawing.Color.White;
-            this.ResetHistoryBtn.UseVisualStyleBackColor = false;
-            this.ResetHistoryBtn.Click += new System.EventHandler(this.ResetHistoryBtn_Click);
             // 
             // LaboratoryForm
             // 
@@ -1839,7 +1930,7 @@
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel17.ResumeLayout(false);
             this.tableLayoutPanel20.ResumeLayout(false);
-            this.tableLayoutPanel21.ResumeLayout(false);
+            this.tableLayoutPanel20.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
@@ -1931,9 +2022,11 @@
         private CustomControls.CustomButton ProbeUpFullBtn;
         private CustomControls.CustomButton ProbeDownFullBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
-        private CustomControls.CustomButton ResetHistoryBtn;
-        private CustomControls.CustomButton ResetJSONbtn;
-        private CustomControls.CustomButton LoadJSONbtn;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private CustomControls.CustomButton TempSensorBtn;
+        private CustomControls.CustomButton customButton2;
+        private CustomControls.CustomButton customButton1;
     }
 }
